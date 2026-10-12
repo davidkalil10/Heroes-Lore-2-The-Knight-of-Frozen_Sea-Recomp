@@ -58,4 +58,6 @@
 - **Pipeline CI/CD no GitHub Actions (`.github/workflows/build.yml`):**
   - Configurado com 4 jobs concorrentes de build nativo: `build-switch` (devkitpro/devkita64), `build-windows` (MSYS2 UCRT64), `build-linux` (Ubuntu 22.04 + appimagetool), e `build-android` (Java 17 + Gradle 8 + NDK 26).
   - Artefatos enviados via `actions/upload-artifact@v4` no push para a branch `main` sem criação de release ou tag, viabilizando testes antecipados antes da publicação oficial.
+  - **Build Linux & Libcurl:** No Linux, `cloud_save.cpp` e `updater.cpp` utilizam libcurl; foi adicionado `find_package(CURL REQUIRED)` e `target_link_libraries(heroes_lore_2 PRIVATE CURL::libcurl)` no `CMakeLists.txt` para plataformas UNIX.
+
 
