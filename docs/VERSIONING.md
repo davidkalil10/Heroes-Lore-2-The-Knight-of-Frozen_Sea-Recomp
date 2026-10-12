@@ -15,6 +15,7 @@ O projeto adota o padrão `vMAJOR.MINOR.PATCH`:
   - `v0.3.0` — **Marco 2:** Jogabilidade e persistência de save games RMS em disco confirmada.
   - `v0.4.0` — **Marco 3:** Suporte consolidado multiplataforma (Android, Switch, Linux, Windows).
 - **PATCH (v0.x.y):** Correções de bugs pontuais, ajustes visuais, patches de áudio ou melhorias de compatibilidade.
+  - `v0.2.1` — **Patch 1:** Correção da restauração de saves na nuvem (limpeza de `XFile.store`, encerramento de sessão in-game com transição imediata para o Title Screen), identificação de classes dos heróis nos slots (`Berserker`, `Cavaleiro`, `Ladino`) e validação do sistema OTA.
 
 ---
 

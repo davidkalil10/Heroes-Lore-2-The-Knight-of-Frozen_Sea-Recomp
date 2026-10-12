@@ -1,6 +1,6 @@
 # STATUS — Heroes Lore 2: The Knight of Frozen Sea
 
-_Última atualização: 2026-10-12 (Versão v0.2.0 lançada oficialmente)_
+_Última atualização: 2026-10-12 (Versão v0.2.1 lançada oficialmente)_
 
 ## Ambiente
 - Java 17/21, Python 3.13, Git: OK.
@@ -38,10 +38,13 @@ _Última atualização: 2026-10-12 (Versão v0.2.0 lançada oficialmente)_
     - Opção 7: Nuvem (Cloud Save Google Drive RFC 8628) acionando o gestor de backup e restauração na nuvem.
   - Correção de estabilidade no Menu de Título: reparada a passagem do objeto `this` (`selfObj`) na invocação nativa de `g.a(Graphics)`, eliminando crash/segfault ao acessar Settings no título.
   - Correção da tecla Voltar/Back no menu de opções: o Canvas do HL2 (`cd.java` e `bd.java`) intercepta `-7` e despacha `8`; a rotina agora trata `8` como Voltar imediato (em vez de ciclar itens), fecha o submenu limpando `parent.b = null` e chama `parent.b(2)` com a assinatura correta `b:(I)V`.
-- [x] Detecção e suporte completo de Saves Locais no Cloud Save:
+- [x] Detecção e suporte completo de Saves Locais e Restauração no Cloud Save:
   - Mapeamento da arquitetura `com.xce.io.XFile` do HL2: os arquivos no disco são nomeados via `XF<hash>.rms` (`XF48409.rms` para Slot 1 `/g1`, `XF48410.rms` para Slot 2 `/g2`, `XF48411.rms` para Slot 3 `/g3`, e `XF48626..8.rms` para metadados `/n1..3`).
-  - Implementado decodificador nativo de nível do herói (`decodeHl2HeroLevel`) com a chave XOR `n = {14, 26, 72, 10, 28, 98}`.
-  - `Platform::getRmsDir` aprimorado para priorizar pastas com saves reais (`build/reference/extracted/rms`, `reference/extracted/rms`, etc.).
+  - Implementada decodificação nativa da classe do personagem (`Berserker`, `Cavaleiro`, `Ladino`) a partir de `byArray3[4]` com a chave `m = {5, 71, 24, 59, 43, 16}`, exibindo o resumo enriquecido nos cards: `"Slot 1: Cavaleiro (Nv. 15)"`.
+  - Correção total da restauração do save:
+    - Limpeza de cache estático em memória `com.xce.io.XFile.store` (`Hashtable_clear`).
+    - Encerramento da sessão de jogo ativa in-game e retorno automático ao Menu de Título (`u.var_int_a = 2`, `ak.c()`, `bg.bg_a()` invocando `u.var_u_a.k()`).
+    - O botão "Continue" no Menu de Título é atualizado instantaneamente para carregar os dados restaurados do disco.
 - [x] Correções de controles touch / layout (Android):
   - Retrato em 16:9: o viewport agora mantém a proporção real (`g_screenWidth` x 320), sem esticar verticalmente.
   - Botões virtuais MENU (-7) e MAPA (42 / '*') ajustados para as teclas do HL2 (antes -8 e 48, ignoradas pelo jogo).
@@ -54,7 +57,7 @@ _Última atualização: 2026-10-12 (Versão v0.2.0 lançada oficialmente)_
 - [x] **Passo 0:** Boot nativo no PC da classe `rpg.RPGHero2` e renderização do primeiro frame.
 - [x] **Passo 1:** Movimentação contínua e game loop estável a 15/30 FPS.
 - [x] **Passo 2:** Suporte completo a gamepads com mapeamento ergonômico.
-- [ ] **Passo 3:** Persistência de save games RMS em disco com integridade confirmada.
+- [x] **Passo 3:** Persistência de save games RMS em disco com integridade confirmada.
 - [x] **Passo 4:** Port Android nativo (Estrutura Gradle 8 + NDK + SDLActivity + Provider isolado + CI).
 - [x] **Passo 5:** Port Nintendo Switch Homebrew (Makefile.switch + TitleID HL2 + RomFS + CI).
 - [x] **Passo 6:** True Widescreen (16:9), Molduras temáticas (Bezels) e Modo Auto.

@@ -653,6 +653,10 @@ static void Hashtable_size(VM& vm, Value* args, Value* ret) {
   if (!h) vm.npe();
   ret[0].i = (int)h->e.size();
 }
+static void Hashtable_clear(VM&, Value* args, Value*) {
+  Hash* h = static_cast<Hash*>(args[0].o);
+  if (h) h->e.clear();
+}
 
 // Vector extras
 static void Vector_firstElement(VM& vm, Value* args, Value* ret) {
@@ -1262,6 +1266,7 @@ void VM::registerNatives() {
   reg("java/util/Hashtable.remove:(Ljava/lang/Object;)Ljava/lang/Object;", Hashtable_remove);
   reg("java/util/Hashtable.containsKey:(Ljava/lang/Object;)Z", Hashtable_containsKey);
   reg("java/util/Hashtable.size:()I", Hashtable_size);
+  reg("java/util/Hashtable.clear:()V", Hashtable_clear);
   reg("java/util/Vector.firstElement:()Ljava/lang/Object;", Vector_firstElement);
   reg("java/util/Vector.removeElement:(Ljava/lang/Object;)Z", Vector_removeElement);
   reg("java/lang/Thread.<init>:()V", Thread_init_noargs);

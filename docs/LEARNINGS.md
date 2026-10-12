@@ -103,3 +103,27 @@
 - **Botoes MENU/MAPA touch:** o HL2 nao usa -8 (CLR) nem 48 ('0' = pocao). Menu = -7 (Canvas converte em keyCode 8) e Mapa = 42 ('*').
 - **gameAction x keyCode em `l.a(II)`:** parametros = (gameAction, keyCode). O keyCode 53 produz gameAction FIRE(8) e D-Pad cima produz gameAction 1 (UP). Testar `n2 == 8` como Back ou `n2 == 1` como confirmar quebrava navegacao e '5'. Back = keyCode 8/-7/-8/27; confirmar = keyCode 53/-5/13/32.
 - **Modais no Android:** `SDL_GetWindowSize` pode diferir de `SDL_GetRendererOutputSize` (espaco em que o modal e desenhado) e o toque tambem gera `SDL_MOUSEBUTTONDOWN` com `which == SDL_TOUCH_MOUSEID` (duplicado). Modais devem usar o renderer output size e ignorar mouse sintetico.
+
+## Sessao 7 (Restauracao de Save, Cache XFile.store e Identificacao de Classes HL2)
+- **Cache Estatico em `com.xce.io.XFile.store`:**
+  - A classe `XFile` possui o campo estatico `private static final Hashtable store = new Hashtable();`.
+  - Ao abrir qualquer arquivo para leitura (`mode = 1`), se a chave do arquivo ja existe em `store`, ele retorna os bytes da memoria sem ler do disco (`loadRms`).
+  - Durante o processo de restauracao do save da nuvem, os arquivos `.rms` eram reescritos em disco com sucesso, mas o jogo mantinha os bytes em cache.
+  - Corrigido implementando `Hashtable.clear:()V` nas natives da VM e limpando `XFile.store` explicitamente durante o reload apos a restauracao.
+- **Transição de Sessão In-Game para o Title Screen:**
+  - O código herdado do jogo 1 tentava invocar metodos inexistentes de `n.class` e `bu.class` (`ao.class`, `bu.d()`, etc.).
+  - No Heroes Lore 2, a transicao e encerramento de sessao ativo sao feitos por:
+    1. Parar audios da sessao ativa via `ak.c()`.
+    2. Descartar instancia do titulo anterior via `bg.void_a()`.
+    3. Definir `u.var_int_a = 2` (modo Title Screen) e limpar `u.var_byte_d = 0`.
+    4. Invocar `bg.bg_a()`, que executa `u.var_u_a.k()` (re-escaneando os slots de save em disco e atualizando `u.var_byte_b > 0` para habilitar o botao "Continue").
+    5. Reinicializar o canvas `bd` com `bd.g = true` e tocar tema do titulo com `ak.b(1)` / `ak.a()`.
+    6. Fechar o modal do Cloud Save via `closeModal()`, levando o jogador diretamente para o Menu de Titulo pronto.
+- **Decodificacao de Classes do Heroi em `XF48409..11.rms` (`/g1..3`):**
+  - O Bloco 1 (decriptado com a chave `m = {5, 71, 24, 59, 43, 16}`) armazena o ID da classe no indice 4: `rec[2 + 4] ^ 16`.
+  - Os IDs mapeiam diretamente para os estilos de combate de `hero.tdf`:
+    - `0`: Berserker
+    - `1`: Cavaleiro (Knight / Cavaliere / Caballero)
+    - `2`: Ladino (Rogue / Ladro / Pícaro)
+  - O resumo local e da nuvem agora exibe a classe e o nivel em formato rico: `"Slot 1: Cavaleiro (Nv. 15)"`.
+

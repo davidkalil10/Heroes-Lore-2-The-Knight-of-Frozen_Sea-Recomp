@@ -837,17 +837,65 @@ static std::string formatUtcIsoToLocalDate(const std::string& iso) {
   return iso.substr(0, 10) + " " + iso.substr(11, 5);
 }
 
-static void sanitizeCloudSummary(std::string& s) {
-  auto replaceAll = [](std::string& str, const std::string& from, const std::string& to) {
-    size_t pos = 0;
-    while ((pos = str.find(from, pos)) != std::string::npos) {
-      str.replace(pos, from.length(), to);
-      pos += to.length();
+static void sanitizeCloudSummary(std::string&) {
+  // Mantem intactos os nomes das classes e personagens autenticos de Heroes Lore 2
+}
+
+struct Hl2HeroInfo {
+  int classId = -1; // 0=Berserker, 1=Knight, 2=Rogue
+  int level = 0;
+};
+
+static const char* getHl2ClassName(int classId, int lang) {
+  // lang: 0=PT, 1=EN, 2=IT, 3=ES
+  switch (classId) {
+    case 0:
+      return "Berserker";
+    case 1:
+      if (lang == 0) return "Cavaleiro";
+      if (lang == 2) return "Cavaliere";
+      if (lang == 3) return "Caballero";
+      return "Knight";
+    case 2:
+      if (lang == 0) return "Ladino";
+      if (lang == 2) return "Ladro";
+      if (lang == 3) return "Pícaro";
+      return "Rogue";
+    default:
+      return nullptr;
+  }
+}
+
+static Hl2HeroInfo decodeHl2HeroInfo(const std::vector<uint8_t>& rec) {
+  Hl2HeroInfo info;
+  if (rec.size() < 12) return info;
+
+  // Bloco 1 (tamanho short em big-endian)
+  uint16_t len1 = ((uint16_t)rec[0] << 8) | (uint16_t)rec[1];
+  if (len1 >= 6 && 2 + len1 <= rec.size()) {
+    // Chave m = {5, 71, 24, 59, 43, 16};
+    // Indice 4 decriptado com m[5] = 16 (cb.b)
+    uint8_t cid = rec[2 + 4] ^ 16;
+    if (cid <= 2) {
+      info.classId = (int)cid;
     }
-  };
-  replaceAll(s, "Karis", "Ronin");
-  replaceAll(s, "Shion", "Reah");
-  replaceAll(s, "Luiel", "Aramor");
+  }
+
+  // Bloco 2
+  size_t off2 = 2 + len1;
+  if (off2 + 4 <= rec.size()) {
+    uint16_t len2 = ((uint16_t)rec[off2] << 8) | (uint16_t)rec[off2 + 1];
+    if (len2 >= 2 && off2 + 2 + len2 <= rec.size()) {
+      // Chave n = {14, 26, 72, 10, 28, 98};
+      // Indice 0 decriptado com n[1] = 26 (cb.b)
+      uint8_t lvl = rec[off2 + 2] ^ 26;
+      if (lvl >= 1 && lvl <= 99) {
+        info.level = (int)lvl;
+      }
+    }
+  }
+
+  return info;
 }
 
 static int decodeHeroLevel(const std::vector<uint8_t>& rec) {
@@ -863,7 +911,7 @@ static int decodeHeroLevel(const std::vector<uint8_t>& rec) {
     if (++n4 == 6) n4 = 0;
     uint8_t decByte = rec[2 + n2] ^ key[n4];
     if (n2 == 1) {
-      level = decByte; // object[1] em n.java é o nível autêntico do herói
+      level = decByte; // object[1] em n.java do jogo 1
       break;
     }
   }
@@ -872,25 +920,9 @@ static int decodeHeroLevel(const std::vector<uint8_t>& rec) {
   return 0;
 }
 
-static int decodeHl2HeroLevel(const std::vector<uint8_t>& rec) {
-  if (rec.size() < 12) return 0;
-  // Bloco 1 (tamanho short em big-endian)
-  uint16_t len1 = ((uint16_t)rec[0] << 8) | (uint16_t)rec[1];
-  size_t off2 = 2 + len1;
-  if (off2 + 4 > rec.size()) return 0;
-  // Bloco 2
-  uint16_t len2 = ((uint16_t)rec[off2] << 8) | (uint16_t)rec[off2 + 1];
-  if (len2 < 2 || off2 + 2 + len2 > rec.size()) return 0;
-  // Chave n = {14, 26, 72, 10, 28, 98};
-  // Em cb.b, n4 começa em 0; ++n4 vira 1 -> chave n[1] = 26
-  uint8_t lvl = rec[off2 + 2] ^ 26;
-  if (lvl >= 1 && lvl <= 99) return (int)lvl;
-  return 0;
-}
-
 static std::string getLocalSavesDate() {
   std::string rmsBase = Platform::getRmsDir(s_activeVm);
-  // Arquivos de progresso de heróis determinam a data/hora do save
+  // Arquivos de progresso de herois determinam a data/hora do save
   const char* slotFiles[] = {
     "XF48409.rms", "XF48410.rms", "XF48411.rms",
     "XF48626.rms", "XF48627.rms", "XF48628.rms",
@@ -960,20 +992,40 @@ static std::string getLocalSavesSummary() {
 
     foundCount++;
     if (!summary.empty()) summary += ", ";
-    summary += sc.defaultHero;
 
-    // Tenta ler o primeiro record para obter o nível
+    std::string slotLabel = sc.defaultHero;
+
+    // Tenta ler o primeiro record para obter classe e nivel do heroi
     uint32_t count = 0;
     if (f.read((char*)&count, 4) && count > 0) {
       uint32_t sz = 0;
       if (f.read((char*)&sz, 4) && sz >= 4) {
         std::vector<uint8_t> rec(sz);
         f.read((char*)rec.data(), sz);
-        int lvl = sc.isHl2 ? decodeHl2HeroLevel(rec) : decodeHeroLevel(rec);
-        if (lvl > 0) {
-          summary += std::string(tr(CloudStr::LEVEL_PREFIX)) + std::to_string(lvl);
+
+        if (sc.isHl2) {
+          Hl2HeroInfo hi = decodeHl2HeroInfo(rec);
+          const char* cname = getHl2ClassName(hi.classId, getLangIndex());
+          if (cname) {
+            summary += slotLabel + ": " + cname;
+          } else {
+            summary += slotLabel;
+          }
+          if (hi.level > 0) {
+            summary += std::string(tr(CloudStr::LEVEL_PREFIX)) + std::to_string(hi.level);
+          }
+        } else {
+          summary += slotLabel;
+          int lvl = decodeHeroLevel(rec);
+          if (lvl > 0) {
+            summary += std::string(tr(CloudStr::LEVEL_PREFIX)) + std::to_string(lvl);
+          }
         }
+      } else {
+        summary += slotLabel;
       }
+    } else {
+      summary += slotLabel;
     }
   }
 
@@ -1063,28 +1115,102 @@ void CloudSave::update(VM* vm) {
     if (s_activeVm) {
       s_activeVm->gilLock();
       try {
-        ClassInfo* nClass = s_activeVm->findClass("n");
-        FieldInfo* fAoA = nClass ? s_activeVm->findField(nClass, "a:Lao;") : nullptr;
-        bool inGame = false;
-
-        if (fAoA && fAoA->isStatic && fAoA->index >= 0 && fAoA->index < (int)nClass->statics.size()) {
-          inGame = (nClass->statics[fAoA->index].o != nullptr);
-        }
-
-        if (inGame) {
-          ClassInfo* buClass = s_activeVm->findClass("bu");
-          Method* mBuD = buClass ? s_activeVm->findMethod(buClass, "d:()V") : nullptr;
-          if (mBuD) {
-            Value ret[2];
-            s_activeVm->invoke(mBuD, nullptr, ret);
-          }
-        } else {
-          Method* mNp = nClass ? s_activeVm->findMethod(nClass, "p:()V") : nullptr;
-          if (mNp) {
-            Value ret[2];
-            s_activeVm->invoke(mNp, nullptr, ret);
+        // 1. Limpa o cache de arquivos em memoria de com/xce/io/XFile
+        ClassInfo* xfileClass = s_activeVm->findClass("com/xce/io/XFile");
+        if (xfileClass) {
+          FieldInfo* fStore = s_activeVm->findField(xfileClass, "store");
+          if (fStore && fStore->isStatic && fStore->index >= 0 && fStore->index < (int)xfileClass->statics.size()) {
+            Object* storeObj = xfileClass->statics[fStore->index].o;
+            if (storeObj && storeObj->kind == K_HASH) {
+              static_cast<Hash*>(storeObj)->e.clear();
+            }
           }
         }
+
+        // 2. Para a musica e audio da sessao ativa anterior
+        ClassInfo* akClass = s_activeVm->findClass("ak");
+        if (akClass) {
+          Method* mAkC = s_activeVm->findMethod(akClass, "c:()V");
+          if (mAkC) {
+            Value ret[2];
+            s_activeVm->invoke(mAkC, nullptr, ret);
+          }
+        }
+
+        // 3. Descarta instancia antiga de bg.var_bg_a e limpa metadados antigos de slots
+        ClassInfo* bgClass = s_activeVm->findClass("bg");
+        if (bgClass) {
+          Method* mBgVoidA = s_activeVm->findMethod(bgClass, "void_a:()V");
+          if (mBgVoidA) {
+            Value ret[2];
+            s_activeVm->invoke(mBgVoidA, nullptr, ret);
+          }
+        }
+
+        // 4. Define o modo de jogo para Title Screen (u.var_int_a = 2) e limpa acoes pendentes
+        ClassInfo* uClass = s_activeVm->findClass("u");
+        if (uClass) {
+          FieldInfo* fVarIntA = s_activeVm->findField(uClass, "var_int_a");
+          if (fVarIntA && fVarIntA->isStatic && fVarIntA->index >= 0 && fVarIntA->index < (int)uClass->statics.size()) {
+            uClass->statics[fVarIntA->index].i = 2; // 2 = Title Screen
+          }
+          FieldInfo* fVarByteD = s_activeVm->findField(uClass, "var_byte_d");
+          if (fVarByteD && fVarByteD->isStatic && fVarByteD->index >= 0 && fVarByteD->index < (int)uClass->statics.size()) {
+            uClass->statics[fVarByteD->index].i = 0;
+          }
+        }
+
+        // 5. Recria bg.var_bg_a chamando bg.bg_a() (executa u.var_u_a.k() para re-escanear saves e atualiza u.var_byte_b)
+        if (bgClass) {
+          Method* mBgA = s_activeVm->findMethod(bgClass, "bg_a:()Lbg;");
+          if (mBgA) {
+            Value ret[2];
+            s_activeVm->invoke(mBgA, nullptr, ret);
+            Object* newBg = ret[0].o;
+            if (newBg) {
+              // Limpa qualquer submenu modal aberto em bg (ex: tela de configuracoes)
+              FieldInfo* fB = s_activeVm->findField(newBg->cls, "b");
+              if (fB && !fB->isStatic && fB->index >= 0 && fB->index < (int)static_cast<Instance*>(newBg)->fields.size()) {
+                static_cast<Instance*>(newBg)->fields[fB->index].o = nullptr;
+              }
+            }
+          }
+        }
+
+        // 6. Notifica o canvas principal (bd) para reinicializar o menu de titulo
+        ClassInfo* bdClass = s_activeVm->findClass("bd");
+        if (bdClass) {
+          FieldInfo* fVarBdA = s_activeVm->findField(bdClass, "var_bd_a");
+          if (fVarBdA && fVarBdA->isStatic && fVarBdA->index >= 0 && fVarBdA->index < (int)bdClass->statics.size()) {
+            Object* bdObj = bdClass->statics[fVarBdA->index].o;
+            if (bdObj) {
+              FieldInfo* fG = s_activeVm->findField(bdObj->cls, "g");
+              if (fG && !fG->isStatic && fG->index >= 0 && fG->index < (int)static_cast<Instance*>(bdObj)->fields.size()) {
+                static_cast<Instance*>(bdObj)->fields[fG->index].i = 1;
+              }
+            }
+          }
+        }
+
+        // 7. Reinicia a musica tema do Menu de Titulo
+        if (akClass) {
+          Method* mAkB = s_activeVm->findMethod(akClass, "b:(B)V");
+          if (mAkB) {
+            Value args[1];
+            args[0].i = 1;
+            Value ret[2];
+            s_activeVm->invoke(mAkB, args, ret);
+          }
+          Method* mAkA = s_activeVm->findMethod(akClass, "a:()V");
+          if (mAkA) {
+            Value ret[2];
+            s_activeVm->invoke(mAkA, nullptr, ret);
+          }
+        }
+
+        // 8. Fecha o modal de Cloud Save, retornando direto ao Menu de Titulo pronto com "Continue" ativo
+        closeModal();
+
       } catch (...) {}
       s_activeVm->gilUnlock();
     }
@@ -1569,6 +1695,31 @@ void CloudSave::confirmRestore(VM* vm) {
     std::error_code ec;
     std::filesystem::create_directories(rmsBase, ec);
 
+    std::vector<std::string> targetDirs = { rmsBase };
+    if (vm && !vm->dataDir.empty()) {
+      std::string d = vm->dataDir + "/rms";
+      if (d != rmsBase && std::filesystem::exists(vm->dataDir, ec)) {
+        std::filesystem::create_directories(d, ec);
+        targetDirs.push_back(d);
+      }
+    }
+    const char* candDirs[] = {
+      "build/reference/extracted/rms",
+      "reference/extracted/rms",
+      "build/assets/rms",
+      "assets/rms",
+      "rms"
+    };
+    for (const char* cd : candDirs) {
+      if (std::filesystem::exists(cd, ec)) {
+        bool already = false;
+        for (const auto& td : targetDirs) {
+          if (td == cd) { already = true; break; }
+        }
+        if (!already) targetDirs.push_back(cd);
+      }
+    }
+
     // Restaura todos os arquivos .rms contidos no backup
     int restoredCount = 0;
     size_t scanPos = 0;
@@ -1580,12 +1731,14 @@ void CloudSave::confirmRestore(VM* vm) {
         if (!b64.empty()) {
           std::vector<uint8_t> data = base64Decode(b64);
           if (!data.empty()) {
-            std::string outPath = (rmsBase.empty() || rmsBase.back() == '/' ? rmsBase : rmsBase + "/") + fn;
-            std::ofstream f(outPath, std::ios::binary | std::ios::trunc);
-            if (f) {
-              f.write((const char*)data.data(), data.size());
-              restoredCount++;
+            for (const auto& tdir : targetDirs) {
+              std::string outPath = (tdir.empty() || tdir.back() == '/' ? tdir : tdir + "/") + fn;
+              std::ofstream f(outPath, std::ios::binary | std::ios::trunc);
+              if (f) {
+                f.write((const char*)data.data(), data.size());
+              }
             }
+            restoredCount++;
           }
         }
       }
