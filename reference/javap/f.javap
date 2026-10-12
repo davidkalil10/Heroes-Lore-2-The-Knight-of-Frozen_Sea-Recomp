@@ -1,0 +1,578 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/f.class
+  Last modified 12 de out. de 2026; size 1948 bytes
+  SHA-256 checksum da55b3727897205e361a00069c10f6dd52993742cefccd8764b971091c9fa60f
+public class f implements ax
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #4                          // f
+  super_class: #6                         // java/lang/Object
+  interfaces: 1, fields: 1, methods: 11, attributes: 0
+Constant pool:
+   #1 = Class              #64            // as
+   #2 = Class              #65            // ax
+   #3 = Class              #67            // bd
+   #4 = Class              #71            // f
+   #5 = Class              #74            // java/lang/Math
+   #6 = Class              #75            // java/lang/Object
+   #7 = Class              #76            // java/lang/System
+   #8 = Class              #77            // java/util/Random
+   #9 = Class              #78            // javax/microedition/lcdui/Graphics
+  #10 = Class              #79            // javax/microedition/lcdui/Image
+  #11 = Fieldref           #4.#27         // f.a:Ljava/util/Random;
+  #12 = Fieldref           #1.#28         // as.a:Ljavax/microedition/lcdui/Image;
+  #13 = Fieldref           #3.#29         // bd.a:Lbd;
+  #14 = Fieldref           #1.#37         // as.m:[Ljavax/microedition/lcdui/Image;
+  #15 = Methodref          #6.#26         // java/lang/Object."<init>":()V
+  #16 = Methodref          #8.#26         // java/util/Random."<init>":()V
+  #17 = Methodref          #5.#30         // java/lang/Math.abs:(I)I
+  #18 = Methodref          #7.#31         // java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+  #19 = Methodref          #3.#32         // bd.c:()V
+  #20 = Methodref          #9.#33         // javax/microedition/lcdui/Graphics.clipRect:(IIII)V
+  #21 = Methodref          #9.#34         // javax/microedition/lcdui/Graphics.drawImage:(Ljavax/microedition/lcdui/Image;III)V
+  #22 = Methodref          #10.#35        // javax/microedition/lcdui/Image.getHeight:()I
+  #23 = Methodref          #10.#36        // javax/microedition/lcdui/Image.getWidth:()I
+  #24 = Methodref          #8.#38         // java/util/Random.nextInt:()I
+  #25 = Methodref          #9.#39         // javax/microedition/lcdui/Graphics.setClip:(IIII)V
+  #26 = NameAndType        #55:#42        // "<init>":()V
+  #27 = NameAndType        #61:#58        // a:Ljava/util/Random;
+  #28 = NameAndType        #61:#59        // a:Ljavax/microedition/lcdui/Image;
+  #29 = NameAndType        #61:#57        // a:Lbd;
+  #30 = NameAndType        #62:#43        // abs:(I)I
+  #31 = NameAndType        #63:#47        // arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+  #32 = NameAndType        #68:#42        // c:()V
+  #33 = NameAndType        #69:#45        // clipRect:(IIII)V
+  #34 = NameAndType        #70:#49        // drawImage:(Ljavax/microedition/lcdui/Image;III)V
+  #35 = NameAndType        #72:#41        // getHeight:()I
+  #36 = NameAndType        #73:#41        // getWidth:()I
+  #37 = NameAndType        #80:#60        // m:[Ljavax/microedition/lcdui/Image;
+  #38 = NameAndType        #81:#41        // nextInt:()I
+  #39 = NameAndType        #82:#45        // setClip:(IIII)V
+  #40 = Class              #84            // "[B"
+  #41 = Utf8               ()I
+  #42 = Utf8               ()V
+  #43 = Utf8               (I)I
+  #44 = Utf8               (II)I
+  #45 = Utf8               (IIII)V
+  #46 = Utf8               (I[BI)V
+  #47 = Utf8               (Ljava/lang/Object;ILjava/lang/Object;II)V
+  #48 = Utf8               (Ljavax/microedition/lcdui/Graphics;IIIII)V
+  #49 = Utf8               (Ljavax/microedition/lcdui/Image;III)V
+  #50 = Utf8               (S[BI)V
+  #51 = Utf8               ([BI)I
+  #52 = Utf8               ([BI)S
+  #53 = Utf8               ([B[B)[B
+  #54 = Utf8               <clinit>
+  #55 = Utf8               <init>
+  #56 = Utf8               Code
+  #57 = Utf8               Lbd;
+  #58 = Utf8               Ljava/util/Random;
+  #59 = Utf8               Ljavax/microedition/lcdui/Image;
+  #60 = Utf8               [Ljavax/microedition/lcdui/Image;
+  #61 = Utf8               a
+  #62 = Utf8               abs
+  #63 = Utf8               arraycopy
+  #64 = Utf8               as
+  #65 = Utf8               ax
+  #66 = Utf8               b
+  #67 = Utf8               bd
+  #68 = Utf8               c
+  #69 = Utf8               clipRect
+  #70 = Utf8               drawImage
+  #71 = Utf8               f
+  #72 = Utf8               getHeight
+  #73 = Utf8               getWidth
+  #74 = Utf8               java/lang/Math
+  #75 = Utf8               java/lang/Object
+  #76 = Utf8               java/lang/System
+  #77 = Utf8               java/util/Random
+  #78 = Utf8               javax/microedition/lcdui/Graphics
+  #79 = Utf8               javax/microedition/lcdui/Image
+  #80 = Utf8               m
+  #81 = Utf8               nextInt
+  #82 = Utf8               setClip
+  #83 = Utf8               StackMap
+  #84 = Utf8               [B
+{
+  public static java.util.Random a;
+    descriptor: Ljava/util/Random;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public f();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #15                 // Method java/lang/Object."<init>":()V
+         4: return
+
+  public static final int a(int, int);
+    descriptor: (II)I
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=2, locals=4, args_size=2
+         0: iload_1
+         1: iload_0
+         2: isub
+         3: iconst_1
+         4: iadd
+         5: istore_2
+         6: iload_2
+         7: iconst_2
+         8: if_icmpge     13
+        11: iload_0
+        12: ireturn
+        13: getstatic     #11                 // Field a:Ljava/util/Random;
+        16: invokevirtual #24                 // Method java/util/Random.nextInt:()I
+        19: invokestatic  #17                 // Method java/lang/Math.abs:(I)I
+        22: iload_2
+        23: irem
+        24: istore_3
+        25: iload_0
+        26: iload_3
+        27: iadd
+        28: ireturn
+      StackMap: number_of_entries = 1
+        frame_type = 255 offset = 13
+          locals = [ int, int, int ]
+          stack = []
+
+  public static final byte[] a(byte[], byte[]);
+    descriptor: ([B[B)[B
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=5, locals=3, args_size=2
+         0: aload_0
+         1: arraylength
+         2: aload_1
+         3: arraylength
+         4: iadd
+         5: newarray       byte
+         7: astore_2
+         8: aload_0
+         9: iconst_0
+        10: aload_2
+        11: iconst_0
+        12: aload_0
+        13: arraylength
+        14: invokestatic  #18                 // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+        17: aload_1
+        18: iconst_0
+        19: aload_2
+        20: aload_0
+        21: arraylength
+        22: aload_1
+        23: arraylength
+        24: invokestatic  #18                 // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+        27: aload_2
+        28: areturn
+
+  public static final int a(byte[], int);
+    descriptor: ([BI)I
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: baload
+         3: sipush        255
+         6: iand
+         7: bipush        24
+         9: ishl
+        10: aload_0
+        11: iload_1
+        12: iconst_1
+        13: iadd
+        14: baload
+        15: sipush        255
+        18: iand
+        19: bipush        16
+        21: ishl
+        22: ior
+        23: aload_0
+        24: iload_1
+        25: iconst_2
+        26: iadd
+        27: baload
+        28: sipush        255
+        31: iand
+        32: bipush        8
+        34: ishl
+        35: ior
+        36: aload_0
+        37: iload_1
+        38: iconst_3
+        39: iadd
+        40: baload
+        41: sipush        255
+        44: iand
+        45: ior
+        46: ireturn
+
+  public static final int b(byte[], int);
+    descriptor: ([BI)I
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: iconst_3
+         3: iadd
+         4: baload
+         5: sipush        255
+         8: iand
+         9: bipush        24
+        11: ishl
+        12: aload_0
+        13: iload_1
+        14: iconst_2
+        15: iadd
+        16: baload
+        17: sipush        255
+        20: iand
+        21: bipush        16
+        23: ishl
+        24: ior
+        25: aload_0
+        26: iload_1
+        27: iconst_1
+        28: iadd
+        29: baload
+        30: sipush        255
+        33: iand
+        34: bipush        8
+        36: ishl
+        37: ior
+        38: aload_0
+        39: iload_1
+        40: baload
+        41: sipush        255
+        44: iand
+        45: ior
+        46: ireturn
+
+  public static final short a(byte[], int);
+    descriptor: ([BI)S
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: iconst_1
+         3: iadd
+         4: baload
+         5: sipush        255
+         8: iand
+         9: bipush        8
+        11: ishl
+        12: aload_0
+        13: iload_1
+        14: baload
+        15: sipush        255
+        18: iand
+        19: ior
+        20: i2s
+        21: ireturn
+
+  public static final short b(byte[], int);
+    descriptor: ([BI)S
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: baload
+         3: sipush        255
+         6: iand
+         7: bipush        8
+         9: ishl
+        10: aload_0
+        11: iload_1
+        12: iconst_1
+        13: iadd
+        14: baload
+        15: sipush        255
+        18: iand
+        19: ior
+        20: i2s
+        21: ireturn
+
+  public static final void a(int, byte[], int);
+    descriptor: (I[BI)V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=5, locals=5, args_size=3
+         0: iconst_4
+         1: newarray       byte
+         3: dup
+         4: iconst_0
+         5: iconst_0
+         6: bastore
+         7: dup
+         8: iconst_1
+         9: iconst_0
+        10: bastore
+        11: dup
+        12: iconst_2
+        13: iconst_0
+        14: bastore
+        15: dup
+        16: iconst_3
+        17: iconst_0
+        18: bastore
+        19: astore_3
+        20: iload_0
+        21: iconst_m1
+        22: iand
+        23: istore        4
+        25: aload_3
+        26: iconst_0
+        27: iload         4
+        29: bipush        24
+        31: ishr
+        32: sipush        255
+        35: iand
+        36: i2b
+        37: bastore
+        38: aload_3
+        39: iconst_1
+        40: iload         4
+        42: bipush        16
+        44: ishr
+        45: sipush        255
+        48: iand
+        49: i2b
+        50: bastore
+        51: aload_3
+        52: iconst_2
+        53: iload         4
+        55: bipush        8
+        57: ishr
+        58: sipush        255
+        61: iand
+        62: i2b
+        63: bastore
+        64: aload_3
+        65: iconst_3
+        66: iload         4
+        68: sipush        255
+        71: iand
+        72: i2b
+        73: bastore
+        74: aload_3
+        75: iconst_0
+        76: aload_1
+        77: iload_2
+        78: iconst_4
+        79: invokestatic  #18                 // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+        82: return
+
+  public static final void a(short, byte[], int);
+    descriptor: (S[BI)V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_1
+         1: iload_2
+         2: iload_0
+         3: bipush        8
+         5: ishr
+         6: sipush        255
+         9: iand
+        10: i2b
+        11: bastore
+        12: aload_1
+        13: iload_2
+        14: iconst_1
+        15: iadd
+        16: iload_0
+        17: sipush        255
+        20: iand
+        21: i2b
+        22: bastore
+        23: return
+
+  public static final void a(javax.microedition.lcdui.Graphics, int, int, int, int, int);
+    descriptor: (Ljavax/microedition/lcdui/Graphics;IIIII)V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=6, locals=16, args_size=6
+         0: bipush        9
+         2: newarray       byte
+         4: astore        6
+         6: iconst_0
+         7: istore        7
+         9: iconst_0
+        10: istore        8
+        12: iconst_0
+        13: istore        9
+        15: aconst_null
+        16: astore        10
+        18: iconst_0
+        19: istore        11
+        21: iload         5
+        23: ifne          34
+        26: getstatic     #12                 // Field as.a:Ljavax/microedition/lcdui/Image;
+        29: astore        10
+        31: goto          47
+        34: getstatic     #14                 // Field as.m:[Ljavax/microedition/lcdui/Image;
+        37: iload         5
+        39: iconst_1
+        40: isub
+        41: aaload
+        42: astore        10
+        44: iconst_1
+        45: istore        11
+        47: aload         10
+        49: invokevirtual #23                 // Method javax/microedition/lcdui/Image.getWidth:()I
+        52: bipush        10
+        54: idiv
+        55: istore        7
+        57: iload         7
+        59: iconst_1
+        60: isub
+        61: istore        8
+        63: aload         10
+        65: invokevirtual #22                 // Method javax/microedition/lcdui/Image.getHeight:()I
+        68: istore        9
+        70: iconst_0
+        71: istore        13
+        73: iload_1
+        74: bipush        10
+        76: irem
+        77: i2b
+        78: istore        12
+        80: iload_1
+        81: bipush        10
+        83: idiv
+        84: istore_1
+        85: aload         6
+        87: iload         13
+        89: iload         13
+        91: iconst_1
+        92: iadd
+        93: i2b
+        94: istore        13
+        96: iload         12
+        98: bastore
+        99: iload_1
+       100: ifne          73
+       103: iload_2
+       104: istore        14
+       106: iload         4
+       108: iconst_1
+       109: if_icmpne     127
+       112: iload         14
+       114: iload         13
+       116: iload         8
+       118: imul
+       119: iconst_2
+       120: idiv
+       121: isub
+       122: istore        14
+       124: goto          144
+       127: iload         4
+       129: bipush        8
+       131: if_icmpne     144
+       134: iload         14
+       136: iload         13
+       138: iload         8
+       140: imul
+       141: isub
+       142: istore        14
+       144: iconst_0
+       145: istore        15
+       147: iload         15
+       149: iload         13
+       151: if_icmpge     239
+       154: iload         11
+       156: ifeq          185
+       159: getstatic     #13                 // Field bd.a:Lbd;
+       162: invokevirtual #19                 // Method bd.c:()V
+       165: aload_0
+       166: iload         14
+       168: iload         15
+       170: iload         8
+       172: imul
+       173: iadd
+       174: iload_3
+       175: iload         7
+       177: iload         9
+       179: invokevirtual #20                 // Method javax/microedition/lcdui/Graphics.clipRect:(IIII)V
+       182: goto          202
+       185: aload_0
+       186: iload         14
+       188: iload         15
+       190: iload         8
+       192: imul
+       193: iadd
+       194: iload_3
+       195: iload         7
+       197: iload         9
+       199: invokevirtual #25                 // Method javax/microedition/lcdui/Graphics.setClip:(IIII)V
+       202: aload_0
+       203: aload         10
+       205: iload         14
+       207: iload         15
+       209: iload         8
+       211: imul
+       212: iadd
+       213: aload         6
+       215: iload         13
+       217: iload         15
+       219: isub
+       220: iconst_1
+       221: isub
+       222: baload
+       223: iload         7
+       225: imul
+       226: isub
+       227: iload_3
+       228: bipush        20
+       230: invokevirtual #21                 // Method javax/microedition/lcdui/Graphics.drawImage:(Ljavax/microedition/lcdui/Image;III)V
+       233: iinc          15, 1
+       236: goto          147
+       239: getstatic     #13                 // Field bd.a:Lbd;
+       242: invokevirtual #19                 // Method bd.c:()V
+       245: return
+      StackMap: number_of_entries = 9
+        frame_type = 255 offset = 34
+          locals = [ class javax/microedition/lcdui/Graphics, int, int, int, int, int, class "[B", int, int, int, null, int ]
+          stack = []
+        frame_type = 255 offset = 47
+          locals = [ class javax/microedition/lcdui/Graphics, int, int, int, int, int, class "[B", int, int, int, class javax/microedition/lcdui/Image, int ]
+          stack = []
+        frame_type = 255 offset = 73
+          locals = [ class javax/microedition/lcdui/Graphics, int, int, int, int, int, class "[B", int, int, int, class javax/microedition/lcdui/Image, int, top, int ]
+          stack = []
+        frame_type = 255 offset = 127
+          locals = [ class javax/microedition/lcdui/Graphics, int, int, int, int, int, class "[B", int, int, int, class javax/microedition/lcdui/Image, int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 144
+          locals = [ class javax/microedition/lcdui/Graphics, int, int, int, int, int, class "[B", int, int, int, class javax/microedition/lcdui/Image, int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 147
+          locals = [ class javax/microedition/lcdui/Graphics, int, int, int, int, int, class "[B", int, int, int, class javax/microedition/lcdui/Image, int, int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 185
+          locals = [ class javax/microedition/lcdui/Graphics, int, int, int, int, int, class "[B", int, int, int, class javax/microedition/lcdui/Image, int, int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 202
+          locals = [ class javax/microedition/lcdui/Graphics, int, int, int, int, int, class "[B", int, int, int, class javax/microedition/lcdui/Image, int, int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 239
+          locals = [ class javax/microedition/lcdui/Graphics, int, int, int, int, int, class "[B", int, int, int, class javax/microedition/lcdui/Image, int, int, int, int, int ]
+          stack = []
+
+  public static {};
+    descriptor: ()V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: new           #8                  // class java/util/Random
+         3: dup
+         4: invokespecial #16                 // Method java/util/Random."<init>":()V
+         7: putstatic     #11                 // Field a:Ljava/util/Random;
+        10: return
+}

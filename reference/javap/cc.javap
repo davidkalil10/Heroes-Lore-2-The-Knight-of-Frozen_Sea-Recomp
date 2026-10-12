@@ -1,0 +1,154 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/cc.class
+  Last modified 12 de out. de 2026; size 687 bytes
+  SHA-256 checksum d926c2a83cc7d3a7cf4347aaa79dccdbc89a4a92659f417838aebada47f0a7c4
+public class cc extends bl
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #5                          // cc
+  super_class: #3                         // bl
+  interfaces: 0, fields: 1, methods: 3, attributes: 0
+Constant pool:
+   #1 = Class              #49            // ah
+   #2 = Class              #50            // as
+   #3 = Class              #52            // bl
+   #4 = Class              #53            // bw
+   #5 = Class              #55            // cc
+   #6 = Class              #61            // javax/microedition/lcdui/Graphics
+   #7 = Class              #62            // u
+   #8 = Fieldref           #5.#22         // cc.a:B
+   #9 = Fieldref           #4.#23         // bw.a:Ljavax/microedition/lcdui/Graphics;
+  #10 = Fieldref           #7.#24         // u.a:Lah;
+  #11 = Fieldref           #1.#26         // ah.b:Z
+  #12 = Fieldref           #2.#27         // as.b:[Ljavax/microedition/lcdui/Image;
+  #13 = Fieldref           #3.#28         // bl.c:S
+  #14 = Fieldref           #3.#29         // bl.d:S
+  #15 = Fieldref           #3.#31         // bl.e:Z
+  #16 = Fieldref           #3.#32         // bl.f:B
+  #17 = Fieldref           #3.#33         // bl.g:B
+  #18 = Methodref          #3.#21         // bl."<init>":(SSBB)V
+  #19 = Methodref          #1.#25         // ah.a:(B)B
+  #20 = Methodref          #6.#30         // javax/microedition/lcdui/Graphics.drawImage:(Ljavax/microedition/lcdui/Image;III)V
+  #21 = NameAndType        #40:#39        // "<init>":(SSBB)V
+  #22 = NameAndType        #48:#41        // a:B
+  #23 = NameAndType        #48:#44        // a:Ljavax/microedition/lcdui/Graphics;
+  #24 = NameAndType        #48:#43        // a:Lah;
+  #25 = NameAndType        #48:#34        // a:(B)B
+  #26 = NameAndType        #51:#46        // b:Z
+  #27 = NameAndType        #51:#47        // b:[Ljavax/microedition/lcdui/Image;
+  #28 = NameAndType        #54:#45        // c:S
+  #29 = NameAndType        #56:#45        // d:S
+  #30 = NameAndType        #57:#38        // drawImage:(Ljavax/microedition/lcdui/Image;III)V
+  #31 = NameAndType        #58:#46        // e:Z
+  #32 = NameAndType        #59:#41        // f:B
+  #33 = NameAndType        #60:#41        // g:B
+  #34 = Utf8               (B)B
+  #35 = Utf8               (B)V
+  #36 = Utf8               (BSS)V
+  #37 = Utf8               (II)V
+  #38 = Utf8               (Ljavax/microedition/lcdui/Image;III)V
+  #39 = Utf8               (SSBB)V
+  #40 = Utf8               <init>
+  #41 = Utf8               B
+  #42 = Utf8               Code
+  #43 = Utf8               Lah;
+  #44 = Utf8               Ljavax/microedition/lcdui/Graphics;
+  #45 = Utf8               S
+  #46 = Utf8               Z
+  #47 = Utf8               [Ljavax/microedition/lcdui/Image;
+  #48 = Utf8               a
+  #49 = Utf8               ah
+  #50 = Utf8               as
+  #51 = Utf8               b
+  #52 = Utf8               bl
+  #53 = Utf8               bw
+  #54 = Utf8               c
+  #55 = Utf8               cc
+  #56 = Utf8               d
+  #57 = Utf8               drawImage
+  #58 = Utf8               e
+  #59 = Utf8               f
+  #60 = Utf8               g
+  #61 = Utf8               javax/microedition/lcdui/Graphics
+  #62 = Utf8               u
+  #63 = Utf8               StackMap
+{
+  public byte a;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public cc(byte, short, short);
+    descriptor: (BSS)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=4, args_size=4
+         0: aload_0
+         1: iload_2
+         2: iload_3
+         3: iconst_0
+         4: iconst_0
+         5: invokespecial #18                 // Method bl."<init>":(SSBB)V
+         8: aload_0
+         9: iload_1
+        10: putfield      #8                  // Field a:B
+        13: return
+
+  public void b(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=6, args_size=3
+         0: getstatic     #11                 // Field ah.b:Z
+         3: ifne          13
+         6: aload_0
+         7: getfield      #15                 // Field bl.e:Z
+        10: ifne          14
+        13: return
+        14: getstatic     #9                  // Field bw.a:Ljavax/microedition/lcdui/Graphics;
+        17: astore_3
+        18: iload_1
+        19: aload_0
+        20: getfield      #13                 // Field bl.c:S
+        23: iadd
+        24: aload_0
+        25: getfield      #16                 // Field bl.f:B
+        28: iadd
+        29: istore        4
+        31: iload_2
+        32: aload_0
+        33: getfield      #14                 // Field bl.d:S
+        36: iadd
+        37: aload_0
+        38: getfield      #17                 // Field bl.g:B
+        41: iadd
+        42: istore        5
+        44: aload_3
+        45: getstatic     #12                 // Field as.b:[Ljavax/microedition/lcdui/Image;
+        48: aload_0
+        49: getfield      #8                  // Field a:B
+        52: aaload
+        53: iload         4
+        55: iload         5
+        57: bipush        33
+        59: invokevirtual #20                 // Method javax/microedition/lcdui/Graphics.drawImage:(Ljavax/microedition/lcdui/Image;III)V
+        62: return
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 13
+          locals = [ class cc, int, int ]
+          stack = []
+        frame_type = 255 offset = 14
+          locals = [ class cc, int, int ]
+          stack = []
+
+  public final void a(byte);
+    descriptor: (B)V
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: getstatic     #10                 // Field u.a:Lah;
+         4: iload_1
+         5: invokevirtual #19                 // Method ah.a:(B)B
+         8: putfield      #8                  // Field a:B
+        11: return
+}

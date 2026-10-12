@@ -1,0 +1,48 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/com/skt/m/BackLight.class
+  Last modified 12 de out. de 2026; size 253 bytes
+  SHA-256 checksum b8691587ae68a5019b1f1168945a530daf9a4f113d10514d990d8e7c3729def8
+  Compiled from "BackLight.java"
+public class com.skt.m.BackLight
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #7                          // com/skt/m/BackLight
+  super_class: #2                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 2, attributes: 1
+Constant pool:
+   #1 = Methodref          #2.#3          // java/lang/Object."<init>":()V
+   #2 = Class              #4             // java/lang/Object
+   #3 = NameAndType        #5:#6          // "<init>":()V
+   #4 = Utf8               java/lang/Object
+   #5 = Utf8               <init>
+   #6 = Utf8               ()V
+   #7 = Class              #8             // com/skt/m/BackLight
+   #8 = Utf8               com/skt/m/BackLight
+   #9 = Utf8               Code
+  #10 = Utf8               LineNumberTable
+  #11 = Utf8               on
+  #12 = Utf8               (I)V
+  #13 = Utf8               SourceFile
+  #14 = Utf8               BackLight.java
+{
+  public com.skt.m.BackLight();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 2: 0
+
+  public static void on(int);
+    descriptor: (I)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=0, locals=1, args_size=1
+         0: return
+      LineNumberTable:
+        line 3: 0
+}
+SourceFile: "BackLight.java"

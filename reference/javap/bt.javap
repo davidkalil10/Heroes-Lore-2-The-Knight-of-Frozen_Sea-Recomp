@@ -1,0 +1,245 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/bt.class
+  Last modified 12 de out. de 2026; size 734 bytes
+  SHA-256 checksum 725c3f5711f0d74e011d2c5d1ef95a146a69748a6dcc33bfb3e58d729648717a
+public abstract class bt implements ax
+  minor version: 3
+  major version: 45
+  flags: (0x0421) ACC_PUBLIC, ACC_SUPER, ACC_ABSTRACT
+  this_class: #2                          // bt
+  super_class: #3                         // java/lang/Object
+  interfaces: 1, fields: 6, methods: 6, attributes: 0
+Constant pool:
+   #1 = Class              #35            // ax
+   #2 = Class              #37            // bt
+   #3 = Class              #40            // java/lang/Object
+   #4 = Fieldref           #2.#15         // bt.a:S
+   #5 = Fieldref           #2.#16         // bt.a:I
+   #6 = Fieldref           #2.#20         // bt.a:Z
+   #7 = Fieldref           #2.#21         // bt.b:S
+   #8 = Fieldref           #2.#22         // bt.c:B
+   #9 = Fieldref           #2.#23         // bt.d:B
+  #10 = Methodref          #3.#14         // java/lang/Object."<init>":()V
+  #11 = Methodref          #2.#17         // bt.a:(B)V
+  #12 = Methodref          #2.#18         // bt.a:(II)V
+  #13 = Methodref          #2.#19         // bt.a:()V
+  #14 = NameAndType        #28:#24        // "<init>":()V
+  #15 = NameAndType        #34:#32        // a:S
+  #16 = NameAndType        #34:#31        // a:I
+  #17 = NameAndType        #34:#25        // a:(B)V
+  #18 = NameAndType        #34:#27        // a:(II)V
+  #19 = NameAndType        #34:#24        // a:()V
+  #20 = NameAndType        #34:#33        // a:Z
+  #21 = NameAndType        #36:#32        // b:S
+  #22 = NameAndType        #38:#29        // c:B
+  #23 = NameAndType        #39:#29        // d:B
+  #24 = Utf8               ()V
+  #25 = Utf8               (B)V
+  #26 = Utf8               (BB)V
+  #27 = Utf8               (II)V
+  #28 = Utf8               <init>
+  #29 = Utf8               B
+  #30 = Utf8               Code
+  #31 = Utf8               I
+  #32 = Utf8               S
+  #33 = Utf8               Z
+  #34 = Utf8               a
+  #35 = Utf8               ax
+  #36 = Utf8               b
+  #37 = Utf8               bt
+  #38 = Utf8               c
+  #39 = Utf8               d
+  #40 = Utf8               java/lang/Object
+  #41 = Utf8               StackMap
+{
+  public byte c;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public short a;
+    descriptor: S
+    flags: (0x0001) ACC_PUBLIC
+
+  public short b;
+    descriptor: S
+    flags: (0x0001) ACC_PUBLIC
+
+  public int a;
+    descriptor: I
+    flags: (0x0001) ACC_PUBLIC
+
+  public boolean a;
+    descriptor: Z
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte d;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public bt(byte);
+    descriptor: (B)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=2, args_size=2
+         0: aload_0
+         1: invokespecial #10                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: iload_1
+         6: putfield      #8                  // Field c:B
+         9: aload_0
+        10: aload_0
+        11: iconst_1
+        12: dup_x1
+        13: putfield      #4                  // Field a:S
+        16: putfield      #5                  // Field a:I
+        19: aload_0
+        20: aload_0
+        21: iconst_0
+        22: dup_x1
+        23: putfield      #9                  // Field d:B
+        26: i2s
+        27: putfield      #7                  // Field b:S
+        30: return
+
+  public bt(byte, byte);
+    descriptor: (BB)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: invokespecial #10                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: iload_1
+         6: putfield      #8                  // Field c:B
+         9: aload_0
+        10: aload_0
+        11: iconst_1
+        12: dup_x1
+        13: putfield      #4                  // Field a:S
+        16: putfield      #5                  // Field a:I
+        19: aload_0
+        20: iconst_0
+        21: putfield      #7                  // Field b:S
+        24: aload_0
+        25: iload_2
+        26: invokevirtual #11                 // Method a:(B)V
+        29: return
+
+  public abstract void a(int, int);
+    descriptor: (II)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public void b(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokevirtual #12                 // Method a:(II)V
+         6: aload_0
+         7: invokevirtual #13                 // Method a:()V
+        10: return
+
+  public void a();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: dup
+         2: getfield      #7                  // Field b:S
+         5: iconst_1
+         6: iadd
+         7: i2s
+         8: putfield      #7                  // Field b:S
+        11: aload_0
+        12: getfield      #5                  // Field a:I
+        15: iconst_m1
+        16: if_icmpeq     40
+        19: aload_0
+        20: getfield      #7                  // Field b:S
+        23: aload_0
+        24: getfield      #4                  // Field a:S
+        27: aload_0
+        28: getfield      #5                  // Field a:I
+        31: imul
+        32: if_icmplt     40
+        35: aload_0
+        36: iconst_1
+        37: putfield      #6                  // Field a:Z
+        40: return
+      StackMap: number_of_entries = 1
+        frame_type = 255 offset = 40
+          locals = [ class bt ]
+          stack = []
+
+  public void a(byte);
+    descriptor: (B)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: iload_1
+         1: tableswitch   { // 1 to 10
+
+                       1: 56
+
+                       2: 56
+
+                       3: 56
+
+                       4: 56
+
+                       5: 65
+
+                       6: 92
+
+                       7: 74
+
+                       8: 92
+
+                       9: 92
+
+                      10: 83
+                 default: 92
+            }
+        56: aload_0
+        57: bipush        -6
+        59: putfield      #9                  // Field d:B
+        62: goto          97
+        65: aload_0
+        66: bipush        -11
+        68: putfield      #9                  // Field d:B
+        71: goto          97
+        74: aload_0
+        75: bipush        8
+        77: putfield      #9                  // Field d:B
+        80: goto          97
+        83: aload_0
+        84: bipush        6
+        86: putfield      #9                  // Field d:B
+        89: goto          97
+        92: aload_0
+        93: iconst_0
+        94: putfield      #9                  // Field d:B
+        97: return
+      StackMap: number_of_entries = 6
+        frame_type = 255 offset = 56
+          locals = [ class bt, int ]
+          stack = []
+        frame_type = 255 offset = 65
+          locals = [ class bt, int ]
+          stack = []
+        frame_type = 255 offset = 74
+          locals = [ class bt, int ]
+          stack = []
+        frame_type = 255 offset = 83
+          locals = [ class bt, int ]
+          stack = []
+        frame_type = 255 offset = 92
+          locals = [ class bt, int ]
+          stack = []
+        frame_type = 255 offset = 97
+          locals = [ class bt, int ]
+          stack = []
+}

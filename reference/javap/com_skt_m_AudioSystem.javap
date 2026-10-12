@@ -1,0 +1,169 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/com/skt/m/AudioSystem.class
+  Last modified 12 de out. de 2026; size 831 bytes
+  SHA-256 checksum 9b3b3cc196c8470d3eab247884962b3010288b3e41b15897c25e0963f3cbae9a
+  Compiled from "AudioSystem.java"
+public class com.skt.m.AudioSystem
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #7                          // com/skt/m/AudioSystem
+  super_class: #18                        // java/lang/Object
+  interfaces: 0, fields: 2, methods: 5, attributes: 1
+Constant pool:
+   #1 = Methodref          #18.#19        // java/lang/Object."<init>":()V
+   #2 = Class              #23            // com/skt/m/AudioClipImpl
+   #3 = Methodref          #2.#19         // com/skt/m/AudioClipImpl."<init>":()V
+   #4 = Fieldref           #7.#29         // com/skt/m/AudioSystem.PERCENT_TABLE:[I
+   #5 = Methodref          #2.#32         // com/skt/m/AudioClipImpl.setGlobalVolumePercent:(I)V
+   #6 = Utf8               com/skt/m/AudioSystem
+   #7 = Class              #6             // com/skt/m/AudioSystem
+   #8 = Utf8               MAX_VOLUME
+   #9 = Utf8               I
+  #10 = Integer            7
+  #11 = Utf8               ConstantValue
+  #12 = Utf8               PERCENT_TABLE
+  #13 = Utf8               [I
+  #14 = Utf8               <init>
+  #15 = Utf8               ()V
+  #16 = Utf8               Code
+  #17 = Utf8               java/lang/Object
+  #18 = Class              #17            // java/lang/Object
+  #19 = NameAndType        #14:#15        // "<init>":()V
+  #20 = Utf8               LineNumberTable
+  #21 = Utf8               getAudioClip
+  #22 = Utf8               (Ljava/lang/String;)Lcom/skt/m/AudioClip;
+  #23 = Utf8               com/skt/m/AudioClipImpl
+  #24 = Utf8               getMaxVolume
+  #25 = Utf8               (Ljava/lang/String;)I
+  #26 = Utf8               setVolume
+  #27 = Utf8               (Ljava/lang/String;I)V
+  #28 = Utf8               StackMapTable
+  #29 = NameAndType        #12:#13        // PERCENT_TABLE:[I
+  #30 = Utf8               setGlobalVolumePercent
+  #31 = Utf8               (I)V
+  #32 = NameAndType        #30:#31        // setGlobalVolumePercent:(I)V
+  #33 = Class              #38            // java/lang/String
+  #34 = Utf8               <clinit>
+  #35 = Utf8               SourceFile
+  #36 = Utf8               AudioSystem.java
+  #37 = Utf8               StackMap
+  #38 = Utf8               java/lang/String
+{
+  private static final int MAX_VOLUME;
+    descriptor: I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: int 7
+
+  private static final int[] PERCENT_TABLE;
+    descriptor: [I
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  public com.skt.m.AudioSystem();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 3: 0
+
+  public static com.skt.m.AudioClip getAudioClip(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/skt/m/AudioClip;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: new           #2                  // class com/skt/m/AudioClipImpl
+         3: dup
+         4: invokespecial #3                  // Method com/skt/m/AudioClipImpl."<init>":()V
+         7: areturn
+      LineNumberTable:
+        line 19: 0
+
+  public static int getMaxVolume(java.lang.String);
+    descriptor: (Ljava/lang/String;)I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: bipush        7
+         2: ireturn
+
+  public static void setVolume(java.lang.String, int);
+    descriptor: (Ljava/lang/String;I)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=3, args_size=2
+         0: iload_1
+         1: istore_2
+         2: iload_2
+         3: ifge          8
+         6: iconst_0
+         7: istore_2
+         8: iload_2
+         9: getstatic     #4                  // Field PERCENT_TABLE:[I
+        12: arraylength
+        13: if_icmplt     23
+        16: getstatic     #4                  // Field PERCENT_TABLE:[I
+        19: arraylength
+        20: iconst_1
+        21: isub
+        22: istore_2
+        23: getstatic     #4                  // Field PERCENT_TABLE:[I
+        26: iload_2
+        27: iaload
+        28: invokestatic  #5                  // Method com/skt/m/AudioClipImpl.setGlobalVolumePercent:(I)V
+        31: return
+      LineNumberTable:
+        line 27: 0
+        line 28: 2
+        line 29: 8
+        line 30: 23
+        line 31: 31
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 8
+          locals = [ class java/lang/String, int, int ]
+          stack = []
+        frame_type = 255 offset = 23
+          locals = [ class java/lang/String, int, int ]
+          stack = []
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=4, locals=0, args_size=0
+         0: bipush        7
+         2: newarray       int
+         4: dup
+         5: iconst_0
+         6: bipush        0
+         8: iastore
+         9: dup
+        10: iconst_1
+        11: bipush        25
+        13: iastore
+        14: dup
+        15: iconst_2
+        16: bipush        50
+        18: iastore
+        19: dup
+        20: iconst_3
+        21: bipush        70
+        23: iastore
+        24: dup
+        25: iconst_4
+        26: bipush        85
+        28: iastore
+        29: dup
+        30: iconst_5
+        31: bipush        95
+        33: iastore
+        34: dup
+        35: bipush        6
+        37: bipush        100
+        39: iastore
+        40: putstatic     #4                  // Field PERCENT_TABLE:[I
+        43: return
+}
+SourceFile: "AudioSystem.java"

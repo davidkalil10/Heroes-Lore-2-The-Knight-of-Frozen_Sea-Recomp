@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Heroes Lore 2: The Knight of Frozen Sea
+GenericName=Action RPG
+Comment=Port Nativo C++17 + SDL2 por David Kalil Braga (2026)
+Exec=heroes_lore_2
+Icon=heroes_lore_2
+Terminal=false
+Categories=Game;RolePlaying;
+Keywords=heroes;lore;knight;frozen;sea;rpg;j2me;
+StartupWMClass=heroes_lore_2

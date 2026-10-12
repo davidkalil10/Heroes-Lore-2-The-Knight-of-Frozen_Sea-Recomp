@@ -1,0 +1,1603 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/bi.class
+  Last modified 12 de out. de 2026; size 5011 bytes
+  SHA-256 checksum 653fd154b31fa4ac5382574292e4ebd478e58204f4bd7881c3e52ab649d8416b
+public final class bi extends g
+  minor version: 3
+  major version: 45
+  flags: (0x0031) ACC_PUBLIC, ACC_FINAL, ACC_SUPER
+  this_class: #3                          // bi
+  super_class: #14                        // g
+  interfaces: 0, fields: 7, methods: 9, attributes: 0
+Constant pool:
+    #1 = Class              #193          // am
+    #2 = Class              #197          // bd
+    #3 = Class              #198          // bi
+    #4 = Class              #199          // bk
+    #5 = Class              #200          // bv
+    #6 = Class              #201          // bw
+    #7 = Class              #202          // bx
+    #8 = Class              #204          // cf
+    #9 = Class              #205          // ci
+   #10 = Class              #206          // cp
+   #11 = Class              #207          // d
+   #12 = Class              #208          // e
+   #13 = Class              #209          // f
+   #14 = Class              #211          // g
+   #15 = Class              #213          // h
+   #16 = Class              #216          // java/lang/Exception
+   #17 = Class              #217          // java/lang/String
+   #18 = Class              #218          // java/lang/StringBuffer
+   #19 = Class              #219          // java/lang/System
+   #20 = Class              #220          // java/util/Vector
+   #21 = Class              #221          // javax/microedition/lcdui/Graphics
+   #22 = Class              #224          // p
+   #23 = Class              #228          // u
+   #24 = Fieldref           #3.#93        // bi.a:Le;
+   #25 = Fieldref           #3.#94        // bi.a:Z
+   #26 = Fieldref           #5.#93        // bv.a:Le;
+   #27 = Fieldref           #23.#96       // u.a:Lci;
+   #28 = Fieldref           #3.#96        // bi.a:Lci;
+   #29 = Fieldref           #14.#98       // g.a:Lg;
+   #30 = Fieldref           #3.#101       // bi.a:Lam;
+   #31 = Fieldref           #3.#103       // bi.a:Lcp;
+   #32 = Fieldref           #3.#104       // bi.a:I
+   #33 = Fieldref           #3.#105       // bi.a:B
+   #34 = Fieldref           #6.#108       // bw.a:Ljavax/microedition/lcdui/Graphics;
+   #35 = Fieldref           #23.#118      // u.a:Lu;
+   #36 = Fieldref           #9.#119       // ci.a:Ljava/util/Vector;
+   #37 = Fieldref           #14.#124      // g.b:Lg;
+   #38 = Fieldref           #22.#129      // p.e:B
+   #39 = Fieldref           #14.#130      // g.f:Z
+   #40 = Fieldref           #23.#131      // u.f:I
+   #41 = Fieldref           #10.#133      // cp.g:B
+   #42 = Fieldref           #14.#135      // g.h:B
+   #43 = Fieldref           #10.#135      // cp.h:B
+   #44 = Fieldref           #6.#136       // bw.i:I
+   #45 = Fieldref           #8.#137       // cf.i:B
+   #46 = Fieldref           #22.#138      // p.i:[B
+   #47 = Fieldref           #10.#139      // cp.j:[B
+   #48 = Fieldref           #1.#141       // am.n:B
+   #49 = Methodref          #14.#89       // g."<init>":(Lg;B)V
+   #50 = Methodref          #7.#90        // bx."<init>":(Lg;[B)V
+   #51 = Methodref          #11.#91       // d."<init>":(Lg;B[B[B)V
+   #52 = Methodref          #15.#92       // h."<init>":(Lg;B[B[BZ)V
+   #53 = Methodref          #18.#88       // java/lang/StringBuffer."<init>":()V
+   #54 = Methodref          #5.#95        // bv.a:()Lbv;
+   #55 = Methodref          #12.#97       // e.a:(I)[B
+   #56 = Methodref          #14.#99       // g.a:(BB)V
+   #57 = Methodref          #14.#100      // g.a:(Z)[B
+   #58 = Methodref          #3.#102       // bi.a:()[B
+   #59 = Methodref          #9.#106       // ci.a:(I)Lcp;
+   #60 = Methodref          #3.#107       // bi.a:()V
+   #61 = Methodref          #14.#109      // g.a:(Ljavax/microedition/lcdui/Graphics;IIZZ)V
+   #62 = Methodref          #4.#110       // bk.a:(Ljavax/microedition/lcdui/Graphics;II[BII)V
+   #63 = Methodref          #2.#111       // bd.a:(IIB)V
+   #64 = Methodref          #4.#112       // bk.a:(Ljavax/microedition/lcdui/Graphics;II[BI)V
+   #65 = Methodref          #14.#113      // g.a:(Ljavax/microedition/lcdui/Graphics;[BIII)V
+   #66 = Methodref          #14.#114      // g.a:(IIII)V
+   #67 = Methodref          #13.#115      // f.a:(II)I
+   #68 = Methodref          #10.#116      // cp.a:(Lcp;)B
+   #69 = Methodref          #9.#117       // ci.a:(BBB)V
+   #70 = Methodref          #9.#120       // ci.a:(BB)B
+   #71 = Methodref          #18.#121      // java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+   #72 = Methodref          #18.#122      // java/lang/StringBuffer.append:(I)Ljava/lang/StringBuffer;
+   #73 = Methodref          #19.#123      // java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+   #74 = Methodref          #14.#125      // g.b:(II)Z
+   #75 = Methodref          #3.#126       // bi.b:()V
+   #76 = Methodref          #3.#127       // bi.c:()V
+   #77 = Methodref          #14.#128      // g.c:(Ljavax/microedition/lcdui/Graphics;III)V
+   #78 = Methodref          #21.#132      // javax/microedition/lcdui/Graphics.fillRect:(IIII)V
+   #79 = Methodref          #17.#134      // java/lang/String.getBytes:()[B
+   #80 = Methodref          #23.#140      // u.l:()V
+   #81 = Methodref          #21.#142      // javax/microedition/lcdui/Graphics.setColor:(I)V
+   #82 = Methodref          #20.#143      // java/util/Vector.size:()I
+   #83 = Methodref          #18.#144      // java/lang/StringBuffer.toString:()Ljava/lang/String;
+   #84 = String             #146          //
+   #85 = Integer            8355711
+   #86 = Integer            15128512
+   #87 = Integer            16777215
+   #88 = NameAndType        #178:#150     // "<init>":()V
+   #89 = NameAndType        #178:#166     // "<init>":(Lg;B)V
+   #90 = NameAndType        #178:#169     // "<init>":(Lg;[B)V
+   #91 = NameAndType        #178:#167     // "<init>":(Lg;B[B[B)V
+   #92 = NameAndType        #178:#168     // "<init>":(Lg;B[B[BZ)V
+   #93 = NameAndType        #192:#185     // a:Le;
+   #94 = NameAndType        #192:#190     // a:Z
+   #95 = NameAndType        #192:#148     // a:()Lbv;
+   #96 = NameAndType        #192:#183     // a:Lci;
+   #97 = NameAndType        #192:#158     // a:(I)[B
+   #98 = NameAndType        #192:#186     // a:Lg;
+   #99 = NameAndType        #192:#153     // a:(BB)V
+  #100 = NameAndType        #192:#177     // a:(Z)[B
+  #101 = NameAndType        #192:#182     // a:Lam;
+  #102 = NameAndType        #192:#151     // a:()[B
+  #103 = NameAndType        #192:#184     // a:Lcp;
+  #104 = NameAndType        #192:#181     // a:I
+  #105 = NameAndType        #192:#179     // a:B
+  #106 = NameAndType        #192:#155     // a:(I)Lcp;
+  #107 = NameAndType        #192:#150     // a:()V
+  #108 = NameAndType        #192:#188     // a:Ljavax/microedition/lcdui/Graphics;
+  #109 = NameAndType        #192:#173     // a:(Ljavax/microedition/lcdui/Graphics;IIZZ)V
+  #110 = NameAndType        #192:#175     // a:(Ljavax/microedition/lcdui/Graphics;II[BII)V
+  #111 = NameAndType        #192:#162     // a:(IIB)V
+  #112 = NameAndType        #192:#174     // a:(Ljavax/microedition/lcdui/Graphics;II[BI)V
+  #113 = NameAndType        #192:#176     // a:(Ljavax/microedition/lcdui/Graphics;[BIII)V
+  #114 = NameAndType        #192:#163     // a:(IIII)V
+  #115 = NameAndType        #192:#159     // a:(II)I
+  #116 = NameAndType        #192:#164     // a:(Lcp;)B
+  #117 = NameAndType        #192:#154     // a:(BBB)V
+  #118 = NameAndType        #192:#189     // a:Lu;
+  #119 = NameAndType        #192:#187     // a:Ljava/util/Vector;
+  #120 = NameAndType        #192:#152     // a:(BB)B
+  #121 = NameAndType        #194:#171     // append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+  #122 = NameAndType        #194:#156     // append:(I)Ljava/lang/StringBuffer;
+  #123 = NameAndType        #195:#170     // arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+  #124 = NameAndType        #196:#186     // b:Lg;
+  #125 = NameAndType        #196:#161     // b:(II)Z
+  #126 = NameAndType        #196:#150     // b:()V
+  #127 = NameAndType        #203:#150     // c:()V
+  #128 = NameAndType        #203:#172     // c:(Ljavax/microedition/lcdui/Graphics;III)V
+  #129 = NameAndType        #208:#179     // e:B
+  #130 = NameAndType        #209:#190     // f:Z
+  #131 = NameAndType        #209:#181     // f:I
+  #132 = NameAndType        #210:#163     // fillRect:(IIII)V
+  #133 = NameAndType        #211:#179     // g:B
+  #134 = NameAndType        #212:#151     // getBytes:()[B
+  #135 = NameAndType        #213:#179     // h:B
+  #136 = NameAndType        #214:#181     // i:I
+  #137 = NameAndType        #214:#179     // i:B
+  #138 = NameAndType        #214:#191     // i:[B
+  #139 = NameAndType        #215:#191     // j:[B
+  #140 = NameAndType        #222:#150     // l:()V
+  #141 = NameAndType        #223:#179     // n:B
+  #142 = NameAndType        #225:#157     // setColor:(I)V
+  #143 = NameAndType        #226:#147     // size:()I
+  #144 = NameAndType        #227:#149     // toString:()Ljava/lang/String;
+  #145 = Class              #191          // "[B"
+  #146 = Utf8
+  #147 = Utf8               ()I
+  #148 = Utf8               ()Lbv;
+  #149 = Utf8               ()Ljava/lang/String;
+  #150 = Utf8               ()V
+  #151 = Utf8               ()[B
+  #152 = Utf8               (BB)B
+  #153 = Utf8               (BB)V
+  #154 = Utf8               (BBB)V
+  #155 = Utf8               (I)Lcp;
+  #156 = Utf8               (I)Ljava/lang/StringBuffer;
+  #157 = Utf8               (I)V
+  #158 = Utf8               (I)[B
+  #159 = Utf8               (II)I
+  #160 = Utf8               (II)V
+  #161 = Utf8               (II)Z
+  #162 = Utf8               (IIB)V
+  #163 = Utf8               (IIII)V
+  #164 = Utf8               (Lcp;)B
+  #165 = Utf8               (Lg;)V
+  #166 = Utf8               (Lg;B)V
+  #167 = Utf8               (Lg;B[B[B)V
+  #168 = Utf8               (Lg;B[B[BZ)V
+  #169 = Utf8               (Lg;[B)V
+  #170 = Utf8               (Ljava/lang/Object;ILjava/lang/Object;II)V
+  #171 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuffer;
+  #172 = Utf8               (Ljavax/microedition/lcdui/Graphics;III)V
+  #173 = Utf8               (Ljavax/microedition/lcdui/Graphics;IIZZ)V
+  #174 = Utf8               (Ljavax/microedition/lcdui/Graphics;II[BI)V
+  #175 = Utf8               (Ljavax/microedition/lcdui/Graphics;II[BII)V
+  #176 = Utf8               (Ljavax/microedition/lcdui/Graphics;[BIII)V
+  #177 = Utf8               (Z)[B
+  #178 = Utf8               <init>
+  #179 = Utf8               B
+  #180 = Utf8               Code
+  #181 = Utf8               I
+  #182 = Utf8               Lam;
+  #183 = Utf8               Lci;
+  #184 = Utf8               Lcp;
+  #185 = Utf8               Le;
+  #186 = Utf8               Lg;
+  #187 = Utf8               Ljava/util/Vector;
+  #188 = Utf8               Ljavax/microedition/lcdui/Graphics;
+  #189 = Utf8               Lu;
+  #190 = Utf8               Z
+  #191 = Utf8               [B
+  #192 = Utf8               a
+  #193 = Utf8               am
+  #194 = Utf8               append
+  #195 = Utf8               arraycopy
+  #196 = Utf8               b
+  #197 = Utf8               bd
+  #198 = Utf8               bi
+  #199 = Utf8               bk
+  #200 = Utf8               bv
+  #201 = Utf8               bw
+  #202 = Utf8               bx
+  #203 = Utf8               c
+  #204 = Utf8               cf
+  #205 = Utf8               ci
+  #206 = Utf8               cp
+  #207 = Utf8               d
+  #208 = Utf8               e
+  #209 = Utf8               f
+  #210 = Utf8               fillRect
+  #211 = Utf8               g
+  #212 = Utf8               getBytes
+  #213 = Utf8               h
+  #214 = Utf8               i
+  #215 = Utf8               j
+  #216 = Utf8               java/lang/Exception
+  #217 = Utf8               java/lang/String
+  #218 = Utf8               java/lang/StringBuffer
+  #219 = Utf8               java/lang/System
+  #220 = Utf8               java/util/Vector
+  #221 = Utf8               javax/microedition/lcdui/Graphics
+  #222 = Utf8               l
+  #223 = Utf8               n
+  #224 = Utf8               p
+  #225 = Utf8               setColor
+  #226 = Utf8               size
+  #227 = Utf8               toString
+  #228 = Utf8               u
+  #229 = Utf8               StackMap
+{
+  public e a;
+    descriptor: Le;
+    flags: (0x0001) ACC_PUBLIC
+
+  public am a;
+    descriptor: Lam;
+    flags: (0x0001) ACC_PUBLIC
+
+  public cp a;
+    descriptor: Lcp;
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte a;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public int a;
+    descriptor: I
+    flags: (0x0001) ACC_PUBLIC
+
+  public boolean a;
+    descriptor: Z
+    flags: (0x0001) ACC_PUBLIC
+
+  public ci a;
+    descriptor: Lci;
+    flags: (0x0001) ACC_PUBLIC
+
+  public bi(g);
+    descriptor: (Lg;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: iconst_3
+         3: invokespecial #49                 // Method g."<init>":(Lg;B)V
+         6: aload_0
+         7: aconst_null
+         8: putfield      #24                 // Field a:Le;
+        11: aload_0
+        12: iconst_1
+        13: putfield      #39                 // Field g.f:Z
+        16: aload_0
+        17: iconst_0
+        18: putfield      #25                 // Field a:Z
+        21: aload_0
+        22: invokestatic  #54                 // Method bv.a:()Lbv;
+        25: getfield      #26                 // Field bv.a:Le;
+        28: putfield      #24                 // Field a:Le;
+        31: aload_0
+        32: getstatic     #27                 // Field u.a:Lci;
+        35: putfield      #28                 // Field a:Lci;
+        38: aload_0
+        39: new           #7                  // class bx
+        42: dup
+        43: aload_0
+        44: aload_0
+        45: getfield      #24                 // Field a:Le;
+        48: bipush        21
+        50: invokevirtual #55                 // Method e.a:(I)[B
+        53: invokespecial #50                 // Method bx."<init>":(Lg;[B)V
+        56: putfield      #37                 // Field g.b:Lg;
+        59: return
+
+  public boolean a(int, int);
+    descriptor: (II)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=8, locals=4, args_size=3
+         0: aload_0
+         1: getfield      #25                 // Field a:Z
+         4: ifeq          9
+         7: iconst_1
+         8: ireturn
+         9: aload_0
+        10: iload_1
+        11: iload_2
+        12: invokevirtual #74                 // Method g.b:(II)Z
+        15: ifeq          20
+        18: iconst_1
+        19: ireturn
+        20: iload_2
+        21: bipush        8
+        23: if_icmpne     37
+        26: aload_0
+        27: getfield      #29                 // Field g.a:Lg;
+        30: iconst_0
+        31: iconst_0
+        32: invokevirtual #56                 // Method g.a:(BB)V
+        35: iconst_1
+        36: ireturn
+        37: iload_1
+        38: bipush        8
+        40: if_icmpeq     49
+        43: iload_2
+        44: bipush        53
+        46: if_icmpne     331
+        49: aload_0
+        50: getfield      #42                 // Field g.h:B
+        53: ifne          116
+        56: aload_0
+        57: iconst_0
+        58: invokevirtual #57                 // Method g.a:(Z)[B
+        61: astore_3
+        62: aload_3
+        63: ifnonnull     90
+        66: aload_0
+        67: new           #7                  // class bx
+        70: dup
+        71: aload_0
+        72: aload_0
+        73: getfield      #24                 // Field a:Le;
+        76: bipush        10
+        78: invokevirtual #55                 // Method e.a:(I)[B
+        81: invokespecial #50                 // Method bx."<init>":(Lg;[B)V
+        84: putfield      #37                 // Field g.b:Lg;
+        87: goto          329
+        90: aload_0
+        91: new           #11                 // class d
+        94: dup
+        95: aload_0
+        96: iconst_0
+        97: aload_3
+        98: aload_0
+        99: getfield      #24                 // Field a:Le;
+       102: bipush        8
+       104: invokevirtual #55                 // Method e.a:(I)[B
+       107: invokespecial #51                 // Method d."<init>":(Lg;B[B[B)V
+       110: putfield      #37                 // Field g.b:Lg;
+       113: goto          329
+       116: aload_0
+       117: getfield      #42                 // Field g.h:B
+       120: iconst_1
+       121: if_icmpne     219
+       124: aload_0
+       125: getfield      #30                 // Field a:Lam;
+       128: ifnonnull     159
+       131: aload_0
+       132: new           #7                  // class bx
+       135: dup
+       136: aload_0
+       137: aload_0
+       138: getfield      #24                 // Field a:Le;
+       141: bipush        8
+       143: invokevirtual #55                 // Method e.a:(I)[B
+       146: invokespecial #50                 // Method bx."<init>":(Lg;[B)V
+       149: putfield      #37                 // Field g.b:Lg;
+       152: aload_0
+       153: iconst_0
+       154: putfield      #42                 // Field g.h:B
+       157: iconst_1
+       158: ireturn
+       159: aload_0
+       160: invokevirtual #58                 // Method a:()[B
+       163: astore_3
+       164: aload_3
+       165: ifnonnull     192
+       168: aload_0
+       169: new           #7                  // class bx
+       172: dup
+       173: aload_0
+       174: aload_0
+       175: getfield      #24                 // Field a:Le;
+       178: bipush        11
+       180: invokevirtual #55                 // Method e.a:(I)[B
+       183: invokespecial #50                 // Method bx."<init>":(Lg;[B)V
+       186: putfield      #37                 // Field g.b:Lg;
+       189: goto          329
+       192: aload_0
+       193: new           #15                 // class h
+       196: dup
+       197: aload_0
+       198: iconst_1
+       199: aload_0
+       200: getfield      #24                 // Field a:Le;
+       203: bipush        8
+       205: invokevirtual #55                 // Method e.a:(I)[B
+       208: aload_3
+       209: iconst_1
+       210: invokespecial #52                 // Method h."<init>":(Lg;B[B[BZ)V
+       213: putfield      #37                 // Field g.b:Lg;
+       216: goto          329
+       219: aload_0
+       220: getfield      #42                 // Field g.h:B
+       223: iconst_2
+       224: if_icmpne     312
+       227: iconst_0
+       228: istore_3
+       229: aload_0
+       230: getfield      #30                 // Field a:Lam;
+       233: ifnonnull     247
+       236: bipush        8
+       238: istore_3
+       239: aload_0
+       240: iconst_0
+       241: putfield      #42                 // Field g.h:B
+       244: goto          289
+       247: aload_0
+       248: getfield      #31                 // Field a:Lcp;
+       251: ifnonnull     265
+       254: bipush        9
+       256: istore_3
+       257: aload_0
+       258: iconst_1
+       259: putfield      #42                 // Field g.h:B
+       262: goto          289
+       265: aload_0
+       266: getfield      #32                 // Field a:I
+       269: getstatic     #40                 // Field u.f:I
+       272: if_icmple     281
+       275: bipush        12
+       277: istore_3
+       278: goto          289
+       281: bipush        13
+       283: istore_3
+       284: aload_0
+       285: iconst_1
+       286: putfield      #25                 // Field a:Z
+       289: aload_0
+       290: new           #7                  // class bx
+       293: dup
+       294: aload_0
+       295: aload_0
+       296: getfield      #24                 // Field a:Le;
+       299: iload_3
+       300: invokevirtual #55                 // Method e.a:(I)[B
+       303: invokespecial #50                 // Method bx."<init>":(Lg;[B)V
+       306: putfield      #37                 // Field g.b:Lg;
+       309: goto          329
+       312: aload_0
+       313: getfield      #42                 // Field g.h:B
+       316: iconst_3
+       317: if_icmpne     329
+       320: aload_0
+       321: getfield      #29                 // Field g.a:Lg;
+       324: iconst_0
+       325: iconst_0
+       326: invokevirtual #56                 // Method g.a:(BB)V
+       329: iconst_1
+       330: ireturn
+       331: iload_1
+       332: iconst_1
+       333: if_icmpeq     342
+       336: iload_2
+       337: bipush        50
+       339: if_icmpne     366
+       342: aload_0
+       343: getfield      #42                 // Field g.h:B
+       346: iconst_1
+       347: if_icmple     358
+       350: aload_0
+       351: iconst_1
+       352: putfield      #42                 // Field g.h:B
+       355: goto          443
+       358: aload_0
+       359: iconst_0
+       360: putfield      #42                 // Field g.h:B
+       363: goto          443
+       366: iload_1
+       367: bipush        6
+       369: if_icmpeq     378
+       372: iload_2
+       373: bipush        56
+       375: if_icmpne     400
+       378: aload_0
+       379: getfield      #42                 // Field g.h:B
+       382: iconst_2
+       383: if_icmpge     443
+       386: aload_0
+       387: dup
+       388: getfield      #42                 // Field g.h:B
+       391: iconst_1
+       392: iadd
+       393: i2b
+       394: putfield      #42                 // Field g.h:B
+       397: goto          443
+       400: iload_1
+       401: iconst_2
+       402: if_icmpeq     422
+       405: iload_2
+       406: bipush        52
+       408: if_icmpeq     422
+       411: iload_1
+       412: iconst_5
+       413: if_icmpeq     422
+       416: iload_2
+       417: bipush        54
+       419: if_icmpne     443
+       422: aload_0
+       423: getfield      #42                 // Field g.h:B
+       426: iconst_2
+       427: if_icmpne     438
+       430: aload_0
+       431: iconst_3
+       432: putfield      #42                 // Field g.h:B
+       435: goto          443
+       438: aload_0
+       439: iconst_2
+       440: putfield      #42                 // Field g.h:B
+       443: iconst_1
+       444: ireturn
+      StackMap: number_of_entries = 24
+        frame_type = 255 offset = 9
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 20
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 37
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 49
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 90
+          locals = [ class bi, int, int, class "[B" ]
+          stack = []
+        frame_type = 255 offset = 116
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 159
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 192
+          locals = [ class bi, int, int, class "[B" ]
+          stack = []
+        frame_type = 255 offset = 219
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 247
+          locals = [ class bi, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 265
+          locals = [ class bi, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 281
+          locals = [ class bi, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 289
+          locals = [ class bi, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 312
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 329
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 331
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 342
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 358
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 366
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 378
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 400
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 422
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 438
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 443
+          locals = [ class bi, int, int ]
+          stack = []
+
+  public void a(byte, byte);
+    descriptor: (BB)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokespecial #56                 // Method g.a:(BB)V
+         6: iload_1
+         7: ifne          41
+        10: iload_2
+        11: iconst_m1
+        12: if_icmple     41
+        15: aload_0
+        16: iload_2
+        17: putfield      #33                 // Field a:B
+        20: aload_0
+        21: getstatic     #27                 // Field u.a:Lci;
+        24: iload_2
+        25: invokevirtual #59                 // Method ci.a:(I)Lcp;
+        28: checkcast     #1                  // class am
+        31: putfield      #30                 // Field a:Lam;
+        34: aload_0
+        35: invokevirtual #60                 // Method a:()V
+        38: goto          66
+        41: iload_1
+        42: iconst_1
+        43: if_icmpne     66
+        46: iload_2
+        47: iconst_m1
+        48: if_icmple     66
+        51: aload_0
+        52: getstatic     #27                 // Field u.a:Lci;
+        55: iload_2
+        56: invokevirtual #59                 // Method ci.a:(I)Lcp;
+        59: putfield      #31                 // Field a:Lcp;
+        62: aload_0
+        63: invokevirtual #75                 // Method b:()V
+        66: return
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 41
+          locals = [ class bi, int, int ]
+          stack = []
+        frame_type = 255 offset = 66
+          locals = [ class bi, int, int ]
+          stack = []
+
+  public void a();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #31                 // Field a:Lcp;
+         4: ifnull        12
+         7: aload_0
+         8: aconst_null
+         9: putfield      #31                 // Field a:Lcp;
+        12: aload_0
+        13: iconst_0
+        14: putfield      #32                 // Field a:I
+        17: return
+      StackMap: number_of_entries = 1
+        frame_type = 255 offset = 12
+          locals = [ class bi ]
+          stack = []
+
+  public void b();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #31                 // Field a:Lcp;
+         4: ifnonnull     8
+         7: return
+         8: aload_0
+         9: getfield      #31                 // Field a:Lcp;
+        12: getfield      #41                 // Field cp.g:B
+        15: tableswitch   { // 13 to 17
+
+                      13: 48
+
+                      14: 48
+
+                      15: 48
+
+                      16: 48
+
+                      17: 48
+                 default: 110
+            }
+        48: aload_0
+        49: getfield      #31                 // Field a:Lcp;
+        52: getfield      #43                 // Field cp.h:B
+        55: tableswitch   { // 0 to 2
+
+                       0: 80
+
+                       1: 90
+
+                       2: 100
+                 default: 107
+            }
+        80: aload_0
+        81: sipush        1000
+        84: putfield      #32                 // Field a:I
+        87: goto          107
+        90: aload_0
+        91: sipush        5000
+        94: putfield      #32                 // Field a:I
+        97: goto          107
+       100: aload_0
+       101: sipush        10000
+       104: putfield      #32                 // Field a:I
+       107: goto          117
+       110: aload_0
+       111: sipush        3000
+       114: putfield      #32                 // Field a:I
+       117: return
+      StackMap: number_of_entries = 8
+        frame_type = 255 offset = 8
+          locals = [ class bi ]
+          stack = []
+        frame_type = 255 offset = 48
+          locals = [ class bi ]
+          stack = []
+        frame_type = 255 offset = 80
+          locals = [ class bi ]
+          stack = []
+        frame_type = 255 offset = 90
+          locals = [ class bi ]
+          stack = []
+        frame_type = 255 offset = 100
+          locals = [ class bi ]
+          stack = []
+        frame_type = 255 offset = 107
+          locals = [ class bi ]
+          stack = []
+        frame_type = 255 offset = 110
+          locals = [ class bi ]
+          stack = []
+        frame_type = 255 offset = 117
+          locals = [ class bi ]
+          stack = []
+
+  public void a(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=7, locals=5, args_size=3
+         0: getstatic     #34                 // Field bw.a:Ljavax/microedition/lcdui/Graphics;
+         3: astore_3
+         4: aload_0
+         5: invokevirtual #76                 // Method c:()V
+         8: aload_3
+         9: iload_1
+        10: iload_2
+        11: iconst_1
+        12: iconst_0
+        13: invokestatic  #61                 // Method g.a:(Ljavax/microedition/lcdui/Graphics;IIZZ)V
+        16: aload_3
+        17: iconst_0
+        18: invokevirtual #81                 // Method javax/microedition/lcdui/Graphics.setColor:(I)V
+        21: aload_3
+        22: iload_1
+        23: bipush        -36
+        25: iadd
+        26: iload_2
+        27: sipush        192
+        30: bipush        14
+        32: invokevirtual #78                 // Method javax/microedition/lcdui/Graphics.fillRect:(IIII)V
+        35: iconst_0
+        36: istore        4
+        38: iload         4
+        40: iconst_2
+        41: if_icmpge     95
+        44: aload_3
+        45: iload_1
+        46: bipush        -18
+        48: iadd
+        49: iload_2
+        50: bipush        31
+        52: iadd
+        53: iload         4
+        55: bipush        29
+        57: imul
+        58: iadd
+        59: bipush        14
+        61: bipush        14
+        63: invokevirtual #78                 // Method javax/microedition/lcdui/Graphics.fillRect:(IIII)V
+        66: aload_3
+        67: iload_1
+        68: bipush        -1
+        70: iadd
+        71: iload_2
+        72: bipush        31
+        74: iadd
+        75: iload         4
+        77: bipush        29
+        79: imul
+        80: iadd
+        81: sipush        140
+        84: bipush        14
+        86: invokevirtual #78                 // Method javax/microedition/lcdui/Graphics.fillRect:(IIII)V
+        89: iinc          4, 1
+        92: goto          38
+        95: aload_3
+        96: ldc           #85                 // int 8355711
+        98: invokevirtual #81                 // Method javax/microedition/lcdui/Graphics.setColor:(I)V
+       101: aload_3
+       102: getstatic     #44                 // Field bw.i:I
+       105: iload_2
+       106: iconst_2
+       107: iadd
+       108: aload_0
+       109: getfield      #24                 // Field a:Le;
+       112: iconst_1
+       113: invokevirtual #55                 // Method e.a:(I)[B
+       116: iconst_1
+       117: iconst_1
+       118: invokestatic  #62                 // Method bk.a:(Ljavax/microedition/lcdui/Graphics;II[BII)V
+       121: aload_0
+       122: getfield      #30                 // Field a:Lam;
+       125: ifnonnull     178
+       128: aload_3
+       129: ldc           #85                 // int 8355711
+       131: invokevirtual #81                 // Method javax/microedition/lcdui/Graphics.setColor:(I)V
+       134: aload_3
+       135: iload_1
+       136: bipush        -18
+       138: iadd
+       139: iconst_1
+       140: iadd
+       141: iload_2
+       142: bipush        31
+       144: iadd
+       145: iconst_1
+       146: iadd
+       147: bipush        12
+       149: bipush        12
+       151: invokevirtual #78                 // Method javax/microedition/lcdui/Graphics.fillRect:(IIII)V
+       154: aload_3
+       155: iload_1
+       156: bipush        -1
+       158: iadd
+       159: iconst_1
+       160: iadd
+       161: iload_2
+       162: bipush        31
+       164: iadd
+       165: iconst_1
+       166: iadd
+       167: sipush        138
+       170: bipush        12
+       172: invokevirtual #78                 // Method javax/microedition/lcdui/Graphics.fillRect:(IIII)V
+       175: goto          230
+       178: iload_1
+       179: bipush        -18
+       181: iadd
+       182: iconst_1
+       183: iadd
+       184: iload_2
+       185: bipush        31
+       187: iadd
+       188: iconst_1
+       189: iadd
+       190: aload_0
+       191: getfield      #30                 // Field a:Lam;
+       194: getfield      #41                 // Field cp.g:B
+       197: invokestatic  #63                 // Method bd.a:(IIB)V
+       200: aload_3
+       201: ldc           #87                 // int 16777215
+       203: invokevirtual #81                 // Method javax/microedition/lcdui/Graphics.setColor:(I)V
+       206: aload_3
+       207: iload_1
+       208: bipush        -1
+       210: iadd
+       211: iconst_5
+       212: iadd
+       213: iload_2
+       214: bipush        31
+       216: iadd
+       217: iconst_2
+       218: iadd
+       219: aload_0
+       220: getfield      #30                 // Field a:Lam;
+       223: getfield      #47                 // Field cp.j:[B
+       226: iconst_1
+       227: invokestatic  #64                 // Method bk.a:(Ljavax/microedition/lcdui/Graphics;II[BI)V
+       230: aload_0
+       231: getfield      #31                 // Field a:Lcp;
+       234: ifnonnull     293
+       237: aload_3
+       238: ldc           #85                 // int 8355711
+       240: invokevirtual #81                 // Method javax/microedition/lcdui/Graphics.setColor:(I)V
+       243: aload_3
+       244: iload_1
+       245: bipush        -18
+       247: iadd
+       248: iconst_1
+       249: iadd
+       250: iload_2
+       251: bipush        31
+       253: iadd
+       254: iconst_1
+       255: iadd
+       256: bipush        29
+       258: iadd
+       259: bipush        12
+       261: bipush        12
+       263: invokevirtual #78                 // Method javax/microedition/lcdui/Graphics.fillRect:(IIII)V
+       266: aload_3
+       267: iload_1
+       268: bipush        -1
+       270: iadd
+       271: iconst_1
+       272: iadd
+       273: iload_2
+       274: bipush        31
+       276: iadd
+       277: iconst_1
+       278: iadd
+       279: bipush        29
+       281: iadd
+       282: sipush        138
+       285: bipush        12
+       287: invokevirtual #78                 // Method javax/microedition/lcdui/Graphics.fillRect:(IIII)V
+       290: goto          433
+       293: iload_1
+       294: bipush        -18
+       296: iadd
+       297: iconst_1
+       298: iadd
+       299: iload_2
+       300: bipush        31
+       302: iadd
+       303: iconst_1
+       304: iadd
+       305: bipush        29
+       307: iadd
+       308: aload_0
+       309: getfield      #31                 // Field a:Lcp;
+       312: getfield      #41                 // Field cp.g:B
+       315: invokestatic  #63                 // Method bd.a:(IIB)V
+       318: aload_3
+       319: ldc           #87                 // int 16777215
+       321: invokevirtual #81                 // Method javax/microedition/lcdui/Graphics.setColor:(I)V
+       324: aload_3
+       325: iload_1
+       326: bipush        -1
+       328: iadd
+       329: iconst_5
+       330: iadd
+       331: iload_2
+       332: bipush        31
+       334: iadd
+       335: iconst_2
+       336: iadd
+       337: bipush        29
+       339: iadd
+       340: aload_0
+       341: getfield      #31                 // Field a:Lcp;
+       344: getfield      #47                 // Field cp.j:[B
+       347: iconst_1
+       348: invokestatic  #64                 // Method bk.a:(Ljavax/microedition/lcdui/Graphics;II[BI)V
+       351: aload_3
+       352: ldc           #86                 // int 15128512
+       354: invokevirtual #81                 // Method javax/microedition/lcdui/Graphics.setColor:(I)V
+       357: aload_3
+       358: iload_1
+       359: bipush        -1
+       361: iadd
+       362: bipush        8
+       364: iadd
+       365: iload_2
+       366: bipush        18
+       368: iadd
+       369: bipush        58
+       371: iadd
+       372: aload_0
+       373: getfield      #24                 // Field a:Le;
+       376: bipush        7
+       378: invokevirtual #55                 // Method e.a:(I)[B
+       381: iconst_1
+       382: invokestatic  #64                 // Method bk.a:(Ljavax/microedition/lcdui/Graphics;II[BI)V
+       385: aload_3
+       386: iload_1
+       387: bipush        120
+       389: iadd
+       390: bipush        14
+       392: isub
+       393: iconst_4
+       394: isub
+       395: iload_2
+       396: bipush        18
+       398: iadd
+       399: bipush        58
+       401: iadd
+       402: new           #18                 // class java/lang/StringBuffer
+       405: dup
+       406: invokespecial #53                 // Method java/lang/StringBuffer."<init>":()V
+       409: ldc           #84                 // String
+       411: invokevirtual #71                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+       414: aload_0
+       415: getfield      #32                 // Field a:I
+       418: invokevirtual #72                 // Method java/lang/StringBuffer.append:(I)Ljava/lang/StringBuffer;
+       421: invokevirtual #83                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+       424: invokevirtual #79                 // Method java/lang/String.getBytes:()[B
+       427: iconst_1
+       428: bipush        8
+       430: invokestatic  #62                 // Method bk.a:(Ljavax/microedition/lcdui/Graphics;II[BII)V
+       433: aload_3
+       434: ldc           #86                 // int 15128512
+       436: invokevirtual #81                 // Method javax/microedition/lcdui/Graphics.setColor:(I)V
+       439: aload_3
+       440: getstatic     #44                 // Field bw.i:I
+       443: bipush        -58
+       445: iadd
+       446: iload_2
+       447: bipush        19
+       449: iadd
+       450: aload_0
+       451: getfield      #24                 // Field a:Le;
+       454: iconst_5
+       455: invokevirtual #55                 // Method e.a:(I)[B
+       458: iconst_1
+       459: invokestatic  #64                 // Method bk.a:(Ljavax/microedition/lcdui/Graphics;II[BI)V
+       462: aload_3
+       463: getstatic     #44                 // Field bw.i:I
+       466: bipush        -35
+       468: iadd
+       469: iload_2
+       470: bipush        19
+       472: iadd
+       473: bipush        29
+       475: iadd
+       476: aload_0
+       477: getfield      #24                 // Field a:Le;
+       480: bipush        6
+       482: invokevirtual #55                 // Method e.a:(I)[B
+       485: iconst_1
+       486: invokestatic  #64                 // Method bk.a:(Ljavax/microedition/lcdui/Graphics;II[BI)V
+       489: aload_3
+       490: iconst_0
+       491: invokevirtual #81                 // Method javax/microedition/lcdui/Graphics.setColor:(I)V
+       494: aload_3
+       495: iload_1
+       496: bipush        13
+       498: iadd
+       499: iload_2
+       500: bipush        88
+       502: iadd
+       503: bipush        46
+       505: bipush        16
+       507: invokevirtual #78                 // Method javax/microedition/lcdui/Graphics.fillRect:(IIII)V
+       510: aload_3
+       511: aload_0
+       512: getfield      #42                 // Field g.h:B
+       515: iconst_2
+       516: if_icmpeq     524
+       519: ldc           #85                 // int 8355711
+       521: goto          526
+       524: ldc           #87                 // int 16777215
+       526: invokevirtual #81                 // Method javax/microedition/lcdui/Graphics.setColor:(I)V
+       529: aload_3
+       530: iload_1
+       531: bipush        13
+       533: iadd
+       534: bipush        23
+       536: iadd
+       537: iload_2
+       538: bipush        88
+       540: iadd
+       541: iconst_3
+       542: iadd
+       543: aload_0
+       544: getfield      #24                 // Field a:Le;
+       547: iconst_3
+       548: invokevirtual #55                 // Method e.a:(I)[B
+       551: iconst_1
+       552: iconst_1
+       553: invokestatic  #62                 // Method bk.a:(Ljavax/microedition/lcdui/Graphics;II[BII)V
+       556: aload_0
+       557: aload_3
+       558: aload_0
+       559: getfield      #24                 // Field a:Le;
+       562: iconst_4
+       563: invokevirtual #55                 // Method e.a:(I)[B
+       566: iload_1
+       567: bipush        62
+       569: iadd
+       570: iload_2
+       571: bipush        88
+       573: iadd
+       574: aload_0
+       575: getfield      #42                 // Field g.h:B
+       578: iconst_3
+       579: if_icmpeq     587
+       582: ldc           #85                 // int 8355711
+       584: goto          589
+       587: ldc           #87                 // int 16777215
+       589: invokevirtual #65                 // Method g.a:(Ljavax/microedition/lcdui/Graphics;[BIII)V
+       592: aload_0
+       593: aload_3
+       594: iload_1
+       595: bipush        110
+       597: iadd
+       598: iload_2
+       599: bipush        110
+       601: iadd
+       602: getstatic     #40                 // Field u.f:I
+       605: invokevirtual #77                 // Method g.c:(Ljavax/microedition/lcdui/Graphics;III)V
+       608: return
+      StackMap: number_of_entries = 10
+        frame_type = 255 offset = 38
+          locals = [ class bi, int, int, class javax/microedition/lcdui/Graphics, int ]
+          stack = []
+        frame_type = 255 offset = 95
+          locals = [ class bi, int, int, class javax/microedition/lcdui/Graphics, int ]
+          stack = []
+        frame_type = 255 offset = 178
+          locals = [ class bi, int, int, class javax/microedition/lcdui/Graphics, int ]
+          stack = []
+        frame_type = 255 offset = 230
+          locals = [ class bi, int, int, class javax/microedition/lcdui/Graphics, int ]
+          stack = []
+        frame_type = 255 offset = 293
+          locals = [ class bi, int, int, class javax/microedition/lcdui/Graphics, int ]
+          stack = []
+        frame_type = 255 offset = 433
+          locals = [ class bi, int, int, class javax/microedition/lcdui/Graphics, int ]
+          stack = []
+        frame_type = 255 offset = 524
+          locals = [ class bi, int, int, class javax/microedition/lcdui/Graphics, int ]
+          stack = [ class javax/microedition/lcdui/Graphics ]
+        frame_type = 255 offset = 526
+          locals = [ class bi, int, int, class javax/microedition/lcdui/Graphics, int ]
+          stack = [ class javax/microedition/lcdui/Graphics, int ]
+        frame_type = 255 offset = 587
+          locals = [ class bi, int, int, class javax/microedition/lcdui/Graphics, int ]
+          stack = [ class bi, class javax/microedition/lcdui/Graphics, class "[B", int, int ]
+        frame_type = 255 offset = 589
+          locals = [ class bi, int, int, class javax/microedition/lcdui/Graphics, int ]
+          stack = [ class bi, class javax/microedition/lcdui/Graphics, class "[B", int, int, int ]
+
+  public void b(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=5, args_size=3
+         0: iload_1
+         1: bipush        13
+         3: iadd
+         4: iconst_1
+         5: isub
+         6: istore_3
+         7: iload_2
+         8: bipush        31
+        10: iadd
+        11: istore        4
+        13: aload_0
+        14: getfield      #42                 // Field g.h:B
+        17: iconst_2
+        18: if_icmpge     73
+        21: aload_0
+        22: iload_1
+        23: bipush        -18
+        25: iadd
+        26: iload_2
+        27: bipush        31
+        29: iadd
+        30: aload_0
+        31: getfield      #42                 // Field g.h:B
+        34: bipush        29
+        36: imul
+        37: iadd
+        38: bipush        14
+        40: bipush        14
+        42: invokevirtual #66                 // Method g.a:(IIII)V
+        45: aload_0
+        46: iload_1
+        47: bipush        -1
+        49: iadd
+        50: iload_2
+        51: bipush        31
+        53: iadd
+        54: aload_0
+        55: getfield      #42                 // Field g.h:B
+        58: bipush        29
+        60: imul
+        61: iadd
+        62: sipush        140
+        65: bipush        14
+        67: invokevirtual #66                 // Method g.a:(IIII)V
+        70: goto          102
+        73: iinc          4, 56
+        76: aload_0
+        77: aload_0
+        78: getfield      #42                 // Field g.h:B
+        81: iconst_3
+        82: if_icmpne     92
+        85: iload_1
+        86: bipush        62
+        88: iadd
+        89: goto          93
+        92: iload_3
+        93: iload         4
+        95: bipush        46
+        97: bipush        16
+        99: invokevirtual #66                 // Method g.a:(IIII)V
+       102: return
+      StackMap: number_of_entries = 4
+        frame_type = 255 offset = 73
+          locals = [ class bi, int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 92
+          locals = [ class bi, int, int, int, int ]
+          stack = [ class bi ]
+        frame_type = 255 offset = 93
+          locals = [ class bi, int, int, int, int ]
+          stack = [ class bi, int ]
+        frame_type = 255 offset = 102
+          locals = [ class bi, int, int, int, int ]
+          stack = []
+
+  public void c();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=3, args_size=1
+         0: aload_0
+         1: getfield      #25                 // Field a:Z
+         4: ifne          8
+         7: return
+         8: aload_0
+         9: getfield      #31                 // Field a:Lcp;
+        12: getfield      #41                 // Field cp.g:B
+        15: lookupswitch  { // 2
+
+                      18: 63
+
+                      19: 40
+                 default: 86
+            }
+        40: aload_0
+        41: getfield      #30                 // Field a:Lam;
+        44: checkcast     #8                  // class cf
+        47: aload_0
+        48: getfield      #31                 // Field a:Lcp;
+        51: getfield      #43                 // Field cp.h:B
+        54: iconst_1
+        55: iadd
+        56: i2b
+        57: putfield      #48                 // Field am.n:B
+        60: goto          142
+        63: aload_0
+        64: getfield      #30                 // Field a:Lam;
+        67: checkcast     #8                  // class cf
+        70: aload_0
+        71: getfield      #31                 // Field a:Lcp;
+        74: getfield      #43                 // Field cp.h:B
+        77: iconst_1
+        78: iadd
+        79: i2b
+        80: putfield      #45                 // Field cf.i:B
+        83: goto          142
+        86: aload_0
+        87: getfield      #31                 // Field a:Lcp;
+        90: getfield      #43                 // Field cp.h:B
+        93: iconst_2
+        94: imul
+        95: aload_0
+        96: getfield      #31                 // Field a:Lcp;
+        99: getfield      #43                 // Field cp.h:B
+       102: iconst_2
+       103: idiv
+       104: iadd
+       105: istore_1
+       106: aload_0
+       107: getfield      #31                 // Field a:Lcp;
+       110: getfield      #43                 // Field cp.h:B
+       113: iconst_3
+       114: imul
+       115: iconst_4
+       116: iadd
+       117: istore_2
+       118: aload_0
+       119: getfield      #30                 // Field a:Lam;
+       122: getfield      #46                 // Field p.i:[B
+       125: aload_0
+       126: getfield      #31                 // Field a:Lcp;
+       129: getfield      #41                 // Field cp.g:B
+       132: bipush        13
+       134: isub
+       135: iload_1
+       136: iload_2
+       137: invokestatic  #67                 // Method f.a:(II)I
+       140: i2b
+       141: bastore
+       142: aload_0
+       143: getfield      #30                 // Field a:Lam;
+       146: aload_0
+       147: getfield      #30                 // Field a:Lam;
+       150: invokestatic  #68                 // Method cp.a:(Lcp;)B
+       153: putfield      #38                 // Field p.e:B
+       156: aload_0
+       157: getfield      #28                 // Field a:Lci;
+       160: aload_0
+       161: getfield      #31                 // Field a:Lcp;
+       164: getfield      #41                 // Field cp.g:B
+       167: aload_0
+       168: getfield      #31                 // Field a:Lcp;
+       171: getfield      #43                 // Field cp.h:B
+       174: iconst_1
+       175: invokevirtual #69                 // Method ci.a:(BBB)V
+       178: getstatic     #40                 // Field u.f:I
+       181: aload_0
+       182: getfield      #32                 // Field a:I
+       185: isub
+       186: putstatic     #40                 // Field u.f:I
+       189: aload_0
+       190: invokevirtual #60                 // Method a:()V
+       193: aload_0
+       194: getfield      #30                 // Field a:Lam;
+       197: ifnull        205
+       200: aload_0
+       201: aconst_null
+       202: putfield      #30                 // Field a:Lam;
+       205: aload_0
+       206: iconst_0
+       207: putfield      #42                 // Field g.h:B
+       210: getstatic     #35                 // Field u.a:Lu;
+       213: invokevirtual #80                 // Method u.l:()V
+       216: goto          220
+       219: astore_1
+       220: aload_0
+       221: new           #7                  // class bx
+       224: dup
+       225: aload_0
+       226: aload_0
+       227: getfield      #24                 // Field a:Le;
+       230: bipush        14
+       232: invokevirtual #55                 // Method e.a:(I)[B
+       235: invokespecial #50                 // Method bx."<init>":(Lg;[B)V
+       238: putfield      #37                 // Field g.b:Lg;
+       241: aload_0
+       242: iconst_0
+       243: putfield      #25                 // Field a:Z
+       246: return
+      Exception table:
+         from    to  target type
+           210   216   219   Class java/lang/Exception
+      StackMap: number_of_entries = 8
+        frame_type = 255 offset = 8
+          locals = [ class bi ]
+          stack = []
+        frame_type = 255 offset = 40
+          locals = [ class bi ]
+          stack = []
+        frame_type = 255 offset = 63
+          locals = [ class bi ]
+          stack = []
+        frame_type = 255 offset = 86
+          locals = [ class bi ]
+          stack = []
+        frame_type = 255 offset = 142
+          locals = [ class bi ]
+          stack = []
+        frame_type = 255 offset = 205
+          locals = [ class bi ]
+          stack = []
+        frame_type = 255 offset = 219
+          locals = [ class bi ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 220
+          locals = [ class bi ]
+          stack = []
+
+  public final byte[] a();
+    descriptor: ()[B
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=5, locals=8, args_size=1
+         0: aload_0
+         1: getfield      #28                 // Field a:Lci;
+         4: getfield      #36                 // Field ci.a:Ljava/util/Vector;
+         7: invokevirtual #82                 // Method java/util/Vector.size:()I
+        10: newarray       byte
+        12: astore_1
+        13: iconst_0
+        14: istore_2
+        15: iconst_0
+        16: istore_3
+        17: iconst_0
+        18: istore        4
+        20: iload         4
+        22: iconst_5
+        23: if_icmpge     48
+        26: aload_0
+        27: getfield      #30                 // Field a:Lam;
+        30: getfield      #46                 // Field p.i:[B
+        33: iload         4
+        35: baload
+        36: ifle          42
+        39: iinc          3, 1
+        42: iinc          4, 1
+        45: goto          20
+        48: iconst_0
+        49: istore        4
+        51: iconst_0
+        52: istore        5
+        54: iload         5
+        56: iconst_5
+        57: if_icmpge     134
+        60: iload_3
+        61: iconst_2
+        62: if_icmplt     78
+        65: aload_0
+        66: getfield      #30                 // Field a:Lam;
+        69: getfield      #46                 // Field p.i:[B
+        72: iload         5
+        74: baload
+        75: ifle          128
+        78: iconst_0
+        79: istore        6
+        81: iload         6
+        83: iconst_3
+        84: if_icmpge     128
+        87: aload_0
+        88: getfield      #28                 // Field a:Lci;
+        91: bipush        13
+        93: iload         5
+        95: iadd
+        96: i2b
+        97: iload         6
+        99: invokevirtual #70                 // Method ci.a:(BB)B
+       102: istore        4
+       104: iload         4
+       106: iconst_m1
+       107: if_icmple     118
+       110: aload_1
+       111: iload_2
+       112: iinc          2, 1
+       115: iload         4
+       117: bastore
+       118: iload         6
+       120: iconst_1
+       121: iadd
+       122: i2b
+       123: istore        6
+       125: goto          81
+       128: iinc          5, 1
+       131: goto          54
+       134: aload_0
+       135: getfield      #30                 // Field a:Lam;
+       138: instanceof    #8                  // class cf
+       141: ifeq          264
+       144: aload_0
+       145: getfield      #30                 // Field a:Lam;
+       148: checkcast     #8                  // class cf
+       151: astore        5
+       153: aload         5
+       155: getfield      #45                 // Field cf.i:B
+       158: iconst_1
+       159: if_icmpge     209
+       162: iconst_0
+       163: istore        7
+       165: iload         7
+       167: bipush        6
+       169: if_icmpge     209
+       172: aload_0
+       173: getfield      #28                 // Field a:Lci;
+       176: bipush        18
+       178: iload         7
+       180: invokevirtual #70                 // Method ci.a:(BB)B
+       183: istore        4
+       185: iload         4
+       187: iconst_m1
+       188: if_icmple     199
+       191: aload_1
+       192: iload_2
+       193: iinc          2, 1
+       196: iload         4
+       198: bastore
+       199: iload         7
+       201: iconst_1
+       202: iadd
+       203: i2b
+       204: istore        7
+       206: goto          165
+       209: aload         5
+       211: getfield      #48                 // Field am.n:B
+       214: iconst_1
+       215: if_icmpge     264
+       218: iconst_0
+       219: istore        7
+       221: iload         7
+       223: iconst_5
+       224: if_icmpge     264
+       227: aload_0
+       228: getfield      #28                 // Field a:Lci;
+       231: bipush        19
+       233: iload         7
+       235: invokevirtual #70                 // Method ci.a:(BB)B
+       238: istore        4
+       240: iload         4
+       242: iconst_m1
+       243: if_icmple     254
+       246: aload_1
+       247: iload_2
+       248: iinc          2, 1
+       251: iload         4
+       253: bastore
+       254: iload         7
+       256: iconst_1
+       257: iadd
+       258: i2b
+       259: istore        7
+       261: goto          221
+       264: iload_2
+       265: ifne          270
+       268: aconst_null
+       269: areturn
+       270: iload_2
+       271: newarray       byte
+       273: astore        5
+       275: aload_1
+       276: iconst_0
+       277: aload         5
+       279: iconst_0
+       280: iload_2
+       281: invokestatic  #73                 // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+       284: aload         5
+       286: areturn
+      StackMap: number_of_entries = 16
+        frame_type = 255 offset = 20
+          locals = [ class bi, class "[B", int, int, int ]
+          stack = []
+        frame_type = 255 offset = 42
+          locals = [ class bi, class "[B", int, int, int ]
+          stack = []
+        frame_type = 255 offset = 48
+          locals = [ class bi, class "[B", int, int, int ]
+          stack = []
+        frame_type = 255 offset = 54
+          locals = [ class bi, class "[B", int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 78
+          locals = [ class bi, class "[B", int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 81
+          locals = [ class bi, class "[B", int, int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 118
+          locals = [ class bi, class "[B", int, int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 128
+          locals = [ class bi, class "[B", int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 134
+          locals = [ class bi, class "[B", int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 165
+          locals = [ class bi, class "[B", int, int, int, class cf, top, int ]
+          stack = []
+        frame_type = 255 offset = 199
+          locals = [ class bi, class "[B", int, int, int, class cf, top, int ]
+          stack = []
+        frame_type = 255 offset = 209
+          locals = [ class bi, class "[B", int, int, int, class cf ]
+          stack = []
+        frame_type = 255 offset = 221
+          locals = [ class bi, class "[B", int, int, int, class cf, top, int ]
+          stack = []
+        frame_type = 255 offset = 254
+          locals = [ class bi, class "[B", int, int, int, class cf, top, int ]
+          stack = []
+        frame_type = 255 offset = 264
+          locals = [ class bi, class "[B", int, int, int ]
+          stack = []
+        frame_type = 255 offset = 270
+          locals = [ class bi, class "[B", int, int, int ]
+          stack = []
+}

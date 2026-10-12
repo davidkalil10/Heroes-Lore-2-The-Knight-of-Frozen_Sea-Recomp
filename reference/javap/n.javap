@@ -1,0 +1,157 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/n.class
+  Last modified 12 de out. de 2026; size 506 bytes
+  SHA-256 checksum 5c8f2334522882cb769b2d4fd3944e901e9b0679de7a9d1077f76796c1603f8f
+public class n implements ax
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #3                          // n
+  super_class: #2                         // java/lang/Object
+  interfaces: 1, fields: 10, methods: 3, attributes: 0
+Constant pool:
+   #1 = Class              #35            // ax
+   #2 = Class              #44            // java/lang/Object
+   #3 = Class              #45            // n
+   #4 = Fieldref           #3.#16         // n.a:Z
+   #5 = Fieldref           #3.#17         // n.a:I
+   #6 = Fieldref           #3.#18         // n.b:Z
+   #7 = Fieldref           #3.#19         // n.c:Z
+   #8 = Fieldref           #3.#20         // n.d:Z
+   #9 = Fieldref           #3.#21         // n.e:Z
+  #10 = Fieldref           #3.#22         // n.f:Z
+  #11 = Fieldref           #3.#23         // n.g:Z
+  #12 = Fieldref           #3.#24         // n.h:Z
+  #13 = Fieldref           #3.#25         // n.i:[B
+  #14 = Methodref          #2.#15         // java/lang/Object."<init>":()V
+  #15 = NameAndType        #29:#26        // "<init>":()V
+  #16 = NameAndType        #34:#32        // a:Z
+  #17 = NameAndType        #34:#31        // a:I
+  #18 = NameAndType        #36:#32        // b:Z
+  #19 = NameAndType        #37:#32        // c:Z
+  #20 = NameAndType        #38:#32        // d:Z
+  #21 = NameAndType        #39:#32        // e:Z
+  #22 = NameAndType        #40:#32        // f:Z
+  #23 = NameAndType        #41:#32        // g:Z
+  #24 = NameAndType        #42:#32        // h:Z
+  #25 = NameAndType        #43:#33        // i:[B
+  #26 = Utf8               ()V
+  #27 = Utf8               (Ljava/lang/String;)V
+  #28 = Utf8               <clinit>
+  #29 = Utf8               <init>
+  #30 = Utf8               Code
+  #31 = Utf8               I
+  #32 = Utf8               Z
+  #33 = Utf8               [B
+  #34 = Utf8               a
+  #35 = Utf8               ax
+  #36 = Utf8               b
+  #37 = Utf8               c
+  #38 = Utf8               d
+  #39 = Utf8               e
+  #40 = Utf8               f
+  #41 = Utf8               g
+  #42 = Utf8               h
+  #43 = Utf8               i
+  #44 = Utf8               java/lang/Object
+  #45 = Utf8               n
+{
+  public static boolean a;
+    descriptor: Z
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static boolean b;
+    descriptor: Z
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static boolean c;
+    descriptor: Z
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static boolean d;
+    descriptor: Z
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static boolean e;
+    descriptor: Z
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static int a;
+    descriptor: I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static boolean f;
+    descriptor: Z
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static boolean g;
+    descriptor: Z
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static boolean h;
+    descriptor: Z
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static byte[] i;
+    descriptor: [B
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public n();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+         4: return
+
+  public static void a(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=0, locals=1, args_size=1
+         0: return
+
+  public static {};
+    descriptor: ()V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=0, args_size=0
+         0: iconst_0
+         1: putstatic     #4                  // Field a:Z
+         4: iconst_0
+         5: putstatic     #6                  // Field b:Z
+         8: iconst_0
+         9: putstatic     #7                  // Field c:Z
+        12: iconst_0
+        13: putstatic     #8                  // Field d:Z
+        16: iconst_0
+        17: putstatic     #9                  // Field e:Z
+        20: sipush        500
+        23: putstatic     #5                  // Field a:I
+        26: iconst_0
+        27: putstatic     #10                 // Field f:Z
+        30: iconst_0
+        31: putstatic     #11                 // Field g:Z
+        34: iconst_0
+        35: putstatic     #12                 // Field h:Z
+        38: iconst_4
+        39: newarray       byte
+        41: dup
+        42: iconst_0
+        43: bipush        110
+        45: bastore
+        46: dup
+        47: iconst_1
+        48: iconst_5
+        49: bastore
+        50: dup
+        51: iconst_2
+        52: bipush        15
+        54: bastore
+        55: dup
+        56: iconst_3
+        57: iconst_2
+        58: bastore
+        59: putstatic     #13                 // Field i:[B
+        62: return
+}

@@ -1,0 +1,174 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/bc.class
+  Last modified 12 de out. de 2026; size 713 bytes
+  SHA-256 checksum a1683d6e95fe3f2181748b41c0c86bba651aa2015fe3d0198c4afe32a41f4d36
+public class bc extends bl
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #4                          // bc
+  super_class: #5                         // bl
+  interfaces: 0, fields: 2, methods: 2, attributes: 0
+Constant pool:
+   #1 = Class              #50            // ah
+   #2 = Class              #51            // ao
+   #3 = Class              #52            // as
+   #4 = Class              #54            // bc
+   #5 = Class              #55            // bl
+   #6 = Class              #56            // bw
+   #7 = Class              #60            // javax/microedition/lcdui/Graphics
+   #8 = Fieldref           #1.#23         // ah.a:[Lao;
+   #9 = Fieldref           #4.#24         // bc.a:Lao;
+  #10 = Fieldref           #4.#25         // bc.a:B
+  #11 = Fieldref           #6.#26         // bw.a:Ljavax/microedition/lcdui/Graphics;
+  #12 = Fieldref           #2.#27         // ao.a:[B
+  #13 = Fieldref           #2.#25         // ao.a:B
+  #14 = Fieldref           #1.#28         // ah.b:Z
+  #15 = Fieldref           #2.#29         // ao.b:[B
+  #16 = Fieldref           #3.#30         // as.b:[Ljavax/microedition/lcdui/Image;
+  #17 = Fieldref           #5.#31         // bl.c:S
+  #18 = Fieldref           #2.#32         // ao.c:[B
+  #19 = Fieldref           #5.#33         // bl.d:S
+  #20 = Methodref          #5.#22         // bl."<init>":(SSBB)V
+  #21 = Methodref          #7.#34         // javax/microedition/lcdui/Graphics.drawImage:(Ljavax/microedition/lcdui/Image;III)V
+  #22 = NameAndType        #39:#38        // "<init>":(SSBB)V
+  #23 = NameAndType        #49:#47        // a:[Lao;
+  #24 = NameAndType        #49:#42        // a:Lao;
+  #25 = NameAndType        #49:#40        // a:B
+  #26 = NameAndType        #49:#43        // a:Ljavax/microedition/lcdui/Graphics;
+  #27 = NameAndType        #49:#46        // a:[B
+  #28 = NameAndType        #53:#45        // b:Z
+  #29 = NameAndType        #53:#46        // b:[B
+  #30 = NameAndType        #53:#48        // b:[Ljavax/microedition/lcdui/Image;
+  #31 = NameAndType        #57:#44        // c:S
+  #32 = NameAndType        #57:#46        // c:[B
+  #33 = NameAndType        #58:#44        // d:S
+  #34 = NameAndType        #59:#37        // drawImage:(Ljavax/microedition/lcdui/Image;III)V
+  #35 = Utf8               (BSS)V
+  #36 = Utf8               (II)V
+  #37 = Utf8               (Ljavax/microedition/lcdui/Image;III)V
+  #38 = Utf8               (SSBB)V
+  #39 = Utf8               <init>
+  #40 = Utf8               B
+  #41 = Utf8               Code
+  #42 = Utf8               Lao;
+  #43 = Utf8               Ljavax/microedition/lcdui/Graphics;
+  #44 = Utf8               S
+  #45 = Utf8               Z
+  #46 = Utf8               [B
+  #47 = Utf8               [Lao;
+  #48 = Utf8               [Ljavax/microedition/lcdui/Image;
+  #49 = Utf8               a
+  #50 = Utf8               ah
+  #51 = Utf8               ao
+  #52 = Utf8               as
+  #53 = Utf8               b
+  #54 = Utf8               bc
+  #55 = Utf8               bl
+  #56 = Utf8               bw
+  #57 = Utf8               c
+  #58 = Utf8               d
+  #59 = Utf8               drawImage
+  #60 = Utf8               javax/microedition/lcdui/Graphics
+  #61 = Utf8               StackMap
+{
+  public byte a;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public ao a;
+    descriptor: Lao;
+    flags: (0x0001) ACC_PUBLIC
+
+  public bc(byte, short, short);
+    descriptor: (BSS)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=4, args_size=4
+         0: aload_0
+         1: iload_2
+         2: iload_3
+         3: bipush        8
+         5: bipush        8
+         7: invokespecial #20                 // Method bl."<init>":(SSBB)V
+        10: aload_0
+        11: getstatic     #8                  // Field ah.a:[Lao;
+        14: iload_1
+        15: aaload
+        16: putfield      #9                  // Field a:Lao;
+        19: aload_0
+        20: iconst_0
+        21: putfield      #10                 // Field a:B
+        24: return
+
+  public void b(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=6, args_size=3
+         0: getstatic     #14                 // Field ah.b:Z
+         3: ifeq          7
+         6: return
+         7: getstatic     #11                 // Field bw.a:Ljavax/microedition/lcdui/Graphics;
+        10: astore_3
+        11: iload_1
+        12: aload_0
+        13: getfield      #17                 // Field bl.c:S
+        16: iadd
+        17: aload_0
+        18: getfield      #9                  // Field a:Lao;
+        21: getfield      #15                 // Field ao.b:[B
+        24: aload_0
+        25: getfield      #10                 // Field a:B
+        28: baload
+        29: iadd
+        30: istore        4
+        32: iload_2
+        33: aload_0
+        34: getfield      #19                 // Field bl.d:S
+        37: iadd
+        38: aload_0
+        39: getfield      #9                  // Field a:Lao;
+        42: getfield      #18                 // Field ao.c:[B
+        45: aload_0
+        46: getfield      #10                 // Field a:B
+        49: baload
+        50: iadd
+        51: istore        5
+        53: aload_3
+        54: getstatic     #16                 // Field as.b:[Ljavax/microedition/lcdui/Image;
+        57: aload_0
+        58: getfield      #9                  // Field a:Lao;
+        61: getfield      #12                 // Field ao.a:[B
+        64: aload_0
+        65: getfield      #10                 // Field a:B
+        68: baload
+        69: aaload
+        70: iload         4
+        72: iload         5
+        74: bipush        33
+        76: invokevirtual #21                 // Method javax/microedition/lcdui/Graphics.drawImage:(Ljavax/microedition/lcdui/Image;III)V
+        79: aload_0
+        80: dup
+        81: getfield      #10                 // Field a:B
+        84: iconst_1
+        85: iadd
+        86: i2b
+        87: putfield      #10                 // Field a:B
+        90: aload_0
+        91: getfield      #10                 // Field a:B
+        94: aload_0
+        95: getfield      #9                  // Field a:Lao;
+        98: getfield      #13                 // Field ao.a:B
+       101: if_icmplt     109
+       104: aload_0
+       105: iconst_0
+       106: putfield      #10                 // Field a:B
+       109: return
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 7
+          locals = [ class bc, int, int ]
+          stack = []
+        frame_type = 255 offset = 109
+          locals = [ class bc, int, int, class javax/microedition/lcdui/Graphics, int, int ]
+          stack = []
+}

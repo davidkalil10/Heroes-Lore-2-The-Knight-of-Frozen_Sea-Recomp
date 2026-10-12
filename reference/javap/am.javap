@@ -1,0 +1,400 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/am.class
+  Last modified 12 de out. de 2026; size 1229 bytes
+  SHA-256 checksum 991ed65aad0c0593a44c24fdb9f9f39377af6f7e426560e24adc8846be1cadc7
+public class am extends p
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #1                          // am
+  super_class: #5                         // p
+  interfaces: 0, fields: 7, methods: 7, attributes: 0
+Constant pool:
+   #1 = Class              #62            // am
+   #2 = Class              #64            // cp
+   #3 = Class              #67            // f
+   #4 = Class              #68            // java/lang/Exception
+   #5 = Class              #74            // p
+   #6 = Fieldref           #1.#29         // am.a:S
+   #7 = Fieldref           #1.#37         // am.b:S
+   #8 = Fieldref           #5.#38         // p.d:B
+   #9 = Fieldref           #5.#39         // p.e:B
+  #10 = Fieldref           #1.#40         // am.k:B
+  #11 = Fieldref           #1.#41         // am.l:B
+  #12 = Fieldref           #1.#42         // am.m:B
+  #13 = Fieldref           #1.#43         // am.n:B
+  #14 = Fieldref           #1.#44         // am.o:B
+  #15 = Methodref          #5.#26         // p."<init>":(BB)V
+  #16 = Methodref          #5.#27         // p.a:([BIZZ)I
+  #17 = Methodref          #1.#28         // am.a:([BIZ)I
+  #18 = Methodref          #1.#30         // am.a:()B
+  #19 = Methodref          #5.#31         // p.a:([BI)I
+  #20 = Methodref          #5.#32         // p.a:()[B
+  #21 = Methodref          #3.#33         // f.a:(S[BI)V
+  #22 = Methodref          #2.#34         // cp.a:([B[B)[B
+  #23 = Methodref          #5.#30         // p.a:()B
+  #24 = Methodref          #3.#35         // f.b:([BI)I
+  #25 = Methodref          #3.#36         // f.b:([BI)S
+  #26 = NameAndType        #56:#49        // "<init>":(BB)V
+  #27 = NameAndType        #61:#54        // a:([BIZZ)I
+  #28 = NameAndType        #61:#53        // a:([BIZ)I
+  #29 = NameAndType        #61:#60        // a:S
+  #30 = NameAndType        #61:#46        // a:()B
+  #31 = NameAndType        #61:#51        // a:([BI)I
+  #32 = NameAndType        #61:#48        // a:()[B
+  #33 = NameAndType        #61:#50        // a:(S[BI)V
+  #34 = NameAndType        #61:#55        // a:([B[B)[B
+  #35 = NameAndType        #63:#51        // b:([BI)I
+  #36 = NameAndType        #63:#52        // b:([BI)S
+  #37 = NameAndType        #63:#60        // b:S
+  #38 = NameAndType        #65:#57        // d:B
+  #39 = NameAndType        #66:#57        // e:B
+  #40 = NameAndType        #69:#57        // k:B
+  #41 = NameAndType        #70:#57        // l:B
+  #42 = NameAndType        #71:#57        // m:B
+  #43 = NameAndType        #72:#57        // n:B
+  #44 = NameAndType        #73:#57        // o:B
+  #45 = Class              #76            // "[B"
+  #46 = Utf8               ()B
+  #47 = Utf8               ()I
+  #48 = Utf8               ()[B
+  #49 = Utf8               (BB)V
+  #50 = Utf8               (S[BI)V
+  #51 = Utf8               ([BI)I
+  #52 = Utf8               ([BI)S
+  #53 = Utf8               ([BIZ)I
+  #54 = Utf8               ([BIZZ)I
+  #55 = Utf8               ([B[B)[B
+  #56 = Utf8               <init>
+  #57 = Utf8               B
+  #58 = Utf8               Code
+  #59 = Utf8               Exceptions
+  #60 = Utf8               S
+  #61 = Utf8               a
+  #62 = Utf8               am
+  #63 = Utf8               b
+  #64 = Utf8               cp
+  #65 = Utf8               d
+  #66 = Utf8               e
+  #67 = Utf8               f
+  #68 = Utf8               java/lang/Exception
+  #69 = Utf8               k
+  #70 = Utf8               l
+  #71 = Utf8               m
+  #72 = Utf8               n
+  #73 = Utf8               o
+  #74 = Utf8               p
+  #75 = Utf8               StackMap
+  #76 = Utf8               [B
+{
+  public byte k;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte l;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public short a;
+    descriptor: S
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte m;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte n;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte o;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public short b;
+    descriptor: S
+    flags: (0x0001) ACC_PUBLIC
+
+  public am(byte, byte);
+    descriptor: (BB)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokespecial #15                 // Method p."<init>":(BB)V
+         6: return
+
+  public int a(byte[], int, boolean, boolean);
+    descriptor: ([BIZZ)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=5, args_size=5
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: iload_3
+         4: iload         4
+         6: invokespecial #16                 // Method p.a:([BIZZ)I
+         9: istore_2
+        10: aload_0
+        11: aload_1
+        12: iload_2
+        13: iconst_1
+        14: invokespecial #17                 // Method a:([BIZ)I
+        17: ireturn
+
+  private int a(byte[], int, boolean);
+    descriptor: ([BIZ)I
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=4, args_size=4
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: iinc          2, 1
+         6: baload
+         7: putfield      #10                 // Field k:B
+        10: aload_0
+        11: aload_1
+        12: iload_2
+        13: iinc          2, 1
+        16: baload
+        17: putfield      #11                 // Field l:B
+        20: aload_0
+        21: iload_3
+        22: ifeq          34
+        25: aload_1
+        26: iload_2
+        27: invokestatic  #24                 // Method f.b:([BI)I
+        30: i2s
+        31: goto          39
+        34: aload_1
+        35: iload_2
+        36: invokestatic  #25                 // Method f.b:([BI)S
+        39: putfield      #6                  // Field a:S
+        42: iload_2
+        43: iload_3
+        44: ifeq          51
+        47: iconst_4
+        48: goto          52
+        51: iconst_2
+        52: iadd
+        53: istore_2
+        54: aload_0
+        55: iload_3
+        56: ifeq          63
+        59: iconst_0
+        60: goto          69
+        63: aload_1
+        64: iload_2
+        65: iinc          2, 1
+        68: baload
+        69: putfield      #8                  // Field p.d:B
+        72: aload_0
+        73: aload_1
+        74: iload_2
+        75: iinc          2, 1
+        78: baload
+        79: putfield      #12                 // Field m:B
+        82: aload_0
+        83: aload_1
+        84: iload_2
+        85: iinc          2, 1
+        88: baload
+        89: putfield      #13                 // Field n:B
+        92: iload_3
+        93: ifeq          106
+        96: aload_0
+        97: aload_1
+        98: iload_2
+        99: iinc          2, 1
+       102: baload
+       103: putfield      #14                 // Field o:B
+       106: aload_0
+       107: iload_3
+       108: ifeq          120
+       111: aload_1
+       112: iload_2
+       113: invokestatic  #24                 // Method f.b:([BI)I
+       116: i2s
+       117: goto          125
+       120: aload_1
+       121: iload_2
+       122: invokestatic  #25                 // Method f.b:([BI)S
+       125: putfield      #7                  // Field b:S
+       128: iload_2
+       129: iload_3
+       130: ifeq          137
+       133: iconst_4
+       134: goto          138
+       137: iconst_2
+       138: iadd
+       139: istore_2
+       140: iload_3
+       141: ifeq          152
+       144: aload_0
+       145: aload_0
+       146: invokevirtual #18                 // Method a:()B
+       149: putfield      #9                  // Field p.e:B
+       152: iload_2
+       153: ireturn
+      StackMap: number_of_entries = 12
+        frame_type = 255 offset = 34
+          locals = [ class am, class "[B", int, int ]
+          stack = [ class am ]
+        frame_type = 255 offset = 39
+          locals = [ class am, class "[B", int, int ]
+          stack = [ class am, int ]
+        frame_type = 255 offset = 51
+          locals = [ class am, class "[B", int, int ]
+          stack = [ int ]
+        frame_type = 255 offset = 52
+          locals = [ class am, class "[B", int, int ]
+          stack = [ int, int ]
+        frame_type = 255 offset = 63
+          locals = [ class am, class "[B", int, int ]
+          stack = [ class am ]
+        frame_type = 255 offset = 69
+          locals = [ class am, class "[B", int, int ]
+          stack = [ class am, int ]
+        frame_type = 255 offset = 106
+          locals = [ class am, class "[B", int, int ]
+          stack = []
+        frame_type = 255 offset = 120
+          locals = [ class am, class "[B", int, int ]
+          stack = [ class am ]
+        frame_type = 255 offset = 125
+          locals = [ class am, class "[B", int, int ]
+          stack = [ class am, int ]
+        frame_type = 255 offset = 137
+          locals = [ class am, class "[B", int, int ]
+          stack = [ int ]
+        frame_type = 255 offset = 138
+          locals = [ class am, class "[B", int, int ]
+          stack = [ int, int ]
+        frame_type = 255 offset = 152
+          locals = [ class am, class "[B", int, int ]
+          stack = []
+
+  public int a(byte[], int) throws java.lang.Exception;
+    descriptor: ([BI)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: invokespecial #19                 // Method p.a:([BI)I
+         6: istore_2
+         7: aload_0
+         8: aload_1
+         9: iload_2
+        10: iconst_0
+        11: invokespecial #17                 // Method a:([BIZ)I
+        14: istore_2
+        15: iload_2
+        16: ireturn
+    Exceptions:
+      throws java.lang.Exception
+
+  public byte[] a();
+    descriptor: ()[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=4, args_size=1
+         0: aload_0
+         1: invokespecial #20                 // Method p.a:()[B
+         4: astore_1
+         5: bipush        9
+         7: newarray       byte
+         9: astore_2
+        10: iconst_0
+        11: istore_3
+        12: aload_2
+        13: iload_3
+        14: iinc          3, 1
+        17: aload_0
+        18: getfield      #10                 // Field k:B
+        21: bastore
+        22: aload_2
+        23: iload_3
+        24: iinc          3, 1
+        27: aload_0
+        28: getfield      #11                 // Field l:B
+        31: bastore
+        32: aload_0
+        33: getfield      #6                  // Field a:S
+        36: aload_2
+        37: iload_3
+        38: invokestatic  #21                 // Method f.a:(S[BI)V
+        41: iinc          3, 2
+        44: aload_2
+        45: iload_3
+        46: iinc          3, 1
+        49: aload_0
+        50: getfield      #8                  // Field p.d:B
+        53: bastore
+        54: aload_2
+        55: iload_3
+        56: iinc          3, 1
+        59: aload_0
+        60: getfield      #12                 // Field m:B
+        63: bastore
+        64: aload_2
+        65: iload_3
+        66: iinc          3, 1
+        69: aload_0
+        70: getfield      #13                 // Field n:B
+        73: bastore
+        74: aload_0
+        75: getfield      #7                  // Field b:S
+        78: aload_2
+        79: iload_3
+        80: invokestatic  #21                 // Method f.a:(S[BI)V
+        83: aload_0
+        84: aload_1
+        85: aload_2
+        86: invokevirtual #22                 // Method cp.a:([B[B)[B
+        89: areturn
+
+  public final int a();
+    descriptor: ()I
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #7                  // Field b:S
+         4: aload_0
+         5: getfield      #8                  // Field p.d:B
+         8: iconst_3
+         9: imul
+        10: iconst_1
+        11: ishr
+        12: iadd
+        13: ireturn
+
+  public byte a();
+    descriptor: ()B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=1
+         0: aload_0
+         1: invokespecial #23                 // Method p.a:()B
+         4: istore_1
+         5: iload_1
+         6: aload_0
+         7: getfield      #13                 // Field n:B
+        10: iconst_3
+        11: ishl
+        12: iadd
+        13: aload_0
+        14: getfield      #7                  // Field b:S
+        17: iadd
+        18: bipush        100
+        20: irem
+        21: istore_2
+        22: iload_2
+        23: i2b
+        24: ireturn
+}

@@ -1,0 +1,611 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/ay.class
+  Last modified 12 de out. de 2026; size 1674 bytes
+  SHA-256 checksum 08895b4de10eb74cac3296688003f21b1e19cd9d6218978e8f93ec99fedced1d
+public class ay
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // ay
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 25, methods: 3, attributes: 0
+Constant pool:
+    #1 = Class              #87           // as
+    #2 = Class              #88           // ay
+    #3 = Class              #93           // f
+    #4 = Class              #98           // java/lang/Object
+    #5 = Class              #99           // java/lang/System
+    #6 = Class              #102          // u
+    #7 = Fieldref           #2.#41        // ay.a:[B
+    #8 = Fieldref           #2.#42        // ay.a:B
+    #9 = Fieldref           #2.#44        // ay.a:S
+   #10 = Fieldref           #2.#45        // ay.a:Z
+   #11 = Fieldref           #1.#46        // as.a:Las;
+   #12 = Fieldref           #2.#49        // ay.a:[Lay;
+   #13 = Fieldref           #2.#51        // ay.b:B
+   #14 = Fieldref           #2.#52        // ay.b:S
+   #15 = Fieldref           #2.#53        // ay.b:Z
+   #16 = Fieldref           #2.#54        // ay.b:[B
+   #17 = Fieldref           #2.#55        // ay.c:B
+   #18 = Fieldref           #2.#56        // ay.c:S
+   #19 = Fieldref           #2.#57        // ay.c:Z
+   #20 = Fieldref           #2.#58        // ay.d:B
+   #21 = Fieldref           #2.#59        // ay.d:S
+   #22 = Fieldref           #2.#60        // ay.e:B
+   #23 = Fieldref           #2.#61        // ay.e:S
+   #24 = Fieldref           #2.#62        // ay.f:B
+   #25 = Fieldref           #2.#63        // ay.f:S
+   #26 = Fieldref           #2.#64        // ay.g:S
+   #27 = Fieldref           #2.#65        // ay.g:B
+   #28 = Fieldref           #2.#66        // ay.h:B
+   #29 = Fieldref           #2.#67        // ay.i:B
+   #30 = Fieldref           #6.#67        // u.i:B
+   #31 = Fieldref           #2.#68        // ay.j:B
+   #32 = Fieldref           #2.#69        // ay.k:B
+   #33 = Fieldref           #2.#70        // ay.l:B
+   #34 = Methodref          #4.#40        // java/lang/Object."<init>":()V
+   #35 = Methodref          #2.#40        // ay."<init>":()V
+   #36 = Methodref          #3.#43        // f.a:([BI)S
+   #37 = Methodref          #1.#47        // as.a:([BIBBBB)V
+   #38 = Methodref          #2.#48        // ay.a:()V
+   #39 = Methodref          #5.#50        // java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+   #40 = NameAndType        #77:#72       // "<init>":()V
+   #41 = NameAndType        #85:#83       // a:[B
+   #42 = NameAndType        #85:#78       // a:B
+   #43 = NameAndType        #85:#75       // a:([BI)S
+   #44 = NameAndType        #85:#81       // a:S
+   #45 = NameAndType        #85:#82       // a:Z
+   #46 = NameAndType        #85:#80       // a:Las;
+   #47 = NameAndType        #85:#76       // a:([BIBBBB)V
+   #48 = NameAndType        #85:#72       // a:()V
+   #49 = NameAndType        #85:#84       // a:[Lay;
+   #50 = NameAndType        #86:#73       // arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+   #51 = NameAndType        #89:#78       // b:B
+   #52 = NameAndType        #89:#81       // b:S
+   #53 = NameAndType        #89:#82       // b:Z
+   #54 = NameAndType        #89:#83       // b:[B
+   #55 = NameAndType        #90:#78       // c:B
+   #56 = NameAndType        #90:#81       // c:S
+   #57 = NameAndType        #90:#82       // c:Z
+   #58 = NameAndType        #91:#78       // d:B
+   #59 = NameAndType        #91:#81       // d:S
+   #60 = NameAndType        #92:#78       // e:B
+   #61 = NameAndType        #92:#81       // e:S
+   #62 = NameAndType        #93:#78       // f:B
+   #63 = NameAndType        #93:#81       // f:S
+   #64 = NameAndType        #94:#81       // g:S
+   #65 = NameAndType        #94:#78       // g:B
+   #66 = NameAndType        #95:#78       // h:B
+   #67 = NameAndType        #96:#78       // i:B
+   #68 = NameAndType        #97:#78       // j:B
+   #69 = NameAndType        #100:#78      // k:B
+   #70 = NameAndType        #101:#78      // l:B
+   #71 = Class              #83           // "[B"
+   #72 = Utf8               ()V
+   #73 = Utf8               (Ljava/lang/Object;ILjava/lang/Object;II)V
+   #74 = Utf8               ([BBB)V
+   #75 = Utf8               ([BI)S
+   #76 = Utf8               ([BIBBBB)V
+   #77 = Utf8               <init>
+   #78 = Utf8               B
+   #79 = Utf8               Code
+   #80 = Utf8               Las;
+   #81 = Utf8               S
+   #82 = Utf8               Z
+   #83 = Utf8               [B
+   #84 = Utf8               [Lay;
+   #85 = Utf8               a
+   #86 = Utf8               arraycopy
+   #87 = Utf8               as
+   #88 = Utf8               ay
+   #89 = Utf8               b
+   #90 = Utf8               c
+   #91 = Utf8               d
+   #92 = Utf8               e
+   #93 = Utf8               f
+   #94 = Utf8               g
+   #95 = Utf8               h
+   #96 = Utf8               i
+   #97 = Utf8               j
+   #98 = Utf8               java/lang/Object
+   #99 = Utf8               java/lang/System
+  #100 = Utf8               k
+  #101 = Utf8               l
+  #102 = Utf8               u
+  #103 = Utf8               StackMap
+{
+  public static ay[] a;
+    descriptor: [Lay;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public byte a;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte b;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte[] a;
+    descriptor: [B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte c;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte d;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte e;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte f;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte g;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte h;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public short a;
+    descriptor: S
+    flags: (0x0001) ACC_PUBLIC
+
+  public short b;
+    descriptor: S
+    flags: (0x0001) ACC_PUBLIC
+
+  public short c;
+    descriptor: S
+    flags: (0x0001) ACC_PUBLIC
+
+  public short d;
+    descriptor: S
+    flags: (0x0001) ACC_PUBLIC
+
+  public short e;
+    descriptor: S
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte i;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte j;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte k;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public short f;
+    descriptor: S
+    flags: (0x0001) ACC_PUBLIC
+
+  public boolean a;
+    descriptor: Z
+    flags: (0x0001) ACC_PUBLIC
+
+  public boolean b;
+    descriptor: Z
+    flags: (0x0001) ACC_PUBLIC
+
+  public boolean c;
+    descriptor: Z
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte[] b;
+    descriptor: [B
+    flags: (0x0001) ACC_PUBLIC
+
+  public short g;
+    descriptor: S
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte l;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public ay();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #34                 // Method java/lang/Object."<init>":()V
+         4: return
+
+  public static final void a(byte[], byte, byte);
+    descriptor: ([BBB)V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=7, locals=8, args_size=3
+         0: iconst_4
+         1: istore_3
+         2: new           #2                  // class ay
+         5: dup
+         6: invokespecial #35                 // Method "<init>":()V
+         9: astore        4
+        11: aload         4
+        13: iload_2
+        14: putfield      #13                 // Field b:B
+        17: aload         4
+        19: iload_1
+        20: putfield      #17                 // Field c:B
+        23: aload_0
+        24: iload_3
+        25: iinc          3, 1
+        28: baload
+        29: istore        5
+        31: aload         4
+        33: iload         5
+        35: newarray       byte
+        37: putfield      #7                  // Field a:[B
+        40: aload_0
+        41: iload_3
+        42: aload         4
+        44: getfield      #7                  // Field a:[B
+        47: iconst_0
+        48: iload         5
+        50: invokestatic  #39                 // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+        53: iload_3
+        54: iload         5
+        56: iadd
+        57: istore_3
+        58: aload         4
+        60: aload_0
+        61: iload_3
+        62: iinc          3, 1
+        65: baload
+        66: putfield      #8                  // Field a:B
+        69: aload         4
+        71: aload_0
+        72: iload_3
+        73: iinc          3, 1
+        76: baload
+        77: putfield      #20                 // Field d:B
+        80: aload         4
+        82: aload_0
+        83: iload_3
+        84: iinc          3, 1
+        87: baload
+        88: putfield      #22                 // Field e:B
+        91: aload         4
+        93: aload_0
+        94: iload_3
+        95: iinc          3, 1
+        98: baload
+        99: putfield      #24                 // Field f:B
+       102: aload         4
+       104: aload_0
+       105: iload_3
+       106: iinc          3, 1
+       109: baload
+       110: putfield      #28                 // Field h:B
+       113: aload         4
+       115: aload_0
+       116: iload_3
+       117: invokestatic  #36                 // Method f.a:([BI)S
+       120: putfield      #9                  // Field a:S
+       123: iinc          3, 2
+       126: aload         4
+       128: aload_0
+       129: iload_3
+       130: invokestatic  #36                 // Method f.a:([BI)S
+       133: putfield      #14                 // Field b:S
+       136: iinc          3, 2
+       139: aload         4
+       141: aload_0
+       142: iload_3
+       143: iinc          3, 1
+       146: baload
+       147: i2s
+       148: putfield      #23                 // Field e:S
+       151: aload         4
+       153: aload_0
+       154: iload_3
+       155: iinc          3, 1
+       158: baload
+       159: putfield      #29                 // Field i:B
+       162: aload         4
+       164: aload_0
+       165: iload_3
+       166: invokestatic  #36                 // Method f.a:([BI)S
+       169: putfield      #26                 // Field g:S
+       172: iinc          3, 2
+       175: aload         4
+       177: aload_0
+       178: iload_3
+       179: iinc          3, 1
+       182: baload
+       183: putfield      #31                 // Field j:B
+       186: aload         4
+       188: aload_0
+       189: iload_3
+       190: iinc          3, 1
+       193: baload
+       194: putfield      #32                 // Field k:B
+       197: aload         4
+       199: aload_0
+       200: iload_3
+       201: invokestatic  #36                 // Method f.a:([BI)S
+       204: putfield      #25                 // Field f:S
+       207: iinc          3, 2
+       210: aload         4
+       212: aload_0
+       213: iload_3
+       214: iinc          3, 1
+       217: baload
+       218: i2s
+       219: putfield      #18                 // Field c:S
+       222: aload         4
+       224: aload_0
+       225: iload_3
+       226: invokestatic  #36                 // Method f.a:([BI)S
+       229: putfield      #21                 // Field d:S
+       232: iinc          3, 2
+       235: aload         4
+       237: aload_0
+       238: iload_3
+       239: iinc          3, 1
+       242: baload
+       243: iconst_1
+       244: if_icmpne     251
+       247: iconst_1
+       248: goto          252
+       251: iconst_0
+       252: putfield      #10                 // Field a:Z
+       255: aload         4
+       257: aload_0
+       258: iload_3
+       259: iinc          3, 1
+       262: baload
+       263: iconst_1
+       264: if_icmpne     271
+       267: iconst_1
+       268: goto          272
+       271: iconst_0
+       272: putfield      #15                 // Field b:Z
+       275: aload         4
+       277: aload_0
+       278: iload_3
+       279: iinc          3, 1
+       282: baload
+       283: iconst_1
+       284: if_icmpne     291
+       287: iconst_1
+       288: goto          292
+       291: iconst_0
+       292: putfield      #19                 // Field c:Z
+       295: getstatic     #11                 // Field as.a:Las;
+       298: aload_0
+       299: iload_3
+       300: aload         4
+       302: getfield      #8                  // Field a:B
+       305: aload         4
+       307: getfield      #22                 // Field e:B
+       310: iload_1
+       311: iload_2
+       312: invokevirtual #37                 // Method as.a:([BIBBBB)V
+       315: iinc          3, 10
+       318: aload_0
+       319: iload_3
+       320: iinc          3, 1
+       323: baload
+       324: istore        6
+       326: iload         6
+       328: ifle          364
+       331: iconst_5
+       332: iload         6
+       334: imul
+       335: istore        5
+       337: aload         4
+       339: iload         5
+       341: newarray       byte
+       343: putfield      #16                 // Field b:[B
+       346: aload_0
+       347: iload_3
+       348: aload         4
+       350: getfield      #16                 // Field b:[B
+       353: iconst_0
+       354: iload         5
+       356: invokestatic  #39                 // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+       359: iload_3
+       360: iload         5
+       362: iadd
+       363: istore_3
+       364: aload         4
+       366: aload_0
+       367: iload_3
+       368: iinc          3, 1
+       371: baload
+       372: putfield      #27                 // Field g:B
+       375: aload         4
+       377: aload_0
+       378: iload_3
+       379: iinc          3, 1
+       382: baload
+       383: putfield      #33                 // Field l:B
+       386: aload         4
+       388: invokevirtual #38                 // Method a:()V
+       391: getstatic     #12                 // Field a:[Lay;
+       394: iload_1
+       395: aload         4
+       397: aastore
+       398: return
+      StackMap: number_of_entries = 7
+        frame_type = 255 offset = 251
+          locals = [ class "[B", int, int, int, class ay, int ]
+          stack = [ class ay ]
+        frame_type = 255 offset = 252
+          locals = [ class "[B", int, int, int, class ay, int ]
+          stack = [ class ay, int ]
+        frame_type = 255 offset = 271
+          locals = [ class "[B", int, int, int, class ay, int ]
+          stack = [ class ay ]
+        frame_type = 255 offset = 272
+          locals = [ class "[B", int, int, int, class ay, int ]
+          stack = [ class ay, int ]
+        frame_type = 255 offset = 291
+          locals = [ class "[B", int, int, int, class ay, int ]
+          stack = [ class ay ]
+        frame_type = 255 offset = 292
+          locals = [ class "[B", int, int, int, class ay, int ]
+          stack = [ class ay, int ]
+        frame_type = 255 offset = 364
+          locals = [ class "[B", int, int, int, class ay, int, int ]
+          stack = []
+
+  public final void a();
+    descriptor: ()V
+    flags: (0x0011) ACC_PUBLIC, ACC_FINAL
+    Code:
+      stack=4, locals=4, args_size=1
+         0: getstatic     #30                 // Field u.i:B
+         3: iconst_1
+         4: if_icmpge     8
+         7: return
+         8: getstatic     #30                 // Field u.i:B
+        11: iconst_1
+        12: if_icmple     19
+        15: iconst_2
+        16: goto          20
+        19: iconst_1
+        20: istore_1
+        21: aload_0
+        22: getfield      #28                 // Field h:B
+        25: istore_2
+        26: aload_0
+        27: iconst_2
+        28: aload_0
+        29: getfield      #28                 // Field h:B
+        32: imul
+        33: iconst_5
+        34: idiv
+        35: iload_1
+        36: bipush        20
+        38: imul
+        39: iadd
+        40: bipush        20
+        42: iadd
+        43: i2b
+        44: putfield      #28                 // Field h:B
+        47: aload_0
+        48: getfield      #28                 // Field h:B
+        51: bipush        99
+        53: if_icmple     62
+        56: aload_0
+        57: bipush        99
+        59: putfield      #28                 // Field h:B
+        62: iconst_0
+        63: istore_3
+        64: aload_0
+        65: getfield      #9                  // Field a:S
+        68: bipush        10
+        70: isub
+        71: iconst_2
+        72: iload_1
+        73: iadd
+        74: imul
+        75: aload_0
+        76: getfield      #28                 // Field h:B
+        79: imul
+        80: istore_3
+        81: aload_0
+        82: iload_3
+        83: iload_2
+        84: idiv
+        85: iconst_1
+        86: ishr
+        87: i2s
+        88: putfield      #9                  // Field a:S
+        91: aload_0
+        92: getfield      #23                 // Field e:S
+        95: iconst_4
+        96: isub
+        97: aload_0
+        98: getfield      #28                 // Field h:B
+       101: imul
+       102: iconst_2
+       103: iload_1
+       104: iadd
+       105: imul
+       106: istore_3
+       107: aload_0
+       108: iload_3
+       109: iload_2
+       110: idiv
+       111: iconst_1
+       112: ishr
+       113: i2s
+       114: putfield      #23                 // Field e:S
+       117: aload_0
+       118: getfield      #14                 // Field b:S
+       121: iconst_4
+       122: isub
+       123: aload_0
+       124: getfield      #28                 // Field h:B
+       127: imul
+       128: iconst_2
+       129: iload_1
+       130: iadd
+       131: imul
+       132: istore_3
+       133: aload_0
+       134: iload_3
+       135: iload_2
+       136: idiv
+       137: iconst_1
+       138: ishr
+       139: i2s
+       140: putfield      #14                 // Field b:S
+       143: aload_0
+       144: getfield      #18                 // Field c:S
+       147: iconst_1
+       148: iadd
+       149: aload_0
+       150: getfield      #28                 // Field h:B
+       153: imul
+       154: istore_3
+       155: aload_0
+       156: iload_3
+       157: iload_2
+       158: idiv
+       159: i2s
+       160: putfield      #18                 // Field c:S
+       163: aload_0
+       164: getfield      #21                 // Field d:S
+       167: iconst_1
+       168: iadd
+       169: aload_0
+       170: getfield      #28                 // Field h:B
+       173: imul
+       174: istore_3
+       175: aload_0
+       176: iload_3
+       177: iload_2
+       178: idiv
+       179: i2s
+       180: putfield      #21                 // Field d:S
+       183: return
+      StackMap: number_of_entries = 4
+        frame_type = 255 offset = 8
+          locals = [ class ay ]
+          stack = []
+        frame_type = 255 offset = 19
+          locals = [ class ay ]
+          stack = []
+        frame_type = 255 offset = 20
+          locals = [ class ay ]
+          stack = [ int ]
+        frame_type = 255 offset = 62
+          locals = [ class ay, int, int ]
+          stack = []
+}

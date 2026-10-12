@@ -1,0 +1,162 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/j.class
+  Last modified 12 de out. de 2026; size 617 bytes
+  SHA-256 checksum 4be34d6417956c148bd24e18726a6d27877fdc4a5c05502ce01963c55f214214
+public class j extends java.lang.Thread
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // j
+  super_class: #5                         // java/lang/Thread
+  interfaces: 0, fields: 0, methods: 2, attributes: 0
+Constant pool:
+   #1 = Class              #32            // af
+   #2 = Class              #34            // j
+   #3 = Class              #35            // java/io/InputStream
+   #4 = Class              #36            // java/lang/Exception
+   #5 = Class              #37            // java/lang/Thread
+   #6 = Fieldref           #1.#16         // af.a:Ljava/io/InputStream;
+   #7 = Methodref          #5.#15         // java/lang/Thread."<init>":()V
+   #8 = Methodref          #1.#17         // af.a:([B)V
+   #9 = Methodref          #1.#18         // af.a:()Z
+  #10 = Methodref          #1.#19         // af.c:()Z
+  #11 = Methodref          #3.#20         // java/io/InputStream.read:([BII)I
+  #12 = Methodref          #5.#21         // java/lang/Thread.sleep:(J)V
+  #13 = Long               50l
+  #15 = NameAndType        #28:#23        // "<init>":()V
+  #16 = NameAndType        #31:#30        // a:Ljava/io/InputStream;
+  #17 = NameAndType        #31:#26        // a:([B)V
+  #18 = NameAndType        #31:#24        // a:()Z
+  #19 = NameAndType        #33:#24        // c:()Z
+  #20 = NameAndType        #38:#27        // read:([BII)I
+  #21 = NameAndType        #40:#25        // sleep:(J)V
+  #22 = Class              #42            // "[B"
+  #23 = Utf8               ()V
+  #24 = Utf8               ()Z
+  #25 = Utf8               (J)V
+  #26 = Utf8               ([B)V
+  #27 = Utf8               ([BII)I
+  #28 = Utf8               <init>
+  #29 = Utf8               Code
+  #30 = Utf8               Ljava/io/InputStream;
+  #31 = Utf8               a
+  #32 = Utf8               af
+  #33 = Utf8               c
+  #34 = Utf8               j
+  #35 = Utf8               java/io/InputStream
+  #36 = Utf8               java/lang/Exception
+  #37 = Utf8               java/lang/Thread
+  #38 = Utf8               read
+  #39 = Utf8               run
+  #40 = Utf8               sleep
+  #41 = Utf8               StackMap
+  #42 = Utf8               [B
+{
+  public j();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #7                  // Method java/lang/Thread."<init>":()V
+         4: return
+
+  public void run();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=4, args_size=1
+         0: invokestatic  #10                 // Method af.c:()Z
+         3: ifeq          104
+         6: iconst_4
+         7: newarray       byte
+         9: astore_1
+        10: getstatic     #6                  // Field af.a:Ljava/io/InputStream;
+        13: aload_1
+        14: iconst_0
+        15: iconst_4
+        16: invokevirtual #11                 // Method java/io/InputStream.read:([BII)I
+        19: pop
+        20: iconst_0
+        21: istore_2
+        22: iconst_0
+        23: istore_3
+        24: iload_3
+        25: iconst_4
+        26: if_icmpge     48
+        29: iload_2
+        30: bipush        8
+        32: ishl
+        33: aload_1
+        34: iload_3
+        35: baload
+        36: sipush        255
+        39: iand
+        40: ior
+        41: istore_2
+        42: iinc          3, 1
+        45: goto          24
+        48: iinc          2, -4
+        51: iload_2
+        52: newarray       byte
+        54: astore_1
+        55: iconst_0
+        56: istore_3
+        57: iload_2
+        58: iload_3
+        59: if_icmple     79
+        62: iload_3
+        63: getstatic     #6                  // Field af.a:Ljava/io/InputStream;
+        66: aload_1
+        67: iload_3
+        68: iload_2
+        69: iload_3
+        70: isub
+        71: invokevirtual #11                 // Method java/io/InputStream.read:([BII)I
+        74: iadd
+        75: istore_3
+        76: goto          57
+        79: aload_1
+        80: invokestatic  #8                  // Method af.a:([B)V
+        83: goto          91
+        86: astore_2
+        87: invokestatic  #9                  // Method af.a:()Z
+        90: pop
+        91: ldc2_w        #13                 // long 50l
+        94: invokestatic  #12                 // Method java/lang/Thread.sleep:(J)V
+        97: goto          0
+       100: astore_2
+       101: goto          0
+       104: return
+      Exception table:
+         from    to  target type
+            10    83    86   Class java/lang/Exception
+            91    97   100   Class java/lang/Exception
+      StackMap: number_of_entries = 9
+        frame_type = 255 offset = 0
+          locals = [ class j ]
+          stack = []
+        frame_type = 255 offset = 24
+          locals = [ class j, class "[B", int, int ]
+          stack = []
+        frame_type = 255 offset = 48
+          locals = [ class j, class "[B", int, int ]
+          stack = []
+        frame_type = 255 offset = 57
+          locals = [ class j, class "[B", int, int ]
+          stack = []
+        frame_type = 255 offset = 79
+          locals = [ class j, class "[B", int, int ]
+          stack = []
+        frame_type = 255 offset = 86
+          locals = [ class j, class "[B" ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 91
+          locals = [ class j, class "[B" ]
+          stack = []
+        frame_type = 255 offset = 100
+          locals = [ class j, class "[B" ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 104
+          locals = [ class j ]
+          stack = []
+}

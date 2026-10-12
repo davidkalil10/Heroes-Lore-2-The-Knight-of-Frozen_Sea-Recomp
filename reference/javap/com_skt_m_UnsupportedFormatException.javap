@@ -1,0 +1,54 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/com/skt/m/UnsupportedFormatException.class
+  Last modified 12 de out. de 2026; size 325 bytes
+  SHA-256 checksum 53ba562f11f739caf7d58f4a793d668272def8e6d8d6d631dacf345441d70708
+  Compiled from "UnsupportedFormatException.java"
+public class com.skt.m.UnsupportedFormatException extends java.lang.Exception
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #10                         // com/skt/m/UnsupportedFormatException
+  super_class: #2                         // java/lang/Exception
+  interfaces: 0, fields: 0, methods: 2, attributes: 1
+Constant pool:
+   #1 = Methodref          #2.#3          // java/lang/Exception."<init>":()V
+   #2 = Class              #4             // java/lang/Exception
+   #3 = NameAndType        #5:#6          // "<init>":()V
+   #4 = Utf8               java/lang/Exception
+   #5 = Utf8               <init>
+   #6 = Utf8               ()V
+   #7 = Methodref          #2.#8          // java/lang/Exception."<init>":(Ljava/lang/String;)V
+   #8 = NameAndType        #5:#9          // "<init>":(Ljava/lang/String;)V
+   #9 = Utf8               (Ljava/lang/String;)V
+  #10 = Class              #11            // com/skt/m/UnsupportedFormatException
+  #11 = Utf8               com/skt/m/UnsupportedFormatException
+  #12 = Utf8               Code
+  #13 = Utf8               LineNumberTable
+  #14 = Utf8               SourceFile
+  #15 = Utf8               UnsupportedFormatException.java
+{
+  public com.skt.m.UnsupportedFormatException();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Exception."<init>":()V
+         4: return
+      LineNumberTable:
+        line 5: 0
+        line 6: 4
+
+  public com.skt.m.UnsupportedFormatException(java.lang.String);
+    descriptor: (Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: aload_1
+         2: invokespecial #7                  // Method java/lang/Exception."<init>":(Ljava/lang/String;)V
+         5: return
+      LineNumberTable:
+        line 9: 0
+        line 10: 5
+}
+SourceFile: "UnsupportedFormatException.java"

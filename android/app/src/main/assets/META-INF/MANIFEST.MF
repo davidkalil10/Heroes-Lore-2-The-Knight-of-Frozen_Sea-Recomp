@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+MIDlet-Name: Heroes Lore 2: The Knight of Frozen Sea
+MIDlet-Version: 1.0.2
+MIDlet-Vendor: Hands-On Mobile Korea Ltd.
+MIDlet-1: Heroes Lore 2: The Knight of Frozen Sea, icon.png, rpg.RPGHero2
+MicroEdition-Profile: MIDP-2.0
+MicroEdition-Configuration: CLDC-1.1
+

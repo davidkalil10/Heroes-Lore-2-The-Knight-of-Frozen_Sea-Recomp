@@ -1,0 +1,605 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/ax.class
+  Last modified 12 de out. de 2026; size 980 bytes
+  SHA-256 checksum cdb547db9441cda9966073a91192f2f08f11413695e83fd60e9d05f03138af74
+public interface ax
+  minor version: 3
+  major version: 45
+  flags: (0x0601) ACC_PUBLIC, ACC_INTERFACE, ACC_ABSTRACT
+  this_class: #2                          // ax
+  super_class: #3                         // java/lang/Object
+  interfaces: 0, fields: 10, methods: 1, attributes: 0
+Constant pool:
+   #1 = Class              #30            // "[B"
+   #2 = Class              #34            // ax
+   #3 = Class              #42            // java/lang/Object
+   #4 = Fieldref           #2.#17         // ax.a:[B
+   #5 = Fieldref           #2.#18         // ax.a:[[B
+   #6 = Fieldref           #2.#19         // ax.b:[I
+   #7 = Fieldref           #2.#20         // ax.b:[B
+   #8 = Fieldref           #2.#21         // ax.c:[B
+   #9 = Fieldref           #2.#22         // ax.d:[B
+  #10 = Fieldref           #2.#23         // ax.e:[B
+  #11 = Fieldref           #2.#24         // ax.f:[B
+  #12 = Fieldref           #2.#25         // ax.g:[B
+  #13 = Fieldref           #2.#26         // ax.h:[B
+  #14 = Integer            16711680
+  #15 = Integer            16729600
+  #16 = Integer            16776960
+  #17 = NameAndType        #33:#30        // a:[B
+  #18 = NameAndType        #33:#32        // a:[[B
+  #19 = NameAndType        #35:#31        // b:[I
+  #20 = NameAndType        #35:#30        // b:[B
+  #21 = NameAndType        #36:#30        // c:[B
+  #22 = NameAndType        #37:#30        // d:[B
+  #23 = NameAndType        #38:#30        // e:[B
+  #24 = NameAndType        #39:#30        // f:[B
+  #25 = NameAndType        #40:#30        // g:[B
+  #26 = NameAndType        #41:#30        // h:[B
+  #27 = Utf8               ()V
+  #28 = Utf8               <clinit>
+  #29 = Utf8               Code
+  #30 = Utf8               [B
+  #31 = Utf8               [I
+  #32 = Utf8               [[B
+  #33 = Utf8               a
+  #34 = Utf8               ax
+  #35 = Utf8               b
+  #36 = Utf8               c
+  #37 = Utf8               d
+  #38 = Utf8               e
+  #39 = Utf8               f
+  #40 = Utf8               g
+  #41 = Utf8               h
+  #42 = Utf8               java/lang/Object
+{
+  public static final int[] b;
+    descriptor: [I
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public static final byte[] a;
+    descriptor: [B
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public static final byte[] b;
+    descriptor: [B
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public static final byte[] c;
+    descriptor: [B
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public static final byte[] d;
+    descriptor: [B
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public static final byte[] e;
+    descriptor: [B
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public static final byte[] f;
+    descriptor: [B
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public static final byte[] g;
+    descriptor: [B
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public static final byte[][] a;
+    descriptor: [[B
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public static final byte[] h;
+    descriptor: [B
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public static {};
+    descriptor: ()V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=7, locals=0, args_size=0
+         0: iconst_3
+         1: newarray       int
+         3: dup
+         4: iconst_0
+         5: ldc           #16                 // int 16776960
+         7: iastore
+         8: dup
+         9: iconst_1
+        10: ldc           #15                 // int 16729600
+        12: iastore
+        13: dup
+        14: iconst_2
+        15: ldc           #14                 // int 16711680
+        17: iastore
+        18: putstatic     #6                  // Field b:[I
+        21: bipush        17
+        23: newarray       byte
+        25: dup
+        26: iconst_0
+        27: iconst_0
+        28: bastore
+        29: dup
+        30: iconst_1
+        31: iconst_0
+        32: bastore
+        33: dup
+        34: iconst_2
+        35: iconst_0
+        36: bastore
+        37: dup
+        38: iconst_3
+        39: iconst_m1
+        40: bastore
+        41: dup
+        42: iconst_4
+        43: iconst_1
+        44: bastore
+        45: dup
+        46: iconst_5
+        47: iconst_m1
+        48: bastore
+        49: dup
+        50: bipush        6
+        52: iconst_1
+        53: bastore
+        54: dup
+        55: bipush        7
+        57: iconst_m1
+        58: bastore
+        59: dup
+        60: bipush        8
+        62: iconst_1
+        63: bastore
+        64: dup
+        65: bipush        9
+        67: iconst_0
+        68: bastore
+        69: dup
+        70: bipush        10
+        72: iconst_0
+        73: bastore
+        74: dup
+        75: bipush        11
+        77: bipush        -2
+        79: bastore
+        80: dup
+        81: bipush        12
+        83: iconst_2
+        84: bastore
+        85: dup
+        86: bipush        13
+        88: iconst_0
+        89: bastore
+        90: dup
+        91: bipush        14
+        93: iconst_0
+        94: bastore
+        95: dup
+        96: bipush        15
+        98: bipush        -3
+       100: bastore
+       101: dup
+       102: bipush        16
+       104: iconst_3
+       105: bastore
+       106: putstatic     #4                  // Field a:[B
+       109: bipush        17
+       111: newarray       byte
+       113: dup
+       114: iconst_0
+       115: iconst_0
+       116: bastore
+       117: dup
+       118: iconst_1
+       119: iconst_m1
+       120: bastore
+       121: dup
+       122: iconst_2
+       123: iconst_1
+       124: bastore
+       125: dup
+       126: iconst_3
+       127: iconst_0
+       128: bastore
+       129: dup
+       130: iconst_4
+       131: iconst_0
+       132: bastore
+       133: dup
+       134: iconst_5
+       135: iconst_m1
+       136: bastore
+       137: dup
+       138: bipush        6
+       140: iconst_m1
+       141: bastore
+       142: dup
+       143: bipush        7
+       145: iconst_1
+       146: bastore
+       147: dup
+       148: bipush        8
+       150: iconst_1
+       151: bastore
+       152: dup
+       153: bipush        9
+       155: bipush        -2
+       157: bastore
+       158: dup
+       159: bipush        10
+       161: iconst_2
+       162: bastore
+       163: dup
+       164: bipush        11
+       166: iconst_0
+       167: bastore
+       168: dup
+       169: bipush        12
+       171: iconst_0
+       172: bastore
+       173: dup
+       174: bipush        13
+       176: bipush        -3
+       178: bastore
+       179: dup
+       180: bipush        14
+       182: iconst_3
+       183: bastore
+       184: dup
+       185: bipush        15
+       187: iconst_0
+       188: bastore
+       189: dup
+       190: bipush        16
+       192: iconst_0
+       193: bastore
+       194: putstatic     #7                  // Field b:[B
+       197: iconst_5
+       198: newarray       byte
+       200: dup
+       201: iconst_0
+       202: iconst_0
+       203: bastore
+       204: dup
+       205: iconst_1
+       206: bipush        6
+       208: bastore
+       209: dup
+       210: iconst_2
+       211: bipush        7
+       213: bastore
+       214: dup
+       215: iconst_3
+       216: iconst_5
+       217: bastore
+       218: dup
+       219: iconst_4
+       220: bipush        8
+       222: bastore
+       223: putstatic     #8                  // Field c:[B
+       226: iconst_5
+       227: newarray       byte
+       229: dup
+       230: iconst_0
+       231: iconst_0
+       232: bastore
+       233: dup
+       234: iconst_1
+       235: iconst_5
+       236: bastore
+       237: dup
+       238: iconst_2
+       239: bipush        8
+       241: bastore
+       242: dup
+       243: iconst_3
+       244: bipush        7
+       246: bastore
+       247: dup
+       248: iconst_4
+       249: bipush        6
+       251: bastore
+       252: putstatic     #9                  // Field d:[B
+       255: iconst_5
+       256: newarray       byte
+       258: dup
+       259: iconst_0
+       260: iconst_0
+       261: bastore
+       262: dup
+       263: iconst_1
+       264: iconst_4
+       265: bastore
+       266: dup
+       267: iconst_2
+       268: iconst_3
+       269: bastore
+       270: dup
+       271: iconst_3
+       272: iconst_1
+       273: bastore
+       274: dup
+       275: iconst_4
+       276: iconst_2
+       277: bastore
+       278: putstatic     #10                 // Field e:[B
+       281: iconst_5
+       282: newarray       byte
+       284: dup
+       285: iconst_0
+       286: iconst_0
+       287: bastore
+       288: dup
+       289: iconst_1
+       290: iconst_3
+       291: bastore
+       292: dup
+       293: iconst_2
+       294: iconst_4
+       295: bastore
+       296: dup
+       297: iconst_3
+       298: iconst_2
+       299: bastore
+       300: dup
+       301: iconst_4
+       302: iconst_1
+       303: bastore
+       304: putstatic     #11                 // Field f:[B
+       307: iconst_5
+       308: newarray       byte
+       310: dup
+       311: iconst_0
+       312: iconst_0
+       313: bastore
+       314: dup
+       315: iconst_1
+       316: iconst_2
+       317: bastore
+       318: dup
+       319: iconst_2
+       320: iconst_1
+       321: bastore
+       322: dup
+       323: iconst_3
+       324: iconst_4
+       325: bastore
+       326: dup
+       327: iconst_4
+       328: iconst_3
+       329: bastore
+       330: putstatic     #12                 // Field g:[B
+       333: bipush        6
+       335: anewarray     #1                  // class "[B"
+       338: dup
+       339: iconst_0
+       340: bipush        6
+       342: newarray       byte
+       344: dup
+       345: iconst_0
+       346: bipush        10
+       348: bastore
+       349: dup
+       350: iconst_1
+       351: bipush        10
+       353: bastore
+       354: dup
+       355: iconst_2
+       356: bipush        10
+       358: bastore
+       359: dup
+       360: iconst_3
+       361: bipush        10
+       363: bastore
+       364: dup
+       365: iconst_4
+       366: bipush        10
+       368: bastore
+       369: dup
+       370: iconst_5
+       371: bipush        10
+       373: bastore
+       374: aastore
+       375: dup
+       376: iconst_1
+       377: bipush        6
+       379: newarray       byte
+       381: dup
+       382: iconst_0
+       383: bipush        10
+       385: bastore
+       386: dup
+       387: iconst_1
+       388: bipush        10
+       390: bastore
+       391: dup
+       392: iconst_2
+       393: bipush        10
+       395: bastore
+       396: dup
+       397: iconst_3
+       398: bipush        14
+       400: bastore
+       401: dup
+       402: iconst_4
+       403: bipush        12
+       405: bastore
+       406: dup
+       407: iconst_5
+       408: bipush        12
+       410: bastore
+       411: aastore
+       412: dup
+       413: iconst_2
+       414: bipush        6
+       416: newarray       byte
+       418: dup
+       419: iconst_0
+       420: bipush        10
+       422: bastore
+       423: dup
+       424: iconst_1
+       425: bipush        14
+       427: bastore
+       428: dup
+       429: iconst_2
+       430: bipush        10
+       432: bastore
+       433: dup
+       434: iconst_3
+       435: bipush        10
+       437: bastore
+       438: dup
+       439: iconst_4
+       440: bipush        12
+       442: bastore
+       443: dup
+       444: iconst_5
+       445: bipush        12
+       447: bastore
+       448: aastore
+       449: dup
+       450: iconst_3
+       451: bipush        6
+       453: newarray       byte
+       455: dup
+       456: iconst_0
+       457: bipush        10
+       459: bastore
+       460: dup
+       461: iconst_1
+       462: bipush        10
+       464: bastore
+       465: dup
+       466: iconst_2
+       467: bipush        14
+       469: bastore
+       470: dup
+       471: iconst_3
+       472: bipush        10
+       474: bastore
+       475: dup
+       476: iconst_4
+       477: bipush        12
+       479: bastore
+       480: dup
+       481: iconst_5
+       482: bipush        12
+       484: bastore
+       485: aastore
+       486: dup
+       487: iconst_4
+       488: bipush        6
+       490: newarray       byte
+       492: dup
+       493: iconst_0
+       494: bipush        10
+       496: bastore
+       497: dup
+       498: iconst_1
+       499: bipush        12
+       501: bastore
+       502: dup
+       503: iconst_2
+       504: bipush        12
+       506: bastore
+       507: dup
+       508: iconst_3
+       509: bipush        12
+       511: bastore
+       512: dup
+       513: iconst_4
+       514: bipush        10
+       516: bastore
+       517: dup
+       518: iconst_5
+       519: bipush        15
+       521: bastore
+       522: aastore
+       523: dup
+       524: iconst_5
+       525: bipush        6
+       527: newarray       byte
+       529: dup
+       530: iconst_0
+       531: bipush        10
+       533: bastore
+       534: dup
+       535: iconst_1
+       536: bipush        12
+       538: bastore
+       539: dup
+       540: iconst_2
+       541: bipush        12
+       543: bastore
+       544: dup
+       545: iconst_3
+       546: bipush        12
+       548: bastore
+       549: dup
+       550: iconst_4
+       551: bipush        15
+       553: bastore
+       554: dup
+       555: iconst_5
+       556: bipush        10
+       558: bastore
+       559: aastore
+       560: putstatic     #5                  // Field a:[[B
+       563: bipush        13
+       565: newarray       byte
+       567: dup
+       568: iconst_0
+       569: iconst_1
+       570: bastore
+       571: dup
+       572: iconst_1
+       573: iconst_4
+       574: bastore
+       575: dup
+       576: iconst_2
+       577: iconst_5
+       578: bastore
+       579: dup
+       580: iconst_3
+       581: iconst_5
+       582: bastore
+       583: dup
+       584: iconst_4
+       585: iconst_4
+       586: bastore
+       587: dup
+       588: iconst_5
+       589: iconst_1
+       590: bastore
+       591: dup
+       592: bipush        6
+       594: iconst_1
+       595: bastore
+       596: dup
+       597: bipush        7
+       599: iconst_4
+       600: bastore
+       601: dup
+       602: bipush        8
+       604: iconst_5
+       605: bastore
+       606: dup
+       607: bipush        9
+       609: iconst_3
+       610: bastore
+       611: dup
+       612: bipush        10
+       614: iconst_4
+       615: bastore
+       616: dup
+       617: bipush        11
+       619: iconst_2
+       620: bastore
+       621: dup
+       622: bipush        12
+       624: iconst_5
+       625: bastore
+       626: putstatic     #13                 // Field h:[B
+       629: return
+}

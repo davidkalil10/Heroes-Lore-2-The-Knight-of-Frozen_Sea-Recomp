@@ -1,0 +1,239 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/cb.class
+  Last modified 12 de out. de 2026; size 823 bytes
+  SHA-256 checksum 2979e2abd0070e9201cf1e3078e207d2706418a8814d2844ebdd5f63b8838b58
+public class cb
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #1                          // cb
+  super_class: #4                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 3, attributes: 0
+Constant pool:
+   #1 = Class              #25            // cb
+   #2 = Class              #26            // java/io/PrintStream
+   #3 = Class              #27            // java/lang/Exception
+   #4 = Class              #28            // java/lang/Object
+   #5 = Class              #29            // java/lang/System
+   #6 = Fieldref           #5.#12         // java/lang/System.out:Ljava/io/PrintStream;
+   #7 = Methodref          #4.#11         // java/lang/Object."<init>":()V
+   #8 = Methodref          #2.#13         // java/io/PrintStream.println:(Ljava/lang/String;)V
+   #9 = String             #20            // DECODE ERROR
+  #10 = String             #22            // PARITY ERROR
+  #11 = NameAndType        #18:#15        // "<init>":()V
+  #12 = NameAndType        #30:#21        // out:Ljava/io/PrintStream;
+  #13 = NameAndType        #31:#16        // println:(Ljava/lang/String;)V
+  #14 = Class              #33            // "[B"
+  #15 = Utf8               ()V
+  #16 = Utf8               (Ljava/lang/String;)V
+  #17 = Utf8               ([B[B)[B
+  #18 = Utf8               <init>
+  #19 = Utf8               Code
+  #20 = Utf8               DECODE ERROR
+  #21 = Utf8               Ljava/io/PrintStream;
+  #22 = Utf8               PARITY ERROR
+  #23 = Utf8               a
+  #24 = Utf8               b
+  #25 = Utf8               cb
+  #26 = Utf8               java/io/PrintStream
+  #27 = Utf8               java/lang/Exception
+  #28 = Utf8               java/lang/Object
+  #29 = Utf8               java/lang/System
+  #30 = Utf8               out
+  #31 = Utf8               println
+  #32 = Utf8               StackMap
+  #33 = Utf8               [B
+{
+  public cb();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #7                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  public static byte[] a(byte[], byte[]);
+    descriptor: ([B[B)[B
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=7, args_size=2
+         0: aload_0
+         1: arraylength
+         2: iconst_1
+         3: iadd
+         4: newarray       byte
+         6: astore_2
+         7: iconst_0
+         8: istore_3
+         9: iconst_0
+        10: istore        5
+        12: iconst_0
+        13: istore        4
+        15: iload         4
+        17: aload_0
+        18: arraylength
+        19: if_icmpge     74
+        22: aload_0
+        23: iload         4
+        25: baload
+        26: istore        6
+        28: iinc          5, 1
+        31: iload         5
+        33: aload_1
+        34: arraylength
+        35: if_icmpne     41
+        38: iconst_0
+        39: istore        5
+        41: iload         6
+        43: aload_1
+        44: iload         5
+        46: baload
+        47: ixor
+        48: istore        6
+        50: iload_3
+        51: aload_1
+        52: iload         5
+        54: baload
+        55: sipush        255
+        58: iand
+        59: iadd
+        60: istore_3
+        61: aload_2
+        62: iload         4
+        64: iload         6
+        66: i2b
+        67: bastore
+        68: iinc          4, 1
+        71: goto          15
+        74: aload_2
+        75: aload_0
+        76: arraylength
+        77: iload_3
+        78: i2b
+        79: bastore
+        80: aload_2
+        81: areturn
+      StackMap: number_of_entries = 3
+        frame_type = 255 offset = 15
+          locals = [ class "[B", class "[B", class "[B", int, int, int ]
+          stack = []
+        frame_type = 255 offset = 41
+          locals = [ class "[B", class "[B", class "[B", int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 74
+          locals = [ class "[B", class "[B", class "[B", int, int, int ]
+          stack = []
+
+  public static byte[] b(byte[], byte[]);
+    descriptor: ([B[B)[B
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=8, args_size=2
+         0: aload_0
+         1: arraylength
+         2: iconst_1
+         3: iadd
+         4: newarray       byte
+         6: astore_2
+         7: iconst_0
+         8: istore_3
+         9: aload_0
+        10: arraylength
+        11: iconst_1
+        12: if_icmpge     25
+        15: getstatic     #6                  // Field java/lang/System.out:Ljava/io/PrintStream;
+        18: ldc           #10                 // String PARITY ERROR
+        20: invokevirtual #8                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+        23: aconst_null
+        24: areturn
+        25: iconst_0
+        26: istore        5
+        28: iconst_0
+        29: istore        4
+        31: iload         4
+        33: aload_0
+        34: arraylength
+        35: iconst_1
+        36: isub
+        37: if_icmpge     92
+        40: aload_0
+        41: iload         4
+        43: baload
+        44: istore        6
+        46: iinc          5, 1
+        49: iload         5
+        51: aload_1
+        52: arraylength
+        53: if_icmpne     59
+        56: iconst_0
+        57: istore        5
+        59: iload         6
+        61: aload_1
+        62: iload         5
+        64: baload
+        65: ixor
+        66: istore        6
+        68: iload_3
+        69: aload_1
+        70: iload         5
+        72: baload
+        73: sipush        255
+        76: iand
+        77: iadd
+        78: istore_3
+        79: aload_2
+        80: iload         4
+        82: iload         6
+        84: i2b
+        85: bastore
+        86: iinc          4, 1
+        89: goto          31
+        92: goto          107
+        95: astore        7
+        97: getstatic     #6                  // Field java/lang/System.out:Ljava/io/PrintStream;
+       100: ldc           #9                  // String DECODE ERROR
+       102: invokevirtual #8                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       105: aconst_null
+       106: areturn
+       107: iload_3
+       108: sipush        255
+       111: iand
+       112: aload_0
+       113: iload         4
+       115: baload
+       116: sipush        255
+       119: iand
+       120: if_icmpeq     133
+       123: getstatic     #6                  // Field java/lang/System.out:Ljava/io/PrintStream;
+       126: ldc           #10                 // String PARITY ERROR
+       128: invokevirtual #8                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       131: aconst_null
+       132: areturn
+       133: aload_2
+       134: areturn
+      Exception table:
+         from    to  target type
+            28    92    95   Class java/lang/Exception
+      StackMap: number_of_entries = 7
+        frame_type = 255 offset = 25
+          locals = [ class "[B", class "[B", class "[B", int ]
+          stack = []
+        frame_type = 255 offset = 31
+          locals = [ class "[B", class "[B", class "[B", int, int, int ]
+          stack = []
+        frame_type = 255 offset = 59
+          locals = [ class "[B", class "[B", class "[B", int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 92
+          locals = [ class "[B", class "[B", class "[B", int, int, int ]
+          stack = []
+        frame_type = 255 offset = 95
+          locals = [ class "[B", class "[B", class "[B", int, top, int ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 107
+          locals = [ class "[B", class "[B", class "[B", int, int, int ]
+          stack = []
+        frame_type = 255 offset = 133
+          locals = [ class "[B", class "[B", class "[B", int, int, int ]
+          stack = []
+}

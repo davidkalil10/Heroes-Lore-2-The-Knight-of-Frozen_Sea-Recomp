@@ -1,0 +1,83 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/ch.class
+  Last modified 12 de out. de 2026; size 299 bytes
+  SHA-256 checksum 4b4911a45027aca9c465f213ec5326b4d420cf41ab389df6c9713241fc6b63d2
+public class ch extends cp
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #1                          // ch
+  super_class: #2                         // cp
+  interfaces: 0, fields: 0, methods: 3, attributes: 0
+Constant pool:
+   #1 = Class              #20            // ch
+   #2 = Class              #21            // cp
+   #3 = Class              #22            // java/lang/Exception
+   #4 = Methodref          #2.#8          // cp."<init>":(II)V
+   #5 = Methodref          #2.#9          // cp.a:()[B
+   #6 = Methodref          #2.#10         // cp.a:([B[B)[B
+   #7 = Methodref          #2.#11         // cp.a:([BI)I
+   #8 = NameAndType        #16:#13        // "<init>":(II)V
+   #9 = NameAndType        #19:#12        // a:()[B
+  #10 = NameAndType        #19:#15        // a:([B[B)[B
+  #11 = NameAndType        #19:#14        // a:([BI)I
+  #12 = Utf8               ()[B
+  #13 = Utf8               (II)V
+  #14 = Utf8               ([BI)I
+  #15 = Utf8               ([B[B)[B
+  #16 = Utf8               <init>
+  #17 = Utf8               Code
+  #18 = Utf8               Exceptions
+  #19 = Utf8               a
+  #20 = Utf8               ch
+  #21 = Utf8               cp
+  #22 = Utf8               java/lang/Exception
+{
+  public ch(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokespecial #4                  // Method cp."<init>":(II)V
+         6: return
+
+  public byte[] a();
+    descriptor: ()[B
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=1
+         0: aload_0
+         1: invokespecial #5                  // Method cp.a:()[B
+         4: astore_1
+         5: iconst_1
+         6: newarray       byte
+         8: dup
+         9: iconst_0
+        10: iconst_0
+        11: bastore
+        12: astore_2
+        13: aload_0
+        14: aload_1
+        15: aload_2
+        16: invokevirtual #6                  // Method cp.a:([B[B)[B
+        19: areturn
+
+  public int a(byte[], int) throws java.lang.Exception;
+    descriptor: ([BI)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: invokespecial #7                  // Method cp.a:([BI)I
+         6: istore_2
+         7: iload_2
+         8: iconst_1
+         9: iadd
+        10: ireturn
+    Exceptions:
+      throws java.lang.Exception
+}

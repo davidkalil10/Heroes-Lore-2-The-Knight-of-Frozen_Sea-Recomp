@@ -1,0 +1,1290 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/com/skt/m/AudioClipImpl.class
+  Last modified 12 de out. de 2026; size 6048 bytes
+  SHA-256 checksum 9d01fc07c17562637560bbcd8f5c98aa44e6023937621c000cd4a66c4b1dbd48
+  Compiled from "AudioClipImpl.java"
+public class com.skt.m.AudioClipImpl implements com.skt.m.AudioClip
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // com/skt/m/AudioClipImpl
+  super_class: #8                         // java/lang/Object
+  interfaces: 1, fields: 12, methods: 18, attributes: 2
+Constant pool:
+    #1 = Methodref          #2.#3         // com/skt/m/AudioClipImpl.close:()V
+    #2 = Class              #4            // com/skt/m/AudioClipImpl
+    #3 = NameAndType        #5:#6         // close:()V
+    #4 = Utf8               com/skt/m/AudioClipImpl
+    #5 = Utf8               close
+    #6 = Utf8               ()V
+    #7 = Methodref          #8.#9         // java/lang/Object."<init>":()V
+    #8 = Class              #10           // java/lang/Object
+    #9 = NameAndType        #11:#6        // "<init>":()V
+   #10 = Utf8               java/lang/Object
+   #11 = Utf8               <init>
+   #12 = Class              #13           // com/skt/m/AudioClipImpl_1
+   #13 = Utf8               com/skt/m/AudioClipImpl_1
+   #14 = Methodref          #12.#15       // com/skt/m/AudioClipImpl_1."<init>":(Lcom/skt/m/AudioClipImpl;)V
+   #15 = NameAndType        #11:#16       // "<init>":(Lcom/skt/m/AudioClipImpl;)V
+   #16 = Utf8               (Lcom/skt/m/AudioClipImpl;)V
+   #17 = Fieldref           #2.#18        // com/skt/m/AudioClipImpl.endListener:Ljavax/microedition/media/PlayerListener;
+   #18 = NameAndType        #19:#20       // endListener:Ljavax/microedition/media/PlayerListener;
+   #19 = Utf8               endListener
+   #20 = Utf8               Ljavax/microedition/media/PlayerListener;
+   #21 = Fieldref           #2.#22        // com/skt/m/AudioClipImpl.volumeLoaded:Z
+   #22 = NameAndType        #23:#24       // volumeLoaded:Z
+   #23 = Utf8               volumeLoaded
+   #24 = Utf8               Z
+   #25 = String             #26           // sktAudioVolume
+   #26 = Utf8               sktAudioVolume
+   #27 = Methodref          #28.#29       // javax/microedition/rms/RecordStore.openRecordStore:(Ljava/lang/String;Z)Ljavax/microedition/rms/RecordStore;
+   #28 = Class              #30           // javax/microedition/rms/RecordStore
+   #29 = NameAndType        #31:#32       // openRecordStore:(Ljava/lang/String;Z)Ljavax/microedition/rms/RecordStore;
+   #30 = Utf8               javax/microedition/rms/RecordStore
+   #31 = Utf8               openRecordStore
+   #32 = Utf8               (Ljava/lang/String;Z)Ljavax/microedition/rms/RecordStore;
+   #33 = Methodref          #28.#34       // javax/microedition/rms/RecordStore.getNumRecords:()I
+   #34 = NameAndType        #35:#36       // getNumRecords:()I
+   #35 = Utf8               getNumRecords
+   #36 = Utf8               ()I
+   #37 = Methodref          #28.#38       // javax/microedition/rms/RecordStore.getRecord:(I)[B
+   #38 = NameAndType        #39:#40       // getRecord:(I)[B
+   #39 = Utf8               getRecord
+   #40 = Utf8               (I)[B
+   #41 = Fieldref           #2.#42        // com/skt/m/AudioClipImpl.currentVolumePercent:I
+   #42 = NameAndType        #43:#44       // currentVolumePercent:I
+   #43 = Utf8               currentVolumePercent
+   #44 = Utf8               I
+   #45 = Methodref          #28.#46       // javax/microedition/rms/RecordStore.closeRecordStore:()V
+   #46 = NameAndType        #47:#6        // closeRecordStore:()V
+   #47 = Utf8               closeRecordStore
+   #48 = Class              #49           // java/lang/Exception
+   #49 = Utf8               java/lang/Exception
+   #50 = Methodref          #28.#51       // javax/microedition/rms/RecordStore.setRecord:(I[BII)V
+   #51 = NameAndType        #52:#53       // setRecord:(I[BII)V
+   #52 = Utf8               setRecord
+   #53 = Utf8               (I[BII)V
+   #54 = Methodref          #28.#55       // javax/microedition/rms/RecordStore.addRecord:([BII)I
+   #55 = NameAndType        #56:#57       // addRecord:([BII)I
+   #56 = Utf8               addRecord
+   #57 = Utf8               ([BII)I
+   #58 = Methodref          #2.#59        // com/skt/m/AudioClipImpl.ensureVolumeLoaded:()V
+   #59 = NameAndType        #60:#6        // ensureVolumeLoaded:()V
+   #60 = Utf8               ensureVolumeLoaded
+   #61 = Methodref          #62.#63       // java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+   #62 = Class              #64           // java/lang/System
+   #63 = NameAndType        #65:#66       // arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+   #64 = Utf8               java/lang/System
+   #65 = Utf8               arraycopy
+   #66 = Utf8               (Ljava/lang/Object;ILjava/lang/Object;II)V
+   #67 = Methodref          #2.#68        // com/skt/m/AudioClipImpl.detectContentTypes:([B)[Ljava/lang/String;
+   #68 = NameAndType        #69:#70       // detectContentTypes:([B)[Ljava/lang/String;
+   #69 = Utf8               detectContentTypes
+   #70 = Utf8               ([B)[Ljava/lang/String;
+   #71 = Class              #72           // java/io/ByteArrayInputStream
+   #72 = Utf8               java/io/ByteArrayInputStream
+   #73 = Methodref          #71.#74       // java/io/ByteArrayInputStream."<init>":([B)V
+   #74 = NameAndType        #11:#75       // "<init>":([B)V
+   #75 = Utf8               ([B)V
+   #76 = Methodref          #77.#78       // javax/microedition/media/Manager.createPlayer:(Ljava/io/InputStream;Ljava/lang/String;)Ljavax/microedition/media/Player;
+   #77 = Class              #79           // javax/microedition/media/Manager
+   #78 = NameAndType        #80:#81       // createPlayer:(Ljava/io/InputStream;Ljava/lang/String;)Ljavax/microedition/media/Player;
+   #79 = Utf8               javax/microedition/media/Manager
+   #80 = Utf8               createPlayer
+   #81 = Utf8               (Ljava/io/InputStream;Ljava/lang/String;)Ljavax/microedition/media/Player;
+   #82 = InterfaceMethodref #83.#84       // javax/microedition/media/Player.realize:()V
+   #83 = Class              #85           // javax/microedition/media/Player
+   #84 = NameAndType        #86:#6        // realize:()V
+   #85 = Utf8               javax/microedition/media/Player
+   #86 = Utf8               realize
+   #87 = InterfaceMethodref #83.#88       // javax/microedition/media/Player.prefetch:()V
+   #88 = NameAndType        #89:#6        // prefetch:()V
+   #89 = Utf8               prefetch
+   #90 = InterfaceMethodref #83.#91       // javax/microedition/media/Player.addPlayerListener:(Ljavax/microedition/media/PlayerListener;)V
+   #91 = NameAndType        #92:#93       // addPlayerListener:(Ljavax/microedition/media/PlayerListener;)V
+   #92 = Utf8               addPlayerListener
+   #93 = Utf8               (Ljavax/microedition/media/PlayerListener;)V
+   #94 = Methodref          #2.#95        // com/skt/m/AudioClipImpl.applyVolume:(Ljavax/microedition/media/Player;I)V
+   #95 = NameAndType        #96:#97       // applyVolume:(Ljavax/microedition/media/Player;I)V
+   #96 = Utf8               applyVolume
+   #97 = Utf8               (Ljavax/microedition/media/Player;I)V
+   #98 = Fieldref           #2.#99        // com/skt/m/AudioClipImpl.player:Ljavax/microedition/media/Player;
+   #99 = NameAndType        #100:#101     // player:Ljavax/microedition/media/Player;
+  #100 = Utf8               player
+  #101 = Utf8               Ljavax/microedition/media/Player;
+  #102 = Fieldref           #2.#103       // com/skt/m/AudioClipImpl.activePlayers:Ljava/util/Vector;
+  #103 = NameAndType        #104:#105     // activePlayers:Ljava/util/Vector;
+  #104 = Utf8               activePlayers
+  #105 = Utf8               Ljava/util/Vector;
+  #106 = Methodref          #107.#108     // java/util/Vector.addElement:(Ljava/lang/Object;)V
+  #107 = Class              #109          // java/util/Vector
+  #108 = NameAndType        #110:#111     // addElement:(Ljava/lang/Object;)V
+  #109 = Utf8               java/util/Vector
+  #110 = Utf8               addElement
+  #111 = Utf8               (Ljava/lang/Object;)V
+  #112 = Class              #113          // com/skt/m/UnsupportedFormatException
+  #113 = Utf8               com/skt/m/UnsupportedFormatException
+  #114 = Methodref          #48.#115      // java/lang/Exception.getMessage:()Ljava/lang/String;
+  #115 = NameAndType        #116:#117     // getMessage:()Ljava/lang/String;
+  #116 = Utf8               getMessage
+  #117 = Utf8               ()Ljava/lang/String;
+  #118 = String             #119          // audio format not supported
+  #119 = Utf8               audio format not supported
+  #120 = Methodref          #112.#121     // com/skt/m/UnsupportedFormatException."<init>":(Ljava/lang/String;)V
+  #121 = NameAndType        #11:#122      // "<init>":(Ljava/lang/String;)V
+  #122 = Utf8               (Ljava/lang/String;)V
+  #123 = Methodref          #2.#124       // com/skt/m/AudioClipImpl.isWav:([B)Z
+  #124 = NameAndType        #125:#126     // isWav:([B)Z
+  #125 = Utf8               isWav
+  #126 = Utf8               ([B)Z
+  #127 = Fieldref           #2.#128       // com/skt/m/AudioClipImpl.WAV_TYPES:[Ljava/lang/String;
+  #128 = NameAndType        #129:#130     // WAV_TYPES:[Ljava/lang/String;
+  #129 = Utf8               WAV_TYPES
+  #130 = Utf8               [Ljava/lang/String;
+  #131 = Methodref          #2.#132       // com/skt/m/AudioClipImpl.isMp3:([B)Z
+  #132 = NameAndType        #133:#126     // isMp3:([B)Z
+  #133 = Utf8               isMp3
+  #134 = Fieldref           #2.#135       // com/skt/m/AudioClipImpl.MP3_TYPES:[Ljava/lang/String;
+  #135 = NameAndType        #136:#130     // MP3_TYPES:[Ljava/lang/String;
+  #136 = Utf8               MP3_TYPES
+  #137 = Methodref          #2.#138       // com/skt/m/AudioClipImpl.isMidi:([B)Z
+  #138 = NameAndType        #139:#126     // isMidi:([B)Z
+  #139 = Utf8               isMidi
+  #140 = Fieldref           #2.#141       // com/skt/m/AudioClipImpl.MIDI_TYPES:[Ljava/lang/String;
+  #141 = NameAndType        #142:#130     // MIDI_TYPES:[Ljava/lang/String;
+  #142 = Utf8               MIDI_TYPES
+  #143 = Fieldref           #2.#144       // com/skt/m/AudioClipImpl.SMAF_TYPES:[Ljava/lang/String;
+  #144 = NameAndType        #145:#130     // SMAF_TYPES:[Ljava/lang/String;
+  #145 = Utf8               SMAF_TYPES
+  #146 = Methodref          #2.#147       // com/skt/m/AudioClipImpl.startPlayback:(I)V
+  #147 = NameAndType        #148:#149     // startPlayback:(I)V
+  #148 = Utf8               startPlayback
+  #149 = Utf8               (I)V
+  #150 = InterfaceMethodref #83.#151      // javax/microedition/media/Player.stop:()V
+  #151 = NameAndType        #152:#6       // stop:()V
+  #152 = Utf8               stop
+  #153 = InterfaceMethodref #83.#154      // javax/microedition/media/Player.setMediaTime:(J)J
+  #154 = NameAndType        #155:#156     // setMediaTime:(J)J
+  #155 = Utf8               setMediaTime
+  #156 = Utf8               (J)J
+  #157 = InterfaceMethodref #83.#158      // javax/microedition/media/Player.setLoopCount:(I)V
+  #158 = NameAndType        #159:#149     // setLoopCount:(I)V
+  #159 = Utf8               setLoopCount
+  #160 = InterfaceMethodref #83.#161      // javax/microedition/media/Player.start:()V
+  #161 = NameAndType        #162:#6       // start:()V
+  #162 = Utf8               start
+  #163 = InterfaceMethodref #83.#3        // javax/microedition/media/Player.close:()V
+  #164 = Methodref          #107.#165     // java/util/Vector.removeElement:(Ljava/lang/Object;)Z
+  #165 = NameAndType        #166:#167     // removeElement:(Ljava/lang/Object;)Z
+  #166 = Utf8               removeElement
+  #167 = Utf8               (Ljava/lang/Object;)Z
+  #168 = Methodref          #2.#169       // com/skt/m/AudioClipImpl.saveVolume:(I)V
+  #169 = NameAndType        #170:#149     // saveVolume:(I)V
+  #170 = Utf8               saveVolume
+  #171 = Methodref          #107.#172     // java/util/Vector.size:()I
+  #172 = NameAndType        #173:#36      // size:()I
+  #173 = Utf8               size
+  #174 = Methodref          #107.#175     // java/util/Vector.elementAt:(I)Ljava/lang/Object;
+  #175 = NameAndType        #176:#177     // elementAt:(I)Ljava/lang/Object;
+  #176 = Utf8               elementAt
+  #177 = Utf8               (I)Ljava/lang/Object;
+  #178 = String             #179          // VolumeControl
+  #179 = Utf8               VolumeControl
+  #180 = InterfaceMethodref #83.#181      // javax/microedition/media/Player.getControl:(Ljava/lang/String;)Ljavax/microedition/media/Control;
+  #181 = NameAndType        #182:#183     // getControl:(Ljava/lang/String;)Ljavax/microedition/media/Control;
+  #182 = Utf8               getControl
+  #183 = Utf8               (Ljava/lang/String;)Ljavax/microedition/media/Control;
+  #184 = Class              #185          // javax/microedition/media/control/VolumeControl
+  #185 = Utf8               javax/microedition/media/control/VolumeControl
+  #186 = InterfaceMethodref #184.#187     // javax/microedition/media/control/VolumeControl.setLevel:(I)I
+  #187 = NameAndType        #188:#189     // setLevel:(I)I
+  #188 = Utf8               setLevel
+  #189 = Utf8               (I)I
+  #190 = Class              #191          // java/lang/String
+  #191 = Utf8               java/lang/String
+  #192 = String             #193          // audio/x-smaf
+  #193 = Utf8               audio/x-smaf
+  #194 = String             #195          // audio/mmf
+  #195 = Utf8               audio/mmf
+  #196 = String             #197          // application/x-smaf
+  #197 = Utf8               application/x-smaf
+  #198 = String             #199          // audio/smaf
+  #199 = Utf8               audio/smaf
+  #200 = String             #201          // audio/x-wav
+  #201 = Utf8               audio/x-wav
+  #202 = String             #203          // audio/wav
+  #203 = Utf8               audio/wav
+  #204 = String             #205          // audio/mpeg
+  #205 = Utf8               audio/mpeg
+  #206 = String             #207          // audio/mp3
+  #207 = Utf8               audio/mp3
+  #208 = String             #209          // audio/x-mp3
+  #209 = Utf8               audio/x-mp3
+  #210 = String             #211          // audio/midi
+  #211 = Utf8               audio/midi
+  #212 = String             #213          // audio/mid
+  #213 = Utf8               audio/mid
+  #214 = String             #215          // audio/x-midi
+  #215 = Utf8               audio/x-midi
+  #216 = String             #217          // audio/sp-midi
+  #217 = Utf8               audio/sp-midi
+  #218 = Methodref          #107.#9       // java/util/Vector."<init>":()V
+  #219 = Class              #220          // com/skt/m/AudioClip
+  #220 = Utf8               com/skt/m/AudioClip
+  #221 = Utf8               RS_NAME
+  #222 = Utf8               Ljava/lang/String;
+  #223 = Utf8               ConstantValue
+  #224 = Utf8               Code
+  #225 = Utf8               LineNumberTable
+  #226 = Utf8               StackMapTable
+  #227 = Class              #228          // java/lang/Throwable
+  #228 = Utf8               java/lang/Throwable
+  #229 = Class              #230          // "[B"
+  #230 = Utf8               [B
+  #231 = Utf8               open
+  #232 = Utf8               ([BII)V
+  #233 = Class              #130          // "[Ljava/lang/String;"
+  #234 = Utf8               Exceptions
+  #235 = Utf8               play
+  #236 = Utf8               loop
+  #237 = Utf8               setGlobalVolumePercent
+  #238 = Utf8               access$000
+  #239 = Utf8               <clinit>
+  #240 = Utf8               SourceFile
+  #241 = Utf8               AudioClipImpl.java
+  #242 = Utf8               InnerClasses
+  #243 = Utf8               openData
+  #244 = NameAndType        #243:#230     // openData:[B
+  #245 = Fieldref           #2.#244       // com/skt/m/AudioClipImpl.openData:[B
+  #246 = Utf8               javax/microedition/media/control/MIDIControl
+  #247 = Class              #246          // javax/microedition/media/control/MIDIControl
+  #248 = Utf8               shortMidiEvent
+  #249 = Utf8               (III)V
+  #250 = NameAndType        #248:#249     // shortMidiEvent:(III)V
+  #251 = InterfaceMethodref #247.#250     // javax/microedition/media/control/MIDIControl.shortMidiEvent:(III)V
+  #252 = Utf8               MIDIControl
+  #253 = String             #252          // MIDIControl
+  #254 = Utf8               silenceMidiNotes
+  #255 = Utf8               (Ljavax/microedition/media/Player;)V
+  #256 = NameAndType        #254:#255     // silenceMidiNotes:(Ljavax/microedition/media/Player;)V
+  #257 = Methodref          #2.#256       // com/skt/m/AudioClipImpl.silenceMidiNotes:(Ljavax/microedition/media/Player;)V
+  #258 = Utf8               StackMapTable
+  #259 = Utf8               Code
+  #260 = Utf8               silenceMidiNotes
+  #261 = Utf8               (Ljavax/microedition/media/Player;)V
+  #262 = Utf8               currentTimeMillis
+  #263 = Utf8               ()J
+  #264 = NameAndType        #262:#263     // currentTimeMillis:()J
+  #265 = Methodref          #62.#264      // java/lang/System.currentTimeMillis:()J
+  #266 = Utf8               lastOpenTime
+  #267 = Utf8               J
+  #268 = Utf8               lastOpenTime
+  #269 = Utf8               J
+  #270 = NameAndType        #268:#269     // lastOpenTime:J
+  #271 = Fieldref           #2.#270       // com/skt/m/AudioClipImpl.lastOpenTime:J
+  #272 = Long               1500l
+  #274 = Class              #276          // javax/microedition/media/Control
+  #275 = Utf8               StackMap
+  #276 = Utf8               javax/microedition/media/Control
+{
+  private static final java.lang.String[] SMAF_TYPES;
+    descriptor: [Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private static final java.lang.String[] WAV_TYPES;
+    descriptor: [Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private static final java.lang.String[] MP3_TYPES;
+    descriptor: [Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private static final java.lang.String[] MIDI_TYPES;
+    descriptor: [Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private static final java.util.Vector activePlayers;
+    descriptor: Ljava/util/Vector;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  private static final java.lang.String RS_NAME;
+    descriptor: Ljava/lang/String;
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+    ConstantValue: String sktAudioVolume
+
+  private static int currentVolumePercent;
+    descriptor: I
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+
+  private static boolean volumeLoaded;
+    descriptor: Z
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+
+  private javax.microedition.media.Player player;
+    descriptor: Ljavax/microedition/media/Player;
+    flags: (0x0002) ACC_PRIVATE
+
+  private final javax.microedition.media.PlayerListener endListener;
+    descriptor: Ljavax/microedition/media/PlayerListener;
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+
+  private byte[] openData;
+    descriptor: [B
+    flags: (0x0002) ACC_PRIVATE
+
+  private long lastOpenTime;
+    descriptor: J
+    flags: (0x0002) ACC_PRIVATE
+
+  public com.skt.m.AudioClipImpl();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #7                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #12                 // class com/skt/m/AudioClipImpl_1
+         8: dup
+         9: aload_0
+        10: invokespecial #14                 // Method com/skt/m/AudioClipImpl_1."<init>":(Lcom/skt/m/AudioClipImpl;)V
+        13: putfield      #17                 // Field endListener:Ljavax/microedition/media/PlayerListener;
+        16: return
+      LineNumberTable:
+        line 24: 0
+        line 117: 4
+
+  private static void ensureVolumeLoaded();
+    descriptor: ()V
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=2, locals=4, args_size=0
+         0: getstatic     #21                 // Field volumeLoaded:Z
+         3: ifeq          7
+         6: return
+         7: iconst_1
+         8: putstatic     #21                 // Field volumeLoaded:Z
+        11: ldc           #25                 // String sktAudioVolume
+        13: iconst_1
+        14: invokestatic  #27                 // Method javax/microedition/rms/RecordStore.openRecordStore:(Ljava/lang/String;Z)Ljavax/microedition/rms/RecordStore;
+        17: astore_0
+        18: aload_0
+        19: invokevirtual #33                 // Method javax/microedition/rms/RecordStore.getNumRecords:()I
+        22: ifle          62
+        25: aload_0
+        26: iconst_1
+        27: invokevirtual #37                 // Method javax/microedition/rms/RecordStore.getRecord:(I)[B
+        30: astore_1
+        31: aload_1
+        32: ifnull        62
+        35: aload_1
+        36: arraylength
+        37: ifle          62
+        40: aload_1
+        41: iconst_0
+        42: baload
+        43: sipush        255
+        46: iand
+        47: istore_2
+        48: iload_2
+        49: iflt          62
+        52: iload_2
+        53: bipush        100
+        55: if_icmpgt     62
+        58: iload_2
+        59: putstatic     #41                 // Field currentVolumePercent:I
+        62: aload_0
+        63: invokevirtual #45                 // Method javax/microedition/rms/RecordStore.closeRecordStore:()V
+        66: goto          76
+        69: astore_3
+        70: aload_0
+        71: invokevirtual #45                 // Method javax/microedition/rms/RecordStore.closeRecordStore:()V
+        74: aload_3
+        75: athrow
+        76: goto          80
+        79: astore_0
+        80: return
+      Exception table:
+         from    to  target type
+            18    62    69   any
+            11    76    79   Class java/lang/Exception
+      LineNumberTable:
+        line 73: 0
+        line 74: 6
+        line 76: 7
+        line 78: 11
+        line 80: 18
+        line 81: 25
+        line 82: 31
+        line 83: 40
+        line 84: 48
+        line 85: 58
+        line 90: 62
+        line 91: 66
+        line 90: 69
+        line 91: 74
+        line 94: 76
+        line 92: 79
+        line 95: 80
+      StackMap: number_of_entries = 6
+        frame_type = 255 offset = 7
+          locals = []
+          stack = []
+        frame_type = 255 offset = 62
+          locals = [ class javax/microedition/rms/RecordStore ]
+          stack = []
+        frame_type = 255 offset = 69
+          locals = [ class javax/microedition/rms/RecordStore ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 offset = 76
+          locals = [ class javax/microedition/rms/RecordStore ]
+          stack = []
+        frame_type = 255 offset = 79
+          locals = []
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 80
+          locals = [ class java/lang/Object ]
+          stack = []
+
+  private static void saveVolume(int);
+    descriptor: (I)V
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=5, locals=4, args_size=1
+         0: ldc           #25                 // String sktAudioVolume
+         2: iconst_1
+         3: invokestatic  #27                 // Method javax/microedition/rms/RecordStore.openRecordStore:(Ljava/lang/String;Z)Ljavax/microedition/rms/RecordStore;
+         6: astore_1
+         7: iconst_1
+         8: newarray       byte
+        10: dup
+        11: iconst_0
+        12: iload_0
+        13: i2b
+        14: bastore
+        15: astore_2
+        16: aload_1
+        17: invokevirtual #33                 // Method javax/microedition/rms/RecordStore.getNumRecords:()I
+        20: ifle          34
+        23: aload_1
+        24: iconst_1
+        25: aload_2
+        26: iconst_0
+        27: iconst_1
+        28: invokevirtual #50                 // Method javax/microedition/rms/RecordStore.setRecord:(I[BII)V
+        31: goto          42
+        34: aload_1
+        35: aload_2
+        36: iconst_0
+        37: iconst_1
+        38: invokevirtual #54                 // Method javax/microedition/rms/RecordStore.addRecord:([BII)I
+        41: pop
+        42: aload_1
+        43: invokevirtual #45                 // Method javax/microedition/rms/RecordStore.closeRecordStore:()V
+        46: goto          56
+        49: astore_3
+        50: aload_1
+        51: invokevirtual #45                 // Method javax/microedition/rms/RecordStore.closeRecordStore:()V
+        54: aload_3
+        55: athrow
+        56: goto          60
+        59: astore_1
+        60: return
+      Exception table:
+         from    to  target type
+             7    42    49   any
+             0    56    59   Class java/lang/Exception
+      LineNumberTable:
+        line 99: 0
+        line 101: 7
+        line 102: 16
+        line 103: 23
+        line 105: 34
+        line 108: 42
+        line 109: 46
+        line 108: 49
+        line 109: 54
+        line 112: 56
+        line 110: 59
+        line 113: 60
+      StackMap: number_of_entries = 6
+        frame_type = 255 offset = 34
+          locals = [ int, class javax/microedition/rms/RecordStore, class "[B" ]
+          stack = []
+        frame_type = 255 offset = 42
+          locals = [ int, class javax/microedition/rms/RecordStore, class "[B" ]
+          stack = []
+        frame_type = 255 offset = 49
+          locals = [ int, class javax/microedition/rms/RecordStore ]
+          stack = [ class java/lang/Throwable ]
+        frame_type = 255 offset = 56
+          locals = [ int, class javax/microedition/rms/RecordStore, class "[B" ]
+          stack = []
+        frame_type = 255 offset = 59
+          locals = [ int ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 60
+          locals = [ int, class java/lang/Object ]
+          stack = []
+
+  public void open(byte[], int, int) throws com.skt.m.UnsupportedFormatException;
+    descriptor: ([BII)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=10, args_size=4
+         0: invokestatic  #58                 // Method ensureVolumeLoaded:()V
+         3: aload_1
+         4: astore        4
+         6: iload_2
+         7: ifne          16
+        10: iload_3
+        11: aload_1
+        12: arraylength
+        13: if_icmpeq     30
+        16: iload_3
+        17: newarray       byte
+        19: astore        4
+        21: aload_1
+        22: iload_2
+        23: aload         4
+        25: iconst_0
+        26: iload_3
+        27: invokestatic  #61                 // Method java/lang/System.arraycopy:(Ljava/lang/Object;ILjava/lang/Object;II)V
+        30: aload_0
+        31: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        34: ifnull        107
+        37: aload         4
+        39: aload_0
+        40: getfield      #245                // Field openData:[B
+        43: if_acmpne     107
+        46: invokestatic  #265                // Method java/lang/System.currentTimeMillis:()J
+        49: aload_0
+        50: getfield      #271                // Field lastOpenTime:J
+        53: lsub
+        54: ldc2_w        #272                // long 1500l
+        57: lcmp
+        58: ifge          107
+        61: aload_0
+        62: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        65: invokeinterface #150,  1          // InterfaceMethod javax/microedition/media/Player.stop:()V
+        70: aload_0
+        71: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        74: invokestatic  #257                // Method silenceMidiNotes:(Ljavax/microedition/media/Player;)V
+        77: aload_0
+        78: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        81: lconst_0
+        82: invokeinterface #153,  3          // InterfaceMethod javax/microedition/media/Player.setMediaTime:(J)J
+        87: pop2
+        88: aload_0
+        89: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        92: getstatic     #41                 // Field currentVolumePercent:I
+        95: invokestatic  #94                 // Method applyVolume:(Ljavax/microedition/media/Player;I)V
+        98: aload_0
+        99: invokestatic  #265                // Method java/lang/System.currentTimeMillis:()J
+       102: putfield      #271                // Field lastOpenTime:J
+       105: return
+       106: pop
+       107: aload_0
+       108: invokespecial #1                  // Method close:()V
+       111: aload         4
+       113: invokestatic  #67                 // Method detectContentTypes:([B)[Ljava/lang/String;
+       116: astore        5
+       118: aconst_null
+       119: astore        6
+       121: iconst_0
+       122: istore        7
+       124: iload         7
+       126: aload         5
+       128: arraylength
+       129: if_icmpge     227
+       132: new           #71                 // class java/io/ByteArrayInputStream
+       135: dup
+       136: aload         4
+       138: invokespecial #73                 // Method java/io/ByteArrayInputStream."<init>":([B)V
+       141: astore        8
+       143: aload         8
+       145: aload         5
+       147: iload         7
+       149: aaload
+       150: invokestatic  #76                 // Method javax/microedition/media/Manager.createPlayer:(Ljava/io/InputStream;Ljava/lang/String;)Ljavax/microedition/media/Player;
+       153: astore        9
+       155: aload         9
+       157: invokeinterface #82,  1           // InterfaceMethod javax/microedition/media/Player.realize:()V
+       162: aload         9
+       164: invokeinterface #87,  1           // InterfaceMethod javax/microedition/media/Player.prefetch:()V
+       169: aload         9
+       171: aload_0
+       172: getfield      #17                 // Field endListener:Ljavax/microedition/media/PlayerListener;
+       175: invokeinterface #90,  2           // InterfaceMethod javax/microedition/media/Player.addPlayerListener:(Ljavax/microedition/media/PlayerListener;)V
+       180: aload         9
+       182: getstatic     #41                 // Field currentVolumePercent:I
+       185: invokestatic  #94                 // Method applyVolume:(Ljavax/microedition/media/Player;I)V
+       188: aload_0
+       189: aload         9
+       191: putfield      #98                 // Field player:Ljavax/microedition/media/Player;
+       194: aload_0
+       195: aload         4
+       197: putfield      #245                // Field openData:[B
+       200: aload_0
+       201: invokestatic  #265                // Method java/lang/System.currentTimeMillis:()J
+       204: putfield      #271                // Field lastOpenTime:J
+       207: getstatic     #102                // Field activePlayers:Ljava/util/Vector;
+       210: aload_0
+       211: invokevirtual #106                // Method java/util/Vector.addElement:(Ljava/lang/Object;)V
+       214: return
+       215: astore        8
+       217: aload         8
+       219: astore        6
+       221: iinc          7, 1
+       224: goto          124
+       227: new           #112                // class com/skt/m/UnsupportedFormatException
+       230: dup
+       231: aload         6
+       233: ifnull        244
+       236: aload         6
+       238: invokevirtual #114                // Method java/lang/Exception.getMessage:()Ljava/lang/String;
+       241: goto          246
+       244: ldc           #118                // String audio format not supported
+       246: invokespecial #120                // Method com/skt/m/UnsupportedFormatException."<init>":(Ljava/lang/String;)V
+       249: athrow
+      Exception table:
+         from    to  target type
+            61   105   106   Class java/lang/Exception
+           132   214   215   Class java/lang/Exception
+      StackMap: number_of_entries = 9
+        frame_type = 255 offset = 16
+          locals = [ class com/skt/m/AudioClipImpl, class "[B", int, int, class "[B" ]
+          stack = []
+        frame_type = 255 offset = 30
+          locals = [ class com/skt/m/AudioClipImpl, class "[B", int, int, class "[B" ]
+          stack = []
+        frame_type = 255 offset = 106
+          locals = [ class com/skt/m/AudioClipImpl, class "[B", int, int, class "[B" ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 107
+          locals = [ class com/skt/m/AudioClipImpl, class "[B", int, int, class "[B" ]
+          stack = []
+        frame_type = 255 offset = 124
+          locals = [ class com/skt/m/AudioClipImpl, class "[B", int, int, class "[B", class "[Ljava/lang/String;", class java/lang/Exception, int ]
+          stack = []
+        frame_type = 255 offset = 215
+          locals = [ class com/skt/m/AudioClipImpl, class "[B", int, int, class "[B", class "[Ljava/lang/String;", class java/lang/Exception, int ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 227
+          locals = [ class com/skt/m/AudioClipImpl, class "[B", int, int, class "[B", class "[Ljava/lang/String;", class java/lang/Exception, int ]
+          stack = []
+        frame_type = 255 offset = 244
+          locals = [ class com/skt/m/AudioClipImpl, class "[B", int, int, class "[B", class "[Ljava/lang/String;", class java/lang/Exception, int ]
+          stack = [ uninitialized 227, uninitialized 227 ]
+        frame_type = 255 offset = 246
+          locals = [ class com/skt/m/AudioClipImpl, class "[B", int, int, class "[B", class "[Ljava/lang/String;", class java/lang/Exception, int ]
+          stack = [ uninitialized 227, uninitialized 227, class java/lang/String ]
+    Exceptions:
+      throws com.skt.m.UnsupportedFormatException
+
+  private static java.lang.String[] detectContentTypes(byte[]);
+    descriptor: ([B)[Ljava/lang/String;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokestatic  #123                // Method isWav:([B)Z
+         4: ifeq          11
+         7: getstatic     #127                // Field WAV_TYPES:[Ljava/lang/String;
+        10: areturn
+        11: aload_0
+        12: invokestatic  #131                // Method isMp3:([B)Z
+        15: ifeq          22
+        18: getstatic     #134                // Field MP3_TYPES:[Ljava/lang/String;
+        21: areturn
+        22: aload_0
+        23: invokestatic  #137                // Method isMidi:([B)Z
+        26: ifeq          33
+        29: getstatic     #140                // Field MIDI_TYPES:[Ljava/lang/String;
+        32: areturn
+        33: getstatic     #143                // Field SMAF_TYPES:[Ljava/lang/String;
+        36: areturn
+      LineNumberTable:
+        line 164: 0
+        line 165: 7
+        line 167: 11
+        line 168: 18
+        line 170: 22
+        line 171: 29
+        line 175: 33
+      StackMap: number_of_entries = 3
+        frame_type = 255 offset = 11
+          locals = [ class "[B" ]
+          stack = []
+        frame_type = 255 offset = 22
+          locals = [ class "[B" ]
+          stack = []
+        frame_type = 255 offset = 33
+          locals = [ class "[B" ]
+          stack = []
+
+  private static boolean isMidi(byte[]);
+    descriptor: ([B)Z
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: arraylength
+         2: iconst_4
+         3: if_icmplt     42
+         6: aload_0
+         7: iconst_0
+         8: baload
+         9: bipush        77
+        11: if_icmpne     42
+        14: aload_0
+        15: iconst_1
+        16: baload
+        17: bipush        84
+        19: if_icmpne     42
+        22: aload_0
+        23: iconst_2
+        24: baload
+        25: bipush        104
+        27: if_icmpne     42
+        30: aload_0
+        31: iconst_3
+        32: baload
+        33: bipush        100
+        35: if_icmpne     42
+        38: iconst_1
+        39: goto          43
+        42: iconst_0
+        43: ireturn
+      LineNumberTable:
+        line 179: 0
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 42
+          locals = [ class "[B" ]
+          stack = []
+        frame_type = 255 offset = 43
+          locals = [ class "[B" ]
+          stack = [ int ]
+
+  private static boolean isWav(byte[]);
+    descriptor: ([B)Z
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: arraylength
+         2: bipush        12
+         4: if_icmplt     79
+         7: aload_0
+         8: iconst_0
+         9: baload
+        10: bipush        82
+        12: if_icmpne     79
+        15: aload_0
+        16: iconst_1
+        17: baload
+        18: bipush        73
+        20: if_icmpne     79
+        23: aload_0
+        24: iconst_2
+        25: baload
+        26: bipush        70
+        28: if_icmpne     79
+        31: aload_0
+        32: iconst_3
+        33: baload
+        34: bipush        70
+        36: if_icmpne     79
+        39: aload_0
+        40: bipush        8
+        42: baload
+        43: bipush        87
+        45: if_icmpne     79
+        48: aload_0
+        49: bipush        9
+        51: baload
+        52: bipush        65
+        54: if_icmpne     79
+        57: aload_0
+        58: bipush        10
+        60: baload
+        61: bipush        86
+        63: if_icmpne     79
+        66: aload_0
+        67: bipush        11
+        69: baload
+        70: bipush        69
+        72: if_icmpne     79
+        75: iconst_1
+        76: goto          80
+        79: iconst_0
+        80: ireturn
+      LineNumberTable:
+        line 184: 0
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 79
+          locals = [ class "[B" ]
+          stack = []
+        frame_type = 255 offset = 80
+          locals = [ class "[B" ]
+          stack = [ int ]
+
+  private static boolean isMp3(byte[]);
+    descriptor: ([B)Z
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: aload_0
+         1: arraylength
+         2: iconst_3
+         3: if_icmplt     32
+         6: aload_0
+         7: iconst_0
+         8: baload
+         9: bipush        73
+        11: if_icmpne     32
+        14: aload_0
+        15: iconst_1
+        16: baload
+        17: bipush        68
+        19: if_icmpne     32
+        22: aload_0
+        23: iconst_2
+        24: baload
+        25: bipush        51
+        27: if_icmpne     32
+        30: iconst_1
+        31: ireturn
+        32: aload_0
+        33: arraylength
+        34: iconst_2
+        35: if_icmplt     74
+        38: aload_0
+        39: iconst_0
+        40: baload
+        41: sipush        255
+        44: iand
+        45: istore_1
+        46: aload_0
+        47: iconst_1
+        48: baload
+        49: sipush        255
+        52: iand
+        53: istore_2
+        54: iload_1
+        55: sipush        255
+        58: if_icmpne     74
+        61: iload_2
+        62: sipush        224
+        65: iand
+        66: sipush        224
+        69: if_icmpne     74
+        72: iconst_1
+        73: ireturn
+        74: iconst_0
+        75: ireturn
+      LineNumberTable:
+        line 190: 0
+        line 191: 30
+        line 193: 32
+        line 194: 38
+        line 195: 46
+        line 197: 54
+        line 198: 72
+        line 201: 74
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 32
+          locals = [ class "[B" ]
+          stack = []
+        frame_type = 255 offset = 74
+          locals = [ class "[B" ]
+          stack = []
+
+  public void play();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: iconst_1
+         2: invokespecial #146                // Method startPlayback:(I)V
+         5: return
+      LineNumberTable:
+        line 205: 0
+        line 206: 5
+
+  public void loop();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: iconst_m1
+         2: invokespecial #146                // Method startPlayback:(I)V
+         5: return
+      LineNumberTable:
+        line 209: 0
+        line 210: 5
+
+  public void stop();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=1
+         0: aload_0
+         1: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+         4: ifnull        20
+         7: aload_0
+         8: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        11: invokeinterface #150,  1          // InterfaceMethod javax/microedition/media/Player.stop:()V
+        16: goto          20
+        19: astore_1
+        20: return
+      Exception table:
+         from    to  target type
+             7    16    19   Class java/lang/Exception
+      LineNumberTable:
+        line 213: 0
+        line 215: 7
+        line 218: 16
+        line 216: 19
+        line 220: 20
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 19
+          locals = [ class com/skt/m/AudioClipImpl ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 20
+          locals = [ class com/skt/m/AudioClipImpl ]
+          stack = []
+
+  private void startPlayback(int);
+    descriptor: (I)V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=3, locals=3, args_size=2
+         0: aload_0
+         1: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+         4: ifnonnull     8
+         7: return
+         8: aload_0
+         9: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        12: invokeinterface #150,  1          // InterfaceMethod javax/microedition/media/Player.stop:()V
+        17: aload_0
+        18: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        21: lconst_0
+        22: invokeinterface #153,  3          // InterfaceMethod javax/microedition/media/Player.setMediaTime:(J)J
+        27: pop2
+        28: aload_0
+        29: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        32: iload_1
+        33: invokeinterface #157,  2          // InterfaceMethod javax/microedition/media/Player.setLoopCount:(I)V
+        38: aload_0
+        39: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        42: invokeinterface #160,  1          // InterfaceMethod javax/microedition/media/Player.start:()V
+        47: goto          51
+        50: astore_2
+        51: return
+      Exception table:
+         from    to  target type
+             8    47    50   Class java/lang/Exception
+      LineNumberTable:
+        line 223: 0
+        line 224: 7
+        line 227: 8
+        line 228: 17
+        line 229: 28
+        line 230: 38
+        line 233: 47
+        line 231: 50
+        line 234: 51
+      StackMap: number_of_entries = 3
+        frame_type = 255 offset = 8
+          locals = [ class com/skt/m/AudioClipImpl, int ]
+          stack = []
+        frame_type = 255 offset = 50
+          locals = [ class com/skt/m/AudioClipImpl, int ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 51
+          locals = [ class com/skt/m/AudioClipImpl, int ]
+          stack = []
+
+  private void close();
+    descriptor: ()V
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=2, args_size=1
+         0: aload_0
+         1: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+         4: ifnull        38
+         7: aload_0
+         8: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        11: invokeinterface #163,  1          // InterfaceMethod javax/microedition/media/Player.close:()V
+        16: goto          20
+        19: astore_1
+        20: aload_0
+        21: aconst_null
+        22: putfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        25: aload_0
+        26: aconst_null
+        27: putfield      #245                // Field openData:[B
+        30: getstatic     #102                // Field activePlayers:Ljava/util/Vector;
+        33: aload_0
+        34: invokevirtual #164                // Method java/util/Vector.removeElement:(Ljava/lang/Object;)Z
+        37: pop
+        38: return
+      Exception table:
+         from    to  target type
+             7    16    19   Class java/lang/Exception
+      StackMap: number_of_entries = 3
+        frame_type = 255 offset = 19
+          locals = [ class com/skt/m/AudioClipImpl ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 20
+          locals = [ class com/skt/m/AudioClipImpl ]
+          stack = []
+        frame_type = 255 offset = 38
+          locals = [ class com/skt/m/AudioClipImpl ]
+          stack = []
+
+  static void setGlobalVolumePercent(int);
+    descriptor: (I)V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: iload_0
+         1: ifge          6
+         4: iconst_0
+         5: istore_0
+         6: iload_0
+         7: bipush        100
+         9: if_icmple     15
+        12: bipush        100
+        14: istore_0
+        15: iload_0
+        16: putstatic     #41                 // Field currentVolumePercent:I
+        19: iconst_1
+        20: putstatic     #21                 // Field volumeLoaded:Z
+        23: iload_0
+        24: invokestatic  #168                // Method saveVolume:(I)V
+        27: iconst_0
+        28: istore_1
+        29: iload_1
+        30: getstatic     #102                // Field activePlayers:Ljava/util/Vector;
+        33: invokevirtual #171                // Method java/util/Vector.size:()I
+        36: if_icmpge     71
+        39: getstatic     #102                // Field activePlayers:Ljava/util/Vector;
+        42: iload_1
+        43: invokevirtual #174                // Method java/util/Vector.elementAt:(I)Ljava/lang/Object;
+        46: checkcast     #2                  // class com/skt/m/AudioClipImpl
+        49: astore_2
+        50: aload_2
+        51: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        54: ifnull        65
+        57: aload_2
+        58: getfield      #98                 // Field player:Ljavax/microedition/media/Player;
+        61: iload_0
+        62: invokestatic  #94                 // Method applyVolume:(Ljavax/microedition/media/Player;I)V
+        65: iinc          1, 1
+        68: goto          29
+        71: return
+      LineNumberTable:
+        line 249: 0
+        line 250: 6
+        line 251: 15
+        line 252: 19
+        line 253: 23
+        line 256: 27
+        line 257: 39
+        line 258: 50
+        line 259: 57
+        line 256: 65
+        line 262: 71
+      StackMap: number_of_entries = 5
+        frame_type = 255 offset = 6
+          locals = [ int ]
+          stack = []
+        frame_type = 255 offset = 15
+          locals = [ int ]
+          stack = []
+        frame_type = 255 offset = 29
+          locals = [ int, int ]
+          stack = []
+        frame_type = 255 offset = 65
+          locals = [ int, int, class com/skt/m/AudioClipImpl ]
+          stack = []
+        frame_type = 255 offset = 71
+          locals = [ int, int ]
+          stack = []
+
+  private static void applyVolume(javax.microedition.media.Player, int);
+    descriptor: (Ljavax/microedition/media/Player;I)V
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=2, locals=3, args_size=2
+         0: aload_0
+         1: ldc           #178                // String VolumeControl
+         3: invokeinterface #180,  2          // InterfaceMethod javax/microedition/media/Player.getControl:(Ljava/lang/String;)Ljavax/microedition/media/Control;
+         8: checkcast     #184                // class javax/microedition/media/control/VolumeControl
+        11: astore_2
+        12: aload_2
+        13: ifnull        24
+        16: aload_2
+        17: iload_1
+        18: invokeinterface #186,  2          // InterfaceMethod javax/microedition/media/control/VolumeControl.setLevel:(I)I
+        23: pop
+        24: return
+      LineNumberTable:
+        line 265: 0
+        line 266: 12
+        line 267: 16
+        line 269: 24
+      StackMap: number_of_entries = 1
+        frame_type = 255 offset = 24
+          locals = [ class javax/microedition/media/Player, int, class javax/microedition/media/control/VolumeControl ]
+          stack = []
+
+  static void access$000(com.skt.m.AudioClipImpl);
+    descriptor: (Lcom/skt/m/AudioClipImpl;)V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method close:()V
+         4: return
+      LineNumberTable:
+        line 24: 0
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=4, locals=0, args_size=0
+         0: iconst_4
+         1: anewarray     #190                // class java/lang/String
+         4: dup
+         5: iconst_0
+         6: ldc           #192                // String audio/x-smaf
+         8: aastore
+         9: dup
+        10: iconst_1
+        11: ldc           #194                // String audio/mmf
+        13: aastore
+        14: dup
+        15: iconst_2
+        16: ldc           #196                // String application/x-smaf
+        18: aastore
+        19: dup
+        20: iconst_3
+        21: ldc           #198                // String audio/smaf
+        23: aastore
+        24: putstatic     #143                // Field SMAF_TYPES:[Ljava/lang/String;
+        27: iconst_2
+        28: anewarray     #190                // class java/lang/String
+        31: dup
+        32: iconst_0
+        33: ldc           #200                // String audio/x-wav
+        35: aastore
+        36: dup
+        37: iconst_1
+        38: ldc           #202                // String audio/wav
+        40: aastore
+        41: putstatic     #127                // Field WAV_TYPES:[Ljava/lang/String;
+        44: iconst_3
+        45: anewarray     #190                // class java/lang/String
+        48: dup
+        49: iconst_0
+        50: ldc           #204                // String audio/mpeg
+        52: aastore
+        53: dup
+        54: iconst_1
+        55: ldc           #206                // String audio/mp3
+        57: aastore
+        58: dup
+        59: iconst_2
+        60: ldc           #208                // String audio/x-mp3
+        62: aastore
+        63: putstatic     #134                // Field MP3_TYPES:[Ljava/lang/String;
+        66: iconst_4
+        67: anewarray     #190                // class java/lang/String
+        70: dup
+        71: iconst_0
+        72: ldc           #210                // String audio/midi
+        74: aastore
+        75: dup
+        76: iconst_1
+        77: ldc           #212                // String audio/mid
+        79: aastore
+        80: dup
+        81: iconst_2
+        82: ldc           #214                // String audio/x-midi
+        84: aastore
+        85: dup
+        86: iconst_3
+        87: ldc           #216                // String audio/sp-midi
+        89: aastore
+        90: putstatic     #140                // Field MIDI_TYPES:[Ljava/lang/String;
+        93: new           #107                // class java/util/Vector
+        96: dup
+        97: invokespecial #218                // Method java/util/Vector."<init>":()V
+       100: putstatic     #102                // Field activePlayers:Ljava/util/Vector;
+       103: bipush        75
+       105: putstatic     #41                 // Field currentVolumePercent:I
+       108: iconst_0
+       109: putstatic     #21                 // Field volumeLoaded:Z
+       112: return
+      LineNumberTable:
+        line 28: 0
+        line 35: 27
+        line 40: 44
+        line 46: 66
+        line 53: 93
+        line 69: 103
+        line 70: 108
+
+  private static void silenceMidiNotes(javax.microedition.media.Player);
+    descriptor: (Ljavax/microedition/media/Player;)V
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+    Code:
+      stack=4, locals=4, args_size=1
+         0: aload         0
+         2: ldc           #253                // String MIDIControl
+         4: invokeinterface #180,  2          // InterfaceMethod javax/microedition/media/Player.getControl:(Ljava/lang/String;)Ljavax/microedition/media/Control;
+         9: astore        1
+        11: aload         1
+        13: ifnull        55
+        16: aload         1
+        18: checkcast     #247                // class javax/microedition/media/control/MIDIControl
+        21: astore        2
+        23: iconst_0
+        24: istore        3
+        26: iload         3
+        28: bipush        16
+        30: if_icmpge     55
+        33: aload         2
+        35: sipush        176
+        38: iload         3
+        40: iadd
+        41: bipush        120
+        43: iconst_0
+        44: invokeinterface #251,  4          // InterfaceMethod javax/microedition/media/control/MIDIControl.shortMidiEvent:(III)V
+        49: iinc          3, 1
+        52: goto          26
+        55: return
+        56: pop
+        57: return
+      Exception table:
+         from    to  target type
+             0    55    56   Class java/lang/Exception
+      StackMap: number_of_entries = 3
+        frame_type = 255 offset = 26
+          locals = [ class javax/microedition/media/Player, class javax/microedition/media/Control, class javax/microedition/media/control/MIDIControl, int ]
+          stack = []
+        frame_type = 255 offset = 55
+          locals = [ class javax/microedition/media/Player, class javax/microedition/media/Control ]
+          stack = []
+        frame_type = 255 offset = 56
+          locals = [ class javax/microedition/media/Player ]
+          stack = [ class java/lang/Exception ]
+}
+SourceFile: "AudioClipImpl.java"
+InnerClasses:
+  #12;                                    // class com/skt/m/AudioClipImpl_1

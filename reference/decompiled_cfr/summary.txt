@@ -1,0 +1,9 @@
+Summary for C:\Users\david\Desktop\Projetos_Flutter\heroes_lore_2_recomp\reference\heroes2.jar
+Decompiled with CFR 0.152
+
+
+com.xce.io.XFile
+----------------------------
+
+loadRms(java.lang.String )
+  Loose catch block

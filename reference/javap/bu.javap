@@ -1,0 +1,138 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/bu.class
+  Last modified 12 de out. de 2026; size 434 bytes
+  SHA-256 checksum bd5054b7abde29decf4ceaf16ce9722c8d982c67867ab0f274ef60349f67d264
+public class bu extends bt
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #3                          // bu
+  super_class: #2                         // bt
+  interfaces: 0, fields: 3, methods: 3, attributes: 0
+Constant pool:
+   #1 = Class              #36            // bd
+   #2 = Class              #37            // bt
+   #3 = Class              #38            // bu
+   #4 = Fieldref           #3.#14         // bu.a:B
+   #5 = Fieldref           #2.#15         // bt.a:S
+   #6 = Fieldref           #2.#16         // bt.a:I
+   #7 = Fieldref           #2.#18         // bt.b:S
+   #8 = Fieldref           #2.#19         // bt.c:B
+   #9 = Fieldref           #3.#20         // bu.i:[B
+  #10 = Fieldref           #3.#21         // bu.j:[B
+  #11 = Methodref          #2.#13         // bt."<init>":(B)V
+  #12 = Methodref          #1.#17         // bd.a:(BBBBII)V
+  #13 = NameAndType        #28:#23        // "<init>":(B)V
+  #14 = NameAndType        #34:#29        // a:B
+  #15 = NameAndType        #34:#32        // a:S
+  #16 = NameAndType        #34:#31        // a:I
+  #17 = NameAndType        #34:#25        // a:(BBBBII)V
+  #18 = NameAndType        #35:#32        // b:S
+  #19 = NameAndType        #39:#29        // c:B
+  #20 = NameAndType        #40:#33        // i:[B
+  #21 = NameAndType        #41:#33        // j:[B
+  #22 = Utf8               ()V
+  #23 = Utf8               (B)V
+  #24 = Utf8               (BB)V
+  #25 = Utf8               (BBBBII)V
+  #26 = Utf8               (II)V
+  #27 = Utf8               <clinit>
+  #28 = Utf8               <init>
+  #29 = Utf8               B
+  #30 = Utf8               Code
+  #31 = Utf8               I
+  #32 = Utf8               S
+  #33 = Utf8               [B
+  #34 = Utf8               a
+  #35 = Utf8               b
+  #36 = Utf8               bd
+  #37 = Utf8               bt
+  #38 = Utf8               bu
+  #39 = Utf8               c
+  #40 = Utf8               i
+  #41 = Utf8               j
+{
+  public static final byte[] i;
+    descriptor: [B
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public static final byte[] j;
+    descriptor: [B
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public byte a;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public bu(byte, byte);
+    descriptor: (BB)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: invokespecial #11                 // Method bt."<init>":(B)V
+         5: aload_0
+         6: iconst_0
+         7: putfield      #4                  // Field a:B
+        10: aload_0
+        11: iload_2
+        12: putfield      #4                  // Field a:B
+        15: aload_0
+        16: getstatic     #10                 // Field j:[B
+        19: iload_1
+        20: bipush        40
+        22: isub
+        23: baload
+        24: i2s
+        25: putfield      #5                  // Field bt.a:S
+        28: aload_0
+        29: iconst_1
+        30: putfield      #6                  // Field bt.a:I
+        33: return
+
+  public void a(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=3, args_size=3
+         0: aload_0
+         1: getfield      #4                  // Field a:B
+         4: getstatic     #9                  // Field i:[B
+         7: aload_0
+         8: getfield      #8                  // Field bt.c:B
+        11: bipush        40
+        13: isub
+        14: baload
+        15: aload_0
+        16: getfield      #7                  // Field bt.b:S
+        19: aload_0
+        20: getfield      #5                  // Field bt.a:S
+        23: irem
+        24: i2b
+        25: iconst_1
+        26: iload_1
+        27: iload_2
+        28: invokestatic  #12                 // Method bd.a:(BBBBII)V
+        31: return
+
+  public static {};
+    descriptor: ()V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=0, args_size=0
+         0: iconst_1
+         1: newarray       byte
+         3: dup
+         4: iconst_0
+         5: bipush        16
+         7: bastore
+         8: putstatic     #9                  // Field i:[B
+        11: iconst_1
+        12: newarray       byte
+        14: dup
+        15: iconst_0
+        16: bipush        9
+        18: bastore
+        19: putstatic     #10                 // Field j:[B
+        22: return
+}

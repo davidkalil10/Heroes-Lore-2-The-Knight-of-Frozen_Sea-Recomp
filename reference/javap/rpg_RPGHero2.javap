@@ -1,0 +1,190 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/rpg/RPGHero2.class
+  Last modified 12 de out. de 2026; size 1055 bytes
+  SHA-256 checksum 17ae9391fdd92f7260783aa51278335b1dac2c2e05319221b662351d02d76b08
+public class rpg.RPGHero2 extends javax.microedition.midlet.MIDlet
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #7                          // rpg/RPGHero2
+  super_class: #6                         // javax/microedition/midlet/MIDlet
+  interfaces: 0, fields: 2, methods: 5, attributes: 0
+Constant pool:
+   #1 = Class              #46            // ak
+   #2 = Class              #49            // cj
+   #3 = Class              #50            // com/skt/m/BackLight
+   #4 = Class              #51            // com/skt/m/Device
+   #5 = Class              #55            // javax/microedition/lcdui/Display
+   #6 = Class              #56            // javax/microedition/midlet/MIDlet
+   #7 = Class              #61            // rpg/RPGHero2
+   #8 = Fieldref           #7.#23         // rpg/RPGHero2.a:Lrpg/RPGHero2;
+   #9 = Fieldref           #7.#24         // rpg/RPGHero2.a:Ljavax/microedition/lcdui/Display;
+  #10 = Fieldref           #2.#26         // cj.a:Lcj;
+  #11 = Methodref          #6.#22         // javax/microedition/midlet/MIDlet."<init>":()V
+  #12 = Methodref          #2.#25         // cj.a:(Ljavax/microedition/lcdui/Display;)V
+  #13 = Methodref          #2.#27         // cj.b:()V
+  #14 = Methodref          #1.#27         // ak.b:()V
+  #15 = Methodref          #2.#28         // cj.c:()V
+  #16 = Methodref          #2.#29         // cj.d:()V
+  #17 = Methodref          #5.#30         // javax/microedition/lcdui/Display.getDisplay:(Ljavax/microedition/midlet/MIDlet;)Ljavax/microedition/lcdui/Display;
+  #18 = Methodref          #6.#31         // javax/microedition/midlet/MIDlet.notifyDestroyed:()V
+  #19 = Methodref          #3.#32         // com/skt/m/BackLight.on:(I)V
+  #20 = Methodref          #4.#33         // com/skt/m/Device.setBacklightEnabled:(Z)V
+  #21 = Methodref          #4.#34         // com/skt/m/Device.setKeyToneEnabled:(Z)V
+  #22 = NameAndType        #40:#35        // "<init>":()V
+  #23 = NameAndType        #45:#44        // a:Lrpg/RPGHero2;
+  #24 = NameAndType        #45:#43        // a:Ljavax/microedition/lcdui/Display;
+  #25 = NameAndType        #45:#37        // a:(Ljavax/microedition/lcdui/Display;)V
+  #26 = NameAndType        #45:#42        // a:Lcj;
+  #27 = NameAndType        #47:#35        // b:()V
+  #28 = NameAndType        #48:#35        // c:()V
+  #29 = NameAndType        #52:#35        // d:()V
+  #30 = NameAndType        #54:#38        // getDisplay:(Ljavax/microedition/midlet/MIDlet;)Ljavax/microedition/lcdui/Display;
+  #31 = NameAndType        #57:#35        // notifyDestroyed:()V
+  #32 = NameAndType        #58:#36        // on:(I)V
+  #33 = NameAndType        #62:#39        // setBacklightEnabled:(Z)V
+  #34 = NameAndType        #63:#39        // setKeyToneEnabled:(Z)V
+  #35 = Utf8               ()V
+  #36 = Utf8               (I)V
+  #37 = Utf8               (Ljavax/microedition/lcdui/Display;)V
+  #38 = Utf8               (Ljavax/microedition/midlet/MIDlet;)Ljavax/microedition/lcdui/Display;
+  #39 = Utf8               (Z)V
+  #40 = Utf8               <init>
+  #41 = Utf8               Code
+  #42 = Utf8               Lcj;
+  #43 = Utf8               Ljavax/microedition/lcdui/Display;
+  #44 = Utf8               Lrpg/RPGHero2;
+  #45 = Utf8               a
+  #46 = Utf8               ak
+  #47 = Utf8               b
+  #48 = Utf8               c
+  #49 = Utf8               cj
+  #50 = Utf8               com/skt/m/BackLight
+  #51 = Utf8               com/skt/m/Device
+  #52 = Utf8               d
+  #53 = Utf8               destroyApp
+  #54 = Utf8               getDisplay
+  #55 = Utf8               javax/microedition/lcdui/Display
+  #56 = Utf8               javax/microedition/midlet/MIDlet
+  #57 = Utf8               notifyDestroyed
+  #58 = Utf8               on
+  #59 = Utf8               pauseApp
+  #60 = Utf8               resumeApp
+  #61 = Utf8               rpg/RPGHero2
+  #62 = Utf8               setBacklightEnabled
+  #63 = Utf8               setKeyToneEnabled
+  #64 = Utf8               startApp
+  #65 = NameAndType        #45:#42        // a:Lcj;
+  #66 = Fieldref           #2.#65         // cj.a:Lcj;
+  #67 = Utf8               Z
+  #68 = NameAndType        #45:#67        // a:Z
+  #69 = Fieldref           #2.#68         // cj.a:Z
+  #70 = NameAndType        #47:#35        // b:()V
+  #71 = Methodref          #2.#70         // cj.b:()V
+  #72 = Class              #51            // com/skt/m/Device
+  #73 = NameAndType        #62:#39        // setBacklightEnabled:(Z)V
+  #74 = Methodref          #72.#73        // com/skt/m/Device.setBacklightEnabled:(Z)V
+  #75 = NameAndType        #63:#39        // setKeyToneEnabled:(Z)V
+  #76 = Methodref          #72.#75        // com/skt/m/Device.setKeyToneEnabled:(Z)V
+  #77 = Class              #50            // com/skt/m/BackLight
+  #78 = NameAndType        #58:#36        // on:(I)V
+  #79 = Methodref          #77.#78        // com/skt/m/BackLight.on:(I)V
+  #80 = NameAndType        #60:#35        // resumeApp:()V
+  #81 = Methodref          #7.#80         // rpg/RPGHero2.resumeApp:()V
+  #82 = Utf8               StackMap
+{
+  public static rpg.RPGHero2 a;
+    descriptor: Lrpg/RPGHero2;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  private javax.microedition.lcdui.Display a;
+    descriptor: Ljavax/microedition/lcdui/Display;
+    flags: (0x0002) ACC_PRIVATE
+
+  public rpg.RPGHero2();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #11                 // Method javax/microedition/midlet/MIDlet."<init>":()V
+         4: aload_0
+         5: putstatic     #8                  // Field a:Lrpg/RPGHero2;
+         8: aload_0
+         9: aload_0
+        10: invokestatic  #17                 // Method javax/microedition/lcdui/Display.getDisplay:(Ljavax/microedition/midlet/MIDlet;)Ljavax/microedition/lcdui/Display;
+        13: putfield      #9                  // Field a:Ljavax/microedition/lcdui/Display;
+        16: aload_0
+        17: getfield      #9                  // Field a:Ljavax/microedition/lcdui/Display;
+        20: invokestatic  #12                 // Method cj.a:(Ljavax/microedition/lcdui/Display;)V
+        23: return
+
+  public void startApp();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: getstatic     #69                 // Field cj.a:Z
+         3: ifeq          11
+         6: aload_0
+         7: invokevirtual #81                 // Method resumeApp:()V
+        10: return
+        11: getstatic     #66                 // Field cj.a:Lcj;
+        14: invokevirtual #71                 // Method cj.b:()V
+        17: iconst_0
+        18: invokestatic  #74                 // Method com/skt/m/Device.setBacklightEnabled:(Z)V
+        21: iconst_0
+        22: invokestatic  #79                 // Method com/skt/m/BackLight.on:(I)V
+        25: iconst_0
+        26: invokestatic  #76                 // Method com/skt/m/Device.setKeyToneEnabled:(Z)V
+        29: return
+      StackMap: number_of_entries = 1
+        frame_type = 255 offset = 11
+          locals = [ class rpg/RPGHero2 ]
+          stack = []
+
+  public void destroyApp(boolean);
+    descriptor: (Z)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_0
+         1: invokevirtual #18                 // Method javax/microedition/midlet/MIDlet.notifyDestroyed:()V
+         4: return
+
+  public void pauseApp();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: getstatic     #10                 // Field cj.a:Lcj;
+         3: ifnull        12
+         6: getstatic     #10                 // Field cj.a:Lcj;
+         9: invokevirtual #15                 // Method cj.c:()V
+        12: return
+      StackMap: number_of_entries = 1
+        frame_type = 255 offset = 12
+          locals = [ class rpg/RPGHero2 ]
+          stack = []
+
+  public void resumeApp();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0
+         1: invokestatic  #20                 // Method com/skt/m/Device.setBacklightEnabled:(Z)V
+         4: iconst_0
+         5: invokestatic  #19                 // Method com/skt/m/BackLight.on:(I)V
+         8: iconst_0
+         9: invokestatic  #21                 // Method com/skt/m/Device.setKeyToneEnabled:(Z)V
+        12: invokestatic  #14                 // Method ak.b:()V
+        15: getstatic     #10                 // Field cj.a:Lcj;
+        18: ifnull        27
+        21: getstatic     #10                 // Field cj.a:Lcj;
+        24: invokevirtual #16                 // Method cj.d:()V
+        27: return
+      StackMap: number_of_entries = 1
+        frame_type = 255 offset = 27
+          locals = [ class rpg/RPGHero2 ]
+          stack = []
+}

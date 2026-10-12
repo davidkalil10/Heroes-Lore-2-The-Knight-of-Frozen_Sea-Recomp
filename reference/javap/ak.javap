@@ -1,0 +1,618 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/ak.class
+  Last modified 12 de out. de 2026; size 2322 bytes
+  SHA-256 checksum 373ff801bee85239b61589309eb3030cd2cbc6866d8d8e0dca5eecfcbe6675dd
+public class ak implements ax
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // ak
+  super_class: #10                        // java/lang/Object
+  interfaces: 1, fields: 8, methods: 15, attributes: 0
+Constant pool:
+    #1 = Class              #101          // "[B"
+    #2 = Class              #104          // ak
+    #3 = Class              #106          // as
+    #4 = Class              #107          // ax
+    #5 = Class              #109          // bz
+    #6 = Class              #111          // cj
+    #7 = Class              #112          // com/skt/m/AudioSystem
+    #8 = Class              #113          // com/skt/m/UnsupportedFormatException
+    #9 = Class              #119          // java/lang/Exception
+   #10 = Class              #120          // java/lang/Object
+   #11 = Class              #121          // java/lang/StringBuffer
+   #12 = Class              #122          // java/lang/System
+   #13 = Fieldref           #2.#50        // ak.a:Ljava/lang/Object;
+   #14 = Fieldref           #2.#51        // ak.a:J
+   #15 = Fieldref           #2.#53        // ak.a:Lbz;
+   #16 = Fieldref           #2.#54        // ak.a:[Ljava/lang/Object;
+   #17 = Fieldref           #2.#58        // ak.a:I
+   #18 = Fieldref           #6.#63        // cj.b:Z
+   #19 = Fieldref           #2.#65        // ak.b:[Ljava/lang/Object;
+   #20 = Fieldref           #6.#66        // cj.b:B
+   #21 = Fieldref           #6.#68        // cj.c:Z
+   #22 = Fieldref           #2.#70        // ak.i:[B
+   #23 = Fieldref           #2.#71        // ak.j:[B
+   #24 = Methodref          #10.#49       // java/lang/Object."<init>":()V
+   #25 = Methodref          #5.#49        // bz."<init>":()V
+   #26 = Methodref          #11.#49       // java/lang/StringBuffer."<init>":()V
+   #27 = Methodref          #2.#52        // ak.a:([BZ)V
+   #28 = Methodref          #5.#55        // bz.a:([B)V
+   #29 = Methodref          #5.#56        // bz.a:(Z)V
+   #30 = Methodref          #5.#57        // bz.a:()V
+   #31 = Methodref          #5.#59        // bz.a:()I
+   #32 = Methodref          #3.#60        // as.a:(Ljava/lang/String;)[B
+   #33 = Methodref          #11.#61       // java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+   #34 = Methodref          #11.#62       // java/lang/StringBuffer.append:(I)Ljava/lang/StringBuffer;
+   #35 = Methodref          #2.#64        // ak.b:()V
+   #36 = Methodref          #5.#64        // bz.b:()V
+   #37 = Methodref          #2.#67        // ak.c:()V
+   #38 = Methodref          #12.#69       // java/lang/System.currentTimeMillis:()J
+   #39 = Methodref          #7.#72        // com/skt/m/AudioSystem.setVolume:(Ljava/lang/String;I)V
+   #40 = Methodref          #11.#73       // java/lang/StringBuffer.toString:()Ljava/lang/String;
+   #41 = String             #74           //
+   #42 = String             #90           // /snd/
+   #43 = String             #91           // 0
+   #44 = String             #123          // mmf
+   #45 = Long               3000l
+   #47 = Long               10000l
+   #49 = NameAndType        #93:#78       // "<init>":()V
+   #50 = NameAndType        #103:#99      // a:Ljava/lang/Object;
+   #51 = NameAndType        #103:#97      // a:J
+   #52 = NameAndType        #103:#89      // a:([BZ)V
+   #53 = NameAndType        #103:#98      // a:Lbz;
+   #54 = NameAndType        #103:#102     // a:[Ljava/lang/Object;
+   #55 = NameAndType        #103:#88      // a:([B)V
+   #56 = NameAndType        #103:#87      // a:(Z)V
+   #57 = NameAndType        #103:#78      // a:()V
+   #58 = NameAndType        #103:#96      // a:I
+   #59 = NameAndType        #103:#75      // a:()I
+   #60 = NameAndType        #103:#85      // a:(Ljava/lang/String;)[B
+   #61 = NameAndType        #105:#84      // append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+   #62 = NameAndType        #105:#81      // append:(I)Ljava/lang/StringBuffer;
+   #63 = NameAndType        #108:#100     // b:Z
+   #64 = NameAndType        #108:#78      // b:()V
+   #65 = NameAndType        #108:#102     // b:[Ljava/lang/Object;
+   #66 = NameAndType        #108:#94      // b:B
+   #67 = NameAndType        #110:#78      // c:()V
+   #68 = NameAndType        #110:#100     // c:Z
+   #69 = NameAndType        #114:#76      // currentTimeMillis:()J
+   #70 = NameAndType        #117:#101     // i:[B
+   #71 = NameAndType        #118:#101     // j:[B
+   #72 = NameAndType        #124:#86      // setVolume:(Ljava/lang/String;I)V
+   #73 = NameAndType        #125:#77      // toString:()Ljava/lang/String;
+   #74 = Utf8
+   #75 = Utf8               ()I
+   #76 = Utf8               ()J
+   #77 = Utf8               ()Ljava/lang/String;
+   #78 = Utf8               ()V
+   #79 = Utf8               (B)V
+   #80 = Utf8               (BZ)V
+   #81 = Utf8               (I)Ljava/lang/StringBuffer;
+   #82 = Utf8               (I)V
+   #83 = Utf8               (II)V
+   #84 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuffer;
+   #85 = Utf8               (Ljava/lang/String;)[B
+   #86 = Utf8               (Ljava/lang/String;I)V
+   #87 = Utf8               (Z)V
+   #88 = Utf8               ([B)V
+   #89 = Utf8               ([BZ)V
+   #90 = Utf8               /snd/
+   #91 = Utf8               0
+   #92 = Utf8               <clinit>
+   #93 = Utf8               <init>
+   #94 = Utf8               B
+   #95 = Utf8               Code
+   #96 = Utf8               I
+   #97 = Utf8               J
+   #98 = Utf8               Lbz;
+   #99 = Utf8               Ljava/lang/Object;
+  #100 = Utf8               Z
+  #101 = Utf8               [B
+  #102 = Utf8               [Ljava/lang/Object;
+  #103 = Utf8               a
+  #104 = Utf8               ak
+  #105 = Utf8               append
+  #106 = Utf8               as
+  #107 = Utf8               ax
+  #108 = Utf8               b
+  #109 = Utf8               bz
+  #110 = Utf8               c
+  #111 = Utf8               cj
+  #112 = Utf8               com/skt/m/AudioSystem
+  #113 = Utf8               com/skt/m/UnsupportedFormatException
+  #114 = Utf8               currentTimeMillis
+  #115 = Utf8               d
+  #116 = Utf8               e
+  #117 = Utf8               i
+  #118 = Utf8               j
+  #119 = Utf8               java/lang/Exception
+  #120 = Utf8               java/lang/Object
+  #121 = Utf8               java/lang/StringBuffer
+  #122 = Utf8               java/lang/System
+  #123 = Utf8               mmf
+  #124 = Utf8               setVolume
+  #125 = Utf8               toString
+  #126 = NameAndType        #103:#83      // a:(II)V
+  #127 = Methodref          #2.#126       // ak.a:(II)V
+  #128 = Class              #130          // java/lang/String
+  #129 = Utf8               StackMap
+  #130 = Utf8               java/lang/String
+{
+  public static int a;
+    descriptor: I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static byte[] i;
+    descriptor: [B
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static byte[] j;
+    descriptor: [B
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static long a;
+    descriptor: J
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  private static java.lang.Object a;
+    descriptor: Ljava/lang/Object;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+
+  public static java.lang.Object[] a;
+    descriptor: [Ljava/lang/Object;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static java.lang.Object[] b;
+    descriptor: [Ljava/lang/Object;
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  private static bz a;
+    descriptor: Lbz;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+
+  public ak();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #24                 // Method java/lang/Object."<init>":()V
+         4: return
+
+  public static final void a();
+    descriptor: ()V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=0, args_size=0
+         0: getstatic     #18                 // Field cj.b:Z
+         3: ifne          7
+         6: return
+         7: getstatic     #23                 // Field j:[B
+        10: ifnonnull     20
+        13: getstatic     #22                 // Field i:[B
+        16: ifnonnull     20
+        19: return
+        20: getstatic     #23                 // Field j:[B
+        23: ifnull        36
+        26: getstatic     #23                 // Field j:[B
+        29: getstatic     #13                 // Field a:Ljava/lang/Object;
+        32: if_acmpne     36
+        35: return
+        36: getstatic     #23                 // Field j:[B
+        39: ifnonnull     58
+        42: getstatic     #22                 // Field i:[B
+        45: ifnull        58
+        48: getstatic     #22                 // Field i:[B
+        51: getstatic     #13                 // Field a:Ljava/lang/Object;
+        54: if_acmpne     58
+        57: return
+        58: getstatic     #14                 // Field a:J
+        61: lconst_0
+        62: lcmp
+        63: ifeq          77
+        66: getstatic     #14                 // Field a:J
+        69: invokestatic  #38                 // Method java/lang/System.currentTimeMillis:()J
+        72: lcmp
+        73: ifle          77
+        76: return
+        77: getstatic     #23                 // Field j:[B
+        80: ifnull        97
+        83: getstatic     #23                 // Field j:[B
+        86: iconst_1
+        87: invokestatic  #27                 // Method a:([BZ)V
+        90: lconst_0
+        91: putstatic     #14                 // Field a:J
+        94: goto          114
+        97: getstatic     #22                 // Field i:[B
+       100: ifnull        114
+       103: getstatic     #22                 // Field i:[B
+       106: iconst_1
+       107: invokestatic  #27                 // Method a:([BZ)V
+       110: lconst_0
+       111: putstatic     #14                 // Field a:J
+       114: return
+      StackMap: number_of_entries = 7
+        frame_type = 255 offset = 7
+          locals = []
+          stack = []
+        frame_type = 255 offset = 20
+          locals = []
+          stack = []
+        frame_type = 255 offset = 36
+          locals = []
+          stack = []
+        frame_type = 255 offset = 58
+          locals = []
+          stack = []
+        frame_type = 255 offset = 77
+          locals = []
+          stack = []
+        frame_type = 255 offset = 97
+          locals = []
+          stack = []
+        frame_type = 255 offset = 114
+          locals = []
+          stack = []
+
+  public static final void b();
+    descriptor: ()V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=1, locals=0, args_size=0
+         0: getstatic     #15                 // Field a:Lbz;
+         3: invokevirtual #36                 // Method bz.b:()V
+         6: aconst_null
+         7: putstatic     #13                 // Field a:Ljava/lang/Object;
+        10: return
+
+  public static final void c();
+    descriptor: ()V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=2, locals=0, args_size=0
+         0: getstatic     #13                 // Field a:Ljava/lang/Object;
+         3: ifnonnull     7
+         6: return
+         7: getstatic     #22                 // Field i:[B
+        10: getstatic     #13                 // Field a:Ljava/lang/Object;
+        13: if_acmpeq     25
+        16: getstatic     #23                 // Field j:[B
+        19: getstatic     #13                 // Field a:Ljava/lang/Object;
+        22: if_acmpne     28
+        25: invokestatic  #35                 // Method b:()V
+        28: return
+      StackMap: number_of_entries = 3
+        frame_type = 255 offset = 7
+          locals = []
+          stack = []
+        frame_type = 255 offset = 25
+          locals = []
+          stack = []
+        frame_type = 255 offset = 28
+          locals = []
+          stack = []
+
+  public static final void d();
+    descriptor: ()V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=1, locals=0, args_size=0
+         0: invokestatic  #37                 // Method c:()V
+         3: aconst_null
+         4: putstatic     #22                 // Field i:[B
+         7: aconst_null
+         8: putstatic     #23                 // Field j:[B
+        11: return
+
+  public static final void a(byte, boolean);
+    descriptor: (BZ)V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=2, args_size=2
+         0: getstatic     #16                 // Field a:[Ljava/lang/Object;
+         3: iload_0
+         4: aaload
+         5: checkcast     #1                  // class "[B"
+         8: iload_1
+         9: invokestatic  #27                 // Method a:([BZ)V
+        12: invokestatic  #38                 // Method java/lang/System.currentTimeMillis:()J
+        15: ldc2_w        #45                 // long 3000l
+        18: ladd
+        19: putstatic     #14                 // Field a:J
+        22: iload_1
+        23: ifne          36
+        26: getstatic     #14                 // Field a:J
+        29: ldc2_w        #47                 // long 10000l
+        32: ladd
+        33: putstatic     #14                 // Field a:J
+        36: return
+      StackMap: number_of_entries = 1
+        frame_type = 255 offset = 36
+          locals = [ int, int ]
+          stack = []
+
+  public static final void a(byte);
+    descriptor: (B)V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=4, locals=1, args_size=1
+         0: iload_0
+         1: iconst_2
+         2: if_icmpne     19
+         5: getstatic     #19                 // Field b:[Ljava/lang/Object;
+         8: iconst_2
+         9: aaload
+        10: ifnonnull     19
+        13: iconst_2
+        14: bipush        42
+        16: invokestatic  #127                // Method a:(II)V
+        19: getstatic     #21                 // Field cj.c:Z
+        22: ifeq          47
+        25: getstatic     #19                 // Field b:[Ljava/lang/Object;
+        28: iload_0
+        29: aaload
+        30: checkcast     #1                  // class "[B"
+        33: iconst_0
+        34: invokestatic  #27                 // Method a:([BZ)V
+        37: invokestatic  #38                 // Method java/lang/System.currentTimeMillis:()J
+        40: ldc2_w        #45                 // long 3000l
+        43: ladd
+        44: putstatic     #14                 // Field a:J
+        47: return
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 19
+          locals = [ int ]
+          stack = []
+        frame_type = 255 offset = 47
+          locals = [ int ]
+          stack = []
+
+  public static final void a(byte[], boolean);
+    descriptor: ([BZ)V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0
+         1: ifnonnull     5
+         4: return
+         5: invokestatic  #35                 // Method b:()V
+         8: getstatic     #20                 // Field cj.b:B
+        11: ifle          38
+        14: aload_0
+        15: putstatic     #13                 // Field a:Ljava/lang/Object;
+        18: getstatic     #15                 // Field a:Lbz;
+        21: aload_0
+        22: invokevirtual #28                 // Method bz.a:([B)V
+        25: getstatic     #15                 // Field a:Lbz;
+        28: iload_1
+        29: invokevirtual #29                 // Method bz.a:(Z)V
+        32: getstatic     #15                 // Field a:Lbz;
+        35: invokevirtual #30                 // Method bz.a:()V
+        38: return
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 5
+          locals = [ class "[B", int ]
+          stack = []
+        frame_type = 255 offset = 38
+          locals = [ class "[B", int ]
+          stack = []
+
+  public static final void a(int);
+    descriptor: (I)V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=2, args_size=1
+         0: iload_0
+         1: ifge          9
+         4: iconst_0
+         5: istore_0
+         6: goto          20
+         9: iload_0
+        10: getstatic     #17                 // Field a:I
+        13: if_icmple     20
+        16: getstatic     #17                 // Field a:I
+        19: istore_0
+        20: ldc           #44                 // String mmf
+        22: iload_0
+        23: invokestatic  #31                 // Method bz.a:()I
+        26: imul
+        27: getstatic     #17                 // Field a:I
+        30: idiv
+        31: invokestatic  #39                 // Method com/skt/m/AudioSystem.setVolume:(Ljava/lang/String;I)V
+        34: goto          38
+        37: astore_1
+        38: return
+      Exception table:
+         from    to  target type
+            20    34    37   Class com/skt/m/UnsupportedFormatException
+      StackMap: number_of_entries = 4
+        frame_type = 255 offset = 9
+          locals = [ int ]
+          stack = []
+        frame_type = 255 offset = 20
+          locals = [ int ]
+          stack = []
+        frame_type = 255 offset = 37
+          locals = [ int ]
+          stack = [ class com/skt/m/UnsupportedFormatException ]
+        frame_type = 255 offset = 38
+          locals = [ int ]
+          stack = []
+
+  public static void e();
+    descriptor: ()V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=0
+         0: invokestatic  #31                 // Method bz.a:()I
+         3: putstatic     #17                 // Field a:I
+         6: goto          15
+         9: astore_0
+        10: bipush        10
+        12: putstatic     #17                 // Field a:I
+        15: getstatic     #17                 // Field a:I
+        18: bipush        10
+        20: if_icmpgt     30
+        23: getstatic     #17                 // Field a:I
+        26: iconst_1
+        27: if_icmpgt     35
+        30: bipush        10
+        32: putstatic     #17                 // Field a:I
+        35: getstatic     #17                 // Field a:I
+        38: iconst_1
+        39: iadd
+        40: iconst_2
+        41: idiv
+        42: i2b
+        43: putstatic     #20                 // Field cj.b:B
+        46: new           #5                  // class bz
+        49: dup
+        50: invokespecial #25                 // Method bz."<init>":()V
+        53: putstatic     #15                 // Field a:Lbz;
+        56: return
+      Exception table:
+         from    to  target type
+             0     6     9   Class java/lang/Exception
+      StackMap: number_of_entries = 4
+        frame_type = 255 offset = 9
+          locals = []
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 15
+          locals = []
+          stack = []
+        frame_type = 255 offset = 30
+          locals = []
+          stack = []
+        frame_type = 255 offset = 35
+          locals = []
+          stack = []
+
+  public static final void b(byte);
+    descriptor: (B)V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=2, args_size=1
+         0: getstatic     #16                 // Field a:[Ljava/lang/Object;
+         3: iload_0
+         4: aaload
+         5: ifnull        9
+         8: return
+         9: new           #11                 // class java/lang/StringBuffer
+        12: dup
+        13: invokespecial #26                 // Method java/lang/StringBuffer."<init>":()V
+        16: ldc           #42                 // String /snd/
+        18: invokevirtual #33                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+        21: iload_0
+        22: bipush        10
+        24: if_icmpge     32
+        27: ldc           #43                 // String 0
+        29: goto          34
+        32: ldc           #41                 // String
+        34: invokevirtual #33                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+        37: iload_0
+        38: invokevirtual #34                 // Method java/lang/StringBuffer.append:(I)Ljava/lang/StringBuffer;
+        41: invokevirtual #40                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+        44: invokestatic  #32                 // Method as.a:(Ljava/lang/String;)[B
+        47: astore_1
+        48: getstatic     #16                 // Field a:[Ljava/lang/Object;
+        51: iload_0
+        52: aload_1
+        53: aastore
+        54: return
+      StackMap: number_of_entries = 3
+        frame_type = 255 offset = 9
+          locals = [ int ]
+          stack = []
+        frame_type = 255 offset = 32
+          locals = [ int ]
+          stack = [ class java/lang/StringBuffer ]
+        frame_type = 255 offset = 34
+          locals = [ int ]
+          stack = [ class java/lang/StringBuffer, class java/lang/String ]
+
+  public static final void c(byte);
+    descriptor: (B)V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=1, args_size=1
+         0: getstatic     #16                 // Field a:[Ljava/lang/Object;
+         3: iload_0
+         4: aaload
+         5: ifnull        14
+         8: getstatic     #16                 // Field a:[Ljava/lang/Object;
+        11: iload_0
+        12: aconst_null
+        13: aastore
+        14: return
+      StackMap: number_of_entries = 1
+        frame_type = 255 offset = 14
+          locals = [ int ]
+          stack = []
+
+  public static final void a(int, int);
+    descriptor: (II)V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=4, args_size=2
+         0: new           #11                 // class java/lang/StringBuffer
+         3: dup
+         4: invokespecial #26                 // Method java/lang/StringBuffer."<init>":()V
+         7: ldc           #42                 // String /snd/
+         9: invokevirtual #33                 // Method java/lang/StringBuffer.append:(Ljava/lang/String;)Ljava/lang/StringBuffer;
+        12: iload_1
+        13: invokevirtual #34                 // Method java/lang/StringBuffer.append:(I)Ljava/lang/StringBuffer;
+        16: invokevirtual #40                 // Method java/lang/StringBuffer.toString:()Ljava/lang/String;
+        19: invokestatic  #32                 // Method as.a:(Ljava/lang/String;)[B
+        22: astore_2
+        23: getstatic     #19                 // Field b:[Ljava/lang/Object;
+        26: iload_0
+        27: aload_2
+        28: aastore
+        29: goto          33
+        32: astore_3
+        33: return
+      Exception table:
+         from    to  target type
+            23    29    32   Class java/lang/Exception
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 32
+          locals = [ int, int, class "[B" ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 33
+          locals = [ int, int, class "[B" ]
+          stack = []
+
+  public static final void b(int);
+    descriptor: (I)V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=1, args_size=1
+         0: getstatic     #19                 // Field b:[Ljava/lang/Object;
+         3: iload_0
+         4: aaload
+         5: ifnull        14
+         8: getstatic     #19                 // Field b:[Ljava/lang/Object;
+        11: iload_0
+        12: aconst_null
+        13: aastore
+        14: return
+      StackMap: number_of_entries = 1
+        frame_type = 255 offset = 14
+          locals = [ int ]
+          stack = []
+
+  public static {};
+    descriptor: ()V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: bipush        10
+         2: putstatic     #17                 // Field a:I
+         5: bipush        18
+         7: anewarray     #10                 // class java/lang/Object
+        10: putstatic     #16                 // Field a:[Ljava/lang/Object;
+        13: bipush        10
+        15: anewarray     #10                 // class java/lang/Object
+        18: putstatic     #19                 // Field b:[Ljava/lang/Object;
+        21: return
+}

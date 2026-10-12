@@ -1,0 +1,262 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/ap.class
+  Last modified 12 de out. de 2026; size 858 bytes
+  SHA-256 checksum d4afdb1eef508386f44d833efcf2d0b937ff1e6cdf5e6e8ab743cceaf4da675f
+public abstract class ap extends bl
+  minor version: 3
+  major version: 45
+  flags: (0x0421) ACC_PUBLIC, ACC_SUPER, ACC_ABSTRACT
+  this_class: #2                          // ap
+  super_class: #3                         // bl
+  interfaces: 0, fields: 8, methods: 6, attributes: 0
+Constant pool:
+   #1 = Class              #54            // ah
+   #2 = Class              #55            // ap
+   #3 = Class              #57            // bl
+   #4 = Class              #63            // u
+   #5 = Fieldref           #2.#24         // ap.a:Z
+   #6 = Fieldref           #4.#25         // u.a:Lah;
+   #7 = Fieldref           #2.#28         // ap.a:S
+   #8 = Fieldref           #2.#29         // ap.b:B
+   #9 = Fieldref           #2.#30         // ap.b:Z
+  #10 = Fieldref           #2.#31         // ap.b:S
+  #11 = Fieldref           #2.#33         // ap.c:B
+  #12 = Fieldref           #3.#35         // bl.c:S
+  #13 = Fieldref           #2.#36         // ap.d:B
+  #14 = Fieldref           #3.#37         // bl.d:S
+  #15 = Fieldref           #2.#38         // ap.e:B
+  #16 = Fieldref           #3.#39         // bl.f:B
+  #17 = Fieldref           #3.#40         // bl.g:B
+  #18 = Methodref          #3.#23         // bl."<init>":(SSBB)V
+  #19 = Methodref          #2.#26         // ap.a:(II)V
+  #20 = Methodref          #2.#27         // ap.a:()V
+  #21 = Methodref          #2.#32         // ap.b:()V
+  #22 = Methodref          #1.#34         // ah.c:(Lbl;)V
+  #23 = NameAndType        #47:#45        // "<init>":(SSBB)V
+  #24 = NameAndType        #53:#52        // a:Z
+  #25 = NameAndType        #53:#50        // a:Lah;
+  #26 = NameAndType        #53:#43        // a:(II)V
+  #27 = NameAndType        #53:#41        // a:()V
+  #28 = NameAndType        #53:#51        // a:S
+  #29 = NameAndType        #56:#48        // b:B
+  #30 = NameAndType        #56:#52        // b:Z
+  #31 = NameAndType        #56:#51        // b:S
+  #32 = NameAndType        #56:#41        // b:()V
+  #33 = NameAndType        #58:#48        // c:B
+  #34 = NameAndType        #58:#44        // c:(Lbl;)V
+  #35 = NameAndType        #58:#51        // c:S
+  #36 = NameAndType        #59:#48        // d:B
+  #37 = NameAndType        #59:#51        // d:S
+  #38 = NameAndType        #60:#48        // e:B
+  #39 = NameAndType        #61:#48        // f:B
+  #40 = NameAndType        #62:#48        // g:B
+  #41 = Utf8               ()V
+  #42 = Utf8               (BBBBZ)V
+  #43 = Utf8               (II)V
+  #44 = Utf8               (Lbl;)V
+  #45 = Utf8               (SSBB)V
+  #46 = Utf8               <clinit>
+  #47 = Utf8               <init>
+  #48 = Utf8               B
+  #49 = Utf8               Code
+  #50 = Utf8               Lah;
+  #51 = Utf8               S
+  #52 = Utf8               Z
+  #53 = Utf8               a
+  #54 = Utf8               ah
+  #55 = Utf8               ap
+  #56 = Utf8               b
+  #57 = Utf8               bl
+  #58 = Utf8               c
+  #59 = Utf8               d
+  #60 = Utf8               e
+  #61 = Utf8               f
+  #62 = Utf8               g
+  #63 = Utf8               u
+  #64 = Utf8               StackMap
+{
+  public static byte b;
+    descriptor: B
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static byte c;
+    descriptor: B
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public byte d;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public short a;
+    descriptor: S
+    flags: (0x0001) ACC_PUBLIC
+
+  public short b;
+    descriptor: S
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte e;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public boolean a;
+    descriptor: Z
+    flags: (0x0001) ACC_PUBLIC
+
+  public boolean b;
+    descriptor: Z
+    flags: (0x0001) ACC_PUBLIC
+
+  public abstract void a(int, int);
+    descriptor: (II)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+
+  public ap(byte, byte, byte, byte, boolean);
+    descriptor: (BBBBZ)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=6, locals=6, args_size=6
+         0: aload_0
+         1: iload_3
+         2: iconst_4
+         3: ishl
+         4: i2s
+         5: iload         4
+         7: iconst_4
+         8: ishl
+         9: i2s
+        10: bipush        8
+        12: bipush        8
+        14: iload         5
+        16: ifeq          25
+        19: getstatic     #8                  // Field b:B
+        22: goto          28
+        25: getstatic     #11                 // Field c:B
+        28: iadd
+        29: i2b
+        30: invokespecial #18                 // Method bl."<init>":(SSBB)V
+        33: aload_0
+        34: iload         5
+        36: putfield      #9                  // Field b:Z
+        39: aload_0
+        40: iload_1
+        41: putfield      #13                 // Field d:B
+        44: aload_0
+        45: iload_2
+        46: putfield      #15                 // Field e:B
+        49: aload_0
+        50: iconst_m1
+        51: putfield      #10                 // Field b:S
+        54: aload_0
+        55: iconst_0
+        56: putfield      #5                  // Field a:Z
+        59: return
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 25
+          locals = [ this, int, int, int, int, int ]
+          stack = [ this, int, int, int, int ]
+        frame_type = 255 offset = 28
+          locals = [ this, int, int, int, int, int ]
+          stack = [ this, int, int, int, int, int ]
+
+  public void b(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=5, args_size=3
+         0: aload_0
+         1: invokevirtual #21                 // Method b:()V
+         4: aload_0
+         5: getfield      #5                  // Field a:Z
+         8: ifeq          21
+        11: getstatic     #6                  // Field u.a:Lah;
+        14: aload_0
+        15: invokevirtual #22                 // Method ah.c:(Lbl;)V
+        18: goto          70
+        21: iload_1
+        22: aload_0
+        23: getfield      #12                 // Field bl.c:S
+        26: iadd
+        27: aload_0
+        28: getfield      #16                 // Field bl.f:B
+        31: iadd
+        32: istore_3
+        33: iload_2
+        34: aload_0
+        35: getfield      #14                 // Field bl.d:S
+        38: iadd
+        39: aload_0
+        40: getfield      #17                 // Field bl.g:B
+        43: iadd
+        44: aload_0
+        45: getfield      #9                  // Field b:Z
+        48: ifeq          57
+        51: getstatic     #8                  // Field b:B
+        54: goto          60
+        57: getstatic     #11                 // Field c:B
+        60: isub
+        61: istore        4
+        63: aload_0
+        64: iload_3
+        65: iload         4
+        67: invokevirtual #19                 // Method a:(II)V
+        70: return
+      StackMap: number_of_entries = 4
+        frame_type = 255 offset = 21
+          locals = [ class ap, int, int ]
+          stack = []
+        frame_type = 255 offset = 57
+          locals = [ class ap, int, int, int ]
+          stack = [ int ]
+        frame_type = 255 offset = 60
+          locals = [ class ap, int, int, int ]
+          stack = [ int, int ]
+        frame_type = 255 offset = 70
+          locals = [ class ap, int, int ]
+          stack = []
+
+  public void b();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: dup
+         2: getfield      #10                 // Field b:S
+         5: iconst_1
+         6: iadd
+         7: i2s
+         8: putfield      #10                 // Field b:S
+        11: aload_0
+        12: invokevirtual #20                 // Method a:()V
+        15: return
+
+  public void a();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #10                 // Field b:S
+         4: aload_0
+         5: getfield      #7                  // Field a:S
+         8: if_icmplt     16
+        11: aload_0
+        12: iconst_1
+        13: putfield      #5                  // Field a:Z
+        16: return
+      StackMap: number_of_entries = 1
+        frame_type = 255 offset = 16
+          locals = [ class ap ]
+          stack = []
+
+  public static {};
+    descriptor: ()V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: iconst_2
+         1: putstatic     #8                  // Field b:B
+         4: bipush        -5
+         6: putstatic     #11                 // Field c:B
+         9: return
+}

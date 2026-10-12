@@ -1,0 +1,140 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/al.class
+  Last modified 12 de out. de 2026; size 550 bytes
+  SHA-256 checksum 49eae0597b55baaab72160b2277dc0327b8726e837ebf9e074068ea218786d81
+public class al extends bt
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #1                          // al
+  super_class: #3                         // bt
+  interfaces: 0, fields: 0, methods: 4, attributes: 0
+Constant pool:
+   #1 = Class              #43            // al
+   #2 = Class              #44            // as
+   #3 = Class              #46            // bt
+   #4 = Class              #47            // bw
+   #5 = Class              #48            // by
+   #6 = Fieldref           #3.#18         // bt.a:S
+   #7 = Fieldref           #3.#19         // bt.a:I
+   #8 = Fieldref           #2.#20         // as.a:Lby;
+   #9 = Fieldref           #5.#21         // by.a:B
+  #10 = Fieldref           #4.#22         // bw.a:Ljavax/microedition/lcdui/Graphics;
+  #11 = Fieldref           #3.#25         // bt.c:B
+  #12 = Fieldref           #3.#26         // bt.d:B
+  #13 = Fieldref           #5.#27         // by.j:[B
+  #14 = Methodref          #3.#17         // bt."<init>":(BB)V
+  #15 = Methodref          #5.#23         // by.a:(Ljavax/microedition/lcdui/Graphics;BBII)V
+  #16 = Methodref          #1.#24         // al.b:()V
+  #17 = NameAndType        #34:#30        // "<init>":(BB)V
+  #18 = NameAndType        #42:#40        // a:S
+  #19 = NameAndType        #42:#37        // a:I
+  #20 = NameAndType        #42:#38        // a:Lby;
+  #21 = NameAndType        #42:#35        // a:B
+  #22 = NameAndType        #42:#39        // a:Ljavax/microedition/lcdui/Graphics;
+  #23 = NameAndType        #42:#33        // a:(Ljavax/microedition/lcdui/Graphics;BBII)V
+  #24 = NameAndType        #45:#28        // b:()V
+  #25 = NameAndType        #49:#35        // c:B
+  #26 = NameAndType        #50:#35        // d:B
+  #27 = NameAndType        #51:#41        // j:[B
+  #28 = Utf8               ()V
+  #29 = Utf8               (B)V
+  #30 = Utf8               (BB)V
+  #31 = Utf8               (BBI)V
+  #32 = Utf8               (II)V
+  #33 = Utf8               (Ljavax/microedition/lcdui/Graphics;BBII)V
+  #34 = Utf8               <init>
+  #35 = Utf8               B
+  #36 = Utf8               Code
+  #37 = Utf8               I
+  #38 = Utf8               Lby;
+  #39 = Utf8               Ljavax/microedition/lcdui/Graphics;
+  #40 = Utf8               S
+  #41 = Utf8               [B
+  #42 = Utf8               a
+  #43 = Utf8               al
+  #44 = Utf8               as
+  #45 = Utf8               b
+  #46 = Utf8               bt
+  #47 = Utf8               bw
+  #48 = Utf8               by
+  #49 = Utf8               c
+  #50 = Utf8               d
+  #51 = Utf8               j
+{
+  public al(byte);
+    descriptor: (B)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: aload_0
+         1: iload_1
+         2: iconst_m1
+         3: invokespecial #14                 // Method bt."<init>":(BB)V
+         6: aload_0
+         7: invokevirtual #16                 // Method b:()V
+        10: return
+
+  public al(byte, byte, int);
+    descriptor: (BBI)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=4, args_size=4
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokespecial #14                 // Method bt."<init>":(BB)V
+         6: aload_0
+         7: invokevirtual #16                 // Method b:()V
+        10: aload_0
+        11: iload_3
+        12: aload_0
+        13: getfield      #6                  // Field bt.a:S
+        16: idiv
+        17: i2b
+        18: putfield      #7                  // Field bt.a:I
+        21: return
+
+  public void b();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=1, args_size=1
+         0: aload_0
+         1: iconst_1
+         2: putfield      #7                  // Field bt.a:I
+         5: aload_0
+         6: getstatic     #8                  // Field as.a:Lby;
+         9: getfield      #13                 // Field by.j:[B
+        12: aload_0
+        13: getfield      #11                 // Field bt.c:B
+        16: bipush        20
+        18: isub
+        19: baload
+        20: i2s
+        21: putfield      #6                  // Field bt.a:S
+        24: getstatic     #8                  // Field as.a:Lby;
+        27: iconst_0
+        28: putfield      #9                  // Field by.a:B
+        31: return
+
+  public void a(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=7, locals=3, args_size=3
+         0: getstatic     #8                  // Field as.a:Lby;
+         3: getstatic     #10                 // Field bw.a:Ljavax/microedition/lcdui/Graphics;
+         6: aload_0
+         7: getfield      #11                 // Field bt.c:B
+        10: bipush        20
+        12: isub
+        13: i2b
+        14: iconst_1
+        15: iload_1
+        16: iload_2
+        17: aload_0
+        18: getfield      #12                 // Field bt.d:B
+        21: isub
+        22: invokevirtual #15                 // Method by.a:(Ljavax/microedition/lcdui/Graphics;BBII)V
+        25: return
+}

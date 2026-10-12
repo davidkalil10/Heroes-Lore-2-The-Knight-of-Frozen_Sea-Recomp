@@ -1,0 +1,132 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/s.class
+  Last modified 12 de out. de 2026; size 391 bytes
+  SHA-256 checksum d7830850009f05f027a8292a0083827b8899952f3d6a15394680dfeee039b909
+public class s extends cp
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // s
+  super_class: #1                         // cp
+  interfaces: 0, fields: 4, methods: 2, attributes: 0
+Constant pool:
+   #1 = Class              #24            // cp
+   #2 = Class              #27            // s
+   #3 = Fieldref           #2.#11         // s.a:B
+   #4 = Fieldref           #2.#12         // s.b:B
+   #5 = Fieldref           #2.#13         // s.i:[B
+   #6 = Fieldref           #2.#14         // s.l:[B
+   #7 = Methodref          #1.#9          // cp."<init>":(II)V
+   #8 = Methodref          #1.#10         // cp.a:([BIZZ)I
+   #9 = NameAndType        #18:#16        // "<init>":(II)V
+  #10 = NameAndType        #22:#17        // a:([BIZZ)I
+  #11 = NameAndType        #22:#19        // a:B
+  #12 = NameAndType        #23:#19        // b:B
+  #13 = NameAndType        #25:#21        // i:[B
+  #14 = NameAndType        #26:#21        // l:[B
+  #15 = Class              #21            // "[B"
+  #16 = Utf8               (II)V
+  #17 = Utf8               ([BIZZ)I
+  #18 = Utf8               <init>
+  #19 = Utf8               B
+  #20 = Utf8               Code
+  #21 = Utf8               [B
+  #22 = Utf8               a
+  #23 = Utf8               b
+  #24 = Utf8               cp
+  #25 = Utf8               i
+  #26 = Utf8               l
+  #27 = Utf8               s
+  #28 = Utf8               StackMap
+{
+  public byte a;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte b;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte[] i;
+    descriptor: [B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte[] l;
+    descriptor: [B
+    flags: (0x0001) ACC_PUBLIC
+
+  public s(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: iload_2
+         3: invokespecial #7                  // Method cp."<init>":(II)V
+         6: aload_0
+         7: iconst_3
+         8: newarray       byte
+        10: putfield      #5                  // Field i:[B
+        13: aload_0
+        14: iconst_3
+        15: newarray       byte
+        17: putfield      #6                  // Field l:[B
+        20: return
+
+  public int a(byte[], int, boolean, boolean);
+    descriptor: ([BIZZ)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=6, args_size=5
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: iload_3
+         4: iload         4
+         6: invokespecial #8                  // Method cp.a:([BIZZ)I
+         9: istore_2
+        10: aload_0
+        11: aload_1
+        12: iload_2
+        13: iinc          2, 1
+        16: baload
+        17: putfield      #3                  // Field a:B
+        20: aload_0
+        21: aload_1
+        22: iload_2
+        23: iinc          2, 1
+        26: baload
+        27: putfield      #4                  // Field b:B
+        30: iconst_0
+        31: istore        5
+        33: iload         5
+        35: iconst_3
+        36: if_icmpge     71
+        39: aload_0
+        40: getfield      #5                  // Field i:[B
+        43: iload         5
+        45: aload_1
+        46: iload_2
+        47: iinc          2, 1
+        50: baload
+        51: bastore
+        52: aload_0
+        53: getfield      #6                  // Field l:[B
+        56: iload         5
+        58: aload_1
+        59: iload_2
+        60: iinc          2, 1
+        63: baload
+        64: bastore
+        65: iinc          5, 1
+        68: goto          33
+        71: iload_2
+        72: ireturn
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 33
+          locals = [ class s, class "[B", int, int, int, int ]
+          stack = []
+        frame_type = 255 offset = 71
+          locals = [ class s, class "[B", int, int, int, int ]
+          stack = []
+}

@@ -1,0 +1,133 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/ao.class
+  Last modified 12 de out. de 2026; size 420 bytes
+  SHA-256 checksum d2b1d8074c1ea4ead8fd0c4584e2895b4bf5617163097881a37d3cb2f09f9a53
+public class ao
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // ao
+  super_class: #3                         // java/lang/Object
+  interfaces: 0, fields: 4, methods: 1, attributes: 0
+Constant pool:
+   #1 = Class              #29            // ah
+   #2 = Class              #30            // ao
+   #3 = Class              #33            // java/lang/Object
+   #4 = Class              #34            // u
+   #5 = Fieldref           #2.#13         // ao.a:B
+   #6 = Fieldref           #2.#14         // ao.a:[B
+   #7 = Fieldref           #4.#15         // u.a:Lah;
+   #8 = Fieldref           #2.#17         // ao.b:[B
+   #9 = Fieldref           #2.#18         // ao.c:[B
+  #10 = Methodref          #3.#12         // java/lang/Object."<init>":()V
+  #11 = Methodref          #1.#16         // ah.a:(B)B
+  #12 = NameAndType        #23:#20        // "<init>":()V
+  #13 = NameAndType        #28:#24        // a:B
+  #14 = NameAndType        #28:#27        // a:[B
+  #15 = NameAndType        #28:#26        // a:Lah;
+  #16 = NameAndType        #28:#21        // a:(B)B
+  #17 = NameAndType        #31:#27        // b:[B
+  #18 = NameAndType        #32:#27        // c:[B
+  #19 = Class              #27            // "[B"
+  #20 = Utf8               ()V
+  #21 = Utf8               (B)B
+  #22 = Utf8               (B[B)V
+  #23 = Utf8               <init>
+  #24 = Utf8               B
+  #25 = Utf8               Code
+  #26 = Utf8               Lah;
+  #27 = Utf8               [B
+  #28 = Utf8               a
+  #29 = Utf8               ah
+  #30 = Utf8               ao
+  #31 = Utf8               b
+  #32 = Utf8               c
+  #33 = Utf8               java/lang/Object
+  #34 = Utf8               u
+  #35 = Utf8               StackMap
+{
+  public byte a;
+    descriptor: B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte[] a;
+    descriptor: [B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte[] b;
+    descriptor: [B
+    flags: (0x0001) ACC_PUBLIC
+
+  public byte[] c;
+    descriptor: [B
+    flags: (0x0001) ACC_PUBLIC
+
+  public ao(byte, byte[]);
+    descriptor: (B[B)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=5, args_size=3
+         0: aload_0
+         1: invokespecial #10                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: iload_1
+         6: putfield      #5                  // Field a:B
+         9: aload_0
+        10: aload_0
+        11: getfield      #5                  // Field a:B
+        14: newarray       byte
+        16: putfield      #6                  // Field a:[B
+        19: aload_0
+        20: aload_0
+        21: getfield      #5                  // Field a:B
+        24: newarray       byte
+        26: putfield      #8                  // Field b:[B
+        29: aload_0
+        30: aload_0
+        31: getfield      #5                  // Field a:B
+        34: newarray       byte
+        36: putfield      #9                  // Field c:[B
+        39: iconst_0
+        40: istore_3
+        41: iconst_0
+        42: istore        4
+        44: iload         4
+        46: aload_0
+        47: getfield      #5                  // Field a:B
+        50: if_icmpge     104
+        53: aload_0
+        54: getfield      #6                  // Field a:[B
+        57: iload         4
+        59: getstatic     #7                  // Field u.a:Lah;
+        62: aload_2
+        63: iload_3
+        64: iinc          3, 1
+        67: baload
+        68: invokevirtual #11                 // Method ah.a:(B)B
+        71: bastore
+        72: aload_0
+        73: getfield      #8                  // Field b:[B
+        76: iload         4
+        78: aload_2
+        79: iload_3
+        80: iinc          3, 1
+        83: baload
+        84: bastore
+        85: aload_0
+        86: getfield      #9                  // Field c:[B
+        89: iload         4
+        91: aload_2
+        92: iload_3
+        93: iinc          3, 1
+        96: baload
+        97: bastore
+        98: iinc          4, 1
+       101: goto          44
+       104: return
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 44
+          locals = [ class ao, int, class "[B", int, int ]
+          stack = []
+        frame_type = 255 offset = 104
+          locals = [ class ao, int, class "[B", int, int ]
+          stack = []
+}

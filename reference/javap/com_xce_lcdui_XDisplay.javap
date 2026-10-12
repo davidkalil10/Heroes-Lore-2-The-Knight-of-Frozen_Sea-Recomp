@@ -1,0 +1,57 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/com/xce/lcdui/XDisplay.class
+  Last modified 12 de out. de 2026; size 245 bytes
+  SHA-256 checksum aec3b260dd50acc2b7b6937e28ecfc4dd8b96f802c136a1b2ad2fddf1cdcf83b
+public class com.xce.lcdui.XDisplay
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // com/xce/lcdui/XDisplay
+  super_class: #11                        // java/lang/Object
+  interfaces: 0, fields: 2, methods: 2, attributes: 0
+Constant pool:
+   #1 = Utf8               com/xce/lcdui/XDisplay
+   #2 = Class              #1             // com/xce/lcdui/XDisplay
+   #3 = Utf8               width
+   #4 = Utf8               I
+   #5 = NameAndType        #3:#4          // width:I
+   #6 = Fieldref           #2.#5          // com/xce/lcdui/XDisplay.width:I
+   #7 = Utf8               height2
+   #8 = NameAndType        #7:#4          // height2:I
+   #9 = Fieldref           #2.#8          // com/xce/lcdui/XDisplay.height2:I
+  #10 = Utf8               java/lang/Object
+  #11 = Class              #10            // java/lang/Object
+  #12 = Utf8               <init>
+  #13 = Utf8               ()V
+  #14 = NameAndType        #12:#13        // "<init>":()V
+  #15 = Methodref          #11.#14        // java/lang/Object."<init>":()V
+  #16 = Utf8               Code
+  #17 = Utf8               <clinit>
+{
+  public static int width;
+    descriptor: I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public static int height2;
+    descriptor: I
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+
+  public com.xce.lcdui.XDisplay();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #15                 // Method java/lang/Object."<init>":()V
+         4: return
+
+  static {};
+    descriptor: ()V
+    flags: (0x0008) ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: sipush        240
+         3: putstatic     #6                  // Field width:I
+         6: sipush        320
+         9: putstatic     #9                  // Field height2:I
+        12: return
+}

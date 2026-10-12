@@ -1,0 +1,176 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/c.class
+  Last modified 12 de out. de 2026; size 716 bytes
+  SHA-256 checksum 19f535c9164e07e55ff8dfb88f828f1acecf8ddab4749edd042dd064687a842c
+public class c extends java.lang.Thread
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #2                          // c
+  super_class: #5                         // java/lang/Thread
+  interfaces: 0, fields: 3, methods: 5, attributes: 0
+Constant pool:
+   #1 = Class              #45            // af
+   #2 = Class              #46            // c
+   #3 = Class              #48            // java/lang/Exception
+   #4 = Class              #49            // java/lang/System
+   #5 = Class              #50            // java/lang/Thread
+   #6 = Fieldref           #2.#22         // c.a:Lc;
+   #7 = Fieldref           #2.#25         // c.a:[B
+   #8 = Fieldref           #2.#27         // c.a:J
+   #9 = Methodref          #5.#21         // java/lang/Thread."<init>":()V
+  #10 = Methodref          #2.#23         // c.a:()V
+  #11 = Methodref          #2.#24         // c.a:()Z
+  #12 = Methodref          #1.#26         // af.a:([B)Z
+  #13 = Methodref          #1.#28         // af.a:(B[B)[B
+  #14 = Methodref          #1.#29         // af.c:()Z
+  #15 = Methodref          #4.#30         // java/lang/System.currentTimeMillis:()J
+  #16 = Methodref          #5.#31         // java/lang/Thread.sleep:(J)V
+  #17 = Long               2000l
+  #19 = Long               12000l
+  #21 = NameAndType        #39:#33        // "<init>":()V
+  #22 = NameAndType        #44:#42        // a:Lc;
+  #23 = NameAndType        #44:#33        // a:()V
+  #24 = NameAndType        #44:#34        // a:()Z
+  #25 = NameAndType        #44:#43        // a:[B
+  #26 = NameAndType        #44:#37        // a:([B)Z
+  #27 = NameAndType        #44:#41        // a:J
+  #28 = NameAndType        #44:#35        // a:(B[B)[B
+  #29 = NameAndType        #46:#34        // c:()Z
+  #30 = NameAndType        #47:#32        // currentTimeMillis:()J
+  #31 = NameAndType        #52:#36        // sleep:(J)V
+  #32 = Utf8               ()J
+  #33 = Utf8               ()V
+  #34 = Utf8               ()Z
+  #35 = Utf8               (B[B)[B
+  #36 = Utf8               (J)V
+  #37 = Utf8               ([B)Z
+  #38 = Utf8               <clinit>
+  #39 = Utf8               <init>
+  #40 = Utf8               Code
+  #41 = Utf8               J
+  #42 = Utf8               Lc;
+  #43 = Utf8               [B
+  #44 = Utf8               a
+  #45 = Utf8               af
+  #46 = Utf8               c
+  #47 = Utf8               currentTimeMillis
+  #48 = Utf8               java/lang/Exception
+  #49 = Utf8               java/lang/System
+  #50 = Utf8               java/lang/Thread
+  #51 = Utf8               run
+  #52 = Utf8               sleep
+  #53 = Utf8               StackMap
+{
+  private static c a;
+    descriptor: Lc;
+    flags: (0x000a) ACC_PRIVATE, ACC_STATIC
+
+  private long a;
+    descriptor: J
+    flags: (0x0002) ACC_PRIVATE
+
+  private static final byte[] a;
+    descriptor: [B
+    flags: (0x001a) ACC_PRIVATE, ACC_STATIC, ACC_FINAL
+
+  public c();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #9                  // Method java/lang/Thread."<init>":()V
+         4: aload_0
+         5: putstatic     #6                  // Field a:Lc;
+         8: invokestatic  #10                 // Method a:()V
+        11: return
+
+  public void run();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: invokestatic  #14                 // Method af.c:()Z
+         3: ifeq          33
+         6: aload_0
+         7: invokespecial #11                 // Method a:()Z
+        10: ifeq          20
+        13: getstatic     #7                  // Field a:[B
+        16: invokestatic  #12                 // Method af.a:([B)Z
+        19: pop
+        20: ldc2_w        #17                 // long 2000l
+        23: invokestatic  #16                 // Method java/lang/Thread.sleep:(J)V
+        26: goto          0
+        29: astore_1
+        30: goto          0
+        33: return
+      Exception table:
+         from    to  target type
+            20    26    29   Class java/lang/Exception
+      StackMap: number_of_entries = 4
+        frame_type = 255 offset = 0
+          locals = [ class c ]
+          stack = []
+        frame_type = 255 offset = 20
+          locals = [ class c ]
+          stack = []
+        frame_type = 255 offset = 29
+          locals = [ class c ]
+          stack = [ class java/lang/Exception ]
+        frame_type = 255 offset = 33
+          locals = [ class c ]
+          stack = []
+
+  public static final void a();
+    descriptor: ()V
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+    Code:
+      stack=3, locals=0, args_size=0
+         0: getstatic     #6                  // Field a:Lc;
+         3: ifnull        15
+         6: getstatic     #6                  // Field a:Lc;
+         9: invokestatic  #15                 // Method java/lang/System.currentTimeMillis:()J
+        12: putfield      #8                  // Field a:J
+        15: return
+      StackMap: number_of_entries = 1
+        frame_type = 255 offset = 15
+          locals = []
+          stack = []
+
+  private final boolean a();
+    descriptor: ()Z
+    flags: (0x0012) ACC_PRIVATE, ACC_FINAL
+    Code:
+      stack=4, locals=1, args_size=1
+         0: invokestatic  #15                 // Method java/lang/System.currentTimeMillis:()J
+         3: aload_0
+         4: getfield      #8                  // Field a:J
+         7: lsub
+         8: ldc2_w        #19                 // long 12000l
+        11: lcmp
+        12: ifle          19
+        15: iconst_1
+        16: goto          20
+        19: iconst_0
+        20: ireturn
+      StackMap: number_of_entries = 2
+        frame_type = 255 offset = 19
+          locals = [ class c ]
+          stack = []
+        frame_type = 255 offset = 20
+          locals = [ class c ]
+          stack = [ int ]
+
+  public static {};
+    descriptor: ()V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=0, args_size=0
+         0: aconst_null
+         1: putstatic     #6                  // Field a:Lc;
+         4: iconst_1
+         5: aconst_null
+         6: invokestatic  #13                 // Method af.a:(B[B)[B
+         9: putstatic     #7                  // Field a:[B
+        12: return
+}

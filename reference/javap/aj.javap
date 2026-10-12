@@ -1,0 +1,208 @@
+Classfile /C:/Users/david/Desktop/Projetos_Flutter/heroes_lore_2_recomp/reference/extracted/aj.class
+  Last modified 12 de out. de 2026; size 634 bytes
+  SHA-256 checksum 5e40a610f1029f807448b27483b203189b558625e1fea8e27ce7d842500b7cad
+public class aj extends bt
+  minor version: 3
+  major version: 45
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #1                          // aj
+  super_class: #4                         // bt
+  interfaces: 0, fields: 2, methods: 4, attributes: 0
+Constant pool:
+   #1 = Class              #41            // aj
+   #2 = Class              #42            // b
+   #3 = Class              #43            // bd
+   #4 = Class              #44            // bt
+   #5 = Class              #47            // u
+   #6 = Fieldref           #5.#17         // u.a:B
+   #7 = Fieldref           #4.#18         // bt.a:S
+   #8 = Fieldref           #4.#19         // bt.a:I
+   #9 = Fieldref           #4.#21         // bt.a:Z
+  #10 = Fieldref           #1.#22         // aj.b:I
+  #11 = Fieldref           #4.#23         // bt.b:S
+  #12 = Fieldref           #1.#24         // aj.i:[B
+  #13 = Fieldref           #2.#25         // b.n:[B
+  #14 = Methodref          #4.#16         // bt."<init>":(B)V
+  #15 = Methodref          #3.#20         // bd.a:(BBBII)V
+  #16 = NameAndType        #33:#28        // "<init>":(B)V
+  #17 = NameAndType        #40:#34        // a:B
+  #18 = NameAndType        #40:#37        // a:S
+  #19 = NameAndType        #40:#36        // a:I
+  #20 = NameAndType        #40:#29        // a:(BBBII)V
+  #21 = NameAndType        #40:#38        // a:Z
+  #22 = NameAndType        #42:#36        // b:I
+  #23 = NameAndType        #42:#37        // b:S
+  #24 = NameAndType        #45:#39        // i:[B
+  #25 = NameAndType        #46:#39        // n:[B
+  #26 = Class              #39            // "[B"
+  #27 = Utf8               ()V
+  #28 = Utf8               (B)V
+  #29 = Utf8               (BBBII)V
+  #30 = Utf8               (BI)V
+  #31 = Utf8               (II)V
+  #32 = Utf8               <clinit>
+  #33 = Utf8               <init>
+  #34 = Utf8               B
+  #35 = Utf8               Code
+  #36 = Utf8               I
+  #37 = Utf8               S
+  #38 = Utf8               Z
+  #39 = Utf8               [B
+  #40 = Utf8               a
+  #41 = Utf8               aj
+  #42 = Utf8               b
+  #43 = Utf8               bd
+  #44 = Utf8               bt
+  #45 = Utf8               i
+  #46 = Utf8               n
+  #47 = Utf8               u
+  #48 = Utf8               StackMap
+{
+  public static final byte[] i;
+    descriptor: [B
+    flags: (0x0019) ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+  public int b;
+    descriptor: I
+    flags: (0x0001) ACC_PUBLIC
+
+  public aj(byte, int);
+    descriptor: (BI)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=4, locals=3, args_size=3
+         0: aload_0
+         1: iload_1
+         2: invokespecial #14                 // Method bt."<init>":(B)V
+         5: aload_0
+         6: iconst_0
+         7: putfield      #10                 // Field b:I
+        10: aload_0
+        11: iload_1
+        12: bipush        30
+        14: isub
+        15: putfield      #10                 // Field b:I
+        18: aload_0
+        19: getstatic     #13                 // Field b.n:[B
+        22: getstatic     #12                 // Field i:[B
+        25: aload_0
+        26: getfield      #10                 // Field b:I
+        29: baload
+        30: iconst_4
+        31: isub
+        32: getstatic     #6                  // Field u.a:B
+        35: ifne          42
+        38: iconst_1
+        39: goto          43
+        42: iconst_0
+        43: iadd
+        44: baload
+        45: i2s
+        46: putfield      #7                  // Field bt.a:S
+        49: aload_0
+        50: iload_2
+        51: putfield      #8                  // Field bt.a:I
+        54: aload_0
+        55: getfield      #8                  // Field bt.a:I
+        58: iconst_1
+        59: if_icmpge     67
+        62: aload_0
+        63: iconst_1
+        64: putfield      #8                  // Field bt.a:I
+        67: return
+      StackMap: number_of_entries = 3
+        frame_type = 255 offset = 42
+          locals = [ class aj, int, int ]
+          stack = [ class aj, class "[B", int ]
+        frame_type = 255 offset = 43
+          locals = [ class aj, int, int ]
+          stack = [ class aj, class "[B", int, int ]
+        frame_type = 255 offset = 67
+          locals = [ class aj, int, int ]
+          stack = []
+
+  public void a(int, int);
+    descriptor: (II)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=3, args_size=3
+         0: getstatic     #12                 // Field i:[B
+         3: aload_0
+         4: getfield      #10                 // Field b:I
+         7: baload
+         8: aload_0
+         9: getfield      #11                 // Field bt.b:S
+        12: aload_0
+        13: getfield      #7                  // Field bt.a:S
+        16: irem
+        17: i2b
+        18: iconst_1
+        19: iload_1
+        20: iload_2
+        21: invokestatic  #15                 // Method bd.a:(BBBII)V
+        24: return
+
+  public void a();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=3, locals=1, args_size=1
+         0: aload_0
+         1: dup
+         2: getfield      #11                 // Field bt.b:S
+         5: iconst_1
+         6: iadd
+         7: i2s
+         8: putfield      #11                 // Field bt.b:S
+        11: aload_0
+        12: getfield      #11                 // Field bt.b:S
+        15: aload_0
+        16: getfield      #8                  // Field bt.a:I
+        19: if_icmplt     27
+        22: aload_0
+        23: iconst_1
+        24: putfield      #9                  // Field bt.a:Z
+        27: return
+      StackMap: number_of_entries = 1
+        frame_type = 255 offset = 27
+          locals = [ class aj ]
+          stack = []
+
+  public static {};
+    descriptor: ()V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=0, args_size=0
+         0: bipush        7
+         2: newarray       byte
+         4: dup
+         5: iconst_0
+         6: bipush        14
+         8: bastore
+         9: dup
+        10: iconst_1
+        11: bipush        15
+        13: bastore
+        14: dup
+        15: iconst_2
+        16: bipush        16
+        18: bastore
+        19: dup
+        20: iconst_3
+        21: bipush        14
+        23: bastore
+        24: dup
+        25: iconst_4
+        26: bipush        15
+        28: bastore
+        29: dup
+        30: iconst_5
+        31: bipush        16
+        33: bastore
+        34: dup
+        35: bipush        6
+        37: bipush        15
+        39: bastore
+        40: putstatic     #12                 // Field i:[B
+        43: return
+}
