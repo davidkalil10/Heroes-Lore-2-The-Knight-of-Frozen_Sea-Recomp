@@ -482,7 +482,7 @@ static std::vector<uint8_t> base64Decode(const std::string& in) {
 
   int val = 0, valb = -8;
   for (char c : in) {
-    if (c == '=' || (unsigned char)c > 255 || T[(unsigned char)c] == -1) continue;
+    if (c == '=' || T[(unsigned char)c] == -1) continue;
     val = (val << 6) + T[(unsigned char)c];
     valb += 6;
     if (valb >= 0) {
