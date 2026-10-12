@@ -126,4 +126,8 @@
     - `1`: Cavaleiro (Knight / Cavaliere / Caballero)
     - `2`: Ladino (Rogue / Ladro / Pícaro)
   - O resumo local e da nuvem agora exibe a classe e o nivel em formato rico: `"Slot 1: Cavaleiro (Nv. 15)"`.
+- **Estrutura de Instâncias na VM (`hl::Instance` vs `hl::ClassInfo`):**
+  - Na VM (`src/vm/vm.h`), `ClassInfo` define os metadados dos campos em `std::vector<FieldInfo> fields`.
+  - Já uma instância de objeto em execução (`struct Instance : Object`) armazena os valores de seus campos no vetor `std::vector<Value> f`.
+  - Ao manipular campos de instâncias diretamente no código C++, o acesso deve ser `inst->f[field->index]`, e não `inst->fields`.
 
