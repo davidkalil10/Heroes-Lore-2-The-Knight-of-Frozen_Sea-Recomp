@@ -2022,54 +2022,10 @@ static void l_a_native(VM& vm, Value* args, Value* ret) {
     return;
   }
 
-  // 2. Se tecla RSK / Cancelar / Voltar (-7, -8, Esc=27)
-  if (n3 == -7 || n2 == -7 || n3 == -8 || n2 == -8 || n3 == 27) {
+  auto closeOptionsMenu = [&]() {
     ClassInfo* cjClass = vm.findClass("cj");
-    FieldInfo* fCjBoolD = cjClass ? vm.findField(cjClass, "d:Z") : nullptr;
-    bool helpVal = (fCjBoolD && fCjBoolD->isStatic && fCjBoolD->index >= 0) ? (cjClass->statics[fCjBoolD->index].i != 0) : false;
-    if (helpVal) {
-      ClassInfo* uClass = vm.findClass("u");
-      if (uClass) {
-        FieldInfo* fUb = vm.findField(uClass, "b:I");
-        FieldInfo* fUc = vm.findField(uClass, "c:I");
-        FieldInfo* fUd = vm.findField(uClass, "d:I");
-        FieldInfo* fUe = vm.findField(uClass, "e:I");
-        if (fUb && fUc && fUd && fUe && fUb->isStatic && fUc->isStatic && fUd->isStatic && fUe->isStatic) {
-          uClass->statics[fUd->index].i = uClass->statics[fUb->index].i;
-          uClass->statics[fUe->index].i = uClass->statics[fUc->index].i;
-        }
-      }
-    }
     if (cjClass) {
-      FieldInfo* fCjA = vm.findField(cjClass, "a:Lcj;");
-      Object* cjInst = (fCjA && fCjA->isStatic && fCjA->index >= 0) ? cjClass->statics[fCjA->index].o : nullptr;
-      if (cjInst) {
-        Method* mCjJ = vm.findMethod(cjClass, "j:()V");
-        if (mCjJ) { Value jRet[2]; vm.invokeVirtual(cjInst, "j:()V", nullptr, 0, jRet); }
-      }
-    }
-    FieldInfo* fGParent = vm.findField(gClass, "a:Lg;");
-    Object* parentObj = (fGParent && fGParent->index >= 0 && fGParent->index < (int)inst->f.size()) ? inst->f[fGParent->index].o : nullptr;
-    if (parentObj && parentObj->cls) {
-      FieldInfo* fParentH = vm.findField(parentObj->cls, "h:B");
-      if (fParentH && fParentH->index >= 0 && fParentH->index < (int)static_cast<Instance*>(parentObj)->f.size()) {
-        static_cast<Instance*>(parentObj)->f[fParentH->index].i = 2;
-      }
-      Method* mParentB = vm.findMethod(parentObj->cls, "b:(B)V");
-      if (mParentB) {
-        Value bArgs[2]; bArgs[0].o = parentObj; bArgs[1].i = 2; Value bRet[2];
-        vm.invoke(mParentB, bArgs, bRet);
-      }
-    }
-    ret[0].i = 1;
-    return;
-  }
-
-  // 3. Se tecla de confirmação ('5' / 53 / Enter / 8)
-  if (n3 == 53 || n2 == 8 || n3 == 8 || n3 == -5 || n2 == -5 || n3 == 13 || n3 == 32 || n2 == 1) {
-    if (curH < 5) {
-      ClassInfo* cjClass = vm.findClass("cj");
-      FieldInfo* fCjBoolD = cjClass ? vm.findField(cjClass, "d:Z") : nullptr;
+      FieldInfo* fCjBoolD = vm.findField(cjClass, "d:Z");
       bool helpVal = (fCjBoolD && fCjBoolD->isStatic && fCjBoolD->index >= 0) ? (cjClass->statics[fCjBoolD->index].i != 0) : false;
       if (helpVal) {
         ClassInfo* uClass = vm.findClass("u");
@@ -2084,27 +2040,56 @@ static void l_a_native(VM& vm, Value* args, Value* ret) {
           }
         }
       }
-      if (cjClass) {
-        FieldInfo* fCjA = vm.findField(cjClass, "a:Lcj;");
-        Object* cjInst = (fCjA && fCjA->isStatic && fCjA->index >= 0) ? cjClass->statics[fCjA->index].o : nullptr;
-        if (cjInst) {
-          Method* mCjJ = vm.findMethod(cjClass, "j:()V");
-          if (mCjJ) { Value jRet[2]; vm.invokeVirtual(cjInst, "j:()V", nullptr, 0, jRet); }
-        }
+      FieldInfo* fCjA = vm.findField(cjClass, "a:Lcj;");
+      Object* cjInst = (fCjA && fCjA->isStatic && fCjA->index >= 0) ? cjClass->statics[fCjA->index].o : nullptr;
+      if (cjInst) {
+        Method* mCjJ = vm.findMethod(cjClass, "j:()V");
+        if (mCjJ) { Value jRet[2]; vm.invokeVirtual(cjInst, "j:()V", nullptr, 0, jRet); }
       }
-      FieldInfo* fGParent = vm.findField(gClass, "a:Lg;");
-      Object* parentObj = (fGParent && fGParent->index >= 0 && fGParent->index < (int)inst->f.size()) ? inst->f[fGParent->index].o : nullptr;
-      if (parentObj && parentObj->cls) {
-        FieldInfo* fParentH = vm.findField(parentObj->cls, "h:B");
-        if (fParentH && fParentH->index >= 0 && fParentH->index < (int)static_cast<Instance*>(parentObj)->f.size()) {
-          static_cast<Instance*>(parentObj)->f[fParentH->index].i = 2;
-        }
-        Method* mParentB = vm.findMethod(parentObj->cls, "b:(B)V");
-        if (mParentB) {
-          Value bArgs[2]; bArgs[0].o = parentObj; bArgs[1].i = 2; Value bRet[2];
-          vm.invoke(mParentB, bArgs, bRet);
-        }
+    }
+
+    FieldInfo* fGParent = vm.findField(gClass, "a:Lg;");
+    Object* parentObj = (fGParent && fGParent->index >= 0 && fGParent->index < (int)inst->f.size()) ? inst->f[fGParent->index].o : nullptr;
+    if (parentObj && parentObj->cls) {
+      // 1. Limpa o submenu do pai (g.b = null)
+      FieldInfo* fSubmenu = vm.findField(gClass, "b:Lg;");
+      if (fSubmenu && fSubmenu->index >= 0 && fSubmenu->index < (int)static_cast<Instance*>(parentObj)->f.size()) {
+        static_cast<Instance*>(parentObj)->f[fSubmenu->index].o = nullptr;
       }
+      // 2. Cursor do pai em Opções (2)
+      FieldInfo* fParentH = vm.findField(parentObj->cls, "h:B");
+      if (fParentH && fParentH->index >= 0 && fParentH->index < (int)static_cast<Instance*>(parentObj)->f.size()) {
+        static_cast<Instance*>(parentObj)->f[fParentH->index].i = 2;
+      }
+      // 3. Força repaint do pai
+      FieldInfo* fParentE = vm.findField(gClass, "e:Z");
+      if (fParentE && fParentE->index >= 0 && fParentE->index < (int)static_cast<Instance*>(parentObj)->f.size()) {
+        static_cast<Instance*>(parentObj)->f[fParentE->index].i = 1;
+      }
+      FieldInfo* fParentD = vm.findField(gClass, "d:Z");
+      if (fParentD && fParentD->index >= 0 && fParentD->index < (int)static_cast<Instance*>(parentObj)->f.size()) {
+        static_cast<Instance*>(parentObj)->f[fParentD->index].i = 1;
+      }
+      // 4. Invoca parent.b(2) com descritor b:(I)V
+      Method* mParentB = vm.findMethod(parentObj->cls, "b:(I)V");
+      if (mParentB) {
+        Value bArgs[2]; bArgs[0].o = parentObj; bArgs[1].i = 2; Value bRet[2];
+        vm.invoke(mParentB, bArgs, bRet);
+      }
+    }
+  };
+
+  // 2. Se tecla RSK / Cancelar / Voltar (-7, -8, Esc=27, ou 8 interceptado pelo Canvas do HL2)
+  if (n3 == -7 || n2 == -7 || n3 == -8 || n2 == -8 || n3 == 27 || n2 == 8 || n3 == 8) {
+    closeOptionsMenu();
+    ret[0].i = 1;
+    return;
+  }
+
+  // 3. Se tecla de confirmação ('5' / 53 / Enter / 13 / 32 / Fire)
+  if (n3 == 53 || n3 == -5 || n2 == -5 || n3 == 13 || n3 == 32 || n2 == 1) {
+    if (curH < 5) {
+      closeOptionsMenu();
       ret[0].i = 1;
       return;
     } else if (curH == 5) {
@@ -2314,7 +2299,7 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
     // Menu de Título (moldura de tela cheia)
     Method* mGa = vm.findMethod(inst->cls, "a:(Ljavax/microedition/lcdui/Graphics;)V");
     if (mGa) {
-      Value aArgs[1]; aArgs[0].o = gObj; Value aRet[2];
+      Value aArgs[2]; aArgs[0].o = selfObj; aArgs[1].o = gObj; Value aRet[2];
       vm.invoke(mGa, aArgs, aRet);
     }
     graphics->setColor(14467940);

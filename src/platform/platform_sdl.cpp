@@ -2536,6 +2536,31 @@ std::string Platform::getStorageDir() {
 #endif
 }
 
+static bool dirHasHlSaves(const std::string& dir) {
+  std::error_code ec;
+  if (!std::filesystem::exists(dir, ec)) return false;
+  if (std::filesystem::exists(dir + "/XF48409.rms", ec) ||
+      std::filesystem::exists(dir + "/XF48410.rms", ec) ||
+      std::filesystem::exists(dir + "/XF48411.rms", ec) ||
+      std::filesystem::exists(dir + "/XF48626.rms", ec) ||
+      std::filesystem::exists(dir + "/XF48627.rms", ec) ||
+      std::filesystem::exists(dir + "/XF48628.rms", ec) ||
+      std::filesystem::exists(dir + "/_k.rms", ec) ||
+      std::filesystem::exists(dir + "/_s.rms", ec) ||
+      std::filesystem::exists(dir + "/_w.rms", ec)) {
+    return true;
+  }
+  for (const auto& entry : std::filesystem::directory_iterator(dir, ec)) {
+    if (entry.is_regular_file()) {
+      std::string fn = entry.path().filename().string();
+      if (fn.size() >= 4 && fn.rfind(".rms") == fn.size() - 4 && fn != "sktAudioVolume.rms") {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 std::string Platform::getRmsDir(VM* vm) {
   static std::string s_cachedRmsDir;
 
@@ -2548,6 +2573,34 @@ std::string Platform::getRmsDir(VM* vm) {
   }
 
   // No PC (Windows/Desktop onde getStorageDir() retorna ".")
+  // Se o cache já aponta para um diretório válido com saves existentes, usa ele
+  if (!s_cachedRmsDir.empty() && dirHasHlSaves(s_cachedRmsDir)) {
+    return s_cachedRmsDir;
+  }
+
+  // Lista de diretórios candidatos onde saves podem ter sido gravados
+  std::vector<std::string> candidates;
+  if (vm && !vm->dataDir.empty()) {
+    candidates.push_back(vm->dataDir + "/rms");
+  }
+  candidates.push_back("build/reference/extracted/rms");
+  candidates.push_back("reference/extracted/rms");
+  candidates.push_back("build/assets/rms");
+  candidates.push_back("assets/rms");
+  candidates.push_back("../reference/extracted/rms");
+  candidates.push_back("../assets/rms");
+  candidates.push_back("rms");
+  candidates.push_back("build/rms");
+
+  // Prioridade 1: Encontrar candidato que já possua saves de jogo reais
+  for (const auto& c : candidates) {
+    if (dirHasHlSaves(c)) {
+      s_cachedRmsDir = c;
+      return c;
+    }
+  }
+
+  // Prioridade 2: Se vm->dataDir estiver definido, usa ele
   if (vm && !vm->dataDir.empty()) {
     std::string d = vm->dataDir + "/rms";
     std::error_code ec;
@@ -2556,37 +2609,13 @@ std::string Platform::getRmsDir(VM* vm) {
     return d;
   }
 
-  if (!s_cachedRmsDir.empty() && std::filesystem::exists(s_cachedRmsDir)) {
-    return s_cachedRmsDir;
-  }
-
-  // Procura pastas RMS que já possuam saves de jogo (.rms)
-  const char* candidates[] = {
-    "assets/rms",
-    "build/assets/rms",
-    "reference/extracted/rms",
-    "build/reference/extracted/rms",
-    "../reference/extracted/rms",
-    "../assets/rms",
-    "rms"
-  };
-  for (const char* c : candidates) {
-    if (std::filesystem::exists(std::string(c) + "/_k.rms") ||
-        std::filesystem::exists(std::string(c) + "/_c.rms") ||
-        std::filesystem::exists(std::string(c) + "/_s.rms") ||
-        std::filesystem::exists(std::string(c) + "/_w.rms") ||
-        std::filesystem::exists(std::string(c) + "/_o.rms")) {
-      s_cachedRmsDir = c;
-      return c;
-    }
-  }
-
-  if (std::filesystem::exists("assets")) {
-    s_cachedRmsDir = "assets/rms";
-  } else if (std::filesystem::exists("build/assets")) {
-    s_cachedRmsDir = "build/assets/rms";
+  // Prioridade 3: Fallback padrão de criação
+  if (std::filesystem::exists("build/reference/extracted")) {
+    s_cachedRmsDir = "build/reference/extracted/rms";
   } else if (std::filesystem::exists("reference/extracted")) {
     s_cachedRmsDir = "reference/extracted/rms";
+  } else if (std::filesystem::exists("assets")) {
+    s_cachedRmsDir = "assets/rms";
   } else {
     s_cachedRmsDir = "rms";
   }

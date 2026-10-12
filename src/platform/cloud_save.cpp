@@ -872,10 +872,31 @@ static int decodeHeroLevel(const std::vector<uint8_t>& rec) {
   return 0;
 }
 
+static int decodeHl2HeroLevel(const std::vector<uint8_t>& rec) {
+  if (rec.size() < 12) return 0;
+  // Bloco 1 (tamanho short em big-endian)
+  uint16_t len1 = ((uint16_t)rec[0] << 8) | (uint16_t)rec[1];
+  size_t off2 = 2 + len1;
+  if (off2 + 4 > rec.size()) return 0;
+  // Bloco 2
+  uint16_t len2 = ((uint16_t)rec[off2] << 8) | (uint16_t)rec[off2 + 1];
+  if (len2 < 2 || off2 + 2 + len2 > rec.size()) return 0;
+  // Chave n = {14, 26, 72, 10, 28, 98};
+  // Em cb.b, n4 começa em 0; ++n4 vira 1 -> chave n[1] = 26
+  uint8_t lvl = rec[off2 + 2] ^ 26;
+  if (lvl >= 1 && lvl <= 99) return (int)lvl;
+  return 0;
+}
+
 static std::string getLocalSavesDate() {
   std::string rmsBase = Platform::getRmsDir(s_activeVm);
-  // Apenas arquivos reais de progresso de heróis determinam a data/hora do save
-  const char* slotFiles[] = { "_k.rms", "_s.rms", "_w.rms" };
+  // Arquivos de progresso de heróis determinam a data/hora do save
+  const char* slotFiles[] = {
+    "XF48409.rms", "XF48410.rms", "XF48411.rms",
+    "XF48626.rms", "XF48627.rms", "XF48628.rms",
+    "XF48338.rms",
+    "_k.rms", "_s.rms", "_w.rms"
+  };
   time_t newestTime = 0;
 
   for (const char* fn : slotFiles) {
@@ -884,6 +905,25 @@ static std::string getLocalSavesDate() {
     if (stat(path.c_str(), &st) == 0) {
       if (st.st_mtime > newestTime) {
         newestTime = st.st_mtime;
+      }
+    }
+  }
+
+  if (newestTime == 0) {
+    std::error_code ec;
+    if (std::filesystem::exists(rmsBase, ec)) {
+      for (const auto& entry : std::filesystem::directory_iterator(rmsBase, ec)) {
+        if (entry.is_regular_file()) {
+          std::string fn = entry.path().filename().string();
+          if (fn.size() >= 4 && fn.rfind(".rms") == fn.size() - 4) {
+            struct stat st;
+            if (stat(entry.path().string().c_str(), &st) == 0) {
+              if (st.st_mtime > newestTime) {
+                newestTime = st.st_mtime;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -901,11 +941,15 @@ static std::string getLocalSavesSummary() {
   struct SlotCheck {
     const char* filename;
     const char* defaultHero;
+    bool isHl2;
   };
   SlotCheck slots[] = {
-    {"_k.rms", "Ronin"},
-    {"_s.rms", "Reah"},
-    {"_w.rms", "Aramor"}
+    {"XF48409.rms", "Slot 1", true},
+    {"XF48410.rms", "Slot 2", true},
+    {"XF48411.rms", "Slot 3", true},
+    {"_k.rms", "Ronin", false},
+    {"_s.rms", "Reah", false},
+    {"_w.rms", "Aramor", false}
   };
 
   int foundCount = 0;
@@ -918,14 +962,14 @@ static std::string getLocalSavesSummary() {
     if (!summary.empty()) summary += ", ";
     summary += sc.defaultHero;
 
-    // Tenta ler o primeiro record para obter o nível usando bq.b
+    // Tenta ler o primeiro record para obter o nível
     uint32_t count = 0;
     if (f.read((char*)&count, 4) && count > 0) {
       uint32_t sz = 0;
       if (f.read((char*)&sz, 4) && sz >= 4) {
         std::vector<uint8_t> rec(sz);
         f.read((char*)rec.data(), sz);
-        int lvl = decodeHeroLevel(rec);
+        int lvl = sc.isHl2 ? decodeHl2HeroLevel(rec) : decodeHeroLevel(rec);
         if (lvl > 0) {
           summary += std::string(tr(CloudStr::LEVEL_PREFIX)) + std::to_string(lvl);
         }
@@ -933,7 +977,20 @@ static std::string getLocalSavesSummary() {
     }
   }
 
-  if (foundCount == 0) return tr(CloudStr::NO_LOCAL_SAVE);
+  if (foundCount == 0) {
+    std::error_code ec;
+    if (std::filesystem::exists(rmsBase, ec)) {
+      for (const auto& entry : std::filesystem::directory_iterator(rmsBase, ec)) {
+        if (entry.is_regular_file()) {
+          std::string fn = entry.path().filename().string();
+          if (fn.size() >= 4 && fn.rfind(".rms") == fn.size() - 4 && fn != "sktAudioVolume.rms") {
+            return "Save Local";
+          }
+        }
+      }
+    }
+    return tr(CloudStr::NO_LOCAL_SAVE);
+  }
   return summary;
 }
 
@@ -1346,7 +1403,12 @@ void CloudSave::uploadBackupAsync() {
       }
     }
     if (filesToPack.empty()) {
-      filesToPack = { "_k.rms", "_s.rms", "_w.rms", "_o.rms", "_c.rms" };
+      filesToPack = {
+        "XF48409.rms", "XF48410.rms", "XF48411.rms",
+        "XF48626.rms", "XF48627.rms", "XF48628.rms",
+        "XF48338.rms", "sktAudioVolume.rms",
+        "_k.rms", "_s.rms", "_w.rms", "_o.rms", "_c.rms"
+      };
     }
 
     std::ostringstream jsonPkg;

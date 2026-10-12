@@ -69,5 +69,31 @@
     - Linha 7: **Nuvem** (Google Drive Cloud Save RFC 8628 via `Platform::openCloudSave()`).
   - Tanto no Menu de Título quanto In-Game, o botão RSK / Voltar / Cancelar (`-7`, Backspace, Esc, Gamepad B) salva as configurações no RecordStore `/o` e retorna suavemente para a tela anterior.
 
+## Sessão 5 (Correções Críticas nos Menus, Botão Back e Arquitetura de Saves XFile)
+- **Causa Raiz do Crash no Menu de Título (`l_draw_native`):**
+  - O método `g.a(Graphics)` é um método de instância herdado de `g.class` e espera 2 argumentos na VM: slot 0 é a referência do próprio objeto (`this` / `selfObj`) e slot 1 é o `Graphics` (`gObj`).
+  - No código anterior, estava sendo passado apenas `aArgs[1]` com `aArgs[0].o = gObj;`, o que fazia a VM usar o ponteiro do Graphics como se fosse a instância de `g`, lendo memória inválida na pilha e gerando crash imediato ao abrir Settings no título.
+  - Corrigido passando `aArgs[2]` com `aArgs[0].o = selfObj; aArgs[1].o = gObj;`.
+- **Causa Raiz do Botão Back/RSK Mudando Opções em vez de Voltar:**
+  - No código original do Canvas (`cd.java:61` e `bd.java:75`), a tecla `-7` (RSK / Back) é interceptada e convertida para `8` antes de ser despachada para os menus (`if (n2 == -7) { n2 = 8; }`).
+  - Em `l.java` original, a condição `if (n3 == 53 || n2 == 8 || n3 == 8)` é a forma de fechar o menu e salvar as opções.
+  - Como o hook nativo tratava `8` no mesmo ramo de confirmação de ação ('5' / Enter), quando o cursor estava sobre as novas opções (FPS no item 5, Tela no item 6 ou Nuvem no item 7) e o jogador apertava Back, o código interpretava como confirmação e ficava ciclando as opções em vez de fechar.
+  - Além disso, o método de fechamento invocava `parent.b(2)` com descritor de byte `"b:(B)V"`, mas em `g.class` a assinatura do método é `"b:(I)V"` (inteiro). Com isso, `findMethod` retornava nulo e o submenu `parent.b` nunca era desativado.
+  - Corrigido separando o tratamento da tecla `8` / `-7` / Esc como Voltar prioritário em qualquer posição, limpando explicitamente o submenu com `parent.b = nullptr` e invocando `parent.b(2)` com a assinatura correta `b:(I)V`.
+- **Arquitetura de Saves do Heroes Lore 2 (`com.xce.io.XFile`):**
+  - Ao contrário do Heroes Lore 1 (que gravava arquivos `_k.rms`, `_s.rms`, `_w.rms`), o Heroes Lore 2 grava seus arquivos através da classe `com.xce.io.XFile`.
+  - O método `XFile.rmsName(String path)` calcula `n = (path.hashCode() & Integer.MAX_VALUE)` e gera nomes de RecordStore no formato `"XF" + n`.
+  - Arquivos gerados no disco:
+    - `/g1` -> `XF48409.rms` (Slot 1 de jogo)
+    - `/g2` -> `XF48410.rms` (Slot 2 de jogo)
+    - `/g3` -> `XF48411.rms` (Slot 3 de jogo)
+    - `/n1` -> `XF48626.rms` (Metadados do Slot 1)
+    - `/n2` -> `XF48627.rms` (Metadados do Slot 2)
+    - `/n3` -> `XF48628.rms` (Metadados do Slot 3)
+    - `/cf` -> `XF48338.rms` (Configurações do sistema)
+  - Criptografia e Decodificação do Nível: os dados dos slots usam criptografia XOR com verificação de paridade via `cb.java` e chaves fixas em `u.java` (`m = {5, 71, 24, 59, 43, 16}`, `n = {14, 26, 72, 10, 28, 98}`, `o = {67, 12, 35, 68, 91, 43}`). O nível autêntico do herói é obtido decodificando o bloco 2 com a chave `n[1] = 26` (`rec[off2 + 2] ^ 26`).
+  - O `Platform::getRmsDir` e o `CloudSave` foram atualizados para reconhecer e empacotar todos esses arquivos, exibindo corretamente o status dos slots (ex: "Slot 1 (Nv. 1)") e sincronizando com o Google Drive.
+
+
 
 

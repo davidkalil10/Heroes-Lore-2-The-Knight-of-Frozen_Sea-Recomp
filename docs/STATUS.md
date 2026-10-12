@@ -36,9 +36,14 @@ _Última atualização: 2026-10-12 (Marco 0 parcial)_
     - Opção 5: Taxa de Quadros (FPS) com alternância instantânea entre 15 FPS (padrão J2ME) e 30 FPS (turbo fluido).
     - Opção 6: Proporção de Tela (Aspect Ratio) com alternância entre Auto (padrão responsivo horizontal/vertical), 3:4 Original e 16:9 True Widescreen.
     - Opção 7: Nuvem (Cloud Save Google Drive RFC 8628) acionando o gestor de backup e restauração na nuvem.
-  - Janela modal e layout adaptados para comportar os 8 itens mantendo identidade visual, molduras e paleta autênticas.
+  - Correção de estabilidade no Menu de Título: reparada a passagem do objeto `this` (`selfObj`) na invocação nativa de `g.a(Graphics)`, eliminando crash/segfault ao acessar Settings no título.
+  - Correção da tecla Voltar/Back no menu de opções: o Canvas do HL2 (`cd.java` e `bd.java`) intercepta `-7` e despacha `8`; a rotina agora trata `8` como Voltar imediato (em vez de ciclar itens), fecha o submenu limpando `parent.b = null` e chama `parent.b(2)` com a assinatura correta `b:(I)V`.
+- [x] Detecção e suporte completo de Saves Locais no Cloud Save:
+  - Mapeamento da arquitetura `com.xce.io.XFile` do HL2: os arquivos no disco são nomeados via `XF<hash>.rms` (`XF48409.rms` para Slot 1 `/g1`, `XF48410.rms` para Slot 2 `/g2`, `XF48411.rms` para Slot 3 `/g3`, e `XF48626..8.rms` para metadados `/n1..3`).
+  - Implementado decodificador nativo de nível do herói (`decodeHl2HeroLevel`) com a chave XOR `n = {14, 26, 72, 10, 28, 98}`.
+  - `Platform::getRmsDir` aprimorado para priorizar pastas com saves reais (`build/reference/extracted/rms`, `reference/extracted/rms`, etc.).
+- [x] Validação de persistência e carregamento RMS no disco e na nuvem.
 - [ ] Validação de jogabilidade contínua (combate em mapa aberto e diálogos com NPCs).
-- [ ] Validação de salvamento e carregamento RMS.
 
 ## Roadmap de Etapas (Seguindo o Blueprint)
 - [x] **Passo 0:** Boot nativo no PC da classe `rpg.RPGHero2` e renderização do primeiro frame.
