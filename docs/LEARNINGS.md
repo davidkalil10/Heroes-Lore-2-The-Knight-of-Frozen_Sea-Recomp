@@ -130,4 +130,16 @@
   - Na VM (`src/vm/vm.h`), `ClassInfo` define os metadados dos campos em `std::vector<FieldInfo> fields`.
   - Já uma instância de objeto em execução (`struct Instance : Object`) armazena os valores de seus campos no vetor `std::vector<Value> f`.
   - Ao manipular campos de instâncias diretamente no código C++, o acesso deve ser `inst->f[field->index]`, e não `inst->fields`.
+- **Nomes Reais de Bytecode vs Descompilação CFR para Reflexão (`VM::findMethod`, `VM::findField`):**
+  - O descompilador CFR desambigua métodos sobrecarregados e campos gerando nomes sintéticos (ex.: `void_a()`, `bg_a()`, `var_int_a`, `var_bd_a`).
+  - No interpretador da VM C++17, os nomes registrados no Constant Pool são os identificadores reais de bytecode (ex.: `a:()V`, `a:()Lbg;`, `a:I`, `a:Lbd;`).
+  - Ao invocar métodos de classes do jogo via C++ nativo, deve-se sempre consultar a saída do `javap` para utilizar o nome e descritor canônicos, evitando falhas silenciosas de busca.
+- **Reload de Saves Restaurados em Tempo Real sem Reiniciar o Jogo:**
+  - Além de limpar o cache estático `XFile.store:Ljava/util/Hashtable;`, é mandatório chamar o método de instância `u.k:()V` na instância estática `u.a:Lu;`.
+  - Esse método re-escaneia todos os slots do disco (`XF48409..11.rms`), decodifica os novos bytes e atualiza `u.b:B` (contagem de saves existentes).
+  - Em seguida, chamando `bg.a:()V` e `bg.a:()Lbg;`, a tela de título é recriada com o botão "Continuar" ativo e apontando para os dados recém-restaurados.
+- **Intercepção de `bw.a:(Ljavax/microedition/lcdui/Graphics;)V` para Badge de Versão:**
+  - A classe `bw.class` renderiza o fundo do título e o texto original `"V.1.0.2"`.
+  - Registrando um hook nativo em `VM::registerNatives` para `bw.a:(Ljavax/microedition/lcdui/Graphics;)V`, é possível reutilizar a própria rotina de renderização e invocar `bk.a:(Ljavax/microedition/lcdui/Graphics;II[BII)V` para desenhar `"v0.2.2"` centralizado abaixo de `"V.1.0.2"` em tom azul celeste (`0x80C0FF`), mantendo 100% da fidelidade estética dos bitmaps J2ME.
+
 

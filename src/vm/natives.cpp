@@ -1163,6 +1163,7 @@ static void l_init_native(VM& vm, Value* args, Value* ret);
 static void l_a_native(VM& vm, Value* args, Value* ret);
 static void l_draw_native(VM& vm, Value* args, Value* ret);
 static void l_cursor_native(VM& vm, Value* args, Value* ret);
+static void bw_a_native(VM& vm, Value* args, Value* ret);
 
 // -------------------------------------------------------------
 // Registro de todos os métodos nativos
@@ -1355,11 +1356,14 @@ void VM::registerNatives() {
   reg("java/io/PrintStream.println:(Ljava/lang/Object;)V", PrintStream_println_obj);
   reg("java/io/PrintStream.println:(Ljava/lang/String;)V", PrintStream_println_str);
 
-  // HL2: Menu de Configurações personalizadas (l.class) com FPS, Proporção de Tela e Cloud Save
+  // HL2: Menu de Configurações personalizadas (l.class) com FPS, Proporção de Tela, Cloud Save e Atualizações
   reg("l.<init>:(Lg;Z)V", l_init_native);
   reg("l.a:(II)Z", l_a_native);
   reg("l.a:(II)V", l_draw_native);
   reg("l.b:(II)V", l_cursor_native);
+
+  // HL2: Tela de Abertura / Menu de Título com versão nativa Recomp (bw.class)
+  reg("bw.a:(Ljavax/microedition/lcdui/Graphics;)V", bw_a_native);
 }
 
 // -------------------------------------------------------------
@@ -1934,7 +1938,7 @@ void VM::registerNatives() {
 
 // -------------------------------------------------------------
 // l: Menu de Opções / Configurações (Heroes Lore 2: Knight of Frozen Sea)
-// Suporte nativo a 8 opções: 0..4 originais + 5: FPS, 6: Tela (Aspect Ratio), 7: Nuvem (Google Drive)
+// Suporte nativo a 9 opções: 0..4 originais + 5: FPS, 6: Tela (Aspect Ratio), 7: Nuvem (Google Drive), 8: Atualizações
 // -------------------------------------------------------------
 static void l_init_native(VM& vm, Value* args, Value*) {
   Object* self = args[0].o;
@@ -1946,7 +1950,7 @@ static void l_init_native(VM& vm, Value* args, Value*) {
   ClassInfo* gClass = vm.findClass("g");
   Method* mGInit = gClass ? vm.findMethod(gClass, "<init>:(Lg;B)V") : nullptr;
   if (mGInit) {
-    Value gArgs[3]; gArgs[0].o = self; gArgs[1].o = gParent; gArgs[2].i = 8; Value gRet[2]; // 8 itens!
+    Value gArgs[3]; gArgs[0].o = self; gArgs[1].o = gParent; gArgs[2].i = 9; Value gRet[2]; // 9 itens!
     vm.invoke(mGInit, gArgs, gRet);
   }
 
@@ -1960,7 +1964,7 @@ static void l_init_native(VM& vm, Value* args, Value*) {
   }
   FieldInfo* fI = gClass ? vm.findField(gClass, "i:B") : nullptr;
   if (fI && fI->index >= 0 && fI->index < (int)inst->f.size()) {
-    inst->f[fI->index].i = 8;
+    inst->f[fI->index].i = 9;
   }
 }
 
@@ -1983,7 +1987,7 @@ static void l_cursor_native(VM& vm, Value* args, Value*) {
   FieldInfo* fH = gClass ? vm.findField(gClass, "h:B") : nullptr;
   int curH = (fH && fH->index >= 0 && fH->index < (int)inst->f.size()) ? inst->f[fH->index].i : 0;
 
-  int startY = bw_j - 63;
+  int startY = bw_j - 70;
   int cursorY = startY + 18 * curH + 4;
 
   Method* mGb = vm.findMethod(inst->cls, "b:(Ljavax/microedition/lcdui/Graphics;IIIIZ)V");
@@ -2012,7 +2016,7 @@ static void l_a_native(VM& vm, Value* args, Value* ret) {
   FieldInfo* fI = gClass ? vm.findField(gClass, "i:B") : nullptr;
   FieldInfo* fH = gClass ? vm.findField(gClass, "h:B") : nullptr;
   if (fI && fI->index >= 0 && fI->index < (int)inst->f.size()) {
-    inst->f[fI->index].i = 8;
+    inst->f[fI->index].i = 9;
   }
   int curH = (fH && fH->index >= 0 && fH->index < (int)inst->f.size()) ? inst->f[fH->index].i : 0;
 
@@ -2110,6 +2114,10 @@ static void l_a_native(VM& vm, Value* args, Value* ret) {
       return;
     } else if (curH == 7) {
       Platform::openCloudSave(&vm);
+      ret[0].i = 1;
+      return;
+    } else if (curH == 8) {
+      Platform::checkForUpdates();
       ret[0].i = 1;
       return;
     }
@@ -2211,6 +2219,10 @@ static void l_a_native(VM& vm, Value* args, Value* ret) {
         Platform::openCloudSave(&vm);
         break;
       }
+      case 8: { // Atualizações (Verificar)
+        Platform::checkForUpdates();
+        break;
+      }
     }
   }
 
@@ -2229,7 +2241,7 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
   FieldInfo* fI = gClass ? vm.findField(gClass, "i:B") : nullptr;
   FieldInfo* fH = gClass ? vm.findField(gClass, "h:B") : nullptr;
   if (fI && fI->index >= 0 && fI->index < (int)inst->f.size()) {
-    inst->f[fI->index].i = 8; // Expande para 8 itens!
+    inst->f[fI->index].i = 9; // Expande para 9 itens!
   }
   int curH = (fH && fH->index >= 0 && fH->index < (int)inst->f.size()) ? inst->f[fH->index].i : 0;
 
@@ -2272,11 +2284,11 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
 
   // 1. Desenha o fundo da tela / janela modal
   if (isPauseMenu) {
-    // Popup in-game (190 x 170)
+    // Popup in-game (190 x 186 para acomodar 9 itens confortavelmente)
     int boxX = bw_i - 95;
-    int boxY = bw_j - 82;
+    int boxY = bw_j - 90;
     int boxW = 190;
-    int boxH = 170;
+    int boxH = 186;
 
     graphics->setClip(boxX, boxY, boxW, boxH);
     graphics->setColor(6970180);
@@ -2318,8 +2330,8 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
     }
   }
 
-  // 2. Desenha as 8 linhas de opções
-  int startY = bw_j - 63;
+  // 2. Desenha as 9 linhas de opções
+  int startY = bw_j - 70;
   graphics->setColor(14134162);
 
   // Rótulos dos itens originais 0..4
@@ -2429,7 +2441,92 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
     Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 126; vArgs[3].o = valCloud; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
     vm.invoke(mBkA_flags, vArgs, vRet);
   }
+
+  // Item 8: Atualizações (Verificar)
+  graphics->setColor(14134162);
+  Object* lblUpdate = makeByteArray("Update");
+  if (lblUpdate && mBkA) {
+    Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 144; lArgs[3].o = lblUpdate; lArgs[4].i = 0; Value lRet[2];
+    vm.invoke(mBkA, lArgs, lRet);
+  }
+  graphics->setColor(curH == 8 ? 0xFFFFFF : 0x7F7F7F);
+  std::string txtUpdate = "Check";
+  Object* valUpdate = makeByteArray(txtUpdate);
+  if (valUpdate && mBkA_flags) {
+    Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 144; vArgs[3].o = valUpdate; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
+    vm.invoke(mBkA_flags, vArgs, vRet);
+  }
 }
 
+// -------------------------------------------------------------
+// bw: Tela de Abertura e Fundo do Menu de Título (Heroes Lore 2)
+// Renderiza o fundo, o logotipo, o código da versão original ("V.1.0.2")
+// e, logo abaixo, o código da versão do recompilador ("v0.2.2")
+// -------------------------------------------------------------
+static void bw_a_native(VM& vm, Value* args, Value*) {
+  Object* gObj = args[1].o;
+  if (!gObj || gObj->kind != K_GRAPHICS) return;
+  GraphicsObj* graphics = static_cast<GraphicsObj*>(gObj);
+
+  ClassInfo* bwClass = vm.findClass("bw");
+  FieldInfo* fG = bwClass ? vm.findField(bwClass, "g:I") : nullptr;
+  FieldInfo* fH = bwClass ? vm.findField(bwClass, "h:I") : nullptr;
+  FieldInfo* fI = bwClass ? vm.findField(bwClass, "i:I") : nullptr;
+  FieldInfo* fJ = bwClass ? vm.findField(bwClass, "j:I") : nullptr;
+
+  int bw_g = (fG && fG->isStatic && fG->index >= 0) ? bwClass->statics[fG->index].i : g_screenWidth;
+  int bw_h = (fH && fH->isStatic && fH->index >= 0) ? bwClass->statics[fH->index].i : g_screenHeight;
+  int bw_i = (fI && fI->isStatic && fI->index >= 0) ? bwClass->statics[fI->index].i : (bw_g / 2);
+  int bw_j = (fJ && fJ->isStatic && fJ->index >= 0) ? bwClass->statics[fJ->index].i : (bw_h / 2);
+
+  // 1. Limpa tela com preto
+  graphics->setColor(0);
+  graphics->fillRect(0, 0, bw_g, bw_h);
+
+  ClassInfo* asClass = vm.findClass("as");
+  FieldInfo* fImgO = asClass ? vm.findField(asClass, "o:[Ljavax/microedition/lcdui/Image;") : nullptr;
+  Array* arrO = (fImgO && fImgO->isStatic && fImgO->index >= 0) ? static_cast<Array*>(asClass->statics[fImgO->index].o) : nullptr;
+
+  // 2. Logo do jogo (arrO[1]) em (bw_i, bw_j + 3, anchor=33)
+  if (arrO && arrO->len > 1 && arrO->elems[1].o && arrO->elems[1].o->kind == K_IMAGE) {
+    graphics->drawImage(static_cast<ImageObj*>(arrO->elems[1].o), bw_i, bw_j + 3, 33);
+  }
+
+  // 3. Texto da versão original "V.1.0.2"
+  ClassInfo* bkClass = vm.findClass("bk");
+  Method* mBkA_flags = bkClass ? vm.findMethod(bkClass, "a:(Ljavax/microedition/lcdui/Graphics;II[BII)V") : nullptr;
+
+  auto makeByteArray = [&](const std::string& str) -> Object* {
+    Array* arr = vm.newArray('B', (int)str.size());
+    memcpy(arr->data.data(), str.data(), str.size());
+    return arr;
+  };
+
+  graphics->setColor(0xFFFFFF);
+  Object* origVerBytes = makeByteArray("V.1.0.2");
+  if (origVerBytes && mBkA_flags) {
+    Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i; vArgs[2].i = bw_j + 5; vArgs[3].o = origVerBytes; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
+    vm.invoke(mBkA_flags, vArgs, vRet);
+  }
+
+  // 4. Texto da nossa versão nativa logo abaixo: "v0.2.2" (tom azul celeste Frozen Sea)
+  graphics->setColor(0x80C0FF);
+  std::string recompVer = "v" HL_VERSION_NUM;
+  Object* recompVerBytes = makeByteArray(recompVer);
+  if (recompVerBytes && mBkA_flags) {
+    Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i; vArgs[2].i = bw_j + 18; vArgs[3].o = recompVerBytes; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
+    vm.invoke(mBkA_flags, vArgs, vRet);
+  }
+
+  // 5. Logo operadora/SKT (arrO[2]) em (5, 5, anchor=20)
+  if (arrO && arrO->len > 2 && arrO->elems[2].o && arrO->elems[2].o->kind == K_IMAGE) {
+    graphics->drawImage(static_cast<ImageObj*>(arrO->elems[2].o), 5, 5, 20);
+  }
+
+  // 6. Rodapé do jogo (arrO[0]) em (bw_i, bw_h - 26, anchor=17)
+  if (arrO && arrO->len > 0 && arrO->elems[0].o && arrO->elems[0].o->kind == K_IMAGE) {
+    graphics->drawImage(static_cast<ImageObj*>(arrO->elems[0].o), bw_i, bw_h - 26, 17);
+  }
+}
 
 }  // namespace hl

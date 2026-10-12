@@ -1,6 +1,6 @@
 # STATUS — Heroes Lore 2: The Knight of Frozen Sea
 
-_Última atualização: 2026-10-12 (Versão v0.2.1 lançada oficialmente)_
+_Última atualização: 2026-10-12 (Versão v0.2.2 lançada oficialmente)_
 
 ## Ambiente
 - Java 17/21, Python 3.13, Git: OK.
@@ -29,27 +29,19 @@ _Última atualização: 2026-10-12 (Versão v0.2.1 lançada oficialmente)_
   - Nintendo Switch: TitleID `0100484C32000000`, NRO `heroes_lore_2.nro`, RomFS embutido.
   - Linux: AppImage portátil `heroes_lore_2_linux_x86_64.AppImage` + Desktop Entry + Ícone oficial.
   - Windows: `heroes_lore_2.exe` + ZIP standalone com runtime UCRT64 e assets.
-- [x] Integração completa de configurações personalizadas nos Menus do Jogo:
-  - Menu de Título -> *Settings* e Menu In-Game -> *System -> Options* (ambos mapeados via `l.class` / `l` extends `g`).
-  - Menu expandido de 5 para 8 opções nativas com ciclo e setas de seleção `<` e `>`:
-    - Opções 0..4: Volume de Som, BGM, Vibração, Iluminação e Guia de Teclas (comportamento e persistência originais em `/o`).
-    - Opção 5: Taxa de Quadros (FPS) com alternância instantânea entre 15 FPS (padrão J2ME) e 30 FPS (turbo fluido).
-    - Opção 6: Proporção de Tela (Aspect Ratio) com alternância entre Auto (padrão responsivo horizontal/vertical), 3:4 Original e 16:9 True Widescreen.
-    - Opção 7: Nuvem (Cloud Save Google Drive RFC 8628) acionando o gestor de backup e restauração na nuvem.
-  - Correção de estabilidade no Menu de Título: reparada a passagem do objeto `this` (`selfObj`) na invocação nativa de `g.a(Graphics)`, eliminando crash/segfault ao acessar Settings no título.
-  - Correção da tecla Voltar/Back no menu de opções: o Canvas do HL2 (`cd.java` e `bd.java`) intercepta `-7` e despacha `8`; a rotina agora trata `8` como Voltar imediato (em vez de ciclar itens), fecha o submenu limpando `parent.b = null` e chama `parent.b(2)` com a assinatura correta `b:(I)V`.
-- [x] Detecção e suporte completo de Saves Locais e Restauração no Cloud Save:
-  - Mapeamento da arquitetura `com.xce.io.XFile` do HL2: os arquivos no disco são nomeados via `XF<hash>.rms` (`XF48409.rms` para Slot 1 `/g1`, `XF48410.rms` para Slot 2 `/g2`, `XF48411.rms` para Slot 3 `/g3`, e `XF48626..8.rms` para metadados `/n1..3`).
-  - Implementada decodificação nativa da classe do personagem (`Berserker`, `Cavaleiro`, `Ladino`) a partir de `byArray3[4]` com a chave `m = {5, 71, 24, 59, 43, 16}`, exibindo o resumo enriquecido nos cards: `"Slot 1: Cavaleiro (Nv. 15)"`.
-  - Correção total da restauração do save:
-    - Limpeza de cache estático em memória `com.xce.io.XFile.store` (`Hashtable_clear`).
-    - Encerramento da sessão de jogo ativa in-game e retorno automático ao Menu de Título (`u.var_int_a = 2`, `ak.c()`, `bg.bg_a()` invocando `u.var_u_a.k()`).
-    - O botão "Continue" no Menu de Título é atualizado instantaneamente para carregar os dados restaurados do disco.
-- [x] Correções de controles touch / layout (Android):
-  - Retrato em 16:9: o viewport agora mantém a proporção real (`g_screenWidth` x 320), sem esticar verticalmente.
-  - Botões virtuais MENU (-7) e MAPA (42 / '*') ajustados para as teclas do HL2 (antes -8 e 48, ignoradas pelo jogo).
-  - Menu Options: D-Pad cima não fecha mais; tecla '5' agora aciona FPS/Tela/Nuvem (nos itens 0..4 continua fechando e salvando, como no original); Back identificado só pelo keyCode.
-  - Gerenciador de Cloud Save: toque usa o mesmo espaço de coordenadas do desenho (renderer output) e ignora eventos de mouse sintéticos gerados pelo toque.
+- [x] Auto-Updater OTA (GitHub Releases API) validado e testado com sucesso no Android (atualização automática sem reinstalação manual).
+- [x] Exibição da versão nativa da recompilação no Menu de Título (`bw.a:(Ljavax/microedition/lcdui/Graphics;)V`):
+  - Logo abaixo do texto original `"V.1.0.2"`, renderiza `"v0.2.2"` com a fonte bitmap original do jogo estilizada em tom azul celeste (`0x80C0FF`), facilitando a conferência da versão ativa.
+- [x] Integração completa de configurações personalizadas nos Menus do Jogo (`l.class` expandido para 9 itens):
+  - Menu de Título -> *Settings* e Menu In-Game -> *System -> Options*.
+  - Opções 0..4: Volume de Som, BGM, Vibração, Iluminação e Guia de Teclas (comportamento e persistência originais).
+  - Opção 5: Taxa de Quadros (FPS) (15 FPS padrão / 30 FPS turbo).
+  - Opção 6: Proporção de Tela (Auto / 3:4 / 16:9).
+  - Opção 7: Nuvem (Google Drive Cloud Save RFC 8628).
+  - Opção 8: Atualizações (`Update: Check`), permitindo verificar novas releases manualmente com um clique a partir do jogo.
+- [x] Correção do recarregamento em tempo real do Save Restaurado da Nuvem:
+  - Corrigidos os nomes reais de bytecode em `CloudSave::update`: limpa `XFile.store:Ljava/util/Hashtable;`, redefine modo de jogo `u.a:I = 2`, limpa `u.d:B = 0`, invoca o método de instância `u.k:()V` para ler imediatamente os novos arquivos RMS gravados em disco e repopular os slots/metadados, descarta e recria o menu de título com `bg.a:()V` e `bg.a:()Lbg;`, notifica o canvas `bd.a:()V` e fecha o modal de nuvem.
+  - O jogador retorna instantaneamente ao Menu de Título com a opção "Continue" ativada e apontando para o save restaurado, sem necessidade de reiniciar o aplicativo.
 - [x] Validação de persistência e carregamento RMS no disco e na nuvem.
 - [ ] Validação de jogabilidade contínua (combate em mapa aberto e diálogos com NPCs).
 

@@ -16,6 +16,7 @@ O projeto adota o padrão `vMAJOR.MINOR.PATCH`:
   - `v0.4.0` — **Marco 3:** Suporte consolidado multiplataforma (Android, Switch, Linux, Windows).
 - **PATCH (v0.x.y):** Correções de bugs pontuais, ajustes visuais, patches de áudio ou melhorias de compatibilidade.
   - `v0.2.1` — **Patch 1:** Correção da restauração de saves na nuvem (limpeza de `XFile.store`, encerramento de sessão in-game com transição imediata para o Title Screen), identificação de classes dos heróis nos slots (`Berserker`, `Cavaleiro`, `Ladino`) e validação do sistema OTA.
+  - `v0.2.2` — **Patch 2:** Recarregamento em tempo real do save restaurado da nuvem (resolução de símbolos de bytecode `u.k:()V`, `bg.a:()V`, `bd.a:()V`), badge visual da versão nativa (`v0.2.2`) centralizado no Menu de Título e botão dedicado para verificação de atualizações no menu de configurações (`Update: Check`).
 
 ---
 
