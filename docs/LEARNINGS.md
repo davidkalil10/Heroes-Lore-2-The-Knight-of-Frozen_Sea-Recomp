@@ -58,6 +58,16 @@
 - **Pipeline CI/CD no GitHub Actions (`.github/workflows/build.yml`):**
   - Configurado com 4 jobs concorrentes de build nativo: `build-switch` (devkitpro/devkita64), `build-windows` (MSYS2 UCRT64), `build-linux` (Ubuntu 22.04 + appimagetool), e `build-android` (Java 17 + Gradle 8 + NDK 26).
   - Artefatos enviados via `actions/upload-artifact@v4` no push para a branch `main` sem criação de release ou tag, viabilizando testes antecipados antes da publicação oficial.
-  - **Build Linux & Libcurl:** No Linux, `cloud_save.cpp` e `updater.cpp` utilizam libcurl; foi adicionado `find_package(CURL REQUIRED)` e `target_link_libraries(heroes_lore_2 PRIVATE CURL::libcurl)` no `CMakeLists.txt` para plataformas UNIX.
+- **Menu de Opções Unificado no Heroes Lore 2 (`l.class`):**
+  - Diferente do Heroes Lore 1 onde o menu de opções era `be.class`, no Heroes Lore 2 tanto o menu de título (*Settings*, instanciado por `bg.java:64`) quanto o in-game (*System -> Options*, instanciado por `ad.java:54`) compartilham a classe `l.class` (`l` extends `g`).
+  - O campo `this.a` booleano indica o contexto: `false` para o Menu de Título e `true` para o Menu In-Game.
+  - O construtor original inicializa `this.i = 5` (quantidade de opções). Através dos hooks nativos `l_init_native`, `l_a_native` e `l_draw_native`, o total de itens foi expandido para 8 (`this.i = 8`).
+  - O loop de navegação herdado de `g.class` (`boolean_c(n2, n3)`) gerencia automaticamente o ciclo de seleção de 0 a 7, e o método `l_cursor_native` (`l.b:(II)V`) renderiza as setas animadas `<` e `>` perfeitamente alinhadas a cada linha.
+  - A renderização gráfica (`l_draw_native`) utiliza o motor original de fontes do jogo (`bk.a`) e a biblioteca de strings do JAR (`as.var_e_a`), desenhando:
+    - Linha 5: **FPS** (15 FPS como padrão nostalgia J2ME, alternável para 30 FPS turbo fluido via `Platform::toggleFps()`).
+    - Linha 6: **Tela** (Modo Auto como padrão, adaptando dinamicamente para 16:9 widescreen se a tela for horizontal ou 3:4 se for vertical, alternável para 3:4 e 16:9 via `Platform::nextAspect()` / `prevAspect()`).
+    - Linha 7: **Nuvem** (Google Drive Cloud Save RFC 8628 via `Platform::openCloudSave()`).
+  - Tanto no Menu de Título quanto In-Game, o botão RSK / Voltar / Cancelar (`-7`, Backspace, Esc, Gamepad B) salva as configurações no RecordStore `/o` e retorna suavemente para a tela anterior.
+
 
 

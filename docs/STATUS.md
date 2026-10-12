@@ -29,8 +29,14 @@ _Última atualização: 2026-10-12 (Marco 0 parcial)_
   - Nintendo Switch: TitleID `0100484C32000000`, NRO `heroes_lore_2.nro`, RomFS embutido.
   - Linux: AppImage portátil `heroes_lore_2_linux_x86_64.AppImage` + Desktop Entry + Ícone oficial.
   - Windows: `heroes_lore_2.exe` + ZIP standalone com runtime UCRT64 e assets.
-- [x] Auto-Updater OTA e Cloud Save Google Drive direcionados exclusivamente para o repositório e pasta do Heroes Lore 2 (`heroes_lore_2_save.json`).
-- [x] GitHub Actions CI/CD automatizado (`.github/workflows/build.yml`) para compilar e gerar artefatos para download das 4 plataformas na branch `main`.
+- [x] Integração completa de configurações personalizadas nos Menus do Jogo:
+  - Menu de Título -> *Settings* e Menu In-Game -> *System -> Options* (ambos mapeados via `l.class` / `l` extends `g`).
+  - Menu expandido de 5 para 8 opções nativas com ciclo e setas de seleção `<` e `>`:
+    - Opções 0..4: Volume de Som, BGM, Vibração, Iluminação e Guia de Teclas (comportamento e persistência originais em `/o`).
+    - Opção 5: Taxa de Quadros (FPS) com alternância instantânea entre 15 FPS (padrão J2ME) e 30 FPS (turbo fluido).
+    - Opção 6: Proporção de Tela (Aspect Ratio) com alternância entre Auto (padrão responsivo horizontal/vertical), 3:4 Original e 16:9 True Widescreen.
+    - Opção 7: Nuvem (Cloud Save Google Drive RFC 8628) acionando o gestor de backup e restauração na nuvem.
+  - Janela modal e layout adaptados para comportar os 8 itens mantendo identidade visual, molduras e paleta autênticas.
 - [ ] Validação de jogabilidade contínua (combate em mapa aberto e diálogos com NPCs).
 - [ ] Validação de salvamento e carregamento RMS.
 
