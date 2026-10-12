@@ -2487,9 +2487,16 @@ static void bw_a_native(VM& vm, Value* args, Value*) {
   FieldInfo* fImgO = asClass ? vm.findField(asClass, "o:[Ljavax/microedition/lcdui/Image;") : nullptr;
   Array* arrO = (fImgO && fImgO->isStatic && fImgO->index >= 0) ? static_cast<Array*>(asClass->statics[fImgO->index].o) : nullptr;
 
+  auto getArrayElem = [](Array* arr, int idx) -> Object* {
+    if (!arr || idx < 0 || idx >= arr->len) return nullptr;
+    Object** r = arr->refs();
+    return r ? r[idx] : nullptr;
+  };
+
   // 2. Logo do jogo (arrO[1]) em (bw_i, bw_j + 3, anchor=33)
-  if (arrO && arrO->len > 1 && arrO->elems[1].o && arrO->elems[1].o->kind == K_IMAGE) {
-    graphics->drawImage(static_cast<ImageObj*>(arrO->elems[1].o), bw_i, bw_j + 3, 33);
+  Object* img1 = getArrayElem(arrO, 1);
+  if (img1 && img1->kind == K_IMAGE) {
+    graphics->drawImage(static_cast<ImageObj*>(img1), bw_i, bw_j + 3, 33);
   }
 
   // 3. Texto da versão original "V.1.0.2"
@@ -2519,13 +2526,15 @@ static void bw_a_native(VM& vm, Value* args, Value*) {
   }
 
   // 5. Logo operadora/SKT (arrO[2]) em (5, 5, anchor=20)
-  if (arrO && arrO->len > 2 && arrO->elems[2].o && arrO->elems[2].o->kind == K_IMAGE) {
-    graphics->drawImage(static_cast<ImageObj*>(arrO->elems[2].o), 5, 5, 20);
+  Object* img2 = getArrayElem(arrO, 2);
+  if (img2 && img2->kind == K_IMAGE) {
+    graphics->drawImage(static_cast<ImageObj*>(img2), 5, 5, 20);
   }
 
   // 6. Rodapé do jogo (arrO[0]) em (bw_i, bw_h - 26, anchor=17)
-  if (arrO && arrO->len > 0 && arrO->elems[0].o && arrO->elems[0].o->kind == K_IMAGE) {
-    graphics->drawImage(static_cast<ImageObj*>(arrO->elems[0].o), bw_i, bw_h - 26, 17);
+  Object* img0 = getArrayElem(arrO, 0);
+  if (img0 && img0->kind == K_IMAGE) {
+    graphics->drawImage(static_cast<ImageObj*>(img0), bw_i, bw_h - 26, 17);
   }
 }
 
