@@ -2080,14 +2080,17 @@ static void l_a_native(VM& vm, Value* args, Value* ret) {
   };
 
   // 2. Se tecla RSK / Cancelar / Voltar (-7, -8, Esc=27, ou 8 interceptado pelo Canvas do HL2)
-  if (n3 == -7 || n2 == -7 || n3 == -8 || n2 == -8 || n3 == 27 || n2 == 8 || n3 == 8) {
+  // Obs.: n2 = gameAction (UP=1, LEFT=2, RIGHT=5, DOWN=6, FIRE=8) e n3 = keyCode.
+  // O Canvas do HL2 converte -7 em keyCode 8. O keyCode 53 ('5') gera gameAction FIRE(8),
+  // portanto Back deve ser identificado SOMENTE pelo keyCode (n3), nunca por n2 == 8.
+  if (n3 == -7 || n3 == 8 || n3 == -8 || n3 == 27 || n2 == -7 || n2 == -8) {
     closeOptionsMenu();
     ret[0].i = 1;
     return;
   }
 
   // 3. Se tecla de confirmação ('5' / 53 / Enter / 13 / 32 / Fire)
-  if (n3 == 53 || n3 == -5 || n2 == -5 || n3 == 13 || n3 == 32 || n2 == 1) {
+  if (n3 == 53 || n3 == -5 || n3 == 13 || n3 == 32) {
     if (curH < 5) {
       closeOptionsMenu();
       ret[0].i = 1;

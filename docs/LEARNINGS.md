@@ -97,3 +97,9 @@
 
 
 
+
+## Sessao 6 (Touch, 16:9 retrato e teclas do menu de opcoes)
+- **Retrato 16:9 esticado:** `calculateLayout` fixava o gameRect em 240x320 (3:4) mesmo com `g_screenWidth` = 568. Agora usa `g_screenWidth x g_screenHeight` (area de jogo mais larga e baixa, sem distorcer).
+- **Botoes MENU/MAPA touch:** o HL2 nao usa -8 (CLR) nem 48 ('0' = pocao). Menu = -7 (Canvas converte em keyCode 8) e Mapa = 42 ('*').
+- **gameAction x keyCode em `l.a(II)`:** parametros = (gameAction, keyCode). O keyCode 53 produz gameAction FIRE(8) e D-Pad cima produz gameAction 1 (UP). Testar `n2 == 8` como Back ou `n2 == 1` como confirmar quebrava navegacao e '5'. Back = keyCode 8/-7/-8/27; confirmar = keyCode 53/-5/13/32.
+- **Modais no Android:** `SDL_GetWindowSize` pode diferir de `SDL_GetRendererOutputSize` (espaco em que o modal e desenhado) e o toque tambem gera `SDL_MOUSEBUTTONDOWN` com `which == SDL_TOUCH_MOUSEID` (duplicado). Modais devem usar o renderer output size e ignorar mouse sintetico.

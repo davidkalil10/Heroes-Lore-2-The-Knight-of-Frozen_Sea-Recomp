@@ -42,6 +42,11 @@ _Última atualização: 2026-10-12 (Marco 0 parcial)_
   - Mapeamento da arquitetura `com.xce.io.XFile` do HL2: os arquivos no disco são nomeados via `XF<hash>.rms` (`XF48409.rms` para Slot 1 `/g1`, `XF48410.rms` para Slot 2 `/g2`, `XF48411.rms` para Slot 3 `/g3`, e `XF48626..8.rms` para metadados `/n1..3`).
   - Implementado decodificador nativo de nível do herói (`decodeHl2HeroLevel`) com a chave XOR `n = {14, 26, 72, 10, 28, 98}`.
   - `Platform::getRmsDir` aprimorado para priorizar pastas com saves reais (`build/reference/extracted/rms`, `reference/extracted/rms`, etc.).
+- [x] Correções de controles touch / layout (Android):
+  - Retrato em 16:9: o viewport agora mantém a proporção real (`g_screenWidth` x 320), sem esticar verticalmente.
+  - Botões virtuais MENU (-7) e MAPA (42 / '*') ajustados para as teclas do HL2 (antes -8 e 48, ignoradas pelo jogo).
+  - Menu Options: D-Pad cima não fecha mais; tecla '5' agora aciona FPS/Tela/Nuvem (nos itens 0..4 continua fechando e salvando, como no original); Back identificado só pelo keyCode.
+  - Gerenciador de Cloud Save: toque usa o mesmo espaço de coordenadas do desenho (renderer output) e ignora eventos de mouse sintéticos gerados pelo toque.
 - [x] Validação de persistência e carregamento RMS no disco e na nuvem.
 - [ ] Validação de jogabilidade contínua (combate em mapa aberto e diálogos com NPCs).
 

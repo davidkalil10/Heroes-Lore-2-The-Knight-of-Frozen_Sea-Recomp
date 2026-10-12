@@ -1105,12 +1105,13 @@ static GamepadLayout calculateLayout(int winW, int winH) {
 
   if (layout.isPortrait) {
     // Modo Retrato (Smartphone em pé / TATE)
-    // O jogo ocupa a tela no maior tamanho possível mantendo a proporção exata 240x320
-    float scaleW = (float)winW / 240.0f;
-    float scaleH = (float)winH / 320.0f;
+    // O jogo ocupa a tela no maior tamanho possível mantendo a proporção real do viewport
+    // (240x320 em 3:4 ou 568x320 em 16:9 True Widescreen) -> sem esticar verticalmente
+    float scaleW = (float)winW / (float)g_screenWidth;
+    float scaleH = (float)winH / (float)g_screenHeight;
     float scale = std::min(scaleW, scaleH);
-    int gameW = (int)(240.0f * scale);
-    int gameH = (int)(320.0f * scale);
+    int gameW = (int)((float)g_screenWidth * scale);
+    int gameH = (int)((float)g_screenHeight * scale);
     int gameX = (winW - gameW) / 2;
 
     // Barra de Sistema no topo (MENU e MAPA) com proporção ampla e abaixo da status bar
@@ -1168,8 +1169,9 @@ static GamepadLayout calculateLayout(int winW, int winH) {
       layout.buttons.push_back({ -7, actX + (int)(r5 * 1.35f), actY + (int)(r5 * 1.15f), rSub, rSub * 2, rSub * 2, s_texBtnRskRound ? s_texBtnRskRound : s_texBtnRsk });
 
       // Barra de Sistema no topo (apenas MENU e MAPA, proporcionais e espaçados)
-      layout.buttons.push_back({ -8, (int)(winW * 0.26f), topY, 0, pillW, pillH, s_texBtnMenu });
-      layout.buttons.push_back({ 48, (int)(winW * 0.74f), topY, 0, pillW, pillH, s_texBtnMap });
+      // HL2: MENU = -7 (Canvas converte para 8), MAPA = 42 ('*')
+      layout.buttons.push_back({ -7, (int)(winW * 0.26f), topY, 0, pillW, pillH, s_texBtnMenu });
+      layout.buttons.push_back({ 42, (int)(winW * 0.74f), topY, 0, pillW, pillH, s_texBtnMap });
 
       // Alternância de Poção (< e >) perfeitamente centralizadas no eixo horizontal da tela
       int rArrow = (int)(winW * 0.055f);
@@ -1222,7 +1224,7 @@ static GamepadLayout calculateLayout(int winW, int winH) {
       // MENU proporcional e grande no topo da coluna esquerda
       int menuW = std::min(240, (int)(controlLeftW * 0.48f));
       int menuH = (int)(menuW * (100.0f / 240.0f));
-      layout.buttons.push_back({ -8, controlLeftW / 2, (int)(winH * 0.14f), 0, menuW, menuH, s_texBtnMenu });
+      layout.buttons.push_back({ -7, controlLeftW / 2, (int)(winH * 0.14f), 0, menuW, menuH, s_texBtnMenu });
 
       // Setas circulares para pocoes (< e >) na coluna ESQUERDA (entre MENU e D-Pad, super ergonomico)
       int rArrowLand = (int)(winH * 0.075f);
@@ -1233,7 +1235,7 @@ static GamepadLayout calculateLayout(int winW, int winH) {
       // MAPA e R no topo da coluna direita (grandes e legiveis)
       int topPillW = std::min(200, (int)(controlRightW * 0.38f));
       int topPillH = (int)(topPillW * (100.0f / 240.0f));
-      layout.buttons.push_back({ 48, controlRightX + (int)(controlRightW * 0.28f), (int)(winH * 0.14f), 0, topPillW, topPillH, s_texBtnMap });
+      layout.buttons.push_back({ 42, controlRightX + (int)(controlRightW * 0.28f), (int)(winH * 0.14f), 0, topPillW, topPillH, s_texBtnMap });
       layout.buttons.push_back({ -7, controlRightX + (int)(controlRightW * 0.72f), (int)(winH * 0.14f), 0, topPillW, topPillH, s_texBtnRsk });
 
       // Botoes de acao no formato ergonomico favorito na coluna direita (amplo e espacoso sem as setas!)
@@ -1458,13 +1460,15 @@ bool Platform::pollEvents(VM& vm) {
         }
       } else if (ev.type == SDL_FINGERDOWN) {
         int winW = 0, winH = 0;
-        SDL_GetWindowSize(s_window, &winW, &winH);
+        SDL_GetRendererOutputSize(s_renderer, &winW, &winH);
+        if (winW <= 0 || winH <= 0) SDL_GetWindowSize(s_window, &winW, &winH);
         float tx = 0, ty = 0;
         int tw = 0, th = 0;
         getTouchCoords(ev.tfinger, winW, winH, tx, ty, tw, th);
         Updater::handleClick((int)tx, (int)ty);
         continue;
       } else if (ev.type == SDL_MOUSEBUTTONDOWN) {
+        if (ev.button.which == SDL_TOUCH_MOUSEID) continue;
         Updater::handleClick(ev.button.x, ev.button.y);
         continue;
       }
@@ -1505,13 +1509,15 @@ bool Platform::pollEvents(VM& vm) {
         }
       } else if (ev.type == SDL_FINGERDOWN) {
         int winW = 0, winH = 0;
-        SDL_GetWindowSize(s_window, &winW, &winH);
+        SDL_GetRendererOutputSize(s_renderer, &winW, &winH);
+        if (winW <= 0 || winH <= 0) SDL_GetWindowSize(s_window, &winW, &winH);
         float tx = 0, ty = 0;
         int tw = 0, th = 0;
         getTouchCoords(ev.tfinger, winW, winH, tx, ty, tw, th);
         CloudSave::handleClick((int)tx, (int)ty, &vm);
         continue;
       } else if (ev.type == SDL_MOUSEBUTTONDOWN) {
+        if (ev.button.which == SDL_TOUCH_MOUSEID) continue;
         CloudSave::handleClick(ev.button.x, ev.button.y, &vm);
         continue;
       }
