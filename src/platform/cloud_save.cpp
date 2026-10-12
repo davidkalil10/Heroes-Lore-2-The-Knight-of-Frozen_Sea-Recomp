@@ -872,7 +872,7 @@ static Hl2HeroInfo decodeHl2HeroInfo(const std::vector<uint8_t>& rec) {
 
   // Bloco 1 (tamanho short em big-endian)
   uint16_t len1 = ((uint16_t)rec[0] << 8) | (uint16_t)rec[1];
-  if (len1 >= 6 && 2 + len1 <= rec.size()) {
+  if (len1 >= 6 && (size_t)(2 + len1) <= rec.size()) {
     // Chave m = {5, 71, 24, 59, 43, 16};
     // Indice 4 decriptado com m[5] = 16 (cb.b)
     uint8_t cid = rec[2 + 4] ^ 16;
@@ -1170,8 +1170,8 @@ void CloudSave::update(VM* vm) {
             if (newBg) {
               // Limpa qualquer submenu modal aberto em bg (ex: tela de configuracoes)
               FieldInfo* fB = s_activeVm->findField(newBg->cls, "b");
-              if (fB && !fB->isStatic && fB->index >= 0 && fB->index < (int)static_cast<Instance*>(newBg)->fields.size()) {
-                static_cast<Instance*>(newBg)->fields[fB->index].o = nullptr;
+              if (fB && !fB->isStatic && fB->index >= 0 && fB->index < (int)static_cast<Instance*>(newBg)->f.size()) {
+                static_cast<Instance*>(newBg)->f[fB->index].o = nullptr;
               }
             }
           }
@@ -1185,8 +1185,8 @@ void CloudSave::update(VM* vm) {
             Object* bdObj = bdClass->statics[fVarBdA->index].o;
             if (bdObj) {
               FieldInfo* fG = s_activeVm->findField(bdObj->cls, "g");
-              if (fG && !fG->isStatic && fG->index >= 0 && fG->index < (int)static_cast<Instance*>(bdObj)->fields.size()) {
-                static_cast<Instance*>(bdObj)->fields[fG->index].i = 1;
+              if (fG && !fG->isStatic && fG->index >= 0 && fG->index < (int)static_cast<Instance*>(bdObj)->f.size()) {
+                static_cast<Instance*>(bdObj)->f[fG->index].i = 1;
               }
             }
           }
