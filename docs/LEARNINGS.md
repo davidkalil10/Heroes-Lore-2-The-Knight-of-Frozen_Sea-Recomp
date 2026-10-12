@@ -141,5 +141,10 @@
 - **Intercepção de `bw.a:(Ljavax/microedition/lcdui/Graphics;)V` para Badge de Versão:**
   - A classe `bw.class` renderiza o fundo do título e o texto original `"V.1.0.2"`.
   - Registrando um hook nativo em `VM::registerNatives` para `bw.a:(Ljavax/microedition/lcdui/Graphics;)V`, é possível reutilizar a própria rotina de renderização e invocar `bk.a:(Ljavax/microedition/lcdui/Graphics;II[BII)V` para desenhar `"v0.2.2"` centralizado abaixo de `"V.1.0.2"` em tom azul celeste (`0x80C0FF`), mantendo 100% da fidelidade estética dos bitmaps J2ME.
+- **Acesso a Elementos de `hl::Array` na VM C++:**
+  - Na estrutura `hl::Array : Object` (`src/vm/vm.h`), os dados brutos são mantidos em `std::vector<uint8_t> data`.
+  - Para arrays de referências (`type == 'L'`), o acesso aos ponteiros de objetos deve ser feito exclusivamente através do método `arr->refs()`, que retorna `Object**` (`reinterpret_cast<Object**>(data.data())`), por exemplo: `arr->refs()[index]`.
+  - Tentar acessar propriedades como `.elems` resulta em erro de compilação em todas as plataformas.
+
 
 
