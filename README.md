@@ -27,7 +27,11 @@ O projeto executa o **bytecode original diretamente no motor C++**, sem emulaç�
   - Sincronização e backup de saves na nuvem via RFC 8628 (Device Flow).
   - Permite continuar o mesmo progresso em qualquer dispositivo (PC, Android, Linux ou Switch).
 - ⚙️ **Menu de Opções Integrado (`l.class`):**
-  - Configurações de FPS, Proporção de Tela e Cloud Save integradas diretamente nos menus originais do jogo (**Menu de Título → Settings** e **Menu In-Game → System → Options**).
+  - Configurações de Idioma, FPS, Proporção de Tela, Cloud Save e Atualizações integradas diretamente nos menus originais do jogo (**Menu de Título → Settings** e **Menu In-Game → System → Options**).
+- 🌐 **Sistema Multi-idiomas & Tradução PT-BR (Padrão):**
+  - Tradução integral para Português do Brasil (PT-BR) de todos os menus, itens, missões, habilidades e diálogos de mapa.
+  - Alternância de idioma a quente (em tempo real) pelo menu de configurações sem necessidade de reiniciar ou trocar de mapa.
+  - Arquitetura modular extensível em `assets/lang/<codigo>/` pronta para receber novos idiomas comunitários.
 - 🔄 **Atualizações OTA (Over-The-Air):**
   - Verificação e notificação automática de novas versões lançadas diretamente pelo GitHub Releases.
 

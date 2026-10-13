@@ -18,6 +18,7 @@ O projeto adota o padrão `vMAJOR.MINOR.PATCH`:
   - `v0.2.1` — **Patch 1:** Correção da restauração de saves na nuvem (limpeza de `XFile.store`, encerramento de sessão in-game com transição imediata para o Title Screen), identificação de classes dos heróis nos slots (`Berserker`, `Cavaleiro`, `Ladino`) e validação do sistema OTA.
   - `v0.2.2` — **Patch 2:** Recarregamento em tempo real do save restaurado da nuvem (resolução de símbolos de bytecode `u.k:()V`, `bg.a:()V`, `bd.a:()V`), badge visual da versão nativa (`v0.2.2`) centralizado no Menu de Título e botão dedicado para verificação de atualizações no menu de configurações (`Update: Check`).
   - `v0.2.3` — **Patch 3:** Correção do mapeamento dos botões Joy-Con no Nintendo Switch no modal de nuvem (Joy-Con X=Restaurar, Joy-Con Y=Desconectar) e recarregamento in-game direto e transparente de saves restaurados via `u.a:(I)V` (arg 1) sem telas de pausa (`bd.q = 0`) ou cliques intermediários.
+  - `v0.2.4` — **Patch 4:** Suporte completo a múltiplos idiomas (i18n / localização) com tradução integral para Português do Brasil (PT-BR como padrão) e Inglês (EN). Interceptação transparente de 19 arquivos `.tdf` (`/t/`), 34 arquivos de dados de itens (`/itm/`) e 111 mapas com nomes e diálogos (`/m/m/`). Recarregamento em tempo real (*live reload*) de textos e tabelas em memória sem necessidade de transição de mapa ou reinício. Nova opção "Idioma: PT-BR / English" no menu de configurações in-game.
 
 ---
 

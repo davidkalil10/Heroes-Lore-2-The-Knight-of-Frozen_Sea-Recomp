@@ -52,6 +52,7 @@ public:
   static void nextLanguage(VM* vm = nullptr);
   static void prevLanguage(VM* vm = nullptr);
   static std::string getLanguageDisplayName(const std::string& langCode);
+  static std::string getLanguageDisplayName();
   static void reloadLanguage(VM& vm);
 
   // Sistema de Arquivos / Assets Portável (PC, Android APK, Switch RomFS)

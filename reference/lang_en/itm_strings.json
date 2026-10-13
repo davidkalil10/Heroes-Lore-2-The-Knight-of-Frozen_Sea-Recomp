@@ -1,0 +1,2382 @@
+{
+  "00": [
+    {
+      "name": "Twohand Sword",
+      "desc": ""
+    },
+    {
+      "name": "Zweihander",
+      "desc": ""
+    },
+    {
+      "name": "Blade",
+      "desc": ""
+    },
+    {
+      "name": "Brandish",
+      "desc": ""
+    },
+    {
+      "name": "Heavy Brandish",
+      "desc": ""
+    },
+    {
+      "name": "Claymore",
+      "desc": ""
+    },
+    {
+      "name": "Heavy Claymore",
+      "desc": ""
+    },
+    {
+      "name": "Bastard",
+      "desc": ""
+    },
+    {
+      "name": "Heat Claymore",
+      "desc": ""
+    },
+    {
+      "name": "Heavy Bastard",
+      "desc": ""
+    },
+    {
+      "name": "Bastard Wing",
+      "desc": ""
+    },
+    {
+      "name": "Hwandudo",
+      "desc": ""
+    },
+    {
+      "name": "Strong Hwandudo",
+      "desc": ""
+    },
+    {
+      "name": "Caprus",
+      "desc": ""
+    },
+    {
+      "name": "Wind Caprus",
+      "desc": ""
+    },
+    {
+      "name": "Heavy Zweihander",
+      "desc": ""
+    },
+    {
+      "name": "Heavy Blade",
+      "desc": ""
+    },
+    {
+      "name": "Wind Brandish",
+      "desc": ""
+    },
+    {
+      "name": "Life Stealer",
+      "desc": ""
+    },
+    {
+      "name": "Bone Breaker",
+      "desc": ""
+    },
+    {
+      "name": "Black Ship Sword",
+      "desc": ""
+    },
+    {
+      "name": "Lightning",
+      "desc": ""
+    },
+    {
+      "name": "Song Blade",
+      "desc": ""
+    },
+    {
+      "name": "Sword of Terror",
+      "desc": ""
+    },
+    {
+      "name": "True Hwandudo",
+      "desc": ""
+    },
+    {
+      "name": "Falchion",
+      "desc": ""
+    },
+    {
+      "name": "Excalibur",
+      "desc": ""
+    },
+    {
+      "name": "Lord's Sword",
+      "desc": ""
+    },
+    {
+      "name": "Soul Breaker",
+      "desc": ""
+    },
+    {
+      "name": "Dark Dragon's Fang",
+      "desc": ""
+    },
+    {
+      "name": "Thunder Blade ",
+      "desc": ""
+    },
+    {
+      "name": "Ragnarok",
+      "desc": ""
+    },
+    {
+      "name": "Phantom Blade",
+      "desc": ""
+    }
+  ],
+  "01": [
+    {
+      "name": "Logging Axe",
+      "desc": ""
+    },
+    {
+      "name": "Thick Logging Axe",
+      "desc": ""
+    },
+    {
+      "name": "Ruk Axe",
+      "desc": ""
+    },
+    {
+      "name": "Metal Ruk Axe",
+      "desc": ""
+    },
+    {
+      "name": "Heavy Ruk Axe",
+      "desc": ""
+    },
+    {
+      "name": "Battle Axe",
+      "desc": ""
+    },
+    {
+      "name": "Steel Battle Axe",
+      "desc": ""
+    },
+    {
+      "name": "War Axe",
+      "desc": ""
+    },
+    {
+      "name": "Heavy War Axe",
+      "desc": ""
+    },
+    {
+      "name": "Blood Axe",
+      "desc": ""
+    },
+    {
+      "name": "Heavy Blood Axe",
+      "desc": ""
+    },
+    {
+      "name": "Brave Axe",
+      "desc": ""
+    },
+    {
+      "name": "True Brave Axe",
+      "desc": ""
+    },
+    {
+      "name": "Neck Cutter",
+      "desc": ""
+    },
+    {
+      "name": "Heavy Neck Cutter",
+      "desc": ""
+    },
+    {
+      "name": "Axe of Destruction",
+      "desc": ""
+    },
+    {
+      "name": "Dark War Axe ",
+      "desc": ""
+    },
+    {
+      "name": "Helder Axe",
+      "desc": ""
+    },
+    {
+      "name": "Red Lion Axe",
+      "desc": ""
+    },
+    {
+      "name": "Rock-Cleaver Axe",
+      "desc": ""
+    },
+    {
+      "name": "Rock-Cleaver Axe of Vengeance",
+      "desc": ""
+    },
+    {
+      "name": "Demon's Soul",
+      "desc": ""
+    },
+    {
+      "name": "Executioner's Axe",
+      "desc": ""
+    },
+    {
+      "name": "Crimson Axe",
+      "desc": ""
+    },
+    {
+      "name": "Berdiche's Axe",
+      "desc": ""
+    },
+    {
+      "name": "Thunderstrike",
+      "desc": ""
+    },
+    {
+      "name": "Lord's Axe",
+      "desc": ""
+    },
+    {
+      "name": "Dark Frenzy Axe",
+      "desc": ""
+    }
+  ],
+  "02": [
+    {
+      "name": "Short Sword",
+      "desc": ""
+    },
+    {
+      "name": "Long Sword",
+      "desc": ""
+    },
+    {
+      "name": "Knight Sword",
+      "desc": ""
+    },
+    {
+      "name": "Broadsword",
+      "desc": ""
+    },
+    {
+      "name": "Sharpened Broadsword",
+      "desc": ""
+    },
+    {
+      "name": "Knight Saber",
+      "desc": ""
+    },
+    {
+      "name": "Iron Saber",
+      "desc": ""
+    },
+    {
+      "name": "Gladius",
+      "desc": ""
+    },
+    {
+      "name": "Heavy Gladius",
+      "desc": ""
+    },
+    {
+      "name": "Saw-Tooth Sword",
+      "desc": ""
+    },
+    {
+      "name": "Steel Saw-Tooth Sword",
+      "desc": ""
+    },
+    {
+      "name": "Killer's Sword",
+      "desc": ""
+    },
+    {
+      "name": "Dark Killer's Sword",
+      "desc": ""
+    },
+    {
+      "name": "Heat Killer's Sword",
+      "desc": ""
+    },
+    {
+      "name": "Executioner's Blade",
+      "desc": ""
+    },
+    {
+      "name": "Bloody Saber",
+      "desc": ""
+    },
+    {
+      "name": "Giant's Sword",
+      "desc": ""
+    },
+    {
+      "name": "Assassination Sword",
+      "desc": ""
+    },
+    {
+      "name": "Red Lion's Sword",
+      "desc": ""
+    },
+    {
+      "name": "Seven-Branched Sword",
+      "desc": ""
+    },
+    {
+      "name": "Tri-Wave Greatsword",
+      "desc": ""
+    },
+    {
+      "name": "Destroyer",
+      "desc": ""
+    },
+    {
+      "name": "Massacre Sword",
+      "desc": ""
+    },
+    {
+      "name": "Crescent Saber",
+      "desc": ""
+    },
+    {
+      "name": "Berdiche's Sword",
+      "desc": ""
+    },
+    {
+      "name": "Dragon Slayer",
+      "desc": ""
+    },
+    {
+      "name": "Destroyer Lord's Sword",
+      "desc": ""
+    },
+    {
+      "name": "Wind Demon's Wrath Blade",
+      "desc": ""
+    }
+  ],
+  "03": [
+    {
+      "name": "Knife",
+      "desc": ""
+    },
+    {
+      "name": "Tamed Knife",
+      "desc": ""
+    },
+    {
+      "name": "Combat Knife",
+      "desc": ""
+    },
+    {
+      "name": "Iron Dagger",
+      "desc": ""
+    },
+    {
+      "name": "Double Dagger",
+      "desc": ""
+    },
+    {
+      "name": "Cowars",
+      "desc": ""
+    },
+    {
+      "name": "Iron Cowars",
+      "desc": ""
+    },
+    {
+      "name": "Hunter's Cowars",
+      "desc": ""
+    },
+    {
+      "name": "Crook",
+      "desc": ""
+    },
+    {
+      "name": "Metal Crook",
+      "desc": ""
+    },
+    {
+      "name": "Combat Crook",
+      "desc": ""
+    },
+    {
+      "name": "Quaid",
+      "desc": ""
+    },
+    {
+      "name": "Killer's Quaid",
+      "desc": ""
+    },
+    {
+      "name": "Darkness Quaid",
+      "desc": ""
+    },
+    {
+      "name": "Vein Cutter",
+      "desc": ""
+    },
+    {
+      "name": "Assassin Knife",
+      "desc": ""
+    },
+    {
+      "name": "Dagger of Chaos",
+      "desc": ""
+    },
+    {
+      "name": "Wind's Claw",
+      "desc": ""
+    },
+    {
+      "name": "Wolf's Shortblade",
+      "desc": ""
+    },
+    {
+      "name": "Soul Dagger",
+      "desc": ""
+    },
+    {
+      "name": "Shadow Killer",
+      "desc": ""
+    },
+    {
+      "name": "Demon-Slaying Crook",
+      "desc": ""
+    },
+    {
+      "name": "Soul Quaid",
+      "desc": ""
+    },
+    {
+      "name": "Nail of Terror",
+      "desc": ""
+    },
+    {
+      "name": "Fire Dragon's Claw",
+      "desc": ""
+    },
+    {
+      "name": "Blade of Darkness",
+      "desc": ""
+    },
+    {
+      "name": "Assassin's Dagger",
+      "desc": ""
+    },
+    {
+      "name": "Dragon Killer",
+      "desc": ""
+    },
+    {
+      "name": "Bahara's Dagger",
+      "desc": ""
+    },
+    {
+      "name": "Water Demon's Fang",
+      "desc": ""
+    },
+    {
+      "name": "Godslayer",
+      "desc": ""
+    },
+    {
+      "name": "Vermilion Bird's Beak",
+      "desc": ""
+    },
+    {
+      "name": "Phantom Quaid",
+      "desc": ""
+    }
+  ],
+  "04": [
+    {
+      "name": "Wooden Hammer",
+      "desc": ""
+    },
+    {
+      "name": "Hard Wooden Hammer",
+      "desc": ""
+    },
+    {
+      "name": "Pickaxe",
+      "desc": ""
+    },
+    {
+      "name": "Hard Pickaxe",
+      "desc": ""
+    },
+    {
+      "name": "Iron Maul",
+      "desc": ""
+    },
+    {
+      "name": "Long Mace",
+      "desc": ""
+    },
+    {
+      "name": "Battle Mace",
+      "desc": ""
+    },
+    {
+      "name": "Nail Hammer",
+      "desc": ""
+    },
+    {
+      "name": "Spike Hammer",
+      "desc": ""
+    },
+    {
+      "name": "War Hammer",
+      "desc": ""
+    },
+    {
+      "name": "Iron Star",
+      "desc": ""
+    },
+    {
+      "name": "Morning Star",
+      "desc": ""
+    },
+    {
+      "name": "Head Smasher",
+      "desc": ""
+    },
+    {
+      "name": "Bone Smasher",
+      "desc": ""
+    },
+    {
+      "name": "Break Chain",
+      "desc": ""
+    },
+    {
+      "name": "Oak Hammer",
+      "desc": ""
+    },
+    {
+      "name": "Steel Pickaxe",
+      "desc": ""
+    },
+    {
+      "name": "Wind Maul",
+      "desc": ""
+    },
+    {
+      "name": "Stun Mash",
+      "desc": ""
+    },
+    {
+      "name": "Arm Bash",
+      "desc": ""
+    },
+    {
+      "name": "Heavy Flail",
+      "desc": ""
+    },
+    {
+      "name": "Soul Heater",
+      "desc": ""
+    },
+    {
+      "name": "Squall Mash",
+      "desc": ""
+    },
+    {
+      "name": "Hammer of Terror",
+      "desc": ""
+    },
+    {
+      "name": "Bloody Chain",
+      "desc": ""
+    },
+    {
+      "name": "Black Dragon's Hoof",
+      "desc": ""
+    },
+    {
+      "name": "Legendary Bratan",
+      "desc": ""
+    },
+    {
+      "name": "Lord's Scepter",
+      "desc": ""
+    },
+    {
+      "name": "Grand Cross",
+      "desc": ""
+    },
+    {
+      "name": "Cyber Guard's Leg",
+      "desc": ""
+    },
+    {
+      "name": "Yornil",
+      "desc": ""
+    },
+    {
+      "name": "Phantom Star",
+      "desc": ""
+    },
+    {
+      "name": "Destruction Demon's Spine",
+      "desc": ""
+    }
+  ],
+  "05": [
+    {
+      "name": "Headband",
+      "desc": ""
+    },
+    {
+      "name": "Leather Cap",
+      "desc": ""
+    },
+    {
+      "name": "Tough Leather Cap",
+      "desc": ""
+    },
+    {
+      "name": "Bronze Helmet",
+      "desc": ""
+    },
+    {
+      "name": "Battle Helmet",
+      "desc": ""
+    },
+    {
+      "name": "Golden Helmet",
+      "desc": ""
+    },
+    {
+      "name": "Battle Helm",
+      "desc": ""
+    },
+    {
+      "name": "Great Helm",
+      "desc": ""
+    },
+    {
+      "name": "War Helm",
+      "desc": ""
+    },
+    {
+      "name": "Hardened Leather Cap",
+      "desc": ""
+    },
+    {
+      "name": "Wind Hat",
+      "desc": ""
+    },
+    {
+      "name": "Steel Helmet",
+      "desc": ""
+    },
+    {
+      "name": "Echo Circlet",
+      "desc": ""
+    },
+    {
+      "name": "Steel Mask",
+      "desc": ""
+    },
+    {
+      "name": "Mask of Destruction",
+      "desc": ""
+    },
+    {
+      "name": "Mad Demon's Mask",
+      "desc": ""
+    },
+    {
+      "name": "Demon-Slaying Circlet",
+      "desc": ""
+    },
+    {
+      "name": "Circlet of Battle",
+      "desc": ""
+    },
+    {
+      "name": "Helmet of Terror",
+      "desc": ""
+    },
+    {
+      "name": "Red Lion Helmet",
+      "desc": ""
+    },
+    {
+      "name": "Cyber Headgear",
+      "desc": ""
+    },
+    {
+      "name": "Metal King's Helm",
+      "desc": ""
+    },
+    {
+      "name": "Dark Dragon's Head",
+      "desc": ""
+    },
+    {
+      "name": "Berdiche's Helmet",
+      "desc": ""
+    },
+    {
+      "name": "Dragon Helm",
+      "desc": ""
+    },
+    {
+      "name": "Lightspeed Headgear",
+      "desc": ""
+    },
+    {
+      "name": "Phantom Helm",
+      "desc": ""
+    },
+    {
+      "name": "Destruction Demon's Head",
+      "desc": ""
+    }
+  ],
+  "06": [
+    {
+      "name": "Padded Armor",
+      "desc": ""
+    },
+    {
+      "name": "Bronze Chain Armor",
+      "desc": ""
+    },
+    {
+      "name": "Leather Clothes",
+      "desc": ""
+    },
+    {
+      "name": "Iron Chain Armor",
+      "desc": ""
+    },
+    {
+      "name": "Leather Armor",
+      "desc": ""
+    },
+    {
+      "name": "Steel Chain Armor",
+      "desc": ""
+    },
+    {
+      "name": "Hardened Leather Armor",
+      "desc": ""
+    },
+    {
+      "name": "Bronze Scale Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Reinforced Leather Armor",
+      "desc": ""
+    },
+    {
+      "name": "Scale Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Steel Leather Armor",
+      "desc": ""
+    },
+    {
+      "name": "Iron Scale Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Leopard Leather Armor",
+      "desc": ""
+    },
+    {
+      "name": "Steel Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Mithril Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Wolf Leather Armor",
+      "desc": ""
+    },
+    {
+      "name": "Banded Mail",
+      "desc": ""
+    },
+    {
+      "name": "Combat Suit",
+      "desc": ""
+    },
+    {
+      "name": "Splint Mail",
+      "desc": ""
+    },
+    {
+      "name": "Brigandine",
+      "desc": ""
+    },
+    {
+      "name": "Plate Mail",
+      "desc": ""
+    },
+    {
+      "name": "Chain Shirt",
+      "desc": ""
+    },
+    {
+      "name": "Shadow Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Obsidian Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Wind Leather Armor",
+      "desc": ""
+    },
+    {
+      "name": "Ice Scale Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Breastplate of Darkness",
+      "desc": ""
+    },
+    {
+      "name": "Bramble Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Black Leopard Leather Armor",
+      "desc": ""
+    },
+    {
+      "name": "Dark Iron Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Ancient One's Armor",
+      "desc": ""
+    },
+    {
+      "name": "West Wind Wolf Armor",
+      "desc": ""
+    },
+    {
+      "name": "Frozen Sea Armor",
+      "desc": ""
+    },
+    {
+      "name": "Frost Leopard Armor",
+      "desc": ""
+    },
+    {
+      "name": "Temple Knight Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Corvus Guild Uniform",
+      "desc": ""
+    },
+    {
+      "name": "Cavalry Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Mithril Chain Shirt",
+      "desc": ""
+    },
+    {
+      "name": "Angel's Armor",
+      "desc": ""
+    },
+    {
+      "name": "Cold Wind Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Dark Abyss Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Frost Scale Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Armor of Terror",
+      "desc": ""
+    },
+    {
+      "name": "Red Lion's Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Berdiche's Garb",
+      "desc": ""
+    },
+    {
+      "name": "Inquisition Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Berserker Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Corvus Assassin Garb",
+      "desc": ""
+    },
+    {
+      "name": "Demon's Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Scorching Breastplate",
+      "desc": ""
+    },
+    {
+      "name": "Phantom Leather Armor",
+      "desc": ""
+    }
+  ],
+  "08": [
+    {
+      "name": "Cloth Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Bronze Chain Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Leather Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Chain Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Plain Leather Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Steel Chain Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Fine Leather Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Bronze Scale Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Hardened Leather Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Scale Gauntlet",
+      "desc": ""
+    },
+    {
+      "name": "Reinforced Leather Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Steel Scale Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Leopard Leather Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Steel Gauntlet",
+      "desc": ""
+    },
+    {
+      "name": "Mithril Gauntlet",
+      "desc": ""
+    },
+    {
+      "name": "Wolf Leather Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Banded Gauntlet",
+      "desc": ""
+    },
+    {
+      "name": "Battle Wrist Guard",
+      "desc": ""
+    },
+    {
+      "name": "Splint Gauntlet",
+      "desc": ""
+    },
+    {
+      "name": "Studded Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Plate Gauntlet",
+      "desc": ""
+    },
+    {
+      "name": "Chain Gauntlet",
+      "desc": ""
+    },
+    {
+      "name": "Hand of Shadow",
+      "desc": ""
+    },
+    {
+      "name": "Obsidian Gauntlet",
+      "desc": ""
+    },
+    {
+      "name": "Touch of Cold Wind",
+      "desc": ""
+    },
+    {
+      "name": "Ice Scale Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Hand of Darkness",
+      "desc": ""
+    },
+    {
+      "name": "Bramble Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Black Leopard Leather Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Dark Iron Gauntlet",
+      "desc": ""
+    },
+    {
+      "name": "Ancient One's Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Wind Wolf Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Frozen Sea Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Frost Leopard Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Temple Knight Gauntlet",
+      "desc": ""
+    },
+    {
+      "name": "Guild Member's Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Cavalry Wrist Guard",
+      "desc": ""
+    },
+    {
+      "name": "Mithril Chain Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Touch of an Angel",
+      "desc": ""
+    },
+    {
+      "name": "Cold Wind Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Hand of the Dark Abyss",
+      "desc": ""
+    },
+    {
+      "name": "Frost Scale Gauntlet",
+      "desc": ""
+    },
+    {
+      "name": "Touch of Fear",
+      "desc": ""
+    },
+    {
+      "name": "Red Lion's Gloves",
+      "desc": ""
+    },
+    {
+      "name": "Berdiche's Hand",
+      "desc": ""
+    },
+    {
+      "name": "Inquisitor's Hand",
+      "desc": ""
+    },
+    {
+      "name": "Berserker Gauntlet",
+      "desc": ""
+    },
+    {
+      "name": "Assassin's Gauntlet",
+      "desc": ""
+    },
+    {
+      "name": "Demon's Grip",
+      "desc": ""
+    },
+    {
+      "name": "Scorching Touch",
+      "desc": ""
+    },
+    {
+      "name": "Wraith's Touch",
+      "desc": ""
+    }
+  ],
+  "09": [
+    {
+      "name": "Cloth Shoes",
+      "desc": ""
+    },
+    {
+      "name": "Bronze Chain Boots",
+      "desc": ""
+    },
+    {
+      "name": "Leather Shoes",
+      "desc": ""
+    },
+    {
+      "name": "Chain Boots",
+      "desc": ""
+    },
+    {
+      "name": "Plain Leather Shoes",
+      "desc": ""
+    },
+    {
+      "name": "Steel Chain Boots",
+      "desc": ""
+    },
+    {
+      "name": "Fine Leather Shoes",
+      "desc": ""
+    },
+    {
+      "name": "Bronze Scale Boots",
+      "desc": ""
+    },
+    {
+      "name": "Hardened Leather Boots",
+      "desc": ""
+    },
+    {
+      "name": "Scale Boots",
+      "desc": ""
+    },
+    {
+      "name": "Reinforced Leather Shoes",
+      "desc": ""
+    },
+    {
+      "name": "Steel Scale Boots",
+      "desc": ""
+    },
+    {
+      "name": "Leopard Leather Boots",
+      "desc": ""
+    },
+    {
+      "name": "Greaves",
+      "desc": ""
+    },
+    {
+      "name": "Mithril Boots",
+      "desc": ""
+    },
+    {
+      "name": "Wolf Leather Shoes",
+      "desc": ""
+    },
+    {
+      "name": "Battle Boots",
+      "desc": ""
+    },
+    {
+      "name": "Combat Boots",
+      "desc": ""
+    },
+    {
+      "name": "Plate Boots",
+      "desc": ""
+    },
+    {
+      "name": "Studded Leather Boots",
+      "desc": ""
+    },
+    {
+      "name": "Long Greaves",
+      "desc": ""
+    },
+    {
+      "name": "Chain Boots",
+      "desc": ""
+    },
+    {
+      "name": "Traceless Steps",
+      "desc": ""
+    },
+    {
+      "name": "Obsidian Boots",
+      "desc": ""
+    },
+    {
+      "name": "Cold Wind Leather Boots",
+      "desc": ""
+    },
+    {
+      "name": "Ice Scale Boots",
+      "desc": ""
+    },
+    {
+      "name": "Steps of Darkness",
+      "desc": ""
+    },
+    {
+      "name": "Bramble Boots",
+      "desc": ""
+    },
+    {
+      "name": "Black Leopard Leather Boots",
+      "desc": ""
+    },
+    {
+      "name": "Dark Iron Boots",
+      "desc": ""
+    },
+    {
+      "name": "Ancient One's Shoes",
+      "desc": ""
+    },
+    {
+      "name": "Wind Wolf Boots",
+      "desc": ""
+    },
+    {
+      "name": "Frozen Sea Boots",
+      "desc": ""
+    },
+    {
+      "name": "Frost Leopard Shoes",
+      "desc": ""
+    },
+    {
+      "name": "Temple Knight's Boots",
+      "desc": ""
+    },
+    {
+      "name": "Guild Member's Shoes",
+      "desc": ""
+    },
+    {
+      "name": "Cavalry Boots",
+      "desc": ""
+    },
+    {
+      "name": "Mithril Chain Boots",
+      "desc": ""
+    },
+    {
+      "name": "Steps of an Angel",
+      "desc": ""
+    },
+    {
+      "name": "Trace of Cold Wind",
+      "desc": ""
+    },
+    {
+      "name": "Footprint of the Dark Abyss",
+      "desc": ""
+    },
+    {
+      "name": "Frost Scale Boots",
+      "desc": ""
+    },
+    {
+      "name": "Shoes of Fear",
+      "desc": ""
+    },
+    {
+      "name": "Red Lion's Shoes",
+      "desc": ""
+    },
+    {
+      "name": "Berdiche's Shoes",
+      "desc": ""
+    },
+    {
+      "name": "Inquisitor's Boots",
+      "desc": ""
+    },
+    {
+      "name": "Berserker Shoes",
+      "desc": ""
+    },
+    {
+      "name": "Assassin's Shoes",
+      "desc": ""
+    },
+    {
+      "name": "Demon's Hoof",
+      "desc": ""
+    },
+    {
+      "name": "Scorching Footprint",
+      "desc": ""
+    },
+    {
+      "name": "Wraith's Shadow",
+      "desc": ""
+    }
+  ],
+  "10": [
+    {
+      "name": "Leather Buckler",
+      "desc": ""
+    },
+    {
+      "name": "Buckler",
+      "desc": ""
+    },
+    {
+      "name": "Leather Shield",
+      "desc": ""
+    },
+    {
+      "name": "Wooden Shield",
+      "desc": ""
+    },
+    {
+      "name": "Large Wooden Shield",
+      "desc": ""
+    },
+    {
+      "name": "Round Shield",
+      "desc": ""
+    },
+    {
+      "name": "Kite Shield",
+      "desc": ""
+    },
+    {
+      "name": "Heater Shield",
+      "desc": ""
+    },
+    {
+      "name": "Tower Shield",
+      "desc": ""
+    },
+    {
+      "name": "Steel Wooden Shield",
+      "desc": ""
+    },
+    {
+      "name": "Frost Leather Shield",
+      "desc": ""
+    },
+    {
+      "name": "Bronze Shield",
+      "desc": ""
+    },
+    {
+      "name": "Bramble Shield",
+      "desc": ""
+    },
+    {
+      "name": "Ancient One's Shield",
+      "desc": ""
+    },
+    {
+      "name": "Mithril Shield",
+      "desc": ""
+    },
+    {
+      "name": "Frozen Sea Shield",
+      "desc": ""
+    },
+    {
+      "name": "Temple Knight Shield",
+      "desc": ""
+    },
+    {
+      "name": "Obsidian Shield",
+      "desc": ""
+    },
+    {
+      "name": "Dark Iron Shield",
+      "desc": ""
+    },
+    {
+      "name": "Frost Scale Shield",
+      "desc": ""
+    },
+    {
+      "name": "Serpent Shield",
+      "desc": ""
+    },
+    {
+      "name": "Impact Shield",
+      "desc": ""
+    },
+    {
+      "name": "Giant Shield",
+      "desc": ""
+    },
+    {
+      "name": "Cavalry Shield",
+      "desc": ""
+    },
+    {
+      "name": "Animate Shield",
+      "desc": ""
+    },
+    {
+      "name": "Shield of Detonation",
+      "desc": ""
+    },
+    {
+      "name": "Guardian of Justice",
+      "desc": ""
+    },
+    {
+      "name": "Aegis",
+      "desc": ""
+    }
+  ],
+  "11": [
+    {
+      "name": "Amethyst Necklace",
+      "desc": ""
+    },
+    {
+      "name": "Sapphire Amulet",
+      "desc": ""
+    },
+    {
+      "name": "Emerald Pendant",
+      "desc": ""
+    },
+    {
+      "name": "Ruby Amulet",
+      "desc": ""
+    },
+    {
+      "name": "Sapphire Pendant",
+      "desc": ""
+    },
+    {
+      "name": "Garnet Amulet",
+      "desc": ""
+    },
+    {
+      "name": "Opal Amulet",
+      "desc": ""
+    },
+    {
+      "name": "Topaz Necklace",
+      "desc": ""
+    },
+    {
+      "name": "Lapis Lazuli Necklace",
+      "desc": ""
+    },
+    {
+      "name": "Chain of Strife",
+      "desc": ""
+    },
+    {
+      "name": "Guardian Charm of Vitality",
+      "desc": ""
+    },
+    {
+      "name": "Talisman of Wisdom",
+      "desc": ""
+    },
+    {
+      "name": "Emblem of Fortitude",
+      "desc": ""
+    },
+    {
+      "name": "Talisman of Patience",
+      "desc": ""
+    },
+    {
+      "name": "Prophet's Legacy",
+      "desc": ""
+    },
+    {
+      "name": "Seal of the Seven Stars",
+      "desc": ""
+    },
+    {
+      "name": "Demon Beast's Claw",
+      "desc": ""
+    }
+  ],
+  "12": [
+    {
+      "name": "Amethyst Ring",
+      "desc": ""
+    },
+    {
+      "name": "Sapphire Ring",
+      "desc": ""
+    },
+    {
+      "name": "Emerald Ring",
+      "desc": ""
+    },
+    {
+      "name": "Ruby Ring",
+      "desc": ""
+    },
+    {
+      "name": "Sapphire Ring",
+      "desc": ""
+    },
+    {
+      "name": "Garnet Ring",
+      "desc": ""
+    },
+    {
+      "name": "Garnet Ring",
+      "desc": ""
+    },
+    {
+      "name": "Topaz Ring",
+      "desc": ""
+    },
+    {
+      "name": "Lapis Lazuli Ring",
+      "desc": ""
+    },
+    {
+      "name": "Ring of Valor",
+      "desc": ""
+    },
+    {
+      "name": "Ring of Intellect",
+      "desc": ""
+    },
+    {
+      "name": "Guardian Ring",
+      "desc": ""
+    },
+    {
+      "name": "Obsidian Ring",
+      "desc": ""
+    },
+    {
+      "name": "Rune of Pure Blood",
+      "desc": ""
+    },
+    {
+      "name": "Ring of the Seven Stars",
+      "desc": ""
+    },
+    {
+      "name": "Martyr's Resolve",
+      "desc": ""
+    },
+    {
+      "name": "Black Jade Arrowhead",
+      "desc": ""
+    }
+  ],
+  "13": [
+    {
+      "name": "Seal of Strength (Lesser)",
+      "desc": "Weapon Strength +0~+4"
+    },
+    {
+      "name": "Seal of Strength (Medium)",
+      "desc": "Weapon Strength +2~+7"
+    },
+    {
+      "name": "Seal of Strength",
+      "desc": "Weapon Strength +5~+10"
+    }
+  ],
+  "14": [
+    {
+      "name": "Seal of Vitality (Lesser)",
+      "desc": "Weapon Vitality +0~+4"
+    },
+    {
+      "name": "Seal of Vitality (Medium)",
+      "desc": "Weapon Vitality +2 ~ +7"
+    },
+    {
+      "name": "Seal of Vitality",
+      "desc": "Weapon Vitality +5 ~ +10"
+    }
+  ],
+  "15": [
+    {
+      "name": "Seal of Agility (Lesser)",
+      "desc": "Weapon Agility +0 ~ +4"
+    },
+    {
+      "name": "Seal of Agility (Medium)",
+      "desc": "Weapon Agility +2 ~ +7"
+    },
+    {
+      "name": "Seal of Agility",
+      "desc": "Weapon Agility +5 ~ +10"
+    }
+  ],
+  "16": [
+    {
+      "name": "Seal of Will (Lesser)",
+      "desc": "Weapon Will +0 ~ +4"
+    },
+    {
+      "name": "Seal of Will (Medium)",
+      "desc": "Weapon Will +2 ~ +7"
+    },
+    {
+      "name": "Seal of Will",
+      "desc": "Weapon Will +5 ~ +10"
+    }
+  ],
+  "17": [
+    {
+      "name": "Seal of Intelligence (Lesser)",
+      "desc": "Weapon Intelligence +0 ~ +4"
+    },
+    {
+      "name": "Seal of Intelligence (Medium)",
+      "desc": "Weapon Intelligence +2 ~ +7"
+    },
+    {
+      "name": "Seal of Intelligence",
+      "desc": "Weapon Intelligence +5 ~ +10"
+    }
+  ],
+  "18": [
+    {
+      "name": "Orb of the Flash Slash",
+      "desc": "Grants weapon a chance to instantly kill the enemy"
+    },
+    {
+      "name": "Orb of Concentration",
+      "desc": "Grants weapon a chance to recover SP"
+    },
+    {
+      "name": "Orb of Absorption",
+      "desc": "Grants weapon a chance to recover HP"
+    },
+    {
+      "name": "Orb of Resistance",
+      "desc": "Grants weapon a chance to reduce enemy damage"
+    },
+    {
+      "name": "Orb of Fighting Spirit",
+      "desc": "Grants weapon a chance to deal critical attacks for a short time"
+    },
+    {
+      "name": "Orb of Stun",
+      "desc": "Grants weapon a chance to stun the enemy"
+    }
+  ],
+  "19": [
+    {
+      "name": "Crystal of Water",
+      "desc": "Grants the weapon the corresponding element"
+    },
+    {
+      "name": "Crystal of Fire",
+      "desc": "Grants the weapon the corresponding element"
+    },
+    {
+      "name": "Crystal of Earth",
+      "desc": "Grants the weapon the corresponding element"
+    },
+    {
+      "name": "Crystal of Light",
+      "desc": "Grants the weapon the corresponding element"
+    },
+    {
+      "name": "Crystal of Darkness",
+      "desc": "Grants the weapon the corresponding element"
+    }
+  ],
+  "20": [
+    {
+      "name": "Refining Stone",
+      "desc": "Used for weapon refining"
+    }
+  ],
+  "21": [
+    {
+      "name": "Lesser Mana Orb",
+      "desc": "Increases attack power"
+    },
+    {
+      "name": "Medium Mana Orb",
+      "desc": "Increases attack power"
+    },
+    {
+      "name": "Greater Mana Orb",
+      "desc": "Increases attack power"
+    }
+  ],
+  "22": [
+    {
+      "name": "Beast Evolution Serum (W)",
+      "desc": "(White) Used for beast evolution, works for all evolutions"
+    },
+    {
+      "name": "Beast Evolution Serum (B)",
+      "desc": "(Black) Used for beast evolution, works for all evolutions"
+    },
+    {
+      "name": "Beast Evolution Serum (R)",
+      "desc": "(Red) Used for beast evolution, for higher-tier evolution"
+    }
+  ],
+  "23": [
+    {
+      "name": "Heavy Blade",
+      "desc": "Blade;Steel;Polishing Powder"
+    },
+    {
+      "name": "Wind Brandish",
+      "desc": "Heavy Brandish;Wind Whistle"
+    },
+    {
+      "name": "Black Ship Sword",
+      "desc": "Hwandudo;Sage's Book;Polishing Powder"
+    },
+    {
+      "name": "Ragnarok",
+      "desc": "Thunder Blade;Orichalcum;Ring of Valor"
+    },
+    {
+      "name": "Metal Ruk Axe",
+      "desc": "Ruk Axe;Steel;Polishing Powder"
+    },
+    {
+      "name": "Steel Battle Axe",
+      "desc": "Battle Axe;Steel;Polishing Powder"
+    },
+    {
+      "name": "Executioner's Axe",
+      "desc": "Blood Axe;Sinner's Curse;Elementium"
+    },
+    {
+      "name": "True Brave Axe",
+      "desc": "Brave Axe;Adamantite"
+    },
+    {
+      "name": "Knight Sword",
+      "desc": "Long Sword;Copper;Polishing Powder"
+    },
+    {
+      "name": "Giant's Sword",
+      "desc": "Knight Saber;Iron Saber;Polishing Powder"
+    },
+    {
+      "name": "Massacre Sword",
+      "desc": "Assassination Sword;Massacre Spell;Steel"
+    },
+    {
+      "name": "Crescent Saber",
+      "desc": "Dark Killer's Sword;Chain of Strife"
+    },
+    {
+      "name": "Dagger of Chaos",
+      "desc": "Tamed Knife;Combat Knife"
+    },
+    {
+      "name": "Wind's Claw",
+      "desc": "Double Dagger;Wind Whistle"
+    },
+    {
+      "name": "Soul Dagger",
+      "desc": "Metal Crook;Ruby Ring;Horn of Blessing"
+    },
+    {
+      "name": "Blade of Darkness",
+      "desc": "Shadow Killer;Metal Crook;Steel"
+    },
+    {
+      "name": "Steel Pickaxe",
+      "desc": "Pickaxe;Steel"
+    },
+    {
+      "name": "Wind Maul",
+      "desc": "Iron Maul;Wind Whistle"
+    },
+    {
+      "name": "Arm Bash",
+      "desc": "Stun Mash;War Hammer"
+    },
+    {
+      "name": "Heavy Flail",
+      "desc": "Head Smasher;Elementium"
+    },
+    {
+      "name": "Legendary Bratan",
+      "desc": "Soul Heater;Orichalcum"
+    },
+    {
+      "name": "Hardened Leather Cap",
+      "desc": "Leather Cap;Reinforced Leather"
+    },
+    {
+      "name": "Steel Helmet",
+      "desc": "Bronze Helmet;Steel"
+    },
+    {
+      "name": "Steel Mask",
+      "desc": "Golden Helmet;Steel;Sage's Book"
+    },
+    {
+      "name": "Mask of Destruction",
+      "desc": "Steel Mask;Massacre Spell;Polishing Powder"
+    },
+    {
+      "name": "Steel Chain Armor",
+      "desc": "Iron Chain Armor;Steel"
+    },
+    {
+      "name": "Reinforced Leather Armor",
+      "desc": "Leather Armor;Reinforced Leather;Polishing Powder"
+    },
+    {
+      "name": "Ice Scale Breastplate",
+      "desc": "Scale Breastplate;Manifesto of Wrath;Magic Ice"
+    },
+    {
+      "name": "Iron Scale Breastplate",
+      "desc": "Scale Breastplate;Steel;Reinforced Leather"
+    },
+    {
+      "name": "Black Leopard Leather Armor",
+      "desc": "Leopard Leather Armor;Reinforced Leather;Polishing Powder"
+    },
+    {
+      "name": "Frost Scale Breastplate",
+      "desc": "Ice Scale Breastplate;Phoenix Feather;Adamantite"
+    },
+    {
+      "name": "Frost Leopard Armor",
+      "desc": "Black Leopard Leather Armor;Magic Ice;Elementium"
+    },
+    {
+      "name": "Corvus Assassin Garb",
+      "desc": "Corvus Guild Uniform;Elementium;Chain of Strife"
+    },
+    {
+      "name": "Inquisition Breastplate",
+      "desc": "Cavalry Breastplate;Orichalcum;Rune of Pure Blood"
+    },
+    {
+      "name": "Steel Chain Gloves",
+      "desc": "Chain Gloves;Steel;Polishing Powder"
+    },
+    {
+      "name": "Touch of Cold Wind",
+      "desc": "Hand of Shadow;Wind Whistle;Reinforced Leather"
+    },
+    {
+      "name": "Ice Scale Gloves",
+      "desc": "Steel Scale Gloves;Magic Ice;Polishing Powder"
+    },
+    {
+      "name": "Hand of Darkness",
+      "desc": "Hand of Shadow;Manifesto of Wrath;Polishing Powder"
+    },
+    {
+      "name": "Dark Iron Gauntlet",
+      "desc": "Steel Gauntlet;Adamantite"
+    },
+    {
+      "name": "Wind Wolf Gloves",
+      "desc": "Wolf Leather Gloves;Wind Whistle;Wanderer's Song"
+    },
+    {
+      "name": "Frost Scale Gauntlet",
+      "desc": "Frozen Sea Gloves;Elementium;Magic Ice"
+    },
+    {
+      "name": "Assassin's Gauntlet",
+      "desc": "Berdiche's Hand;Reinforced Leather;Talisman of Patience"
+    },
+    {
+      "name": "Inquisitor's Hand",
+      "desc": "Cavalry Wrist Guard;Ring of Valor;Sinner's Curse"
+    },
+    {
+      "name": "Steel Chain Boots",
+      "desc": "Chain Boots;Steel;Polishing Powder"
+    },
+    {
+      "name": "Fine Leather Shoes",
+      "desc": "Plain Leather Shoes;Reinforced Leather"
+    },
+    {
+      "name": "Wind Wolf Boots",
+      "desc": "Wolf Leather Shoes;Wind Whistle"
+    },
+    {
+      "name": "Frost Scale Boots",
+      "desc": "Ice Scale Boots;Magic Ice;Elementium"
+    },
+    {
+      "name": "Cavalry Boots",
+      "desc": "Long Greaves;Orichalcum;Sage's Book"
+    },
+    {
+      "name": "Leather Shield",
+      "desc": "Leather Buckler;Reinforced Leather;Polishing Powder"
+    },
+    {
+      "name": "Frost Scale Shield",
+      "desc": "Round Shield;Magic Ice;Adamantite"
+    },
+    {
+      "name": "Impact Shield",
+      "desc": "Heater Shield;Horn of Blessing;Elementium"
+    },
+    {
+      "name": "Cavalry Shield",
+      "desc": "Tower Shield;Horn of Blessing;Verse of Blessing"
+    },
+    {
+      "name": "Orb of the Flash Slash",
+      "desc": "Orichalcum;Massacre Spell"
+    },
+    {
+      "name": "Orb of Concentration",
+      "desc": "Elementium;Refining Stone;Sage's Book"
+    },
+    {
+      "name": "Orb of Absorption",
+      "desc": "Elementium;Refining Stone;Horn of Blessing"
+    },
+    {
+      "name": "Orb of Resistance",
+      "desc": "Steel;Polishing Powder;Phoenix Feather"
+    },
+    {
+      "name": "Orb of Fighting Spirit",
+      "desc": "Adamantite;Manifesto of Wrath;Polishing Powder"
+    },
+    {
+      "name": "Orb of Stun",
+      "desc": "Gold;Orichalcum;Wanderer's Song"
+    },
+    {
+      "name": "Adamantite",
+      "desc": "Steel;Phoenix Feather;Refining Stone"
+    },
+    {
+      "name": "Elementium",
+      "desc": "Gold;Horn of Blessing;Verse of Blessing"
+    },
+    {
+      "name": "Orichalcum",
+      "desc": "Gold;Sage's Book;Lapis Lazuli Ring"
+    }
+  ],
+  "24": [
+    {
+      "name": "Potion",
+      "desc": "HP Recovery"
+    }
+  ],
+  "25": [
+    {
+      "name": "High Potion",
+      "desc": "HP Recovery"
+    }
+  ],
+  "26": [
+    {
+      "name": "Wine",
+      "desc": "SP Recovery"
+    }
+  ],
+  "27": [
+    {
+      "name": "Antidote",
+      "desc": "Cures the poisoned status"
+    },
+    {
+      "name": "Purifier",
+      "desc": "Purifies the cursed status"
+    }
+  ],
+  "28": [
+    {
+      "name": "Scroll of Return",
+      "desc": "Returns you to the recall point"
+    }
+  ],
+  "29": [
+    {
+      "name": "Material Bag",
+      "desc": ""
+    }
+  ],
+  "30": [
+    {
+      "name": "Copper",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Steel",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Gold",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Adamantite",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Elementium",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Orichalcum",
+      "desc": "Crafting Material"
+    }
+  ],
+  "31": [
+    {
+      "name": "Wanderer's Song",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Sage's Book",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Massacre Spell",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Manifesto of Wrath",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Sinner's Curse",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Verse of Blessing",
+      "desc": "Crafting Material"
+    }
+  ],
+  "32": [
+    {
+      "name": "Phoenix Feather",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Polishing Powder",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Horn of Blessing",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Wind Whistle",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Reinforced Leather",
+      "desc": "Crafting Material"
+    },
+    {
+      "name": "Magic Ice",
+      "desc": "Crafting Material"
+    }
+  ],
+  "33": [
+    {
+      "name": "Raider's Emblem",
+      "desc": "A mark found on the body of a suspicious man."
+    },
+    {
+      "name": "Skull Key A",
+      "desc": "A skull-shaped key."
+    },
+    {
+      "name": "Skull Key B",
+      "desc": "A skull-shaped key."
+    },
+    {
+      "name": "Skull Key C",
+      "desc": "A skull-shaped key."
+    },
+    {
+      "name": "Secret Book",
+      "desc": "A valuable item Oliver is looking for."
+    },
+    {
+      "name": "Head of House's Seal",
+      "desc": "Reed's Head-of-House Seal."
+    },
+    {
+      "name": "Tribute Box",
+      "desc": "A tribute sent from Silvanar."
+    },
+    {
+      "name": "Lesser Cipher",
+      "desc": "A rebel's cipher."
+    },
+    {
+      "name": "Greater Cipher",
+      "desc": "A rebel's cipher."
+    },
+    {
+      "name": "Cipher Book",
+      "desc": "A book for decoding ciphers."
+    },
+    {
+      "name": "Weapon Bundle",
+      "desc": "A bundle containing weapons."
+    },
+    {
+      "name": "Mysterious Talisman",
+      "desc": "Used for a barrier."
+    },
+    {
+      "name": "Rubber Clay",
+      "desc": "Useful for making dolls."
+    },
+    {
+      "name": "Fake Corpse",
+      "desc": "A convincing fake corpse."
+    },
+    {
+      "name": "Tunnel Key",
+      "desc": "An old key."
+    },
+    {
+      "name": "Discarded Key",
+      "desc": "Looks like it might break soon."
+    },
+    {
+      "name": "Discarded Talisman",
+      "desc": "Looks like it might tear soon."
+    },
+    {
+      "name": "Cross Lever",
+      "desc": "A cross-shaped lever"
+    },
+    {
+      "name": "Green Slot",
+      "desc": "A green slot"
+    },
+    {
+      "name": "Red Slot",
+      "desc": "A red slot"
+    },
+    {
+      "name": "Blue Slot",
+      "desc": "A blue slot"
+    },
+    {
+      "name": "Black Slot",
+      "desc": "A black slot"
+    },
+    {
+      "name": "Core Left Fragment",
+      "desc": "One of the Wind Guardian's cores."
+    },
+    {
+      "name": "Guardian Spirit's Fang",
+      "desc": "The Guardian Spirit's sharp fang"
+    },
+    {
+      "name": "Long Bone",
+      "desc": "A long bone pulled from a corpse"
+    },
+    {
+      "name": "Triangular Box",
+      "desc": "An old triangular box decorated with a beautiful pattern"
+    },
+    {
+      "name": "Glowing Box",
+      "desc": "A triangular box glowing brightly as if holding energy"
+    },
+    {
+      "name": "Core Center Fragment",
+      "desc": "One of the Wind Guardian's cores."
+    },
+    {
+      "name": "Lost Key",
+      "desc": "A key Basil lost. It can open the door leading to Undercity Zone 2."
+    },
+    {
+      "name": "Glittering Object",
+      "desc": "Looks valuable, but was discarded for some reason."
+    },
+    {
+      "name": "Dynamite",
+      "desc": "A state-of-the-art bomb with powerful explosive force."
+    }
+  ],
+  "34": [
+    {
+      "name": "Charge!",
+      "desc": "Critical attack when attacking"
+    },
+    {
+      "name": "Keen Strike",
+      "desc": "Reduces defending target's HP by 25%"
+    },
+    {
+      "name": "Shallow Trap",
+      "desc": "Reduces selected enemy's HP by 15%"
+    },
+    {
+      "name": "Meteor Strike",
+      "desc": "Reduces all enemies' HP by 20%"
+    },
+    {
+      "name": "Fallen Angel's Gesture",
+      "desc": "Reduces target's SP by 1/3"
+    },
+    {
+      "name": "Mutual Suicide",
+      "desc": "Both target and self die"
+    },
+    {
+      "name": "Overcome Limits",
+      "desc": "Attacks twice"
+    },
+    {
+      "name": "Vampire",
+      "desc": "Recovers own HP when attacking target for 3 turns"
+    },
+    {
+      "name": "Temptress Witch",
+      "desc": "Recovers own SP when attacking target for 3 turns"
+    },
+    {
+      "name": "Mana Charge",
+      "desc": "Increases next turn's mana orb power"
+    },
+    {
+      "name": "Counter",
+      "desc": "Reflects the attack received"
+    },
+    {
+      "name": "Holy Cross",
+      "desc": "Nullifies the Vampire effect"
+    },
+    {
+      "name": "Enlightened Reality",
+      "desc": "Nullifies the Temptress Witch effect"
+    },
+    {
+      "name": "Reward of Patience",
+      "desc": "Recovers SP when attacked"
+    },
+    {
+      "name": "Mana Orb Defense",
+      "desc": "Halves the power of the enemy's mana orb"
+    },
+    {
+      "name": "Curse of Vengeance",
+      "desc": "Reduces the SP of the enemy who attacked self to 0"
+    },
+    {
+      "name": "Vitality Steal",
+      "desc": "Steals 20% of the HP of the enemy who attacked self"
+    },
+    {
+      "name": "Steel Guard",
+      "desc": "Doubles defense for 1 turn"
+    },
+    {
+      "name": "Holy Wall",
+      "desc": "Invincible for 1 turn, mana orb attack halved"
+    },
+    {
+      "name": "Absolute Armor",
+      "desc": "Entire party invincible for 1 turn. Mana orb attack halved"
+    },
+    {
+      "name": "Deep Wrath",
+      "desc": "Rage gauge increase is doubled"
+    },
+    {
+      "name": "Noble Sacrifice",
+      "desc": "Self dies, restores ally to full state"
+    },
+    {
+      "name": "Changer",
+      "desc": "Swaps initiative and second turn order starting next turn"
+    },
+    {
+      "name": "Forced Rotation",
+      "desc": "Forcibly exchanges all cards in the opponent's deck"
+    },
+    {
+      "name": "Card Exchange",
+      "desc": "Exchanges all cards in own deck"
+    },
+    {
+      "name": "Step Back",
+      "desc": "Second turn for 1 turn"
+    },
+    {
+      "name": "Fly",
+      "desc": "Initiative for 1 turn"
+    },
+    {
+      "name": "Thief",
+      "desc": "Nullifies the card played by the opponent"
+    },
+    {
+      "name": "Non Stamina",
+      "desc": "No SP consumption for the entire party for 1 turn"
+    },
+    {
+      "name": "Energy Flow",
+      "desc": "No SP consumption for 1 turn"
+    }
+  ]
+}

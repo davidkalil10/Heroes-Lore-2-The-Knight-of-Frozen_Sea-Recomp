@@ -1938,7 +1938,7 @@ void VM::registerNatives() {
 
 // -------------------------------------------------------------
 // l: Menu de Opções / Configurações (Heroes Lore 2: Knight of Frozen Sea)
-// Suporte nativo a 9 opções: 0..4 originais + 5: FPS, 6: Tela (Aspect Ratio), 7: Nuvem (Google Drive), 8: Atualizações
+// Suporte nativo a 10 opções: 0..4 originais + 5: Idioma, 6: FPS, 7: Tela (Aspect Ratio), 8: Nuvem (Google Drive), 9: Atualizações
 // -------------------------------------------------------------
 static void l_init_native(VM& vm, Value* args, Value*) {
   Object* self = args[0].o;
@@ -1950,7 +1950,7 @@ static void l_init_native(VM& vm, Value* args, Value*) {
   ClassInfo* gClass = vm.findClass("g");
   Method* mGInit = gClass ? vm.findMethod(gClass, "<init>:(Lg;B)V") : nullptr;
   if (mGInit) {
-    Value gArgs[3]; gArgs[0].o = self; gArgs[1].o = gParent; gArgs[2].i = 9; Value gRet[2]; // 9 itens!
+    Value gArgs[3]; gArgs[0].o = self; gArgs[1].o = gParent; gArgs[2].i = 10; Value gRet[2]; // 10 itens!
     vm.invoke(mGInit, gArgs, gRet);
   }
 
@@ -1964,7 +1964,7 @@ static void l_init_native(VM& vm, Value* args, Value*) {
   }
   FieldInfo* fI = gClass ? vm.findField(gClass, "i:B") : nullptr;
   if (fI && fI->index >= 0 && fI->index < (int)inst->f.size()) {
-    inst->f[fI->index].i = 9;
+    inst->f[fI->index].i = 10;
   }
 }
 
@@ -1987,7 +1987,7 @@ static void l_cursor_native(VM& vm, Value* args, Value*) {
   FieldInfo* fH = gClass ? vm.findField(gClass, "h:B") : nullptr;
   int curH = (fH && fH->index >= 0 && fH->index < (int)inst->f.size()) ? inst->f[fH->index].i : 0;
 
-  int startY = bw_j - 70;
+  int startY = bw_j - 80;
   int cursorY = startY + 18 * curH + 4;
 
   Method* mGb = vm.findMethod(inst->cls, "b:(Ljavax/microedition/lcdui/Graphics;IIIIZ)V");
@@ -2016,7 +2016,7 @@ static void l_a_native(VM& vm, Value* args, Value* ret) {
   FieldInfo* fI = gClass ? vm.findField(gClass, "i:B") : nullptr;
   FieldInfo* fH = gClass ? vm.findField(gClass, "h:B") : nullptr;
   if (fI && fI->index >= 0 && fI->index < (int)inst->f.size()) {
-    inst->f[fI->index].i = 9;
+    inst->f[fI->index].i = 10;
   }
   int curH = (fH && fH->index >= 0 && fH->index < (int)inst->f.size()) ? inst->f[fH->index].i : 0;
 
@@ -2089,9 +2089,6 @@ static void l_a_native(VM& vm, Value* args, Value* ret) {
   };
 
   // 2. Se tecla RSK / Cancelar / Voltar (-7, -8, Esc=27, ou 8 interceptado pelo Canvas do HL2)
-  // Obs.: n2 = gameAction (UP=1, LEFT=2, RIGHT=5, DOWN=6, FIRE=8) e n3 = keyCode.
-  // O Canvas do HL2 converte -7 em keyCode 8. O keyCode 53 ('5') gera gameAction FIRE(8),
-  // portanto Back deve ser identificado SOMENTE pelo keyCode (n3), nunca por n2 == 8.
   if (n3 == -7 || n3 == 8 || n3 == -8 || n3 == 27 || n2 == -7 || n2 == -8) {
     closeOptionsMenu();
     ret[0].i = 1;
@@ -2105,18 +2102,22 @@ static void l_a_native(VM& vm, Value* args, Value* ret) {
       ret[0].i = 1;
       return;
     } else if (curH == 5) {
-      Platform::toggleFps();
+      Platform::nextLanguage(&vm);
       ret[0].i = 1;
       return;
     } else if (curH == 6) {
-      Platform::nextAspect(&vm);
+      Platform::toggleFps();
       ret[0].i = 1;
       return;
     } else if (curH == 7) {
-      Platform::openCloudSave(&vm);
+      Platform::nextAspect(&vm);
       ret[0].i = 1;
       return;
     } else if (curH == 8) {
+      Platform::openCloudSave(&vm);
+      ret[0].i = 1;
+      return;
+    } else if (curH == 9) {
       Platform::checkForUpdates();
       ret[0].i = 1;
       return;
@@ -2206,20 +2207,25 @@ static void l_a_native(VM& vm, Value* args, Value* ret) {
         }
         break;
       }
-      case 5: { // FPS
+      case 5: { // Idioma (Language)
+        if (isLeft) Platform::prevLanguage(&vm);
+        else Platform::nextLanguage(&vm);
+        break;
+      }
+      case 6: { // FPS
         Platform::toggleFps();
         break;
       }
-      case 6: { // Proporção de Tela
+      case 7: { // Proporção de Tela
         if (isLeft) Platform::prevAspect(&vm);
         else Platform::nextAspect(&vm);
         break;
       }
-      case 7: { // Cloud Save
+      case 8: { // Cloud Save
         Platform::openCloudSave(&vm);
         break;
       }
-      case 8: { // Atualizações (Verificar)
+      case 9: { // Atualizações (Verificar)
         Platform::checkForUpdates();
         break;
       }
@@ -2241,7 +2247,7 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
   FieldInfo* fI = gClass ? vm.findField(gClass, "i:B") : nullptr;
   FieldInfo* fH = gClass ? vm.findField(gClass, "h:B") : nullptr;
   if (fI && fI->index >= 0 && fI->index < (int)inst->f.size()) {
-    inst->f[fI->index].i = 9; // Expande para 9 itens!
+    inst->f[fI->index].i = 10; // Expande para 10 itens!
   }
   int curH = (fH && fH->index >= 0 && fH->index < (int)inst->f.size()) ? inst->f[fH->index].i : 0;
 
@@ -2284,11 +2290,11 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
 
   // 1. Desenha o fundo da tela / janela modal
   if (isPauseMenu) {
-    // Popup in-game (190 x 186 para acomodar 9 itens confortavelmente)
+    // Popup in-game (190 x 204 para acomodar 10 itens confortavelmente)
     int boxX = bw_i - 95;
-    int boxY = bw_j - 90;
+    int boxY = bw_j - 100;
     int boxW = 190;
-    int boxH = 186;
+    int boxH = 204;
 
     graphics->setClip(boxX, boxY, boxW, boxH);
     graphics->setColor(6970180);
@@ -2325,13 +2331,13 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
     graphics->setColor(14467940);
     Object* titleBytes = getGameString(2);
     if (titleBytes && mBkA) {
-      Value tArgs[5]; tArgs[0].o = gObj; tArgs[1].i = bw_i - 20; tArgs[2].i = bw_j - 80; tArgs[3].o = titleBytes; tArgs[4].i = 0; Value tRet[2];
+      Value tArgs[5]; tArgs[0].o = gObj; tArgs[1].i = bw_i - 20; tArgs[2].i = bw_j - 90; tArgs[3].o = titleBytes; tArgs[4].i = 0; Value tRet[2];
       vm.invoke(mBkA, tArgs, tRet);
     }
   }
 
-  // 2. Desenha as 9 linhas de opções
-  int startY = bw_j - 70;
+  // 2. Desenha as 10 linhas de opções
+  int startY = bw_j - 80;
   graphics->setColor(14134162);
 
   // Rótulos dos itens originais 0..4
@@ -2394,66 +2400,81 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
     vm.invoke(mLbToggle, bArgs, bRet);
   }
 
-  // --- NOVAS OPÇÕES RECOMPILAÇÃO (Itens 5, 6, 7) ---
+  // --- NOVAS OPÇÕES RECOMPILAÇÃO (Itens 5, 6, 7, 8, 9) ---
 
-  // Item 5: Taxa de Quadros (FPS)
+  // Item 5: Idioma (Language)
   graphics->setColor(14134162);
-  Object* lblFps = makeByteArray("FPS");
-  if (lblFps && mBkA) {
-    Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 90; lArgs[3].o = lblFps; lArgs[4].i = 0; Value lRet[2];
+  Object* lblLang = makeByteArray("Idioma");
+  if (lblLang && mBkA) {
+    Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 90; lArgs[3].o = lblLang; lArgs[4].i = 0; Value lRet[2];
     vm.invoke(mBkA, lArgs, lRet);
   }
   graphics->setColor(curH == 5 ? 0xFFFFFF : 0x7F7F7F);
-  std::string txtFps = (Platform::getTargetFps() == 15) ? "15" : "30";
-  Object* valFps = makeByteArray(txtFps);
-  if (valFps && mBkA_flags) {
-    Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 90; vArgs[3].o = valFps; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
+  std::string txtLang = Platform::getLanguageDisplayName();
+  Object* valLang = makeByteArray(txtLang);
+  if (valLang && mBkA_flags) {
+    Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 90; vArgs[3].o = valLang; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
     vm.invoke(mBkA_flags, vArgs, vRet);
   }
 
-  // Item 6: Proporção de Tela (Aspect Ratio)
+  // Item 6: Taxa de Quadros (FPS)
   graphics->setColor(14134162);
-  Object* lblTela = makeByteArray("Tela");
-  if (lblTela && mBkA) {
-    Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 108; lArgs[3].o = lblTela; lArgs[4].i = 0; Value lRet[2];
+  Object* lblFps = makeByteArray("FPS");
+  if (lblFps && mBkA) {
+    Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 108; lArgs[3].o = lblFps; lArgs[4].i = 0; Value lRet[2];
     vm.invoke(mBkA, lArgs, lRet);
   }
   graphics->setColor(curH == 6 ? 0xFFFFFF : 0x7F7F7F);
+  std::string txtFps = (Platform::getTargetFps() == 15) ? "15" : "30";
+  Object* valFps = makeByteArray(txtFps);
+  if (valFps && mBkA_flags) {
+    Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 108; vArgs[3].o = valFps; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
+    vm.invoke(mBkA_flags, vArgs, vRet);
+  }
+
+  // Item 7: Proporção de Tela (Aspect Ratio)
+  graphics->setColor(14134162);
+  Object* lblTela = makeByteArray("Tela");
+  if (lblTela && mBkA) {
+    Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 126; lArgs[3].o = lblTela; lArgs[4].i = 0; Value lRet[2];
+    vm.invoke(mBkA, lArgs, lRet);
+  }
+  graphics->setColor(curH == 7 ? 0xFFFFFF : 0x7F7F7F);
   int curAspect = Platform::getAspectMode();
   std::string txtAspect = (curAspect == 0) ? "Auto" : ((curAspect == 1) ? "3:4" : "16:9");
   Object* valTela = makeByteArray(txtAspect);
   if (valTela && mBkA_flags) {
-    Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 108; vArgs[3].o = valTela; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
+    Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 126; vArgs[3].o = valTela; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
     vm.invoke(mBkA_flags, vArgs, vRet);
   }
 
-  // Item 7: Cloud Save (Google Drive)
+  // Item 8: Cloud Save (Google Drive)
   graphics->setColor(14134162);
   Object* lblCloud = makeByteArray("Nuvem");
   if (lblCloud && mBkA) {
-    Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 126; lArgs[3].o = lblCloud; lArgs[4].i = 0; Value lRet[2];
-    vm.invoke(mBkA, lArgs, lRet);
-  }
-  graphics->setColor(curH == 7 ? 0xFFFFFF : 0x7F7F7F);
-  std::string txtCloud = "Google";
-  Object* valCloud = makeByteArray(txtCloud);
-  if (valCloud && mBkA_flags) {
-    Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 126; vArgs[3].o = valCloud; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
-    vm.invoke(mBkA_flags, vArgs, vRet);
-  }
-
-  // Item 8: Atualizações (Verificar)
-  graphics->setColor(14134162);
-  Object* lblUpdate = makeByteArray("Update");
-  if (lblUpdate && mBkA) {
-    Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 144; lArgs[3].o = lblUpdate; lArgs[4].i = 0; Value lRet[2];
+    Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 144; lArgs[3].o = lblCloud; lArgs[4].i = 0; Value lRet[2];
     vm.invoke(mBkA, lArgs, lRet);
   }
   graphics->setColor(curH == 8 ? 0xFFFFFF : 0x7F7F7F);
+  std::string txtCloud = "Google";
+  Object* valCloud = makeByteArray(txtCloud);
+  if (valCloud && mBkA_flags) {
+    Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 144; vArgs[3].o = valCloud; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
+    vm.invoke(mBkA_flags, vArgs, vRet);
+  }
+
+  // Item 9: Atualizações (Verificar)
+  graphics->setColor(14134162);
+  Object* lblUpdate = makeByteArray("Update");
+  if (lblUpdate && mBkA) {
+    Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 162; lArgs[3].o = lblUpdate; lArgs[4].i = 0; Value lRet[2];
+    vm.invoke(mBkA, lArgs, lRet);
+  }
+  graphics->setColor(curH == 9 ? 0xFFFFFF : 0x7F7F7F);
   std::string txtUpdate = "Check";
   Object* valUpdate = makeByteArray(txtUpdate);
   if (valUpdate && mBkA_flags) {
-    Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 144; vArgs[3].o = valUpdate; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
+    Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 162; vArgs[3].o = valUpdate; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
     vm.invoke(mBkA_flags, vArgs, vRet);
   }
 }

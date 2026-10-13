@@ -158,5 +158,31 @@
     3. Rescanear com `u.k:()V` e chamar `u.a:(I)V` com argumento `1`. O motor executa o caso 9 (`u.r()`), descompactando o RMS diretamente na sessão ativa e executando o fade-in nativo `bd.var_bd_a.a((byte)2, false)`.
     4. O jogador volta direto para o gameplay no ponto do save, sem passar por telas de título ou cliques estranhos.
 
+## Sessão 8 (Arquitetura de Textos do HL2, Multi-idiomas e Troca a Quente)
+- **Comparação Arquitetural de Textos (HL1 vs HL2):**
+  - No *Heroes Lore 1 (Wind of Soltia)*, todos os textos do jogo residiam em um único arquivo binário monolítico (`lang.en-GB`), compactado em formato de bit-stream variável (BabbleText com árvore/ponteiros de bits de 0 a 4500).
+  - No *Heroes Lore 2 (The Knight of Frozen Sea)*, a Hands-On Mobile redesenhou totalmente o subsistema de localização, dividindo os textos em três estruturas modulares de tamanho pré-fixado:
+    1. **Textos de Sistema, UI, Quests e Habilidades (`reference/extracted/t/*.tdf`):** 19 arquivos binários com 834 strings no total (`com.tdf`, `gm.tdf`, `q.tdf`, `sk0..2.tdf`, `help.tdf`, `hero.tdf`, `itmtp.tdf`, `shop.tdf`, `rf.tdf`, `bm.tdf`, `bsk.tdf`, `bsm.tdf`, `ed.tdf`, etc.). Formato: byte 0 = contagem de strings $N$; a seguir, para cada string, 2 bytes de comprimento em big-endian seguidos de bytes de texto UTF-8.
+    2. **Itens e Equipamentos (`reference/extracted/itm/*`):** 34 arquivos com 578 itens no total. Registros com 4 bytes de atributos seguidos por byte de tamanho de nome, bytes do nome, byte de tamanho de descrição e bytes da descrição.
+    3. **Nomes de Região e Diálogos de NPCs (`reference/extracted/m/m/*.m`):** 111 mapas com 1.430 diálogos de NPC no total. O cabeçalho armazena o nome da região (byte de tamanho + texto) e a seção de eventos armazena a matriz sequencial de falas (byte de contagem + bytes de tamanho e texto por fala).
+- **Renderizador de Fontes (`bk.java`):**
+  - Utiliza fonte bitmap de 12px com tabela de larguras para ASCII 32..126 (`/ftd/eng12w`).
+  - Caracteres com o bit mais significativo ligado (`& 0x80 != 0`) eram reservados para sílabas Hangul coreanas (EUC-KR de 2 bytes). Por essa razão, textos ocidentais (inglês e português) operam com máxima fidelidade e clareza visual utilizando a faixa padrão ASCII / transliteração limpa sem caracteres corrompidos.
+  - Caracteres especiais atuam como códigos de formatação de cores e quebras de linha:
+    - `@` (0xFFFFFF branco)
+    - `|` (0xFFFF00 amarelo)
+    - `$` (1630207 azul)
+    - `{` / `}` (0xFF9F3F laranja / 14597755)
+    - `'` (65280 verde)
+    - `;` (quebra de linha)
+- **Troca a Quente de Idioma em Tempo Real sem Recarregar Mapa:**
+  - A troca de idioma intercepta `Platform::readAsset` redirecionando para `assets/lang/<idioma>/`.
+  - Ao alterar o idioma nas opções, `Platform::reloadLanguage(vm)` atualiza:
+    1. Os vetores de strings de todas as instâncias ativas de `class e` (`as.var_e_*`, `ck.var_e_*`, etc.).
+    2. O array estático `ah.var_java_lang_Object_arr_d` com os diálogos traduzidos do mapa ativo (`u.h`).
+    3. O banner de nome de mapa em `u.var_ah_a.i`.
+    4. Os nomes e descrições dos itens ativos no inventário (`cp.class`).
+    5. O menu de configurações é redesenhado de imediato com os novos textos traduzidos.
+
 
 
