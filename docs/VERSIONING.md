@@ -24,7 +24,33 @@ O projeto adota o padrão `vMAJOR.MINOR.PATCH`:
 
 ---
 
-## 2. Fluxo de CI/CD Automatizado (GitHub Actions)
+## 2. Automação de Versionamento (`tools/bump_version.py`)
+
+Para evitar inconsistências manuais entre arquivos, utilize o script automatizado:
+
+```bash
+# Ver versão atual
+python tools/bump_version.py --current
+
+# Incrementar patch (ex: 0.2.6 -> 0.2.7)
+python tools/bump_version.py patch
+
+# Definir versão exata
+python tools/bump_version.py 0.3.0
+
+# Atualizar arquivos, commitar e criar a tag Git de uma só vez:
+python tools/bump_version.py patch --git
+```
+
+O script atualiza automaticamente:
+1. `src/platform/updater.h` (`HL_VERSION_TAG` e `HL_VERSION_NUM`)
+2. `android/app/build.gradle` (`versionCode` incremental e `versionName`)
+3. `Makefile.switch` (`APP_VERSION`)
+4. `docs/STATUS.md` (cabeçalho de última atualização)
+
+---
+
+## 3. Fluxo de CI/CD Automatizado (GitHub Actions)
 
 A esteira de integração contínua está implementada em [`.github/workflows/build.yml`](../.github/workflows/build.yml):
 
