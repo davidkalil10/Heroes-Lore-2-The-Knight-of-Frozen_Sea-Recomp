@@ -184,5 +184,23 @@
     4. Os nomes e descrições dos itens ativos no inventário (`cp.class`).
     5. O menu de configurações é redesenhado de imediato com os novos textos traduzidos.
 
+## Sessão 9 (Correção da Interceptação de Assets, Tradução Completa de Quests e Diálogos, Localização dos Menus)
+- **Causa Raiz da Não-Localização de Diálogos e Missões:**
+  - No motor Java do HL2, `Class.getResourceAsStream(path)` em `natives.cpp` prefixa o caminho com `vm.dataDir` (ex: `"reference/extracted/m/m/00.m"` ou `"reference/extracted/t/q.tdf"`).
+  - Em `Platform::readAsset`, a verificação de localização checava `clean.rfind("t/", 0) == 0`, o que falhava porque `clean` começava com `"reference/extracted/"`. Com isso, o jogo caía diretamente nos arquivos em inglês originais no disco.
+  - **Solução:** Normalização completa de `relTarget` removendo os prefixos `reference/extracted/`, `extracted/` e `assets/` antes de verificar as rotas localizáveis (`t/`, `itm/`, `m/m/`).
+- **Tradução em Lote de Alto Desempenho para Textos do Jogo:**
+  - O HL2 possui 1.969 textos únicos entre diálogos de mapa, missões de `q.tdf` e textos de sistema.
+  - Criado o script `tools/run_fast_translation.py`, que agrupa até 20 textos por requisição com o separador `\n@@@\n`, reduzindo as requisições HTTP de ~2.000 para apenas 99 lotes.
+  - Todas as 255 linhas de missões de `q.tdf` e todos os 1.430 diálogos de NPC nos 111 mapas foram traduzidos mantendo intactos os caracteres especiais de cores (`@`, `|`, `$`, `{`, `}`) e padronizados em ASCII limpo compatível com a fonte bitmap original.
+- **Localização Dinâmica dos Menus Personalizados:**
+  - As opções adicionais de recompilação (5..9) em `l_draw_native` agora consultam dinamicamente `Platform::getCurrentLanguage()`, alternando automaticamente entre:
+    - `Idioma: PT-BR / English` (com valores `PT-BR` ou `English`)
+    - `Tela: Auto / 3:4 / 16:9` (ou `Aspect`)
+    - `Nuvem: Google` (ou `Cloud`)
+    - `Atualizar: Checar` (ou `Update: Check`)
+- **Compatibilidade com Nintendo Switch:**
+  - Adicionado fallback explícito para `romfs:/lang/...` e `romfs:/assets/lang/...` em `Platform::readAsset` sob a diretiva `#ifdef __SWITCH__`, garantindo que o executável NRO carregue os textos localizados embutidos diretamente no RomFS.
+
 
 

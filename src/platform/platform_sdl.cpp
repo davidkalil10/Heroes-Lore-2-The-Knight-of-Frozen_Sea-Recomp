@@ -2427,11 +2427,21 @@ std::vector<uint8_t> Platform::readAsset(const std::string& path) {
     clean = clean.substr(1);
   }
 
+  // Normaliza o caminho relativo para verificação de localização
+  std::string relTarget = clean;
+  if (relTarget.rfind("reference/extracted/", 0) == 0) {
+    relTarget = relTarget.substr(20);
+  } else if (relTarget.rfind("extracted/", 0) == 0) {
+    relTarget = relTarget.substr(10);
+  } else if (relTarget.rfind("assets/", 0) == 0) {
+    relTarget = relTarget.substr(7);
+  }
+
   // Intercepta arquivos localizados do HL2 (t/*.tdf, itm/*, m/m/*.m)
-  bool isLocalizable = (clean.rfind("t/", 0) == 0 || clean.rfind("itm/", 0) == 0 || clean.rfind("m/m/", 0) == 0);
+  bool isLocalizable = (relTarget.rfind("t/", 0) == 0 || relTarget.rfind("itm/", 0) == 0 || relTarget.rfind("m/m/", 0) == 0);
   if (isLocalizable) {
     std::string langDir = (s_currentLanguage == "pt" || s_currentLanguage == "pt_br") ? "pt_br" : s_currentLanguage;
-    std::string candidate = "lang/" + langDir + "/" + clean;
+    std::string candidate = "lang/" + langDir + "/" + relTarget;
     
     SDL_RWops* rwLoc = SDL_RWFromFile(candidate.c_str(), "rb");
     if (!rwLoc) {
@@ -2442,6 +2452,16 @@ std::vector<uint8_t> Platform::readAsset(const std::string& path) {
       std::string alt = "../assets/" + candidate;
       rwLoc = SDL_RWFromFile(alt.c_str(), "rb");
     }
+#ifdef __SWITCH__
+    if (!rwLoc) {
+      std::string alt = "romfs:/" + candidate;
+      rwLoc = SDL_RWFromFile(alt.c_str(), "rb");
+    }
+    if (!rwLoc) {
+      std::string alt = "romfs:/assets/" + candidate;
+      rwLoc = SDL_RWFromFile(alt.c_str(), "rb");
+    }
+#endif
     if (rwLoc) {
       Sint64 size = SDL_RWsize(rwLoc);
       if (size > 0) {

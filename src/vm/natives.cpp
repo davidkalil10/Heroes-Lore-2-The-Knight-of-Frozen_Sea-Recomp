@@ -2400,11 +2400,11 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
     vm.invoke(mLbToggle, bArgs, bRet);
   }
 
-  // --- NOVAS OPÇÕES RECOMPILAÇÃO (Itens 5, 6, 7, 8, 9) ---
+  bool isPt = (Platform::getCurrentLanguage() == "pt" || Platform::getCurrentLanguage() == "pt_br");
 
   // Item 5: Idioma (Language)
   graphics->setColor(14134162);
-  Object* lblLang = makeByteArray("Idioma");
+  Object* lblLang = makeByteArray(isPt ? "Idioma" : "Language");
   if (lblLang && mBkA) {
     Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 90; lArgs[3].o = lblLang; lArgs[4].i = 0; Value lRet[2];
     vm.invoke(mBkA, lArgs, lRet);
@@ -2434,7 +2434,7 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
 
   // Item 7: Proporção de Tela (Aspect Ratio)
   graphics->setColor(14134162);
-  Object* lblTela = makeByteArray("Tela");
+  Object* lblTela = makeByteArray(isPt ? "Tela" : "Aspect");
   if (lblTela && mBkA) {
     Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 126; lArgs[3].o = lblTela; lArgs[4].i = 0; Value lRet[2];
     vm.invoke(mBkA, lArgs, lRet);
@@ -2450,7 +2450,7 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
 
   // Item 8: Cloud Save (Google Drive)
   graphics->setColor(14134162);
-  Object* lblCloud = makeByteArray("Nuvem");
+  Object* lblCloud = makeByteArray(isPt ? "Nuvem" : "Cloud");
   if (lblCloud && mBkA) {
     Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 144; lArgs[3].o = lblCloud; lArgs[4].i = 0; Value lRet[2];
     vm.invoke(mBkA, lArgs, lRet);
@@ -2465,13 +2465,13 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
 
   // Item 9: Atualizações (Verificar)
   graphics->setColor(14134162);
-  Object* lblUpdate = makeByteArray("Update");
+  Object* lblUpdate = makeByteArray(isPt ? "Atualizar" : "Update");
   if (lblUpdate && mBkA) {
     Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 162; lArgs[3].o = lblUpdate; lArgs[4].i = 0; Value lRet[2];
     vm.invoke(mBkA, lArgs, lRet);
   }
   graphics->setColor(curH == 9 ? 0xFFFFFF : 0x7F7F7F);
-  std::string txtUpdate = "Check";
+  std::string txtUpdate = isPt ? "Checar" : "Check";
   Object* valUpdate = makeByteArray(txtUpdate);
   if (valUpdate && mBkA_flags) {
     Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 162; vArgs[3].o = valUpdate; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];

@@ -1,6 +1,6 @@
 # STATUS — Heroes Lore 2: The Knight of Frozen Sea
 
-_Última atualização: 2026-10-12 (Versão v0.2.4 lançada oficialmente)_
+_Última atualização: 2026-10-12 (Versão v0.2.5 lançada oficialmente)_
 
 ## Ambiente
 - Java 17/21, Python 3.13, Git: OK.
@@ -46,6 +46,12 @@ _Última atualização: 2026-10-12 (Versão v0.2.4 lançada oficialmente)_
   - Se restaurado no Menu de Título: recria `bg` em brilho total (`l = 3`) com "Continuar" ativo e pronto para clique direto.
 - [x] Correção dos botões Joy-Con do Nintendo Switch no modal de Nuvem (v0.2.3):
   - Invertido o mapeamento SDL2 para Switch no modal: Joy-Con X físico (`SDL_CONTROLLER_BUTTON_Y`) agora aciona Restaurar (tecla 50), e Joy-Con Y físico (`SDL_CONTROLLER_BUTTON_X`) aciona Desconectar (tecla 51), harmonizando perfeitamente botões físicos, touch e legendas visuais.
+- [x] Correção integral da localização e multi-idioma (v0.2.5):
+  - Localização dinâmica dos novos itens do menu de configurações (`Idioma`, `Tela`, `Nuvem`, `Atualizar`, `Checar`).
+  - Resolução de caminhos no interceptor de assets (`Platform::readAsset`), normalizando prefixos como `reference/extracted/` para garantir o roteamento correto de arquivos localizados (`/t/`, `/itm/`, `/m/m/`).
+  - Tradução integral de todas as 255 missões em `/t/q.tdf` para Português do Brasil.
+  - Tradução integral de todos os 1.430 diálogos de história e NPCs distribuídos pelos 111 mapas (`/m/m/*.m`) com preservação estrita de marcações de cor (`@`, `|`, `$`, `{`, `}`) e caracteres ASCII sem acentos.
+  - Suporte direto a `romfs:/` no Nintendo Switch para carregamento de assets traduzidos embutidos no NRO.
 - [x] Validação de persistência e carregamento RMS no disco e na nuvem.
 - [ ] Validação de jogabilidade contínua (combate em mapa aberto e diálogos com NPCs).
 
