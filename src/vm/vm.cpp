@@ -19,6 +19,15 @@
 #include <sstream>
 #include <chrono>
 #include <algorithm>
+#ifdef _WIN32
+  #ifndef WIN32_LEAN_AND_MEAN
+    #define WIN32_LEAN_AND_MEAN
+  #endif
+  #ifndef NOMINMAX
+    #define NOMINMAX
+  #endif
+  #include <windows.h>
+#endif
 
 namespace hl {
 
@@ -153,11 +162,36 @@ static const BC kBuiltin[] = {
   {"[", "java/lang/Object", "", K_ARRAY, 0, false},
 };
 
+void VM::dumpStackTrace() {
+  if (!tctx || tctx->callStack.empty()) {
+    boot_log("[Stack Trace] (Nenhuma pilha ativa)\n");
+    return;
+  }
+  boot_log("[Active Java Call Stack] (Thread %u, total %zu frames):\n", tctx->id, tctx->callStack.size());
+  for (int i = (int)tctx->callStack.size() - 1; i >= 0; --i) {
+    auto& f = tctx->callStack[i];
+    if (f.m && f.m->owner) {
+      boot_log("  at %s.%s%s (pc=%d)\n", f.m->owner->name.c_str(), f.m->name.c_str(), f.m->desc.c_str(), f.pc);
+    }
+  }
+}
+
 void VM::fatal(const std::string& msg) {
-  boot_log("\n[FATAL] %s\n", msg.c_str());
+  boot_log("\n==================================================\n");
+  boot_log("[FATAL ERROR] %s\n", msg.c_str());
+  dumpStackTrace();
+  boot_log("==================================================\n");
   fprintf(stderr, "[FATAL] %s\n", msg.c_str());
   fflush(stderr);
   fflush(stdout);
+#ifdef _WIN32
+  char dlgMsg[1024];
+  snprintf(dlgMsg, sizeof(dlgMsg),
+    "Erro Fatal no Jogo:\n\n%s\n\nDetalhes gravados em 'heroes_lore_2.log'.", msg.c_str());
+  MessageBoxA(nullptr, dlgMsg, "Heroes Lore 2 - Erro Fatal", MB_OK | MB_ICONERROR);
+#elif !defined(__SWITCH__)
+  SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Heroes Lore 2 - Erro Fatal", msg.c_str(), nullptr);
+#endif
 #ifdef __SWITCH__
   std::this_thread::sleep_for(std::chrono::milliseconds(500));
 #endif

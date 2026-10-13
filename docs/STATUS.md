@@ -1,6 +1,6 @@
 # STATUS — Heroes Lore 2: The Knight of Frozen Sea
 
-_Última atualização: 2026-10-12 (Versão v0.2.5 lançada oficialmente)_
+_Última atualização: 2026-10-13 (Versão v0.2.6 lançada oficialmente)_
 
 ## Ambiente
 - Java 17/21, Python 3.13, Git: OK.
@@ -53,6 +53,7 @@ _Última atualização: 2026-10-12 (Versão v0.2.5 lançada oficialmente)_
   - Tradução integral de todos os 1.430 diálogos de história e NPCs distribuídos pelos 111 mapas (`/m/m/*.m`) com preservação estrita de marcações de cor (`@`, `|`, `$`, `{`, `}`) e caracteres ASCII sem acentos.
   - Suporte direto a `romfs:/` no Nintendo Switch para carregamento de assets traduzidos embutidos no NRO.
 - [x] Validação de persistência e carregamento RMS no disco e na nuvem.
+- [x] Correção do crash no combate (`Math.max:(II)I` adicionado em `natives.cpp`), viabilizando a renderização do banner do alvo em `bd.a(ag, boolean)`.
 - [ ] Validação de jogabilidade contínua (combate em mapa aberto e diálogos com NPCs).
 
 ## Roadmap de Etapas (Seguindo o Blueprint)

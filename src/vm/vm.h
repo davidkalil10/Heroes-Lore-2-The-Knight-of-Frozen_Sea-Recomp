@@ -118,8 +118,14 @@ struct ClassInfo {
 
 struct JavaThrow { Object* ex; };
 
+struct CallFrame {
+  Method* m = nullptr;
+  int pc = 0;
+};
+
 struct ThreadCtx {
   std::vector<Value> stack; size_t sp = 0; uint32_t id = 0;
+  std::vector<CallFrame> callStack;
   ThreadCtx() : stack(1 << 18) {}
 };
 extern ThreadCtx* tctx;
@@ -180,8 +186,10 @@ struct VM {
   ClassObj* classObjOf(ClassInfo* c);
   void registerNatives();
   void registerMidp();
+  void dumpStackTrace();
 };
 
+std::string describeThrowable(VM& vm, Object* ex);
 std::string toUtf8(const std::u16string& s);
 std::u16string fromUtf8(const std::string& s);
 int slotsOfDesc(const std::string& d, int& argSlots);  // retorna slots do retorno

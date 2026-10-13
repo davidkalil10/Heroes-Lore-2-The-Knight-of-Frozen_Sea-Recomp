@@ -15,8 +15,17 @@
 #include <cstdio>
 #include <cstdarg>
 #include <string>
+#include <csignal>
 #ifndef _WIN32
 #include <unistd.h>
+#else
+  #ifndef WIN32_LEAN_AND_MEAN
+    #define WIN32_LEAN_AND_MEAN
+  #endif
+  #ifndef NOMINMAX
+    #define NOMINMAX
+  #endif
+  #include <windows.h>
 #endif
 
 namespace hl {
@@ -34,10 +43,67 @@ void boot_log(const char* fmt, ...) {
   }
 }
 extern Object* g_serialRunnable;
-std::string describeThrowable(VM& vm, Object* ex);
 } // namespace hl
 
 using hl::boot_log;
+
+#ifdef _WIN32
+static LONG WINAPI windowsCrashHandler(EXCEPTION_POINTERS* ep) {
+  DWORD code = ep->ExceptionRecord->ExceptionCode;
+  void* addr = ep->ExceptionRecord->ExceptionAddress;
+  boot_log("\n==================================================\n");
+  boot_log("[HARDWARE CRASH] Excecao nativa de hardware / Windows capturada!\n");
+  boot_log("Codigo da Excecao: 0x%08lX\n", (unsigned long)code);
+  boot_log("Endereco da Falha: %p\n", addr);
+  if (hl::tctx) {
+    boot_log("Thread J2ME Ativa: %u\n", hl::tctx->id);
+    boot_log("[Java Call Stack no momento do Crash]:\n");
+    for (int i = (int)hl::tctx->callStack.size() - 1; i >= 0; --i) {
+      auto& f = hl::tctx->callStack[i];
+      if (f.m && f.m->owner) {
+        boot_log("  at %s.%s%s (pc=%d)\n", f.m->owner->name.c_str(), f.m->name.c_str(), f.m->desc.c_str(), f.pc);
+      }
+    }
+  }
+  boot_log("==================================================\n");
+  if (hl::s_bootLog) fflush(hl::s_bootLog);
+
+  char msg[1024];
+  snprintf(msg, sizeof(msg),
+    "O jogo encontrou uma falha fatal e precisou encerrar.\n\n"
+    "Codigo: 0x%08lX em %p\n"
+    "Os detalhes completos foram salvos no arquivo 'heroes_lore_2.log'.",
+    (unsigned long)code, addr);
+  MessageBoxA(nullptr, msg, "Heroes Lore 2 - Falha Fatal", MB_OK | MB_ICONERROR);
+  return EXCEPTION_EXECUTE_HANDLER;
+}
+#endif
+
+static void posixSignalHandler(int sig) {
+  boot_log("\n==================================================\n");
+  boot_log("[SIGNAL CRASH] Sinal do sistema capturado: %d (%s)\n", sig,
+    sig == SIGSEGV ? "SIGSEGV - Acesso de Memoria Invalido" :
+    sig == SIGABRT ? "SIGABRT - Abort / Assercao" :
+    sig == SIGFPE  ? "SIGFPE - Divisao por Zero / Aritmetica" :
+    sig == SIGILL  ? "SIGILL - Instrucao Ilegal" : "Outro Sinal");
+  if (hl::tctx) {
+    boot_log("Thread J2ME Ativa: %u\n", hl::tctx->id);
+    boot_log("[Java Call Stack no momento do Crash]:\n");
+    for (int i = (int)hl::tctx->callStack.size() - 1; i >= 0; --i) {
+      auto& f = hl::tctx->callStack[i];
+      if (f.m && f.m->owner) {
+        boot_log("  at %s.%s%s (pc=%d)\n", f.m->owner->name.c_str(), f.m->name.c_str(), f.m->desc.c_str(), f.pc);
+      }
+    }
+  }
+  boot_log("==================================================\n");
+  if (hl::s_bootLog) fflush(hl::s_bootLog);
+#ifdef _WIN32
+  _exit(128 + sig);
+#else
+  _exit(128 + sig);
+#endif
+}
 
 int main(int argc, char** argv) {
   setvbuf(stdout, nullptr, _IONBF, 0);
@@ -47,6 +113,14 @@ int main(int argc, char** argv) {
     Platform::setExecutablePath(argv[0]);
   }
 
+#ifdef _WIN32
+  SetUnhandledExceptionFilter(windowsCrashHandler);
+#endif
+  signal(SIGSEGV, posixSignalHandler);
+  signal(SIGABRT, posixSignalHandler);
+  signal(SIGFPE,  posixSignalHandler);
+  signal(SIGILL,  posixSignalHandler);
+
 #ifdef __SWITCH__
   s_bootLog = fopen("sdmc:/heroes_lore_2_boot.log", "a");
   if (!s_bootLog) s_bootLog = fopen("sdmc:/switch/heroes_lore_2/boot.log", "a");
@@ -55,6 +129,9 @@ int main(int argc, char** argv) {
     dup2(fileno(s_bootLog), STDOUT_FILENO);
     dup2(fileno(s_bootLog), STDERR_FILENO);
   }
+#else
+  s_bootLog = fopen("heroes_lore_2.log", "w");
+  if (!s_bootLog) s_bootLog = fopen("heroes_lore_2.log", "a");
 #endif
 
   boot_log("==================================================\n");
@@ -206,6 +283,7 @@ int main(int argc, char** argv) {
         vm.invokeVirtual(r, "run:()V", nullptr, 0, ret);
       } catch (JavaThrow& jt) {
         boot_log("[serialRunnable] Exceção: %s\n", describeThrowable(vm, jt.ex).c_str());
+        vm.dumpStackTrace();
       }
     }
 
@@ -219,6 +297,7 @@ int main(int argc, char** argv) {
         vm.invokeVirtual(g_display->current, "keyReleased:(I)V", ka, 1, kr);
       } catch (JavaThrow& jt) {
         boot_log("[devkey] Exceção: %s\n", describeThrowable(vm, jt.ex).c_str());
+        vm.dumpStackTrace();
       }
     }
 #endif
@@ -234,6 +313,7 @@ int main(int argc, char** argv) {
         vm.invokeVirtual(g_display->current, "paint:(Ljavax/microedition/lcdui/Graphics;)V", args, 1, ret);
       } catch (JavaThrow& jt) {
         boot_log("[paint] Exceção: %s\n", describeThrowable(vm, jt.ex).c_str());
+        vm.dumpStackTrace();
       }
     }
 

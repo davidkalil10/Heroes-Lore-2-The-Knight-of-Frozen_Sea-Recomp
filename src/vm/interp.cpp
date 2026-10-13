@@ -1,5 +1,6 @@
 // interp.cpp — interpretador de bytecode JVM (subconjunto CLDC: int/long/ref; sem float/jsr/wide)
 #include "vm.h"
+#include "../platform/platform.h"
 #include <cstdio>
 #include <climits>
 
@@ -9,8 +10,9 @@ namespace {
 struct SpGuard { ThreadCtx* t; size_t base; ~SpGuard() { t->sp = base; } };
 
 [[noreturn]] void aioobe(VM& vm, Method* m, int pc, int idx, int len) {
-  fprintf(stderr, "[AIOOBE] in %s.%s%s pc=%d: index=%d, length=%d\n",
+  boot_log("[AIOOBE] in %s.%s%s pc=%d: index=%d, length=%d\n",
           m->owner->name.c_str(), m->name.c_str(), m->desc.c_str(), pc, idx, len);
+  vm.dumpStackTrace();
   vm.throwNew("java/lang/ArrayIndexOutOfBoundsException", std::to_string(idx));
 }
 
@@ -65,6 +67,7 @@ void exec(VM& vm, Method* m, Value* L, Value* ret) {
     try {
       for (;;) {
         curpc = pc; uint8_t op = code[pc++];
+        if (tctx && !tctx->callStack.empty()) tctx->callStack.back().pc = curpc;
         switch (op) {
           case 0: break;
           case 1: S[sp++].o = nullptr; break;
@@ -269,6 +272,12 @@ void VM::invoke(Method* m, Value* args, Value* ret) {
   if (m->code.empty()) fatal("método sem código: " + m->owner->name + "." + m->name + m->desc);
   ThreadCtx* t = tctx;
   if (!t) fatal("invoke chamado sem ThreadCtx ativo no método: " + m->owner->name + "." + m->name);
+  struct FrameGuard {
+    ThreadCtx* t;
+    ~FrameGuard() { if (t && !t->callStack.empty()) t->callStack.pop_back(); }
+  };
+  t->callStack.push_back({m, 0});
+  FrameGuard fg{t};
   size_t base = t->sp;
   int nargs = m->argSlots + (m->isStatic ? 0 : 1);
   size_t need = base + m->maxLocals + m->maxStack + 8;

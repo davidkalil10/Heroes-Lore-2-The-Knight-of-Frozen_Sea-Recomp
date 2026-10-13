@@ -440,6 +440,12 @@ static void Math_min(VM&, Value* args, Value* ret) {
   ret[0].i = (a < b) ? a : b;
 }
 
+static void Math_max(VM&, Value* args, Value* ret) {
+  int a = args[0].i;
+  int b = args[1].i;
+  ret[0].i = (a > b) ? a : b;
+}
+
 // -------------------------------------------------------------
 // java/lang/Integer
 // -------------------------------------------------------------
@@ -1231,6 +1237,7 @@ void VM::registerNatives() {
   // java/lang/Math
   reg("java/lang/Math.abs:(I)I", Math_abs);
   reg("java/lang/Math.min:(II)I", Math_min);
+  reg("java/lang/Math.max:(II)I", Math_max);
 
   // java/lang/Integer
   reg("java/lang/Integer.parseInt:(Ljava/lang/String;)I", Integer_parseInt_1);

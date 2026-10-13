@@ -1379,31 +1379,58 @@ static int getHeldDirection() {
   return getGamepadHeldDirection();
 }
 
+static void sendKeyPressed(VM& vm, int key) {
+  if (!g_display || !g_display->current) return;
+  if (key == 53) {
+    boot_log("[Input] Tecla 53 (Ataque/Acao) pressionada no Canvas: %s\n",
+             g_display->current->cls ? g_display->current->cls->name.c_str() : "unknown");
+  }
+  vm.gilLock();
+  try {
+    Value args[1]; args[0].i = key; Value ret[2];
+    vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
+  } catch (JavaThrow& jt) {
+    boot_log("[Input Exception] Excecao Java em keyPressed(%d): %s\n", key, describeThrowable(vm, jt.ex).c_str());
+    vm.dumpStackTrace();
+  } catch (const std::exception& e) {
+    boot_log("[Input Exception] std::exception em keyPressed(%d): %s\n", key, e.what());
+    vm.dumpStackTrace();
+  } catch (...) {
+    boot_log("[Input Exception] Excecao desconhecida em keyPressed(%d)!\n", key);
+    vm.dumpStackTrace();
+  }
+  vm.gilUnlock();
+}
+
+static void sendKeyReleased(VM& vm, int key) {
+  if (!g_display || !g_display->current) return;
+  vm.gilLock();
+  try {
+    Value args[1]; args[0].i = key; Value ret[2];
+    vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
+  } catch (JavaThrow& jt) {
+    boot_log("[Input Exception] Excecao Java em keyReleased(%d): %s\n", key, describeThrowable(vm, jt.ex).c_str());
+    vm.dumpStackTrace();
+  } catch (const std::exception& e) {
+    boot_log("[Input Exception] std::exception em keyReleased(%d): %s\n", key, e.what());
+    vm.dumpStackTrace();
+  } catch (...) {
+    boot_log("[Input Exception] Excecao desconhecida em keyReleased(%d)!\n", key);
+    vm.dumpStackTrace();
+  }
+  vm.gilUnlock();
+}
+
 static void cyclePotionPrev(VM& vm) {
-  if (g_display && g_display->current) {
-    vm.gilLock();
-    try {
-      Value args[1]; args[0].i = 35; Value ret[2];
-      // '#' invocado 3 vezes avança 3 slots, equivalente a recuar 1 slot (4 - 1 = 3)
-      for (int rep = 0; rep < 3; ++rep) {
-        vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-        vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-      }
-    } catch (...) {}
-    vm.gilUnlock();
+  for (int rep = 0; rep < 3; ++rep) {
+    sendKeyPressed(vm, 35);
+    sendKeyReleased(vm, 35);
   }
 }
 
 static void cyclePotionNext(VM& vm) {
-  if (g_display && g_display->current) {
-    vm.gilLock();
-    try {
-      Value args[1]; args[0].i = 35; Value ret[2];
-      vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-      vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-    } catch (...) {}
-    vm.gilUnlock();
-  }
+  sendKeyPressed(vm, 35);
+  sendKeyReleased(vm, 35);
 }
 
 static void getTouchCoords(const SDL_TouchFingerEvent& tf, int winW, int winH, float& outX, float& outY, int& outW, int& outH) {
@@ -1612,20 +1639,10 @@ bool Platform::pollEvents(VM& vm) {
             s_activeDirection = key;
             s_directionPressTime = SDL_GetTicks();
             s_directionLastRepeatTime = s_directionPressTime;
-            vm.gilLock();
-            try {
-              Value args[1]; args[0].i = key; Value ret[2];
-              vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-            } catch (...) {}
-            vm.gilUnlock();
+            sendKeyPressed(vm, key);
           }
         } else {
-          vm.gilLock();
-          try {
-            Value args[1]; args[0].i = key; Value ret[2];
-            vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-          } catch (...) {}
-          vm.gilUnlock();
+          sendKeyPressed(vm, key);
         }
       }
     } else if (ev.type == SDL_CONTROLLERBUTTONUP) {
@@ -1633,13 +1650,8 @@ bool Platform::pollEvents(VM& vm) {
         s_selectButtonHeld = false;
         // Se SELECT foi solto sem uso em combo, envia comando do Minimapa ('*' = 42 no HL2)
         if (!s_selectUsedInCombo && g_display && g_display->current) {
-          vm.gilLock();
-          try {
-            Value args[1]; args[0].i = 42; Value ret[2];
-            vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-            vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-          } catch (...) {}
-          vm.gilUnlock();
+          sendKeyPressed(vm, 42);
+          sendKeyReleased(vm, 42);
         }
         continue;
       } else if (ev.cbutton.button == SDL_CONTROLLER_BUTTON_START) {
@@ -1658,28 +1670,13 @@ bool Platform::pollEvents(VM& vm) {
             s_activeDirection = held;
             s_directionPressTime = SDL_GetTicks();
             s_directionLastRepeatTime = s_directionPressTime;
-            vm.gilLock();
-            try {
-              Value args[1]; args[0].i = held; Value ret[2];
-              vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-            } catch (...) {}
-            vm.gilUnlock();
+            sendKeyPressed(vm, held);
           } else {
             s_activeDirection = 0;
-            vm.gilLock();
-            try {
-              Value args[1]; args[0].i = key; Value ret[2];
-              vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-            } catch (...) {}
-            vm.gilUnlock();
+            sendKeyReleased(vm, key);
           }
         } else {
-          vm.gilLock();
-          try {
-            Value args[1]; args[0].i = key; Value ret[2];
-            vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-          } catch (...) {}
-          vm.gilUnlock();
+          sendKeyReleased(vm, key);
         }
       }
     }
@@ -1709,25 +1706,11 @@ bool Platform::pollEvents(VM& vm) {
             s_activeDirection = held;
             s_directionPressTime = SDL_GetTicks();
             s_directionLastRepeatTime = s_directionPressTime;
-            if (g_display && g_display->current) {
-              vm.gilLock();
-              try {
-                Value args[1]; args[0].i = held; Value ret[2];
-                vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-              } catch (...) {}
-              vm.gilUnlock();
-            }
+            sendKeyPressed(vm, held);
           } else if (s_activeDirection != 0 && getHeldDirection() == 0) {
             int oldKey = s_activeDirection;
             s_activeDirection = 0;
-            if (g_display && g_display->current) {
-              vm.gilLock();
-              try {
-                Value args[1]; args[0].i = oldKey; Value ret[2];
-                vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-              } catch (...) {}
-              vm.gilUnlock();
-            }
+            sendKeyReleased(vm, oldKey);
           }
         }
       }
@@ -1769,24 +1752,10 @@ bool Platform::pollEvents(VM& vm) {
             s_activeDirection = key;
             s_directionPressTime = SDL_GetTicks();
             s_directionLastRepeatTime = s_directionPressTime;
-            vm.gilLock();
-            try {
-              Value args[1];
-              args[0].i = key;
-              Value ret[2];
-              vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-            } catch (...) {}
-            vm.gilUnlock();
+            sendKeyPressed(vm, key);
           }
         } else if (!ev.key.repeat) {
-          vm.gilLock();
-          try {
-            Value args[1];
-            args[0].i = key;
-            Value ret[2];
-            vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-          } catch (...) {}
-          vm.gilUnlock();
+          sendKeyPressed(vm, key);
         }
       }
     } else if (ev.type == SDL_KEYUP) {
@@ -1798,34 +1767,13 @@ bool Platform::pollEvents(VM& vm) {
             s_activeDirection = held;
             s_directionPressTime = SDL_GetTicks();
             s_directionLastRepeatTime = s_directionPressTime;
-            vm.gilLock();
-            try {
-              Value args[1];
-              args[0].i = held;
-              Value ret[2];
-              vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-            } catch (...) {}
-            vm.gilUnlock();
+            sendKeyPressed(vm, held);
           } else {
             s_activeDirection = 0;
-            vm.gilLock();
-            try {
-              Value args[1];
-              args[0].i = key;
-              Value ret[2];
-              vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-            } catch (...) {}
-            vm.gilUnlock();
+            sendKeyReleased(vm, key);
           }
         } else {
-          vm.gilLock();
-          try {
-            Value args[1];
-            args[0].i = key;
-            Value ret[2];
-            vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-          } catch (...) {}
-          vm.gilUnlock();
+          sendKeyReleased(vm, key);
         }
       }
     }
@@ -1834,22 +1782,12 @@ bool Platform::pollEvents(VM& vm) {
     // Cliques de mouse no PC Desktop (ignora toques sintetizados de touchscreen)
     else if (ev.type == SDL_MOUSEBUTTONDOWN) {
       if (ev.button.which != SDL_TOUCH_MOUSEID && ev.button.button == SDL_BUTTON_LEFT && g_display && g_display->current) {
-        vm.gilLock();
-        try {
-          Value args[1]; args[0].i = 53; Value ret[2];
-          vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-        } catch (...) {}
-        vm.gilUnlock();
+        sendKeyPressed(vm, 53);
       }
     }
     else if (ev.type == SDL_MOUSEBUTTONUP) {
       if (ev.button.which != SDL_TOUCH_MOUSEID && ev.button.button == SDL_BUTTON_LEFT && g_display && g_display->current) {
-        vm.gilLock();
-        try {
-          Value args[1]; args[0].i = 53; Value ret[2];
-          vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-        } catch (...) {}
-        vm.gilUnlock();
+        sendKeyReleased(vm, 53);
       }
     }
 #endif
@@ -1870,12 +1808,7 @@ bool Platform::pollEvents(VM& vm) {
         if (!s_touchOverlayEnabled) {
           // Solta direcional ou teclas mantidas para não travar andando
           if (s_activeDirection != 0 && g_display && g_display->current) {
-            vm.gilLock();
-            try {
-              Value args[1]; args[0].i = s_activeDirection; Value ret[2];
-              vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-            } catch (...) {}
-            vm.gilUnlock();
+            sendKeyReleased(vm, s_activeDirection);
           }
           s_activeDirection = 0;
           s_touchHeldDirection = 0;
@@ -1909,24 +1842,10 @@ bool Platform::pollEvents(VM& vm) {
             s_activeDirection = key;
             s_directionPressTime = SDL_GetTicks();
             s_directionLastRepeatTime = s_directionPressTime;
-            if (g_display && g_display->current) {
-              vm.gilLock();
-              try {
-                Value args[1]; args[0].i = key; Value ret[2];
-                vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-              } catch (...) {}
-              vm.gilUnlock();
-            }
+            sendKeyPressed(vm, key);
           }
         } else {
-          if (g_display && g_display->current) {
-            vm.gilLock();
-            try {
-              Value args[1]; args[0].i = key; Value ret[2];
-              vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-            } catch (...) {}
-            vm.gilUnlock();
-          }
+          sendKeyPressed(vm, key);
         }
       }
     } else if (ev.type == SDL_FINGERMOTION) {
@@ -1952,45 +1871,17 @@ bool Platform::pollEvents(VM& vm) {
                 s_activeDirection = newKey;
                 s_directionPressTime = SDL_GetTicks();
                 s_directionLastRepeatTime = s_directionPressTime;
-                if (g_display && g_display->current) {
-                  vm.gilLock();
-                  try {
-                    Value args[1]; args[0].i = newKey; Value ret[2];
-                    vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-                  } catch (...) {}
-                  vm.gilUnlock();
-                }
+                sendKeyPressed(vm, newKey);
               } else {
                 s_touchHeldDirection = 0;
-                if (g_display && g_display->current) {
-                  vm.gilLock();
-                  try {
-                    Value args[1]; args[0].i = oldKey; Value ret[2];
-                    vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-                  } catch (...) {}
-                  vm.gilUnlock();
-                }
+                sendKeyReleased(vm, oldKey);
               }
             } else if (oldKey != 0 && oldKey != -101 && oldKey != 35) {
-              if (g_display && g_display->current) {
-                vm.gilLock();
-                try {
-                  Value args[1]; args[0].i = oldKey; Value ret[2];
-                  vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-                } catch (...) {}
-                vm.gilUnlock();
-              }
+              sendKeyReleased(vm, oldKey);
             }
 
             if (newKey != 0 && !isDirectionKey(newKey) && newKey != -101 && newKey != 35) {
-              if (g_display && g_display->current) {
-                vm.gilLock();
-                try {
-                  Value args[1]; args[0].i = newKey; Value ret[2];
-                  vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-                } catch (...) {}
-                vm.gilUnlock();
-              }
+              sendKeyPressed(vm, newKey);
             }
           }
           break;
@@ -2009,24 +1900,10 @@ bool Platform::pollEvents(VM& vm) {
             s_touchHeldDirection = otherDir;
             if (otherDir == 0) {
               s_activeDirection = 0;
-              if (g_display && g_display->current) {
-                vm.gilLock();
-                try {
-                  Value args[1]; args[0].i = key; Value ret[2];
-                  vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-                } catch (...) {}
-                vm.gilUnlock();
-              }
+              sendKeyReleased(vm, key);
             }
           } else if (key != 0 && key != -101 && key != 35) {
-            if (g_display && g_display->current) {
-              vm.gilLock();
-              try {
-                Value args[1]; args[0].i = key; Value ret[2];
-                vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-              } catch (...) {}
-              vm.gilUnlock();
-            }
+            sendKeyReleased(vm, key);
           }
         } else {
           ++it;
@@ -2042,41 +1919,20 @@ bool Platform::pollEvents(VM& vm) {
     if (held == 0) {
       int oldKey = s_activeDirection;
       s_activeDirection = 0;
-      vm.gilLock();
-      try {
-        Value args[1];
-        args[0].i = oldKey;
-        Value ret[2];
-        vm.invokeVirtual(g_display->current, "keyReleased:(I)V", args, 1, ret);
-      } catch (...) {}
-      vm.gilUnlock();
+      sendKeyReleased(vm, oldKey);
     } else {
       if (held != s_activeDirection) {
         s_activeDirection = held;
         s_directionPressTime = SDL_GetTicks();
         s_directionLastRepeatTime = s_directionPressTime;
-        vm.gilLock();
-        try {
-          Value args[1];
-          args[0].i = held;
-          Value ret[2];
-          vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-        } catch (...) {}
-        vm.gilUnlock();
+        sendKeyPressed(vm, held);
       } else {
         uint32_t now = SDL_GetTicks();
         const uint32_t INITIAL_DELAY_MS = 160;
         const uint32_t REPEAT_INTERVAL_MS = 40;
         if (now - s_directionPressTime >= INITIAL_DELAY_MS && now - s_directionLastRepeatTime >= REPEAT_INTERVAL_MS) {
           s_directionLastRepeatTime = now;
-          vm.gilLock();
-          try {
-            Value args[1];
-            args[0].i = s_activeDirection;
-            Value ret[2];
-            vm.invokeVirtual(g_display->current, "keyPressed:(I)V", args, 1, ret);
-          } catch (...) {}
-          vm.gilUnlock();
+          sendKeyPressed(vm, s_activeDirection);
         }
       }
     }

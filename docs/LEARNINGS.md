@@ -202,5 +202,31 @@
 - **Compatibilidade com Nintendo Switch:**
   - Adicionado fallback explícito para `romfs:/lang/...` e `romfs:/assets/lang/...` em `Platform::readAsset` sob a diretiva `#ifdef __SWITCH__`, garantindo que o executável NRO carregue os textos localizados embutidos diretamente no RomFS.
 
+## Sessão 10 (Build Windows Nativo, Sistema de Log Contínuo, Rastreamento de Pilha Java e Crash Handlers)
+- **Diagnóstico da Investigação de Crash no Combate (Mapa 04.m):**
+  - O jogador relatou fechamento instantâneo do jogo ao atacar no mapa `04.m` (porão do Wolfgang, após seguir o NPC que prepara uma emboscada).
+  - No código decompilado, no mapa da cidade (`00.m`), `ah.var_boolean_a` permanece `false`, fazendo `u.c((byte)0)` retornar imediatamente (ataque nunca é acionado). No mapa `04.m`, `by12 > 0` (existem inimigos), o que define `ah.var_boolean_a = true`. Portanto, ao pressionar tecla 5 / botão de ação, é a primeira vez em toda a sessão de jogo que `u.c((byte)0)` é efetivamente executado.
+  - A cadeia de execução de combate envolve: `u.c((byte)0)` -> `var_b_a.boolean_c(by2)` -> `u.d((byte)3, ...)` -> `u.d()` -> `b.h()` -> `b.boolean_a()` -> `ce.boolean_a()` -> `ce.boolean_h()` -> `b.c(BBI)Z` -> `b.a(ag, ...)` -> `ag.a(...)` -> `bd.var_bd_a.a(this, false)` -> `Image.createImage(...)` / `getGraphics()` / `bd.hlzTextWidth(...)` / `ak.a((byte)4)`.
+- **Implementação do Sistema de Logging Contínuo (`heroes_lore_2.log`):**
+  - Anteriormente, o arquivo de log só era aberto sob `#ifdef __SWITCH__`. No Windows e Linux, saídas para stdout/stderr eram perdidas caso o aplicativo fosse executado desanexado do console.
+  - Adicionada abertura de `heroes_lore_2.log` no `main.cpp` com modo `_IONBF` (flush imediato a cada `boot_log` / `printf`), garantindo persistência mesmo se o processo for finalizado abruptamente pelo sistema operacional.
+- **Rastreamento Dinâmico de Pilha de Chamadas Java (`CallFrame` na VM):**
+  - Adicionado `struct CallFrame { Method* m; int pc; };` e `std::vector<CallFrame> callStack;` em `ThreadCtx`.
+  - No `VM::invoke()`, um RAII `FrameGuard` empilha `{m, 0}` na entrada e desempilha na saída.
+  - No interpretador de bytecode (`interp.cpp`), a cada instrução executada em `exec()`, `tctx->callStack.back().pc = curpc;` mantém o bytecode PC perfeitamente atualizado em tempo real.
+  - Implementada a função `VM::dumpStackTrace()`, que formata e registra no log e no terminal a sequência completa de métodos chamados (ex: `at rpg/u.c:(B)V (pc=42)`), identificando com precisão onde qualquer exceção ou erro fatal ocorre.
+- **Handlers Nativos de Exceção de Hardware (Windows SEH + POSIX Signals):**
+  - No Windows: `SetUnhandledExceptionFilter(windowsCrashHandler)` intercepta Access Violations (0xC0000005) e falhas nativas, despejando código de exceção, endereço de memória faltoso, thread ativa e a pilha Java correspondente diretamente em `heroes_lore_2.log`, seguido de um diálogo nativo `MessageBoxA`.
+  - No Linux/Android: `sigaction` para `SIGSEGV`, `SIGABRT`, `SIGFPE`, `SIGILL` despeja a pilha ativa e aciona `abort()`.
+- **Intercepção de Exceções de Input no SDL:**
+  - Funções `sendKeyPressed` e `sendKeyReleased` em `platform_sdl.cpp` interceptam qualquer `JavaThrow` ou `std::exception` disparada durante `keyPressed` / `keyReleased` (em vez de engoli-la silenciosamente), gravando o tipo de erro, mensagem e o stack trace Java completo.
+- **Build Windows:**
+  - Executável `build/heroes_lore_2.exe` compilado com sucesso com todas as DLLs e assets. Criado o script `run_windows.bat` na raiz para execução rápida com duplo clique.
+- **Causa Raiz do Crash no Combate e Resolução Definitiva:**
+  - O log capturou com 100% de precisão: `[FATAL ERROR] método não encontrado: java/lang/Math.max:(II)I` disparado em `bd.a(Lag;Z)V (pc=52)`.
+  - A classe `bd` gerencia a interface do jogo (HUD) e, ao entrar em combate ou mirar em um inimigo pela primeira vez, o método `bd.a(ag, boolean)` calcula a largura do banner do alvo: `Math.min(Math.max(bd.hlzTextWidth(...) + 16, 66), bw.g - 20)`.
+  - `Math.abs:(I)I` e `Math.min:(II)I` já estavam registrados em `natives.cpp`, mas `Math.max:(II)I` nunca havia sido registrado na VM, causando erro fatal no primeiro golpe desferido no jogo inteiro.
+  - Implementado `Math_max` e registrado `java/lang/Math.max:(II)I` em `src/vm/natives.cpp`. Recompilação validada com sucesso.
+
 
 
