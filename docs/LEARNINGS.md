@@ -144,7 +144,19 @@
 - **Acesso a Elementos de `hl::Array` na VM C++:**
   - Na estrutura `hl::Array : Object` (`src/vm/vm.h`), os dados brutos são mantidos em `std::vector<uint8_t> data`.
   - Para arrays de referências (`type == 'L'`), o acesso aos ponteiros de objetos deve ser feito exclusivamente através do método `arr->refs()`, que retorna `Object**` (`reinterpret_cast<Object**>(data.data())`), por exemplo: `arr->refs()[index]`.
-  - Tentar acessar propriedades como `.elems` resulta em erro de compilação em todas as plataformas.
+- **Mapeamento de Botões Físicos no Nintendo Switch (SDL2/libnx):**
+  - No hardware do Nintendo Switch, os botões Joy-Con frontais seguem a disposição da Nintendo (Norte=X, Sul=B, Leste=A, Oeste=Y).
+  - O backend SDL2 do libnx segue os nomes lógicos do layout Xbox para suas constantes:
+    - O botão físico **X** (topo) emite `SDL_CONTROLLER_BUTTON_Y`.
+    - O botão físico **Y** (esquerda) emite `SDL_CONTROLLER_BUTTON_X`.
+  - Ao tratar eventos diretos `SDL_CONTROLLERBUTTONDOWN` para interfaces e modais, é essencial condicionar `#ifdef __SWITCH__` para que a ação do botão X (Restaurar) responda a `SDL_CONTROLLER_BUTTON_Y` e o botão Y (Desconectar) responda a `SDL_CONTROLLER_BUTTON_X`.
+- **Fluxo Limpo de Recarregamento In-Game de Saves sem Telas de Pausa:**
+  - O método `bd.a:()V` não é um reinicializador, mas sim a rotina de interrupção/pausa do MIDlet (`resumeApp`), que define `bd.q = true`. Quando `q == true`, `bd.paint` bloqueia o jogo com a mensagem `"Pressione qualquer tecla para continuar"` (`as.var_e_a.a(39)`).
+  - Ao restaurar dados na nuvem durante o jogo:
+    1. Nunca chamar `bd.a:()V` e garantir `bd.q = 0`.
+    2. Fechar menus in-game com `ck.a:(Z)V`.
+    3. Rescanear com `u.k:()V` e chamar `u.a:(I)V` com argumento `1`. O motor executa o caso 9 (`u.r()`), descompactando o RMS diretamente na sessão ativa e executando o fade-in nativo `bd.var_bd_a.a((byte)2, false)`.
+    4. O jogador volta direto para o gameplay no ponto do save, sem passar por telas de título ou cliques estranhos.
 
 
 

@@ -1138,31 +1138,55 @@ void CloudSave::update(VM* vm) {
           }
         }
 
-        // 3. Descarta instancia antiga de bg.a e limpa metadados antigos de slots
-        ClassInfo* bgClass = s_activeVm->findClass("bg");
-        if (bgClass) {
-          Method* mBgVoidA = s_activeVm->findMethod(bgClass, "a:()V");
-          if (mBgVoidA) {
-            Value ret[2];
-            s_activeVm->invoke(mBgVoidA, nullptr, ret);
+        // 3. Garante que qualquer pausa ou tela preta em bd seja cancelada
+        ClassInfo* bdClass = s_activeVm->findClass("bd");
+        if (bdClass) {
+          FieldInfo* fQ = s_activeVm->findField(bdClass, "q:Z");
+          if (!fQ) fQ = s_activeVm->findField(bdClass, "q");
+          if (fQ && fQ->isStatic && fQ->index >= 0 && fQ->index < (int)bdClass->statics.size()) {
+            bdClass->statics[fQ->index].i = 0; // q = false: nunca exibir tela de pause "press any key"
           }
         }
 
-        // 4. Define o modo de jogo para Title Screen (u.a = 2) e limpa acoes pendentes (u.d = 0)
+        // 4. Detecta se o jogo estava em uma sessao ativa (in-game)
         ClassInfo* uClass = s_activeVm->findClass("u");
+        bool inGame = false;
         if (uClass) {
+          FieldInfo* fHero = s_activeVm->findField(uClass, "a:Lb;");
+          if (!fHero) fHero = s_activeVm->findField(uClass, "a");
+          if (fHero && fHero->isStatic && fHero->index >= 0 && fHero->index < (int)uClass->statics.size()) {
+            inGame = (uClass->statics[fHero->index].o != nullptr);
+          }
           FieldInfo* fUa = s_activeVm->findField(uClass, "a:I");
           if (!fUa) fUa = s_activeVm->findField(uClass, "a");
           if (fUa && fUa->isStatic && fUa->index >= 0 && fUa->index < (int)uClass->statics.size()) {
-            uClass->statics[fUa->index].i = 2; // 2 = Title Screen
+            if (uClass->statics[fUa->index].i == 3) inGame = true;
           }
-          FieldInfo* fUd = s_activeVm->findField(uClass, "d:B");
-          if (!fUd) fUd = s_activeVm->findField(uClass, "d");
-          if (fUd && fUd->isStatic && fUd->index >= 0 && fUd->index < (int)uClass->statics.size()) {
-            uClass->statics[fUd->index].i = 0;
-          }
+        }
 
-          // 5. Força re-escaneamento completo dos arquivos restaurados no disco via u.a.k()
+        // 5. Fecha e limpa qualquer menu in-game (ck) aberto
+        ClassInfo* ckClass = s_activeVm->findClass("ck");
+        if (ckClass) {
+          FieldInfo* fCk = s_activeVm->findField(ckClass, "a:Lck;");
+          if (!fCk) fCk = s_activeVm->findField(ckClass, "a");
+          if (fCk && fCk->isStatic && fCk->index >= 0 && fCk->index < (int)ckClass->statics.size()) {
+            Object* ckObj = ckClass->statics[fCk->index].o;
+            if (ckObj) {
+              Method* mCka = s_activeVm->findMethod(ckClass, "a:(Z)V");
+              if (mCka) {
+                Value args[2];
+                args[0].o = ckObj;
+                args[1].i = 0;
+                Value ret[2];
+                s_activeVm->invoke(mCka, args, ret);
+              }
+              ckClass->statics[fCk->index].o = nullptr;
+            }
+          }
+        }
+
+        // 6. Rescaneia todos os saves restaurados no disco via u.a.k()
+        if (uClass) {
           FieldInfo* fUInst = s_activeVm->findField(uClass, "a:Lu;");
           if (!fUInst) fUInst = s_activeVm->findField(uClass, "a");
           if (fUInst && fUInst->isStatic && fUInst->index >= 0 && fUInst->index < (int)uClass->statics.size()) {
@@ -1175,43 +1199,69 @@ void CloudSave::update(VM* vm) {
                 Value uRet[2];
                 s_activeVm->invoke(mUk, uArgs, uRet);
               }
-            }
-          }
-        }
 
-        // 6. Recria bg chamando bg.a() (constrói novo bg com botão Continuar ativo baseado no novo u.b > 0)
-        if (bgClass) {
-          Method* mBgA = s_activeVm->findMethod(bgClass, "a:()Lbg;");
-          if (mBgA) {
-            Value ret[2];
-            s_activeVm->invoke(mBgA, nullptr, ret);
-            Object* newBg = ret[0].o;
-            if (newBg) {
-              // Limpa qualquer submenu modal aberto em bg (ex: tela de configuracoes)
-              FieldInfo* fB = s_activeVm->findField(newBg->cls, "b:Lg;");
-              if (!fB) fB = s_activeVm->findField(newBg->cls, "b");
-              if (fB && !fB->isStatic && fB->index >= 0 && fB->index < (int)static_cast<Instance*>(newBg)->f.size()) {
-                static_cast<Instance*>(newBg)->f[fB->index].o = nullptr;
+              if (inGame) {
+                // Em jogo ativo: recarrega o save diretamente para a jogabilidade sem passar por menus!
+                FieldInfo* fUc = s_activeVm->findField(uClass, "c:B");
+                if (!fUc) fUc = s_activeVm->findField(uClass, "c");
+                if (fUc && fUc->isStatic && fUc->index >= 0 && fUc->index < (int)uClass->statics.size()) {
+                  int curSlot = uClass->statics[fUc->index].i;
+                  if (curSlot < 0 || curSlot >= 3) {
+                    uClass->statics[fUc->index].i = 0; // Default para Slot 1 (indice 0)
+                  }
+                }
+
+                Method* mLoad = s_activeVm->findMethod(uClass, "a:(I)V");
+                if (mLoad) {
+                  Value lArgs[2];
+                  lArgs[0].o = uObj;
+                  lArgs[1].i = 1; // 1 = recarregar jogo do slot u.c
+                  Value lRet[2];
+                  s_activeVm->invoke(mLoad, lArgs, lRet);
+                }
               }
             }
           }
         }
 
-        // 7. Notifica o canvas principal (bd) para reinicializar o menu de titulo
-        ClassInfo* bdClass = s_activeVm->findClass("bd");
-        if (bdClass) {
-          FieldInfo* fBdInst = s_activeVm->findField(bdClass, "a:Lbd;");
-          if (!fBdInst) fBdInst = s_activeVm->findField(bdClass, "a");
-          if (fBdInst && fBdInst->isStatic && fBdInst->index >= 0 && fBdInst->index < (int)bdClass->statics.size()) {
-            Object* bdObj = bdClass->statics[fBdInst->index].o;
-            if (bdObj) {
-              Method* mBdReset = s_activeVm->findMethod(bdClass, "a:()V");
-              if (mBdReset) {
-                Value bdArgs[1];
-                bdArgs[0].o = bdObj;
-                Value bdRet[2];
-                s_activeVm->invoke(mBdReset, bdArgs, bdRet);
-              } else {
+        if (!inGame) {
+          // No Menu de Titulo: descarta e recria bg com botao Continuar ativo
+          ClassInfo* bgClass = s_activeVm->findClass("bg");
+          if (bgClass) {
+            Method* mBgVoidA = s_activeVm->findMethod(bgClass, "a:()V");
+            if (mBgVoidA) {
+              Value ret[2];
+              s_activeVm->invoke(mBgVoidA, nullptr, ret);
+            }
+            Method* mBgA = s_activeVm->findMethod(bgClass, "a:()Lbg;");
+            if (mBgA) {
+              Value ret[2];
+              s_activeVm->invoke(mBgA, nullptr, ret);
+              Object* newBg = ret[0].o;
+              if (newBg) {
+                // Limpa submenu modal de Settings em bg
+                FieldInfo* fB = s_activeVm->findField(newBg->cls, "b:Lg;");
+                if (!fB) fB = s_activeVm->findField(newBg->cls, "b");
+                if (fB && !fB->isStatic && fB->index >= 0 && fB->index < (int)static_cast<Instance*>(newBg)->f.size()) {
+                  static_cast<Instance*>(newBg)->f[fB->index].o = nullptr;
+                }
+                // Brilho total imediato (l = 3) para evitar tela escura
+                FieldInfo* fL = s_activeVm->findField(newBg->cls, "l:B");
+                if (!fL) fL = s_activeVm->findField(newBg->cls, "l");
+                if (fL && !fL->isStatic && fL->index >= 0 && fL->index < (int)static_cast<Instance*>(newBg)->f.size()) {
+                  static_cast<Instance*>(newBg)->f[fL->index].i = 3;
+                }
+              }
+            }
+          }
+
+          // Notifica bd para redesenhar bg
+          if (bdClass) {
+            FieldInfo* fBdInst = s_activeVm->findField(bdClass, "a:Lbd;");
+            if (!fBdInst) fBdInst = s_activeVm->findField(bdClass, "a");
+            if (fBdInst && fBdInst->isStatic && fBdInst->index >= 0 && fBdInst->index < (int)bdClass->statics.size()) {
+              Object* bdObj = bdClass->statics[fBdInst->index].o;
+              if (bdObj) {
                 FieldInfo* fG = s_activeVm->findField(bdObj->cls, "g:Z");
                 if (!fG) fG = s_activeVm->findField(bdObj->cls, "g");
                 if (fG && !fG->isStatic && fG->index >= 0 && fG->index < (int)static_cast<Instance*>(bdObj)->f.size()) {
@@ -1220,25 +1270,22 @@ void CloudSave::update(VM* vm) {
               }
             }
           }
-        }
 
-        // 8. Reinicia a musica tema do Menu de Titulo
-        if (akClass) {
-          Method* mAkB = s_activeVm->findMethod(akClass, "b:(B)V");
-          if (mAkB) {
-            Value args[1];
-            args[0].i = 1;
-            Value ret[2];
-            s_activeVm->invoke(mAkB, args, ret);
-          }
-          Method* mAkA = s_activeVm->findMethod(akClass, "a:()V");
-          if (mAkA) {
-            Value ret[2];
-            s_activeVm->invoke(mAkA, nullptr, ret);
+          // Reinicia tema do titulo
+          if (akClass) {
+            Method* mAkB = s_activeVm->findMethod(akClass, "b:(B)V");
+            if (mAkB) {
+              Value args[1]; args[0].i = 1; Value ret[2];
+              s_activeVm->invoke(mAkB, args, ret);
+            }
+            Method* mAkA = s_activeVm->findMethod(akClass, "a:()V");
+            if (mAkA) {
+              Value ret[2]; s_activeVm->invoke(mAkA, nullptr, ret);
+            }
           }
         }
 
-        // 9. Fecha o modal de Cloud Save, retornando direto ao Menu de Titulo pronto com "Continuar" ativo
+        // 7. Fecha o modal de Cloud Save
         closeModal();
 
       } catch (...) {}

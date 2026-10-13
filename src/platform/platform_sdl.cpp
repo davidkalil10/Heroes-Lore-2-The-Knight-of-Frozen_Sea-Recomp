@@ -1502,10 +1502,17 @@ bool Platform::pollEvents(VM& vm) {
           key = 53; // Confirmar (A no Switch, A no Xbox/PC)
         } else if (mkey == -7 || mkey == -8) {
           key = -7; // Cancelar (B no Switch, B no Xbox/PC)
+#ifdef __SWITCH__
+        } else if (ev.cbutton.button == SDL_CONTROLLER_BUTTON_Y) {
+          key = 50; // Switch X físico -> Restaurar
+        } else if (ev.cbutton.button == SDL_CONTROLLER_BUTTON_X) {
+          key = 51; // Switch Y físico -> Desconectar
+#else
         } else if (ev.cbutton.button == SDL_CONTROLLER_BUTTON_X) {
           key = 50; // X -> Restaurar
         } else if (ev.cbutton.button == SDL_CONTROLLER_BUTTON_Y) {
           key = 51; // Y -> Desconectar
+#endif
         }
       } else if (ev.type == SDL_FINGERDOWN) {
         int winW = 0, winH = 0;

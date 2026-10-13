@@ -1,6 +1,6 @@
 # STATUS — Heroes Lore 2: The Knight of Frozen Sea
 
-_Última atualização: 2026-10-12 (Versão v0.2.2 lançada oficialmente)_
+_Última atualização: 2026-10-12 (Versão v0.2.3 lançada oficialmente)_
 
 ## Ambiente
 - Java 17/21, Python 3.13, Git: OK.
@@ -39,9 +39,13 @@ _Última atualização: 2026-10-12 (Versão v0.2.2 lançada oficialmente)_
   - Opção 6: Proporção de Tela (Auto / 3:4 / 16:9).
   - Opção 7: Nuvem (Google Drive Cloud Save RFC 8628).
   - Opção 8: Atualizações (`Update: Check`), permitindo verificar novas releases manualmente com um clique a partir do jogo.
-- [x] Correção do recarregamento em tempo real do Save Restaurado da Nuvem:
-  - Corrigidos os nomes reais de bytecode em `CloudSave::update`: limpa `XFile.store:Ljava/util/Hashtable;`, redefine modo de jogo `u.a:I = 2`, limpa `u.d:B = 0`, invoca o método de instância `u.k:()V` para ler imediatamente os novos arquivos RMS gravados em disco e repopular os slots/metadados, descarta e recria o menu de título com `bg.a:()V` e `bg.a:()Lbg;`, notifica o canvas `bd.a:()V` e fecha o modal de nuvem.
-  - O jogador retorna instantaneamente ao Menu de Título com a opção "Continue" ativada e apontando para o save restaurado, sem necessidade de reiniciar o aplicativo.
+- [x] Correção do recarregamento em tempo real do Save Restaurado da Nuvem (v0.2.3):
+  - Limpa `XFile.store:Ljava/util/Hashtable;` e rescaneia os slots via `u.k:()V`.
+  - Se a restauração ocorre durante uma sessão in-game: fecha os menus abertos (`ck.a:(Z)V`), garante `bd.q:Z = false` e chama diretamente `u.a:(I)V` (arg 1) para recarregar o save imediatamente na jogabilidade ativa.
+  - Elimina completamente as 3 telas intermediárias indesejadas (tela de pausa "pressione qualquer tecla", tela de transição de fundo e menu de seleção com cursores), permitindo retorno limpo e transparente ao jogo.
+  - Se restaurado no Menu de Título: recria `bg` em brilho total (`l = 3`) com "Continuar" ativo e pronto para clique direto.
+- [x] Correção dos botões Joy-Con do Nintendo Switch no modal de Nuvem (v0.2.3):
+  - Invertido o mapeamento SDL2 para Switch no modal: Joy-Con X físico (`SDL_CONTROLLER_BUTTON_Y`) agora aciona Restaurar (tecla 50), e Joy-Con Y físico (`SDL_CONTROLLER_BUTTON_X`) aciona Desconectar (tecla 51), harmonizando perfeitamente botões físicos, touch e legendas visuais.
 - [x] Validação de persistência e carregamento RMS no disco e na nuvem.
 - [ ] Validação de jogabilidade contínua (combate em mapa aberto e diálogos com NPCs).
 
