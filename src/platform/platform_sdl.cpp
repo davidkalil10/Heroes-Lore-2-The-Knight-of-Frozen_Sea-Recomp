@@ -1165,8 +1165,8 @@ static GamepadLayout calculateLayout(int winW, int winH) {
       layout.buttons.push_back({ 55, actX - (int)(r5 * 1.85f), actY + (int)(r5 * 1.15f), rSub, rSub * 2, rSub * 2, s_texBtn7 });
       // 9 - Item (Direita-cima)
       layout.buttons.push_back({ 57, actX + (int)(r5 * 1.35f), actY - (int)(r5 * 1.65f), rSub, rSub * 2, rSub * 2, s_texBtn9 });
-      // R - Voltar / Cancelar / Status (Direita-baixo, abaixo de 9 e alinhado ao 7)
-      layout.buttons.push_back({ -7, actX + (int)(r5 * 1.35f), actY + (int)(r5 * 1.15f), rSub, rSub * 2, rSub * 2, s_texBtnRskRound ? s_texBtnRskRound : s_texBtnRsk });
+      // R - Usar Poção / Item Rápido ('0' = 48) (Direita-baixo, abaixo de 9 e alinhado ao 7)
+      layout.buttons.push_back({ 48, actX + (int)(r5 * 1.35f), actY + (int)(r5 * 1.15f), rSub, rSub * 2, rSub * 2, s_texBtnRskRound ? s_texBtnRskRound : s_texBtnRsk });
 
       // Barra de Sistema no topo (apenas MENU e MAPA, proporcionais e espaçados)
       // HL2: MENU = -7 (Canvas converte para 8), MAPA = 42 ('*')
@@ -1236,7 +1236,7 @@ static GamepadLayout calculateLayout(int winW, int winH) {
       int topPillW = std::min(200, (int)(controlRightW * 0.38f));
       int topPillH = (int)(topPillW * (100.0f / 240.0f));
       layout.buttons.push_back({ 42, controlRightX + (int)(controlRightW * 0.28f), (int)(winH * 0.14f), 0, topPillW, topPillH, s_texBtnMap });
-      layout.buttons.push_back({ -7, controlRightX + (int)(controlRightW * 0.72f), (int)(winH * 0.14f), 0, topPillW, topPillH, s_texBtnRsk });
+      layout.buttons.push_back({ 48, controlRightX + (int)(controlRightW * 0.72f), (int)(winH * 0.14f), 0, topPillW, topPillH, s_texBtnRsk });
 
       // Botoes de acao no formato ergonomico favorito na coluna direita (amplo e espacoso sem as setas!)
       int actX = controlRightX + (int)(controlRightW * 0.50f);

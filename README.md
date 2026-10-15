@@ -56,13 +56,13 @@ O projeto executa o **bytecode original diretamente no motor C++**, sem emulaç�
 | :--- | :--- | :--- | :--- | :--- |
 | **Movimento** | WASD / Setas | D-Pad / Analógico Esquerdo | D-Pad / Stick Esquerdo | D-Pad Virtual |
 | **Atacar / Interagir ('5')** | Enter / Espaço / J / Z | Botão A | Botão A (leste) | Botão 5 |
-| **Voltar / Menu (-7)** | Esc / Backspace / Tab / E / I | Botão B / START | Botão B (sul) / + | Botão MENU / RSK |
+| **Voltar / Menu (-7)** | Esc / Backspace / Tab / E / I | Botão B / START | Botão B (sul) / + | Botão MENU |
 | **Minimapa da Região ('*')** | M / Asterisco (*) | Botão SELECT / L3 | Botão - / L3 | Botão MAPA |
 | **Habilidade 1 ('1')** | 1 / U | Botão X | Botão Y | Botão 1 |
 | **Habilidade 2 ('3')** | 3 / O | Botão Y | Botão X | Botão 3 |
 | **Habilidade 3 ('7')** | 7 / K / X | Botão LB / L1 | Botão L | Botão 7 |
 | **Habilidade 4 ('9')** | 9 / L / C | Botão RB / R1 | Botão R | Botão 9 |
-| **Usar Poção ('0')** | 0 / Q / R | LT / L2 | ZL | Cluster Inferior |
+| **Usar Poção ('0')** | 0 / Q / R | LT / L2 | ZL | Botão R |
 | **Ciclar Poção ('#')** | ] / T / Ponto (.) | RT / R2 / R3 | ZR / R3 | Botões < e > |
 
 ---
