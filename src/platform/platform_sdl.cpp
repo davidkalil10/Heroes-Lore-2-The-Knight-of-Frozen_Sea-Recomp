@@ -1161,11 +1161,11 @@ static GamepadLayout calculateLayout(int winW, int winH) {
       layout.buttons.push_back({ 49, actX - (int)(r5 * 1.95f), actY - (int)(r5 * 0.95f), rSub, rSub * 2, rSub * 2, s_texBtn1 });
       // 3 - Skill 2 (Topo)
       layout.buttons.push_back({ 51, actX - (int)(r5 * 0.20f), actY - (int)(r5 * 2.10f), rSub, rSub * 2, rSub * 2, s_texBtn3 });
-      // 7 - Poção (Esquerda-baixo, abaixo de 1)
+      // 7 - Skill 3 (Esquerda-baixo, abaixo de 1)
       layout.buttons.push_back({ 55, actX - (int)(r5 * 1.85f), actY + (int)(r5 * 1.15f), rSub, rSub * 2, rSub * 2, s_texBtn7 });
-      // 9 - Item (Direita-cima)
+      // 9 - Skill 4 (Direita-cima)
       layout.buttons.push_back({ 57, actX + (int)(r5 * 1.35f), actY - (int)(r5 * 1.65f), rSub, rSub * 2, rSub * 2, s_texBtn9 });
-      // R - Usar Poção / Item Rápido ('0' = 48) (Direita-baixo, abaixo de 9 e alinhado ao 7)
+      // 0 - Item / Poção ('0' = 48) (Direita-baixo, abaixo de 9 e alinhado ao 7)
       layout.buttons.push_back({ 48, actX + (int)(r5 * 1.35f), actY + (int)(r5 * 1.15f), rSub, rSub * 2, rSub * 2, s_texBtnRskRound ? s_texBtnRskRound : s_texBtnRsk });
 
       // Barra de Sistema no topo (apenas MENU e MAPA, proporcionais e espaçados)
@@ -1232,7 +1232,7 @@ static GamepadLayout calculateLayout(int winW, int winH) {
       layout.buttons.push_back({ -101, controlLeftW / 2 - arrowSpacingLand, (int)(winH * 0.33f), rArrowLand, rArrowLand * 2, rArrowLand * 2, s_texBtnPrev });
       layout.buttons.push_back({ 35, controlLeftW / 2 + arrowSpacingLand, (int)(winH * 0.33f), rArrowLand, rArrowLand * 2, rArrowLand * 2, s_texBtnNext });
 
-      // MAPA e R no topo da coluna direita (grandes e legiveis)
+      // MAPA e 0 (Item) no topo da coluna direita (grandes e legiveis)
       int topPillW = std::min(200, (int)(controlRightW * 0.38f));
       int topPillH = (int)(topPillW * (100.0f / 240.0f));
       layout.buttons.push_back({ 42, controlRightX + (int)(controlRightW * 0.28f), (int)(winH * 0.14f), 0, topPillW, topPillH, s_texBtnMap });

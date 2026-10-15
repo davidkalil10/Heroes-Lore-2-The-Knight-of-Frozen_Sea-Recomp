@@ -155,7 +155,7 @@ def make_round_button(label, sublabel="", final_size=128, accent_color=(70, 85, 
 
     return img.resize((final_size, final_size), Image.Resampling.LANCZOS)
 
-def make_pill_button(label, final_w=240, final_h=100, accent_color=(80, 140, 240)):
+def make_pill_button(label, final_w=240, final_h=100, accent_color=(80, 140, 240), sublabel=None):
     s = 4
     w, h = final_w * s, final_h * s
     img = Image.new('RGBA', (w, h), (0, 0, 0, 0))
@@ -179,15 +179,33 @@ def make_pill_button(label, final_w=240, final_h=100, accent_color=(80, 140, 240
     d.line([pad + rad, pad + 3*s, w - pad - rad, pad + 3*s],
            fill=(200, 230, 255, 180), width=3*s)
 
-    # Texto com sombra 3D (tamanho maior para labels curtas como "R")
-    font_size = int(h * 0.48) if len(label) <= 2 else int(h * 0.38)
-    font = ImageFont.truetype(FONT_PATH, font_size)
-    bbox = d.textbbox((0, 0), label, font=font)
-    tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
-    # Sombra
-    d.text(((w - tw) // 2 + 2*s, (h - th) // 2 - bbox[1] + 2*s), label, fill=(0, 0, 0, 240), font=font)
-    # Texto
-    d.text(((w - tw) // 2, (h - th) // 2 - bbox[1]), label, fill=(255, 255, 255, 255), font=font)
+    if sublabel:
+        font_size = int(h * 0.40)
+        font = ImageFont.truetype(FONT_PATH, font_size)
+        bbox = d.textbbox((0, 0), label, font=font)
+        tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+        y_pos = (h // 2) - int(h * 0.12)
+        d.text(((w - tw) // 2 + 2*s, y_pos - bbox[1] - th // 2 + 2*s), label, fill=(0, 0, 0, 240), font=font)
+        d.text(((w - tw) // 2, y_pos - bbox[1] - th // 2), label, fill=(255, 255, 255, 255), font=font)
+
+        sub_font_size = int(h * 0.20)
+        sub_font = ImageFont.truetype(FONT_PATH, sub_font_size)
+        sub_bbox = d.textbbox((0, 0), sublabel, font=sub_font)
+        stw, sth = sub_bbox[2] - sub_bbox[0], sub_bbox[3] - sub_bbox[1]
+        sub_y_pos = (h // 2) + int(h * 0.18)
+        sub_color = (160, 190, 225, 230)
+        d.text(((w - stw) // 2 + s, sub_y_pos - sub_bbox[1] - sth // 2 + s), sublabel, fill=(0, 0, 0, 220), font=sub_font)
+        d.text(((w - stw) // 2, sub_y_pos - sub_bbox[1] - sth // 2), sublabel, fill=sub_color, font=sub_font)
+    else:
+        # Texto com sombra 3D (tamanho maior para labels curtas como "R")
+        font_size = int(h * 0.48) if len(label) <= 2 else int(h * 0.38)
+        font = ImageFont.truetype(FONT_PATH, font_size)
+        bbox = d.textbbox((0, 0), label, font=font)
+        tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+        # Sombra
+        d.text(((w - tw) // 2 + 2*s, (h - th) // 2 - bbox[1] + 2*s), label, fill=(0, 0, 0, 240), font=font)
+        # Texto
+        d.text(((w - tw) // 2, (h - th) // 2 - bbox[1]), label, fill=(255, 255, 255, 255), font=font)
 
     return img.resize((final_w, final_h), Image.Resampling.LANCZOS)
 
@@ -436,7 +454,6 @@ def main():
     dest_dirs = [
         "android/app/src/main/assets/ui",
         "assets/ui",
-        "reference/extracted/ui",
         "build/assets/ui",
     ]
 
@@ -446,12 +463,12 @@ def main():
         "btn_5": make_round_button("5", "ATK", final_size=128, accent_color=(0, 210, 255), is_primary=True),
         "btn_1": make_round_button("1", "SKILL", final_size=96, accent_color=(255, 140, 40)),
         "btn_3": make_round_button("3", "SKILL", final_size=96, accent_color=(255, 80, 100)),
-        "btn_7": make_round_button("7", "POT", final_size=96, accent_color=(80, 220, 120)),
-        "btn_9": make_round_button("9", "ITEM", final_size=96, accent_color=(220, 180, 50)),
+        "btn_7": make_round_button("7", "SKILL", final_size=96, accent_color=(80, 220, 120)),
+        "btn_9": make_round_button("9", "SKILL", final_size=96, accent_color=(220, 180, 50)),
         "btn_menu": make_pill_button("MENU", 240, 100, accent_color=(70, 130, 240)),
         "btn_map": make_pill_button("MAPA", 240, 100, accent_color=(0, 200, 255)),
-        "btn_rsk": make_pill_button("R", 240, 100, accent_color=(240, 110, 80)),
-        "btn_rsk_round": make_round_button("R", "BACK", final_size=96, accent_color=(240, 110, 80)),
+        "btn_rsk": make_pill_button("0", 240, 100, accent_color=(240, 110, 80), sublabel="ITEM"),
+        "btn_rsk_round": make_round_button("0", "ITEM", final_size=96, accent_color=(240, 110, 80)),
         "btn_prev": make_arrow_button("left", 108, accent_color=(0, 200, 255)),
         "btn_next": make_arrow_button("right", 108, accent_color=(0, 200, 255)),
         "btn_eye_open": make_eye_icon(96, False),
