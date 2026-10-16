@@ -62,8 +62,8 @@ O projeto executa o **bytecode original diretamente no motor C++**, sem emulaç�
 | **Habilidade 2 ('3')** | 3 / O | Botão Y | Botão X | Botão 3 (Skill) |
 | **Habilidade 3 ('7')** | 7 / K / X | Botão LB / L1 | Botão L | Botão 7 (Skill) |
 | **Habilidade 4 ('9')** | 9 / L / C | Botão RB / R1 | Botão R | Botão 9 (Skill) |
-| **Usar Poção / Item ('0')** | 0 / Q / R | LT / L2 | ZL | Botão 0 (Item) |
-| **Ciclar Poção ('#')** | ] / T / Ponto (.) | RT / R2 / R3 | ZR / R3 | Botões < e > |
+| **Usar Poção / Item ('0')** | 0 / Q / R | RT / R2 | ZR | Botão 0 (Item) |
+| **Ciclar Poção ('#')** | ] / T / Ponto (.) | LT / L2 / R3 | ZL / R3 | Botões < e > |
 
 ---
 

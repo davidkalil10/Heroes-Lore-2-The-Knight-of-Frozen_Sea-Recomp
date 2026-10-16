@@ -1688,7 +1688,7 @@ bool Platform::pollEvents(VM& vm) {
         if (down != s_ltHeld) {
           s_ltHeld = down;
           if (down) {
-            cyclePotionPrev(vm); // LT -> Alternar Poção / Item para a ESQUERDA (slot anterior)
+            cyclePotionNext(vm); // LT / L2 / ZL -> Alternar Poção / Item ('#' = 35)
           }
         }
       } else if (ev.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) {
@@ -1696,7 +1696,9 @@ bool Platform::pollEvents(VM& vm) {
         if (down != s_rtHeld) {
           s_rtHeld = down;
           if (down) {
-            cyclePotionNext(vm); // RT -> Alternar Poção / Item para a DIREITA (slot seguinte)
+            sendKeyPressed(vm, 48); // RT / R2 / ZR -> Usar Poção / Item do Slot Ativo ('0' = 48)
+          } else {
+            sendKeyReleased(vm, 48);
           }
         }
       } else if (ev.caxis.axis == SDL_CONTROLLER_AXIS_LEFTX || ev.caxis.axis == SDL_CONTROLLER_AXIS_LEFTY) {
