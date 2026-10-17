@@ -1422,10 +1422,63 @@ static void sendKeyReleased(VM& vm, int key) {
 }
 
 static void cyclePotionPrev(VM& vm) {
-  for (int rep = 0; rep < 3; ++rep) {
+  if (!g_display || !g_display->current) return;
+  Object* obj = getVmStaticObjectByDesc(vm, "u", "a", "Lci;");
+  if (!obj) obj = getVmStaticObjectByDesc(vm, "u", "var_ci_a", "Lci;");
+  if (!obj || obj->kind != K_INST) {
     sendKeyPressed(vm, 35);
     sendKeyReleased(vm, 35);
+    return;
   }
+  Instance* inst = static_cast<Instance*>(obj);
+
+  FieldInfo* fieldC = nullptr;
+  FieldInfo* fieldA = nullptr;
+  for (ClassInfo* cur = inst->cls; cur; cur = cur->super) {
+    for (auto& f : cur->fields) {
+      if (!f.isStatic && f.desc == "B") {
+        if (f.name == "c" || f.name == "var_byte_c") fieldC = &f;
+        else if (f.name == "a" || f.name == "var_byte_a") fieldA = &f;
+      }
+    }
+  }
+  if (!fieldC || !fieldA || fieldC->index < 0 || fieldA->index < 0 ||
+      fieldC->index >= (int)inst->f.size() || fieldA->index >= (int)inst->f.size()) {
+    sendKeyPressed(vm, 35);
+    sendKeyReleased(vm, 35);
+    return;
+  }
+
+  int curC = inst->f[fieldC->index].i;
+  static const uint8_t j_slots[3] = { 24, 25, 26 };
+
+  vm.gilLock();
+  try {
+    for (int i = 0; i < 3; ++i) {
+      curC = curC - 1;
+      if (curC < 0) curC = 2;
+
+      Value args[2];
+      args[0].i = j_slots[curC];
+      args[1].i = 0;
+      Value ret[2];
+      vm.invokeVirtual(inst, "a:(BB)B", args, 2, ret);
+      int foundIdx = ret[0].i;
+      if (foundIdx > -1) {
+        inst->f[fieldC->index].i = curC;
+        inst->f[fieldA->index].i = foundIdx;
+        setVmStaticBool(vm, "bd", "c", true);
+        setVmStaticBool(vm, "bd", "var_boolean_c", true);
+        vm.gilUnlock();
+        return;
+      }
+    }
+    inst->f[fieldA->index].i = -1;
+    setVmStaticBool(vm, "bd", "c", true);
+    setVmStaticBool(vm, "bd", "var_boolean_c", true);
+  } catch (...) {
+  }
+  vm.gilUnlock();
 }
 
 static void cyclePotionNext(VM& vm) {

@@ -18,8 +18,8 @@ android {
         applicationId "com.davidbraga.heroeslore2"
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 10
-        versionName "0.2.9"
+        versionCode 11
+        versionName "0.2.10"
         externalNativeBuild {
             cmake {
                 arguments "-DANDROID_STL=c++_shared", "-DCMAKE_BUILD_TYPE=Release"
