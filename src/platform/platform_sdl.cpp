@@ -1101,12 +1101,7 @@ struct GamepadLayout {
 
 static bool isSwitchDocked() {
 #ifdef __SWITCH__
-  AppletOperationMode mode = AppletOperationMode_Handheld;
-  Result rc = appletGetOperationMode(&mode);
-  if (R_SUCCEEDED(rc)) {
-    return (mode == AppletOperationMode_Console);
-  }
-  return false;
+  return (appletGetOperationMode() == AppletOperationMode_Console);
 #else
   return false;
 #endif
@@ -2177,6 +2172,21 @@ void Platform::present() {
       SDL_RenderCopy(s_renderer, s_screenTexture, nullptr, &layout.gameRect);
       drawGamepad(layout);
       drawOsd(720, 1280);
+
+      // Renderiza dialogo modal do atualizador OTA se estiver ativo no modo vertical
+      if (Updater::isPromptActive()) {
+        Updater::drawModal(s_renderer, 720, 1280);
+      }
+
+      // Renderiza dialogo modal do Cloud Save se estiver ativo no modo vertical
+      if (CloudSave::isModalActive()) {
+        CloudSave::drawModal(s_renderer, 720, 1280);
+      }
+
+      // Renderiza dialogo modal de Cheats se estiver ativo no modo vertical
+      if (Cheats::isModalActive()) {
+        Cheats::drawModal(s_renderer, 720, 1280);
+      }
 
       SDL_SetRenderTarget(s_renderer, nullptr);
       SDL_SetRenderDrawColor(s_renderer, 0, 0, 0, 255);

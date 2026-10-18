@@ -325,7 +325,7 @@
 - **Desafio do Modo Dock (TV) no Nintendo Switch:**
   - Quando o console era conectado ao dock na TV, o jogo mantinha na tela da televisão os botões virtuais touchscreen (D-Pad, botões de ação e os botões utilitários de ocultar/olho e rotação de tela), poluindo a imagem 1080p da TV sem nenhuma necessidade, já que na TV o jogador utiliza Joy-Cons ou Pro Controller.
 - **Detecção em Tempo Real via Horizon OS / libnx:**
-  - Implementada a função `isSwitchDocked()` consultando `appletGetOperationMode(&mode)` da biblioteca `libnx`.
+  - Implementada a função `isSwitchDocked()` consultando `appletGetOperationMode() == AppletOperationMode_Console` da biblioteca `libnx`.
   - Se `mode == AppletOperationMode_Console`:
     - `calculateLayout()` zera e limpa completamente `layout.buttons` e `layout.dpadR = 0`.
     - `drawGamepad()` retorna imediatamente sem desenhar nenhum elemento virtual de toque.
@@ -333,6 +333,16 @@
     - A transição é detectada automaticamente com notificação discreta OSD: `"Modo TV (Dock): Controles virtuais desativados"`.
   - Ao remover o console do dock (`AppletOperationMode_Handheld`):
     - Todos os controles virtuais e a orientação prévia de tela do modo portátil são restaurados instantânea e perfeitamente: `"Modo Portatil: Controles virtuais restaurados"`.
+
+## Sessão 17 (Correção da Renderização de Modais no Modo Vertical do Switch na v0.2.17)
+- **Diagnóstico da Janela Invisível no Modo Retrato (TATE):**
+  - No Nintendo Switch em modo vertical (`s_screenRotation != 0`), a cena é composta inicialmente em uma textura intermediária `s_rotateTarget` de 720x1280 e depois projetada e rotacionada em 90° ou 270° na tela física.
+  - No entanto, a rotina de renderização dos diálogos modais (`Cheats::drawModal`, `CloudSave::drawModal` e `Updater::drawModal`) estava posicionada exclusivamente no final da função `Platform::present()`, após o retorno antecipado (`return`) do bloco de rotação.
+  - Consequentemente, ao abrir o Menu de Cheats ou o Cloud Save no modo vertical, o modal tornava-se ativo e capturava os eventos de entrada, mas nunca era desenhado em `s_rotateTarget`. O jogador enxergava a imagem estática de jogo e parecia "travado", destravando apenas ao apertar 'B' (que fechava o modal invisível) ou mudando para modo paisagem (onde a rotina normal desenhava o modal).
+- **Resolução:**
+  - Adicionadas as chamadas de renderização de `Updater::drawModal`, `CloudSave::drawModal` e `Cheats::drawModal` diretamente dentro do bloco de composição de `s_rotateTarget` (passando o viewport 720x1280).
+  - Dessa forma, os modais adaptam-se com perfeição ao modo portrait, recebem todos os toques e navegação via botões físicos (D-Pad, A, B) e são rotacionados na orientação correta da tela física do Switch.
+
 
 
 
