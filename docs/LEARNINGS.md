@@ -283,6 +283,21 @@
     - Tocar em qualquer outro ponto da linha da patente (Action 4) avança ciclicamente para a próxima patente e aplica na hora.
     - Cada alteração é gravada imediatamente no personagem (`player.b:B` e `u.g:I`) e exibe banner de feedback com o nome nobre da patente em português ou inglês.
 
+## Sessão 13 (Correção Cirúrgica de Alinhamento e Proporções do Menu de Cheats na v0.2.13)
+- **Causa Raiz do Desalinhamento e Sobreposição de Texto:**
+  - O método `Platform::getTextWidth(str, charW, stepX)` trata `charW` como o tamanho de fonte `fontSize` quando o renderizador TTF está ativo.
+  - No código de renderização do modal, a largura de todos os textos estava sendo consultada passando `(int)(fontSize * 0.58f)` (resquício de fontes bitmap legadas).
+  - Como resultado, a largura computada de strings como "Comandante Supremo" dava apenas ~58% do tamanho real desenhado na tela, fazendo o botão `[ > ]` ser desenhado no meio da palavra ("Comandante Su > mo") e desalinhando todas as tags `[ DESATIVADO ]`, `[ EXECUTAR ]` e `[ SAIR ]` pela margem direita.
+- **Novo Layout e Alinhamento Preciso:**
+  - Todas as chamadas a `getTextWidth` passaram a enviar diretamente o `fontSize` real de renderização.
+  - Implementada uma âncora de margem direita fixa (`rightAnchor = modalX + padX + rowW - 14 * scaleFactor`) para todas as opções, garantindo que o caractere de fechamento `]` termine rigorosamente na mesma coluna de pixels.
+  - O seletor de patentes foi redesenhado em um componente elegante de 3 seções:
+    - Botão `[ < ]` estilizado com borda metálica e fundo escuro.
+    - Caixinha central fixa (180px) com o nome da patente perfeitamente centralizado, impedindo qualquer colisão de texto.
+    - Botão `[ > ]` alinhado à direita no mesmo pixel limite das demais opções.
+  - Proporções harmônicas de escala (`scaleFactor = std::clamp(refDim / 720.0f, 0.85f, 1.25f)`) evitando que a janela fique excessivamente grande em telas verticais de smartphones e mantendo o padrão refinado no Nintendo Switch e PC.
+
+
 
 
 

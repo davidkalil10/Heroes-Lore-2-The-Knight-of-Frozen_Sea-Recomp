@@ -551,15 +551,12 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 215);
   SDL_RenderFillRect(renderer, &fullScreen);
 
-  // 2. Parâmetros de Dispositivo e Escala Proporcional
+  // 2. Parâmetros de Dispositivo e Escala Proporcional Harmônica
   float refDim = (float)std::min(winW, winH);
-  float scaleFactor = std::max(0.85f, refDim / 720.0f);
-#if defined(__ANDROID__)
-  scaleFactor *= 1.15f;
-#endif
+  float scaleFactor = std::clamp(refDim / 720.0f, 0.85f, 1.25f);
 
-  int modalW = std::clamp((int)(580.0f * scaleFactor), 460, (int)(winW * 0.95f));
-  int modalH = std::min((int)(505.0f * scaleFactor), (int)(winH * 0.96f));
+  int modalW = std::clamp((int)(590.0f * scaleFactor), 470, (int)(winW * 0.94f));
+  int modalH = std::min((int)(460.0f * scaleFactor), (int)(winH * 0.92f));
   int modalX = (winW - modalW) / 2;
   int modalY = (winH - modalH) / 2;
 
@@ -578,7 +575,7 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
   SDL_RenderDrawRect(renderer, &borderInner);
 
   // 4. Cabeçalho Nobre
-  int headerH = (int)(50.0f * scaleFactor);
+  int headerH = (int)(48.0f * scaleFactor);
   SDL_Rect headerRect = { modalX + 2, modalY + 2, modalW - 4, headerH };
   SDL_SetRenderDrawColor(renderer, 22, 36, 56, 255);
   SDL_RenderFillRect(renderer, &headerRect);
@@ -588,36 +585,39 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
 
   bool isPt = (Platform::getCurrentLanguage() == "pt" || Platform::getCurrentLanguage() == "pt_br");
   std::string titleStr = isPt ? "MENU DE CHEATS" : "CHEAT MENU";
-  int titleFontSize = (int)(22.0f * scaleFactor);
-  int titleW = Platform::getTextWidth(titleStr, (int)(titleFontSize * 0.58f), 0);
-  Platform::drawTextColored(renderer, titleStr, modalX + (modalW - titleW) / 2, modalY + (int)(9.0f * scaleFactor), titleFontSize, 255, 230, 130, 255);
+  int titleFontSize = (int)(20.0f * scaleFactor);
+  int titleW = Platform::getTextWidth(titleStr, titleFontSize, 0);
+  Platform::drawTextColored(renderer, titleStr, modalX + (modalW - titleW) / 2, modalY + (int)(8.0f * scaleFactor), titleFontSize, 255, 230, 130, 255);
 
   std::string subTitleStr = isPt ? "MODO DESENVOLVEDOR / TRAPACAS" : "DEVELOPER / CHEAT MODE";
-  int subFontSize = (int)(12.0f * scaleFactor);
-  int subW = Platform::getTextWidth(subTitleStr, (int)(subFontSize * 0.58f), 0);
-  Platform::drawTextColored(renderer, subTitleStr, modalX + (modalW - subW) / 2, modalY + (int)(33.0f * scaleFactor), subFontSize, 120, 190, 255, 220);
+  int subFontSize = (int)(11.0f * scaleFactor);
+  int subW = Platform::getTextWidth(subTitleStr, subFontSize, 0);
+  Platform::drawTextColored(renderer, subTitleStr, modalX + (modalW - subW) / 2, modalY + (int)(30.0f * scaleFactor), subFontSize, 120, 190, 255, 220);
 
   // Botão Fechar [ X ] no cabeçalho (Hitbox ampliada para toque)
-  int closeSize = (int)(32.0f * scaleFactor);
-  SDL_Rect closeRect = { modalX + modalW - closeSize - (int)(10.0f * scaleFactor), modalY + (headerH - closeSize) / 2 + 2, closeSize, closeSize };
+  int closeSize = (int)(28.0f * scaleFactor);
+  SDL_Rect closeRect = { modalX + modalW - closeSize - (int)(12.0f * scaleFactor), modalY + (headerH - closeSize) / 2 + 1, closeSize, closeSize };
   SDL_SetRenderDrawColor(renderer, 35, 50, 75, 220);
   SDL_RenderFillRect(renderer, &closeRect);
   SDL_SetRenderDrawColor(renderer, 90, 140, 190, 255);
   SDL_RenderDrawRect(renderer, &closeRect);
-  Platform::drawTextColored(renderer, "X", closeRect.x + (int)(10.0f * scaleFactor), closeRect.y + (int)(6.0f * scaleFactor), (int)(18.0f * scaleFactor), 255, 255, 255, 240);
+  Platform::drawTextColored(renderer, "X", closeRect.x + (int)(9.0f * scaleFactor), closeRect.y + (int)(5.0f * scaleFactor), (int)(16.0f * scaleFactor), 255, 255, 255, 240);
   
-  SDL_Rect closeTouchRect = { closeRect.x - (int)(10.0f * scaleFactor), closeRect.y - (int)(6.0f * scaleFactor), closeRect.w + (int)(20.0f * scaleFactor), closeRect.h + (int)(12.0f * scaleFactor) };
+  SDL_Rect closeTouchRect = { closeRect.x - (int)(10.0f * scaleFactor), modalY, closeRect.w + (int)(20.0f * scaleFactor), headerH + 4 };
   s_hitboxes.push_back({ closeTouchRect, 20 });
 
   // 5. Linhas de Opções (6 itens: 0..5)
-  int startY = modalY + headerH + (int)(10.0f * scaleFactor);
-  int availH = modalH - headerH - (int)(64.0f * scaleFactor);
-  int rowH = std::clamp(availH / 6 - (int)(5.0f * scaleFactor), 34, (int)(46.0f * scaleFactor));
+  int startY = modalY + headerH + (int)(8.0f * scaleFactor);
+  int availH = modalH - headerH - (int)(56.0f * scaleFactor);
+  int rowH = std::clamp(availH / 6 - (int)(5.0f * scaleFactor), 34, (int)(44.0f * scaleFactor));
   int rowGap = (int)(5.0f * scaleFactor);
-  int padX = (int)(18.0f * scaleFactor);
+  int padX = (int)(16.0f * scaleFactor);
   int rowW = modalW - padX * 2;
-  int itemFontSize = (int)(16.0f * scaleFactor);
-  int valueFontSize = (int)(15.0f * scaleFactor);
+  int itemFontSize = (int)(15.0f * scaleFactor);
+  int valueFontSize = (int)(14.0f * scaleFactor);
+
+  // Âncora direita alinhada com precisão absoluta para todas as opções
+  int rightAnchor = modalX + padX + rowW - (int)(14.0f * scaleFactor);
 
   for (int i = 0; i < 6; ++i) {
     int curY = startY + i * (rowH + rowGap);
@@ -664,12 +664,13 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
     uint8_t tb = isSel ? 255 : 230;
     Platform::drawTextColored(renderer, itemTitle, textX, textY, itemFontSize, tr, tg, tb, 255);
 
-    // Valor / Tag à Direita
+    // Valor / Tag à Direita (Perfeitamente alinhada na margem direita)
     int valY = curY + (rowH - valueFontSize) / 2;
+
     if (i == 0) { // God Mode Tag
       std::string valStr = s_godMode ? (isPt ? "[ ATIVADO ]" : "[ ENABLED ]") : (isPt ? "[ DESATIVADO ]" : "[ DISABLED ]");
-      int valW = Platform::getTextWidth(valStr, (int)(valueFontSize * 0.58f), 0);
-      int valX = modalX + modalW - padX - valW - (int)(14.0f * scaleFactor);
+      int valW = Platform::getTextWidth(valStr, valueFontSize, 0);
+      int valX = rightAnchor - valW;
       if (s_godMode) {
         Platform::drawTextColored(renderer, valStr, valX, valY, valueFontSize, 80, 240, 130, 255);
       } else {
@@ -677,8 +678,8 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
       }
     } else if (i == 1) { // Infinite SP Tag
       std::string valStr = s_infiniteSp ? (isPt ? "[ ATIVADO ]" : "[ ENABLED ]") : (isPt ? "[ DESATIVADO ]" : "[ DISABLED ]");
-      int valW = Platform::getTextWidth(valStr, (int)(valueFontSize * 0.58f), 0);
-      int valX = modalX + modalW - padX - valW - (int)(14.0f * scaleFactor);
+      int valW = Platform::getTextWidth(valStr, valueFontSize, 0);
+      int valX = rightAnchor - valW;
       if (s_infiniteSp) {
         Platform::drawTextColored(renderer, valStr, valX, valY, valueFontSize, 80, 240, 130, 255);
       } else {
@@ -686,8 +687,8 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
       }
     } else if (i == 2) { // Zero Cooldown Tag
       std::string valStr = s_zeroCooldown ? (isPt ? "[ ATIVADO ]" : "[ ENABLED ]") : (isPt ? "[ DESATIVADO ]" : "[ DISABLED ]");
-      int valW = Platform::getTextWidth(valStr, (int)(valueFontSize * 0.58f), 0);
-      int valX = modalX + modalW - padX - valW - (int)(14.0f * scaleFactor);
+      int valW = Platform::getTextWidth(valStr, valueFontSize, 0);
+      int valX = rightAnchor - valW;
       if (s_zeroCooldown) {
         Platform::drawTextColored(renderer, valStr, valX, valY, valueFontSize, 80, 240, 130, 255);
       } else {
@@ -695,55 +696,71 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
       }
     } else if (i == 3) { // Add Gold Tag
       std::string valStr = isPt ? "[ EXECUTAR ]" : "[ EXECUTE ]";
-      int valW = Platform::getTextWidth(valStr, (int)(valueFontSize * 0.58f), 0);
-      int valX = modalX + modalW - padX - valW - (int)(14.0f * scaleFactor);
+      int valW = Platform::getTextWidth(valStr, valueFontSize, 0);
+      int valX = rightAnchor - valW;
       Platform::drawTextColored(renderer, valStr, valX, valY, valueFontSize, 255, 215, 60, 255);
-    } else if (i == 4) { // Rank Selector com Botões Touch Dedicados [ < ] e [ > ]
+    } else if (i == 4) { // Rank Selector com Botões Touch Dedicados e Caixa Central
       std::string rName = getRankName(s_selectedRank, isPt);
-      int nameW = Platform::getTextWidth(rName, (int)(valueFontSize * 0.58f), 0);
       
-      int btnW = (int)(34.0f * scaleFactor);
-      int btnH = (int)(28.0f * scaleFactor);
+      int btnW = (int)(30.0f * scaleFactor);
+      int btnH = (int)(26.0f * scaleFactor);
       int btnY = curY + (rowH - btnH) / 2;
       
-      int rightMargin = modalX + modalW - padX - (int)(12.0f * scaleFactor);
-      int btnRightX = rightMargin - btnW;
-      int nameX = btnRightX - nameW - (int)(12.0f * scaleFactor);
-      int btnLeftX = nameX - btnW - (int)(12.0f * scaleFactor);
+      int gap = (int)(6.0f * scaleFactor);
+      int rankBoxW = (int)(180.0f * scaleFactor);
+      int rankBoxH = btnH;
+      int rankBoxY = btnY;
 
-      // Botão Esquerdo [ < ] (Touch Action 10)
+      // Alinhamento exato terminando em rightAnchor
+      int btnRightX = rightAnchor - btnW;
+      int rankBoxX = btnRightX - gap - rankBoxW;
+      int btnLeftX = rankBoxX - gap - btnW;
+
+      // 1. Botão Esquerdo [ < ] (Touch Action 10)
       SDL_Rect btnLeftRect = { btnLeftX, btnY, btnW, btnH };
-      SDL_SetRenderDrawColor(renderer, 32, 54, 82, 230);
+      SDL_SetRenderDrawColor(renderer, 28, 48, 76, 230);
       SDL_RenderFillRect(renderer, &btnLeftRect);
       SDL_SetRenderDrawColor(renderer, 70, 140, 210, 255);
       SDL_RenderDrawRect(renderer, &btnLeftRect);
-      int arrowLeftW = Platform::getTextWidth("<", (int)(valueFontSize * 0.58f), 0);
-      Platform::drawTextColored(renderer, "<", btnLeftX + (btnW - arrowLeftW) / 2, btnY + (btnH - valueFontSize) / 2, valueFontSize, 255, 255, 255, 255);
+      int arrowLeftW = Platform::getTextWidth("<", valueFontSize, 0);
+      Platform::drawTextColored(renderer, "<", btnLeftX + (btnW - arrowLeftW) / 2, valY, valueFontSize, 255, 255, 255, 255);
 
       // Hitbox touch generosa para o botão esquerdo (ideal para celular)
-      SDL_Rect touchLeftRect = { btnLeftX - (int)(8.0f * scaleFactor), curY, btnW + (int)(16.0f * scaleFactor), rowH };
+      SDL_Rect touchLeftRect = { btnLeftX - (int)(8.0f * scaleFactor), curY, btnW + (int)(12.0f * scaleFactor), rowH };
       s_hitboxes.push_back({ touchLeftRect, 10 });
 
-      // Nome do Rank no centro
+      // 2. Caixa Central com o Nome da Patente
+      SDL_Rect rankBoxRect = { rankBoxX, rankBoxY, rankBoxW, rankBoxH };
+      SDL_SetRenderDrawColor(renderer, 14, 24, 38, 220);
+      SDL_RenderFillRect(renderer, &rankBoxRect);
+      SDL_SetRenderDrawColor(renderer, 48, 76, 110, 200);
+      SDL_RenderDrawRect(renderer, &rankBoxRect);
+      
+      int nameW = Platform::getTextWidth(rName, valueFontSize, 0);
+      int nameX = rankBoxX + (rankBoxW - nameW) / 2;
       Platform::drawTextColored(renderer, rName, nameX, valY, valueFontSize, 120, 215, 255, 255);
 
-      // Botão Direito [ > ] (Touch Action 11)
+      // Hitbox da caixinha da patente (Action 4)
+      SDL_Rect touchBoxRect = { rankBoxX, curY, rankBoxW, rowH };
+      s_hitboxes.push_back({ touchBoxRect, 4 });
+
+      // 3. Botão Direito [ > ] (Touch Action 11)
       SDL_Rect btnRightRect = { btnRightX, btnY, btnW, btnH };
-      SDL_SetRenderDrawColor(renderer, 32, 54, 82, 230);
+      SDL_SetRenderDrawColor(renderer, 28, 48, 76, 230);
       SDL_RenderFillRect(renderer, &btnRightRect);
       SDL_SetRenderDrawColor(renderer, 70, 140, 210, 255);
       SDL_RenderDrawRect(renderer, &btnRightRect);
-      int arrowRightW = Platform::getTextWidth(">", (int)(valueFontSize * 0.58f), 0);
-      Platform::drawTextColored(renderer, ">", btnRightX + (btnW - arrowRightW) / 2, btnY + (btnH - valueFontSize) / 2, valueFontSize, 255, 255, 255, 255);
+      int arrowRightW = Platform::getTextWidth(">", valueFontSize, 0);
+      Platform::drawTextColored(renderer, ">", btnRightX + (btnW - arrowRightW) / 2, valY, valueFontSize, 255, 255, 255, 255);
 
       // Hitbox touch generosa para o botão direito (ideal para celular)
-      SDL_Rect touchRightRect = { btnRightX - (int)(8.0f * scaleFactor), curY, btnW + (int)(16.0f * scaleFactor), rowH };
+      SDL_Rect touchRightRect = { btnRightX - (int)(4.0f * scaleFactor), curY, btnW + (int)(14.0f * scaleFactor), rowH };
       s_hitboxes.push_back({ touchRightRect, 11 });
 
     } else if (i == 5) { // Fechar Tag
       std::string valStr = isPt ? "[ SAIR ]" : "[ EXIT ]";
-      int valW = Platform::getTextWidth(valStr, (int)(valueFontSize * 0.58f), 0);
-      int valX = modalX + modalW - padX - valW - (int)(14.0f * scaleFactor);
+      int valW = Platform::getTextWidth(valStr, valueFontSize, 0);
+      int valX = rightAnchor - valW;
       Platform::drawTextColored(renderer, valStr, valX, valY, valueFontSize, 220, 220, 220, 220);
     }
   }
@@ -751,8 +768,8 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
   // 6. Mensagem de Feedback Temporária
   if (!s_feedbackMsg.empty() && SDL_GetTicks() < s_feedbackTimer) {
     int fbFontSize = (int)(13.0f * scaleFactor);
-    int fbW = Platform::getTextWidth(s_feedbackMsg, (int)(fbFontSize * 0.58f), 0);
-    int fbY = modalY + modalH - (int)(52.0f * scaleFactor);
+    int fbW = Platform::getTextWidth(s_feedbackMsg, fbFontSize, 0);
+    int fbY = modalY + modalH - (int)(50.0f * scaleFactor);
 
     SDL_Rect fbRect = { modalX + padX, fbY - (int)(3.0f * scaleFactor), rowW, (int)(24.0f * scaleFactor) };
     SDL_SetRenderDrawColor(renderer, 24, 42, 64, 230);
@@ -766,8 +783,8 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
   // 7. Rodapé com Instruções de Controle
   int footerFontSize = (int)(12.0f * scaleFactor);
   std::string footerStr = isPt ? "[ Toque / 5 / A ] Selecionar/Alterar    [ 7 / B ] Voltar" : "[ Touch / 5 / A ] Select/Toggle    [ 7 / B ] Back";
-  int footerW = Platform::getTextWidth(footerStr, (int)(footerFontSize * 0.58f), 0);
-  int footerY = modalY + modalH - (int)(22.0f * scaleFactor);
+  int footerW = Platform::getTextWidth(footerStr, footerFontSize, 0);
+  int footerY = modalY + modalH - (int)(20.0f * scaleFactor);
   Platform::drawTextColored(renderer, footerStr, modalX + (modalW - footerW) / 2, footerY, footerFontSize, 150, 175, 205, 220);
 }
 
