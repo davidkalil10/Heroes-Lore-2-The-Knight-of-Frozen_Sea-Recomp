@@ -19,11 +19,19 @@ Este documento mapeia todas as 109 classes decompiladas do jogo (`reference/extr
 - `g`: Classe base abstrata de todas as telas modais e submenus com paginação de itens (`this.i`), cursor de seleção (`this.h`), indicador de setas (`b:(Graphics, int, int, int, int, boolean)`) e navegação direcional (`boolean_c`).
 - `bg`: Menu de Título do jogo (New Game, Continue, Settings, Sound, About, Exit; herda de `g`).
 - `ad`: Menu de Sistema In-Game (System → Save, Load, Options, Exit; herda de `g`).
-- `l`: Tela unificada de Opções / Configurações (herda de `g`). Compartilhada entre o Título (`bg.java:64`) e In-Game (`ad.java:54`). Campo `this.a` booleano determina o contexto (false = Título, true = In-Game). Expandida na recompilação para 8 opções nativas (incluindo FPS, Aspect Ratio e Cloud Save).
+- `l`: Tela unificada de Opções / Configurações (herda de `g`). Compartilhada entre o Título (`bg.java:64`) e In-Game (`ad.java:54`). Campo `this.a` booleano determina o contexto (false = Título, true = In-Game). Expandida na recompilação para 11 opções nativas (FPS, Aspect Ratio, Cloud Save, Atualizações e Menu Secreto de Cheats).
 - `ca`: Menu de seleção de slots de save game e criação de novo personagem (herda de `g`).
 - `bx`: Janela de exibição de mensagens de história, diálogos estendidos e ajuda (herda de `g`).
 - `ai`: Tela de Créditos / Sobre do jogo (herda de `g`).
 - `bk`: Renderizador tipográfico e de fontes pixel art autêntico do jogo (`bk.a`). Suporta caracteres ASCII e hangul coreano.
+
+---
+
+## 🛠️ Camada Nativa de Plataforma (`src/platform/`)
+
+- `CloudSave` (`cloud_save.h` / `cloud_save.cpp`): Sincronização e restauração de saves na nuvem com o Google Drive via RFC 8628 (Device Flow).
+- `Updater` (`updater.h` / `updater.cpp`): Verificação, notificação e atualização Over-The-Air (OTA) diretamente pelo GitHub Releases API.
+- `Cheats` (`cheats.h` / `cheats.cpp`): Sistema nativo de trapaças e modo desenvolvedor (God Mode, SP Infinito, Zero Cooldown, +100k Ouro e Seletor de Patentes de Honra).
 
 ---
 

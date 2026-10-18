@@ -297,6 +297,20 @@
     - Botão `[ > ]` alinhado à direita no mesmo pixel limite das demais opções.
   - Proporções harmônicas de escala (`scaleFactor = std::clamp(refDim / 720.0f, 0.85f, 1.25f)`) evitando que a janela fique excessivamente grande em telas verticais de smartphones e mantendo o padrão refinado no Nintendo Switch e PC.
 
+## Sessão 14 (Adoção do Padrão Responsivo de CloudSave no Menu de Cheats na v0.2.14)
+- **Diagnóstico da Escala Reduzida em Smartphones:**
+  - Em telas móveis verticais de alta resolução (ex: 1080x2400 portrait), um fator de escala travado em 1.25x fazia a janela modal ocupar apenas ~30% da largura útil da tela e ter fontes muito pequenas (~18px), tornando a leitura desconfortável e as áreas de toque minúsculas para o polegar.
+- **Implementação do Padrão CloudSave:**
+  - Foi adotada a mesma fórmula dinâmica consolidada em `CloudSave::drawModal`:
+    - `isPortrait = (winH > winW)` e detecção de mobile (`#if defined(__ANDROID__)`).
+    - Em portrait móvel: largura adaptativa preenchendo **93% da largura útil da tela** (`winW * 0.93f`), deixando margem lateral simétrica e limpa de 3.5%.
+    - `scaleFactor` dinâmico: `(refDim / 720.0f) * 1.15f` em mobile (gerando ~1.725f em telas 1080p), elevando a tipografia para títulos em ~38px, itens em ~28px e tags em ~26px.
+    - Altura de linha generosa no mobile (`rowH = 52 * scaleFactor` = ~90px) e botões de toque com `42 * scaleFactor` de largura, oferecendo áreas de clique confortáveis para o dedo.
+    - Posicionamento vertical inteligente (`modalY = winH * 0.16f`) sobrepondo a janela perfeitamente sobre a tela de jogo sem cobrir o Gamepad virtual posicionado na metade inferior.
+  - No Nintendo Switch e PC (Landscape 16:9), todas as proporções aprovadas foram preservadas rigorosamente intactas (`scaleFactor = 1.0f`, `modalW = 590px`, `rowH = 44px`).
+  - Acabamento visual aprimorado com Sombra Projetada e Moldura Interna em Ouro Nobre (Soltia Theme), mantendo identidade visual uniforme entre o Cloud Save e o Menu de Cheats.
+
+
 
 
 

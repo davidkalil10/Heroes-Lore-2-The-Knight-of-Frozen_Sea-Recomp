@@ -551,72 +551,101 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 215);
   SDL_RenderFillRect(renderer, &fullScreen);
 
-  // 2. Parâmetros de Dispositivo e Escala Proporcional Harmônica
-  float refDim = (float)std::min(winW, winH);
-  float scaleFactor = std::clamp(refDim / 720.0f, 0.85f, 1.25f);
+  // 2. Detecção de Orientação e Plataforma (Padrão CloudSave)
+  bool isPortrait = (winH > winW);
+#if defined(__ANDROID__)
+  bool isMobile = true;
+#else
+  bool isMobile = false;
+#endif
 
-  int modalW = std::clamp((int)(590.0f * scaleFactor), 470, (int)(winW * 0.94f));
-  int modalH = std::min((int)(460.0f * scaleFactor), (int)(winH * 0.92f));
+  // Escala Dinâmica por Resolução Real:
+  // Em 720p (Windows / Switch): refDim = 720 -> scaleFactor = 1.0f
+  // Em 1080p (Mobile Portrait 1080x2400): refDim = 1080 -> scaleFactor = 1.725f
+  float refDim = (float)std::min(winW, winH);
+  float scaleFactor = std::max(0.85f, refDim / 720.0f);
+  if (isMobile) {
+    scaleFactor *= 1.15f;
+  }
+
+  // Dimensões do Modal Adaptativas
+  // Em Portrait (Mobile): preenche 93% da largura útil da tela (deixa margem de 3.5%)
+  // Em Landscape (Switch/PC): mantém o tamanho confortável e aprovado (~590px)
+  int modalW = isPortrait ? (int)(winW * 0.93f)
+                          : std::clamp((int)(590.0f * scaleFactor), 470, (int)(winW * 0.88f));
+
+  int headerH = isPortrait ? (int)(54.0f * scaleFactor) : (int)(48.0f * scaleFactor);
+  int rowH = isPortrait ? (int)(52.0f * scaleFactor) : (int)(44.0f * scaleFactor);
+  int rowGap = (int)(6.0f * scaleFactor);
+  int padX = isPortrait ? (int)(20.0f * scaleFactor) : (int)(16.0f * scaleFactor);
+  int rowW = modalW - padX * 2;
+
+  int titleFontSize = isPortrait ? (int)(22.0f * scaleFactor) : (int)(20.0f * scaleFactor);
+  int subFontSize = isPortrait ? (int)(12.0f * scaleFactor) : (int)(11.0f * scaleFactor);
+  int itemFontSize = isPortrait ? (int)(17.0f * scaleFactor) : (int)(15.0f * scaleFactor);
+  int valueFontSize = isPortrait ? (int)(16.0f * scaleFactor) : (int)(14.0f * scaleFactor);
+  int closeSize = isPortrait ? (int)(32.0f * scaleFactor) : (int)(28.0f * scaleFactor);
+
+  int neededH = headerH + (int)(12.0f * scaleFactor) + 6 * (rowH + rowGap) + (int)(56.0f * scaleFactor);
+  int modalH = std::min(neededH, (int)(winH * 0.95f));
+
   int modalX = (winW - modalW) / 2;
-  int modalY = (winH - modalH) / 2;
+  // No mobile portrait, posiciona na área útil da tela de jogo (evitando sobrepor o gamepad virtual)
+  int modalY = isPortrait ? std::clamp((int)(winH * 0.16f), 30, (int)(winH - modalH - 40))
+                          : (winH - modalH) / 2;
 
   s_hitboxes.clear();
 
-  // 3. Fundo Principal da Janela Modal
+  // Fundo com Sombra Projetada
+  SDL_Rect shadow = { modalX + 6, modalY + 6, modalW, modalH };
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 160);
+  SDL_RenderFillRect(renderer, &shadow);
+
+  // 3. Fundo Principal da Janela Modal (Azul Ardósia Profundo)
   SDL_Rect boxRect = { modalX, modalY, modalW, modalH };
-  SDL_SetRenderDrawColor(renderer, 15, 22, 34, 252); // Azul ardósia profundo
+  SDL_SetRenderDrawColor(renderer, 15, 22, 34, 252);
   SDL_RenderFillRect(renderer, &boxRect);
 
-  // Borda Externa Ciano Metálico
-  SDL_SetRenderDrawColor(renderer, 58, 120, 185, 255);
+  // Contorno Externo Refinado
+  SDL_SetRenderDrawColor(renderer, 45, 62, 88, 255);
   SDL_RenderDrawRect(renderer, &boxRect);
-  SDL_Rect borderInner = { modalX + 1, modalY + 1, modalW - 2, modalH - 2 };
-  SDL_SetRenderDrawColor(renderer, 28, 55, 90, 255);
-  SDL_RenderDrawRect(renderer, &borderInner);
+
+  // Moldura Interna Ouro Nobre (Soltia Theme - Padrão CloudSave)
+  SDL_Rect goldBorder = { modalX + 3, modalY + 3, modalW - 6, modalH - 6 };
+  SDL_SetRenderDrawColor(renderer, 190, 150, 60, 220);
+  SDL_RenderDrawRect(renderer, &goldBorder);
 
   // 4. Cabeçalho Nobre
-  int headerH = (int)(48.0f * scaleFactor);
-  SDL_Rect headerRect = { modalX + 2, modalY + 2, modalW - 4, headerH };
-  SDL_SetRenderDrawColor(renderer, 22, 36, 56, 255);
+  SDL_Rect headerRect = { modalX + 4, modalY + 4, modalW - 8, headerH };
+  SDL_SetRenderDrawColor(renderer, 24, 34, 52, 255);
   SDL_RenderFillRect(renderer, &headerRect);
 
-  SDL_SetRenderDrawColor(renderer, 65, 140, 210, 200);
-  SDL_RenderDrawLine(renderer, modalX + 2, modalY + headerH + 2, modalX + modalW - 3, modalY + headerH + 2);
+  SDL_SetRenderDrawColor(renderer, 190, 150, 60, 180);
+  SDL_RenderDrawLine(renderer, modalX + 4, modalY + headerH + 3, modalX + modalW - 5, modalY + headerH + 3);
 
   bool isPt = (Platform::getCurrentLanguage() == "pt" || Platform::getCurrentLanguage() == "pt_br");
   std::string titleStr = isPt ? "MENU DE CHEATS" : "CHEAT MENU";
-  int titleFontSize = (int)(20.0f * scaleFactor);
   int titleW = Platform::getTextWidth(titleStr, titleFontSize, 0);
   Platform::drawTextColored(renderer, titleStr, modalX + (modalW - titleW) / 2, modalY + (int)(8.0f * scaleFactor), titleFontSize, 255, 230, 130, 255);
 
   std::string subTitleStr = isPt ? "MODO DESENVOLVEDOR / TRAPACAS" : "DEVELOPER / CHEAT MODE";
-  int subFontSize = (int)(11.0f * scaleFactor);
   int subW = Platform::getTextWidth(subTitleStr, subFontSize, 0);
-  Platform::drawTextColored(renderer, subTitleStr, modalX + (modalW - subW) / 2, modalY + (int)(30.0f * scaleFactor), subFontSize, 120, 190, 255, 220);
+  Platform::drawTextColored(renderer, subTitleStr, modalX + (modalW - subW) / 2, modalY + (int)(32.0f * scaleFactor), subFontSize, 120, 190, 255, 220);
 
   // Botão Fechar [ X ] no cabeçalho (Hitbox ampliada para toque)
-  int closeSize = (int)(28.0f * scaleFactor);
-  SDL_Rect closeRect = { modalX + modalW - closeSize - (int)(12.0f * scaleFactor), modalY + (headerH - closeSize) / 2 + 1, closeSize, closeSize };
+  SDL_Rect closeRect = { modalX + modalW - closeSize - (int)(12.0f * scaleFactor), modalY + (headerH - closeSize) / 2 + 2, closeSize, closeSize };
   SDL_SetRenderDrawColor(renderer, 35, 50, 75, 220);
   SDL_RenderFillRect(renderer, &closeRect);
   SDL_SetRenderDrawColor(renderer, 90, 140, 190, 255);
   SDL_RenderDrawRect(renderer, &closeRect);
-  Platform::drawTextColored(renderer, "X", closeRect.x + (int)(9.0f * scaleFactor), closeRect.y + (int)(5.0f * scaleFactor), (int)(16.0f * scaleFactor), 255, 255, 255, 240);
+  Platform::drawTextColored(renderer, "X", closeRect.x + (closeSize - Platform::getTextWidth("X", (int)(16.0f * scaleFactor), 0)) / 2,
+                           closeRect.y + (closeSize - (int)(16.0f * scaleFactor)) / 2, (int)(16.0f * scaleFactor), 255, 255, 255, 240);
   
   SDL_Rect closeTouchRect = { closeRect.x - (int)(10.0f * scaleFactor), modalY, closeRect.w + (int)(20.0f * scaleFactor), headerH + 4 };
   s_hitboxes.push_back({ closeTouchRect, 20 });
 
   // 5. Linhas de Opções (6 itens: 0..5)
-  int startY = modalY + headerH + (int)(8.0f * scaleFactor);
-  int availH = modalH - headerH - (int)(56.0f * scaleFactor);
-  int rowH = std::clamp(availH / 6 - (int)(5.0f * scaleFactor), 34, (int)(44.0f * scaleFactor));
-  int rowGap = (int)(5.0f * scaleFactor);
-  int padX = (int)(16.0f * scaleFactor);
-  int rowW = modalW - padX * 2;
-  int itemFontSize = (int)(15.0f * scaleFactor);
-  int valueFontSize = (int)(14.0f * scaleFactor);
-
-  // Âncora direita alinhada com precisão absoluta para todas as opções
+  int startY = modalY + headerH + (int)(10.0f * scaleFactor);
   int rightAnchor = modalX + padX + rowW - (int)(14.0f * scaleFactor);
 
   for (int i = 0; i < 6; ++i) {
@@ -640,12 +669,12 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
     }
 
     // Cursor Indicador [ > ]
-    int textX = modalX + padX + (int)(12.0f * scaleFactor);
+    int textX = modalX + padX + (int)(14.0f * scaleFactor);
     int textY = curY + (rowH - itemFontSize) / 2;
 
     if (isSel) {
       Platform::drawTextColored(renderer, ">", textX, textY, itemFontSize, 255, 220, 80, 255);
-      textX += (int)(16.0f * scaleFactor);
+      textX += (int)(18.0f * scaleFactor);
     }
 
     // Título do Item
@@ -702,12 +731,12 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
     } else if (i == 4) { // Rank Selector com Botões Touch Dedicados e Caixa Central
       std::string rName = getRankName(s_selectedRank, isPt);
       
-      int btnW = (int)(30.0f * scaleFactor);
-      int btnH = (int)(26.0f * scaleFactor);
+      int btnW = isPortrait ? (int)(42.0f * scaleFactor) : (int)(32.0f * scaleFactor);
+      int btnH = isPortrait ? (int)(36.0f * scaleFactor) : (int)(28.0f * scaleFactor);
       int btnY = curY + (rowH - btnH) / 2;
       
-      int gap = (int)(6.0f * scaleFactor);
-      int rankBoxW = (int)(180.0f * scaleFactor);
+      int gap = isPortrait ? (int)(8.0f * scaleFactor) : (int)(6.0f * scaleFactor);
+      int rankBoxW = isPortrait ? (int)(230.0f * scaleFactor) : (int)(185.0f * scaleFactor);
       int rankBoxH = btnH;
       int rankBoxY = btnY;
 
@@ -726,7 +755,7 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
       Platform::drawTextColored(renderer, "<", btnLeftX + (btnW - arrowLeftW) / 2, valY, valueFontSize, 255, 255, 255, 255);
 
       // Hitbox touch generosa para o botão esquerdo (ideal para celular)
-      SDL_Rect touchLeftRect = { btnLeftX - (int)(8.0f * scaleFactor), curY, btnW + (int)(12.0f * scaleFactor), rowH };
+      SDL_Rect touchLeftRect = { btnLeftX - (int)(10.0f * scaleFactor), curY, btnW + (int)(16.0f * scaleFactor), rowH };
       s_hitboxes.push_back({ touchLeftRect, 10 });
 
       // 2. Caixa Central com o Nome da Patente
@@ -754,7 +783,7 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
       Platform::drawTextColored(renderer, ">", btnRightX + (btnW - arrowRightW) / 2, valY, valueFontSize, 255, 255, 255, 255);
 
       // Hitbox touch generosa para o botão direito (ideal para celular)
-      SDL_Rect touchRightRect = { btnRightX - (int)(4.0f * scaleFactor), curY, btnW + (int)(14.0f * scaleFactor), rowH };
+      SDL_Rect touchRightRect = { btnRightX - (int)(6.0f * scaleFactor), curY, btnW + (int)(16.0f * scaleFactor), rowH };
       s_hitboxes.push_back({ touchRightRect, 11 });
 
     } else if (i == 5) { // Fechar Tag
@@ -769,9 +798,9 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
   if (!s_feedbackMsg.empty() && SDL_GetTicks() < s_feedbackTimer) {
     int fbFontSize = (int)(13.0f * scaleFactor);
     int fbW = Platform::getTextWidth(s_feedbackMsg, fbFontSize, 0);
-    int fbY = modalY + modalH - (int)(50.0f * scaleFactor);
+    int fbY = modalY + modalH - (int)(48.0f * scaleFactor);
 
-    SDL_Rect fbRect = { modalX + padX, fbY - (int)(3.0f * scaleFactor), rowW, (int)(24.0f * scaleFactor) };
+    SDL_Rect fbRect = { modalX + padX, fbY - (int)(3.0f * scaleFactor), rowW, (int)(26.0f * scaleFactor) };
     SDL_SetRenderDrawColor(renderer, 24, 42, 64, 230);
     SDL_RenderFillRect(renderer, &fbRect);
     SDL_SetRenderDrawColor(renderer, 80, 160, 230, 255);

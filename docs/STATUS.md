@@ -1,6 +1,6 @@
 # STATUS — Heroes Lore 2: The Knight of Frozen Sea
 
-_Última atualização: 2026-10-18 (Versão v0.2.13 lançada oficialmente)_
+_Última atualização: 2026-10-18 (Versão v0.2.14 lançada oficialmente)_
 
 ## Ambiente
 - Java 17/21, Python 3.13, Git: OK.
@@ -54,7 +54,12 @@ _Última atualização: 2026-10-18 (Versão v0.2.13 lançada oficialmente)_
   - Suporte direto a `romfs:/` no Nintendo Switch para carregamento de assets traduzidos embutidos no NRO.
 - [x] Validação de persistência e carregamento RMS no disco e na nuvem.
 - [x] Correção do crash no combate (`Math.max:(II)I` adicionado em `natives.cpp`), viabilizando a renderização do banner do alvo em `bd.a(ag, boolean)`.
-- [ ] Validação de jogabilidade contínua (combate em mapa aberto e diálogos com NPCs).
+- [x] Sistema Completo de Trapaças & Modo Desenvolvedor (`src/platform/cheats.h` e `cheats.cpp`):
+  - Integrado diretamente ao menu de opções (`l.class` expandido para 11 itens).
+  - Modo Deus (HP Infinito), SP Infinito, Zero Cooldown instantâneo para habilidades ativas.
+  - Adição de ouro (+100.000 G) e Seletor de Patentes Militares / Honor Rank (15 patentes originais com auto-aplicação).
+  - Interface responsiva com botões dedicados de toque para smartphones e proporções otimizadas para Nintendo Switch e PC.
+- [x] Validação de zeramento contínuo (Campanha completa finalizada pelo usuário no Nintendo Switch, créditos validados e transição para o New Game+ / Hardcore Mode confirmada).
 
 ## Roadmap de Etapas (Seguindo o Blueprint)
 - [x] **Passo 0:** Boot nativo no PC da classe `rpg.RPGHero2` e renderização do primeiro frame.
@@ -67,6 +72,6 @@ _Última atualização: 2026-10-18 (Versão v0.2.13 lançada oficialmente)_
 - [x] **Passo 7:** Auto-Updater OTA via GitHub Releases (integrado com assets de HL2).
 - [x] **Passo 8:** Cloud Save Multiplataforma (Google Drive RFC 8628 isolado para HL2).
 - [x] **Passo 9:** Sistema de Localização Multi-idiomas (I18N), Tradução PT-BR integral e Troca a Quente em Tempo Real.
-- [ ] **Passo 10:** Validação de zeramento contínuo (todas as 3 classes, chefes e cutscenes finais).
+- [x] **Passo 10:** Validação de zeramento contínuo (Campanha concluída no Nintendo Switch com sucesso e New Game+ / Hardcore Mode desbloqueado).
 
 

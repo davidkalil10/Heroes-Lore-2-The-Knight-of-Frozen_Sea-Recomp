@@ -32,6 +32,14 @@ O projeto executa o **bytecode original diretamente no motor C++**, sem emulaç�
   - Tradução integral para Português do Brasil (PT-BR) de todos os menus, itens, missões, habilidades e diálogos de mapa.
   - Alternância de idioma a quente (em tempo real) pelo menu de configurações sem necessidade de reiniciar ou trocar de mapa.
   - Arquitetura modular extensível em `assets/lang/<codigo>/` pronta para receber novos idiomas comunitários.
+- 🛡️ **Menu de Trapaças & Modo Desenvolvedor:**
+  - Janela modal gráfica com estética nobre Soltia acessível diretamente pelo Menu de Configurações (**Settings / Options → Cheats: Abrir**).
+  - **Modo Deus (God Mode):** Imortalidade com vida travada no máximo contra qualquer dano.
+  - **SP Infinito:** Magia / Mana ilimitada para conjuração contínua de feitiços.
+  - **Zero Cooldown:** Elimina completamente o tempo de recarga de todas as habilidades de combate.
+  - **Adicionar Ouro (+100.000 G):** Injeção imediata de fundos para compra de consumíveis e refinamentos.
+  - **Seletor de Patentes / Honor Rank:** Permite escolher e aplicar qualquer uma das 15 patentes militares originais do jogo (que anteriormente exigiam servidores online coreanos desativados), liberando equipamentos raros sem penalidades.
+  - Interface responsiva com botões dedicados para toque (mobile) e suporte total a gamepads e teclado.
 - 🔄 **Atualizações OTA (Over-The-Air):**
   - Verificação e notificação automática de novas versões lançadas diretamente pelo GitHub Releases.
 
