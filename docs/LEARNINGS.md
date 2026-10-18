@@ -321,10 +321,18 @@
   - Na linha horizontal logo abaixo do jogo, formou-se um alinhamento harmonioso: `[ MENU ]` e `[ MAPA ]` à esquerda, e `( 3 SKILL )` e `( 9 SKILL )` à direita.
   - Acesso instantâneo e ergonômico a todas as funções com o polegar esquerdo sem alterar nomes, cores ou o arco de ação favorito dos botões de combate.
 
-
-
-
-
+## Sessão 16 (Detecção Automática do Modo Dock no Nintendo Switch na v0.2.16)
+- **Desafio do Modo Dock (TV) no Nintendo Switch:**
+  - Quando o console era conectado ao dock na TV, o jogo mantinha na tela da televisão os botões virtuais touchscreen (D-Pad, botões de ação e os botões utilitários de ocultar/olho e rotação de tela), poluindo a imagem 1080p da TV sem nenhuma necessidade, já que na TV o jogador utiliza Joy-Cons ou Pro Controller.
+- **Detecção em Tempo Real via Horizon OS / libnx:**
+  - Implementada a função `isSwitchDocked()` consultando `appletGetOperationMode(&mode)` da biblioteca `libnx`.
+  - Se `mode == AppletOperationMode_Console`:
+    - `calculateLayout()` zera e limpa completamente `layout.buttons` e `layout.dpadR = 0`.
+    - `drawGamepad()` retorna imediatamente sem desenhar nenhum elemento virtual de toque.
+    - Se o jogador estava com rotação de tela ativa (TATE vertical/Flip Grip no modo portátil), a saída na TV muda dinamicamente para Paisagem 16:9 tradicional em 1080p, evitando imagem de lado na televisão.
+    - A transição é detectada automaticamente com notificação discreta OSD: `"Modo TV (Dock): Controles virtuais desativados"`.
+  - Ao remover o console do dock (`AppletOperationMode_Handheld`):
+    - Todos os controles virtuais e a orientação prévia de tela do modo portátil são restaurados instantânea e perfeitamente: `"Modo Portatil: Controles virtuais restaurados"`.
 
 
 

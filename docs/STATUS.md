@@ -1,6 +1,6 @@
 # STATUS — Heroes Lore 2: The Knight of Frozen Sea
 
-_Última atualização: 2026-10-18 (Versão v0.2.15 lançada oficialmente)_
+_Última atualização: 2026-10-18 (Versão v0.2.16 lançada oficialmente)_
 
 ## Ambiente
 - Java 17/21, Python 3.13, Git: OK.
@@ -60,6 +60,7 @@ _Última atualização: 2026-10-18 (Versão v0.2.15 lançada oficialmente)_
   - Adição de ouro (+100.000 G) e Seletor de Patentes Militares / Honor Rank (15 patentes originais com auto-aplicação).
   - Interface responsiva com botões dedicados de toque para smartphones e proporções otimizadas para Nintendo Switch e PC.
 - [x] Validação de zeramento contínuo (Campanha completa finalizada pelo usuário no Nintendo Switch, créditos validados e transição para o New Game+ / Hardcore Mode confirmada).
+- [x] Detecção Automática do Modo Dock no Nintendo Switch (v0.2.16): Ao conectar o Switch à TV no dock, todos os botões virtuais da tela (D-Pad, ações, menu, mapa, olho e rotação) são 100% ocultados em tempo real via libnx Horizon OS, e a tela passa para Paisagem 16:9 em 1080p. Ao retirar do dock para o modo portátil, todos os controles virtuais e orientações retornam instantaneamente.
 
 ## Roadmap de Etapas (Seguindo o Blueprint)
 - [x] **Passo 0:** Boot nativo no PC da classe `rpg.RPGHero2` e renderização do primeiro frame.

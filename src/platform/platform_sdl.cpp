@@ -1099,10 +1099,39 @@ struct GamepadLayout {
   std::vector<TouchButtonDef> buttons;
 };
 
+static bool isSwitchDocked() {
+#ifdef __SWITCH__
+  AppletOperationMode mode = AppletOperationMode_Handheld;
+  Result rc = appletGetOperationMode(&mode);
+  if (R_SUCCEEDED(rc)) {
+    return (mode == AppletOperationMode_Console);
+  }
+  return false;
+#else
+  return false;
+#endif
+}
+
 static GamepadLayout calculateLayout(int winW, int winH) {
   GamepadLayout layout;
   layout.isPortrait = (winH > winW);
   layout.dpadR = 0;
+
+  // No Nintendo Switch em modo Dock (TV), nao ha controles de toque na televisao:
+  // Ocultamos todos os botoes virtuais sem excecao (D-Pad, acoes, MENU, MAPA, olho, rotacao, etc.)
+  if (isSwitchDocked()) {
+    float scaleX = (float)winW / (float)g_screenWidth;
+    float scaleY = (float)winH / (float)g_screenHeight;
+    float scale = std::min(scaleX, scaleY);
+    int gameW = (int)((float)g_screenWidth * scale);
+    int gameH = (int)((float)g_screenHeight * scale);
+    int gameX = (winW - gameW) / 2;
+    int gameY = (winH - gameH) / 2;
+    layout.gameRect = { gameX, gameY, gameW, gameH };
+    layout.controllerBgRect = { 0, 0, 0, 0 };
+    layout.buttons.clear();
+    return layout;
+  }
 
   if (layout.isPortrait) {
     // Modo Retrato (Smartphone em pé / TATE)
@@ -1306,7 +1335,7 @@ static int hitTestTouch(float touchX, float touchY, const GamepadLayout& layout)
 }
 
 static void drawGamepad(const GamepadLayout& layout) {
-  if (!s_renderer) return;
+  if (!s_renderer || isSwitchDocked()) return;
 
   // 1. D-Pad Virtual (Translúcido / Frosted Glass Overlay) se controles habilitados
   if (s_touchOverlayEnabled && s_texDpadBase && layout.dpadR > 0) {
@@ -2116,7 +2145,22 @@ void Platform::present() {
   loadGamepadTextures();
 
 #ifdef __SWITCH__
-  if (s_screenRotation != 0) {
+  static bool s_wasSwitchDocked = false;
+  static bool s_dockStateInit = false;
+  bool currentDocked = isSwitchDocked();
+  if (!s_dockStateInit) {
+    s_wasSwitchDocked = currentDocked;
+    s_dockStateInit = true;
+  } else if (currentDocked != s_wasSwitchDocked) {
+    s_wasSwitchDocked = currentDocked;
+    if (currentDocked) {
+      Platform::showOsdMessage("Modo TV (Dock): Controles virtuais desativados");
+    } else {
+      Platform::showOsdMessage("Modo Portatil: Controles virtuais restaurados");
+    }
+  }
+
+  if (s_screenRotation != 0 && !currentDocked) {
     if (!s_rotateTarget) {
       s_rotateTarget = SDL_CreateTexture(
           s_renderer,
