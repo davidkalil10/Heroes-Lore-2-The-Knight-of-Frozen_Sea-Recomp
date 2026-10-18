@@ -1115,15 +1115,9 @@ static GamepadLayout calculateLayout(int winW, int winH) {
     int gameH = (int)((float)g_screenHeight * scale);
     int gameX = (winW - gameW) / 2;
 
-    // Barra de Sistema no topo (MENU e MAPA) com proporção ampla e abaixo da status bar
-    int pillW = (int)(winW * 0.28f);
-    int pillH = (int)(pillW * (100.0f / 240.0f));
-    int topY = std::max((int)(winH * 0.070f), pillH / 2 + 36);
-
-    // Subir a tela do jogo logo abaixo dos botões superiores com margem confortável
-    int topLimit = topY + pillH / 2 + (int)(winW * 0.025f);
-    int maxGameY = (winH - gameH) / 2;
-    int gameY = std::max(0, std::min(topLimit, maxGameY));
+    // Subir a tela do jogo para o topo absoluto da tela (com margem sutil para notch/status bar)
+    // Liberando a parte inferior para que os botões virtuais fiquem 100% fora da área do jogo
+    int gameY = std::max(0, (int)(winH * 0.015f));
     layout.gameRect = { gameX, gameY, gameW, gameH };
     layout.controllerBgRect = { 0, 0, 0, 0 }; // Sem fundo opaco, overlay translúcido sobre o jogo!
 
@@ -1144,13 +1138,12 @@ static GamepadLayout calculateLayout(int winW, int winH) {
 #endif
 
     if (s_touchOverlayEnabled) {
-      // D-Pad e Cluster de Ação posicionados na zona inferior confortável
-      // (abaixados para dar visibilidade máxima à tela e diálogos do jogo)
+      // D-Pad posicionado na zona inferior esquerda
       layout.dpadX = (int)(winW * 0.22f);
       layout.dpadY = winH - (int)(winW * 0.31f);
       layout.dpadR = (int)(winW * 0.175f);
 
-      // Disposição clássica ergonômica em arco mantida (5 no centro, 1 e 7 na coluna esquerda, 3 no topo, 9 no topo-direito, R na direita-baixo):
+      // Disposição clássica ergonômica em arco mantida estritamente (5 no centro, 1 e 7 na coluna esquerda, 3 no topo, 9 no topo-direito, 0 na direita-baixo):
       int actX = (int)(winW * 0.74f);
       int actY = winH - (int)(winW * 0.31f);
       int r5 = (int)(winW * 0.11f);
@@ -1169,10 +1162,16 @@ static GamepadLayout calculateLayout(int winW, int winH) {
       // 0 - Item / Poção ('0' = 48) (Direita-baixo, abaixo de 9 e alinhado ao 7)
       layout.buttons.push_back({ 48, actX + (int)(r5 * 1.35f), actY + (int)(r5 * 1.15f), rSub, rSub * 2, rSub * 2, s_texBtnRskRound ? s_texBtnRskRound : s_texBtnRsk });
 
-      // Barra de Sistema no topo (apenas MENU e MAPA, proporcionais e espaçados)
+      // Botões de Sistema (MENU e MAPA) posicionados abaixo do jogo e acima do D-Pad (conforme solicitação e mock do usuário)
       // HL2: MENU = -7 (Canvas converte para 8), MAPA = 42 ('*')
-      layout.buttons.push_back({ -7, (int)(winW * 0.26f), topY, 0, pillW, pillH, s_texBtnMenu });
-      layout.buttons.push_back({ 42, (int)(winW * 0.74f), topY, 0, pillW, pillH, s_texBtnMap });
+      int pillW = (int)(winW * 0.21f);
+      int pillH = (int)(pillW * (100.0f / 240.0f));
+      int sysY = (layout.dpadY - layout.dpadR) - pillH / 2 - (int)(winW * 0.035f);
+      int menuX = (int)(winW * 0.14f);
+      int mapX = (int)(winW * 0.38f);
+
+      layout.buttons.push_back({ -7, menuX, sysY, 0, pillW, pillH, s_texBtnMenu });
+      layout.buttons.push_back({ 42, mapX, sysY, 0, pillW, pillH, s_texBtnMap });
 
       // Alternância de Poção (< e >) perfeitamente centralizadas no eixo horizontal da tela
       int rArrow = (int)(winW * 0.055f);

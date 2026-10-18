@@ -310,6 +310,18 @@
   - No Nintendo Switch e PC (Landscape 16:9), todas as proporções aprovadas foram preservadas rigorosamente intactas (`scaleFactor = 1.0f`, `modalW = 590px`, `rowH = 44px`).
   - Acabamento visual aprimorado com Sombra Projetada e Moldura Interna em Ouro Nobre (Soltia Theme), mantendo identidade visual uniforme entre o Cloud Save e o Menu de Cheats.
 
+## Sessão 15 (Otimização Ergonômica do Layout Vertical Mobile/Switch na v0.2.15)
+- **Problema de Oclusão do HUD e Alcance das Mãos no Modo Retrato:**
+  - Anteriormente, os botões `MENU` e `MAPA` ficavam no topo extremo da tela, forçando a área do jogo a começar mais abaixo (`gameY = ~250px`).
+  - Como consequência, a base da tela do jogo descia a ponto do HUD de combate original (vida, mana e ícones de habilidades ativas) ser invadido e coberto pelos botões virtuais `3 (SKILL)` e `9 (SKILL)`.
+  - Além disso, no smartphone em pé, o jogador precisava retirar a mão da posição de empunhadura para tocar no topo da tela para abrir o menu ou mapa.
+- **Novo Posicionamento Estratégico (Simulação do Usuário Validada):**
+  - A tela do jogo foi elevada para o topo da janela (`gameY = winH * 0.015f`), desobstruindo integralmente o HUD de combate. Nenhum botão virtual fica mais sobreposto à área de jogo.
+  - Os botões `[ MENU ]` e `[ MAPA ]` foram transferidos para a zona inferior esquerda, posicionados lado a lado imediatamente acima do D-Pad direcional (`sysY = dpadTop - pillH/2 - 0.035*winW`).
+  - Na linha horizontal logo abaixo do jogo, formou-se um alinhamento harmonioso: `[ MENU ]` e `[ MAPA ]` à esquerda, e `( 3 SKILL )` e `( 9 SKILL )` à direita.
+  - Acesso instantâneo e ergonômico a todas as funções com o polegar esquerdo sem alterar nomes, cores ou o arco de ação favorito dos botões de combate.
+
+
 
 
 
