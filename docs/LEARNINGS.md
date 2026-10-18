@@ -254,6 +254,14 @@
 - **Integração no Menu de Configurações (`l.class` em `natives.cpp`):**
   - O menu de opções foi expandido para 11 itens (0..10), posicionando a opção `Cheats: Abrir` exatamente abaixo de `Atualizar: Checar`.
   - Calibradas as coordenadas e altura da janela modal in-game (`boxH = 224`, `startY = bw_j - 88`) para acomodar com precisão e elegância visual os 11 itens na tela.
+- **Diagnóstico e Correção da Sessão 11 (b.n e Barras de HP/SP):**
+  - **Fatal Error `invoke chamado sem ThreadCtx ativo no método: b.n`:**
+    - Acontecia porque `Cheats::setRank` tentava invocar `vm->invoke(mBn, ...)` diretamente a partir do processador de eventos/toques SDL, onde `tctx` estava nulo fora do ciclo de thread Java ativo.
+    - Análise do bytecode de `b.java:686-745` demonstrou que `b.n:()V` apenas recalcula bônus de equipamentos (armas/armaduras), não sendo necessário para a patente. A alteração direta de `player.b:B` (0..14) e de `u.g:I` (pontos de honra) aplica o rank de forma imediata e 100% segura sem invocar bytecode fora de contexto.
+  - **Correção Definitiva de God Mode e SP Infinito:**
+    - O HUD do jogo (`bd.java:506-519`) condiciona a renderização gráfica das barras aos sinalizadores booleanos `bd.d:Z` (vida) e `bd.e:Z` (mana). Sem ativá-los, a interface visual permanecia desenhando a barra com o valor reduzido.
+    - Foram criados métodos nativos em `src/vm/natives.cpp` interceptando `b.b:(I)V` (dano/cura do herói) e `b.a:(I)V` (consumo/recuperação de SP). Quando ativados, qualquer dano ou custo recebido é neutralizado instantaneamente, mantendo os valores no máximo e disparando `bd.d = true` e `bd.e = true`.
+    - No loop principal (`src/main.cpp`), `Cheats::update(&vm)` agora é sincronizado antes e depois do ciclo de renderização gráfica `paint`, garantindo consistência total e barras 100% cheias ininterruptamente.
 
 
 

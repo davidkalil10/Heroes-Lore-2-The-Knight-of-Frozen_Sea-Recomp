@@ -1,5 +1,6 @@
 // main.cpp — ponto de entrada do recomp nativo de Heroes Lore: Wind of Soltia
 #include "platform/platform.h"
+#include "platform/cheats.h"
 #include "midp/midp.h"
 #include "vm/vm.h"
 
@@ -301,6 +302,9 @@ int main(int argc, char** argv) {
       }
     }
 #endif
+    // Sincroniza cheats (God Mode e SP Infinito) antes da renderização do frame
+    Cheats::update(&vm);
+
     // Renderiza quadro do Canvas ativo
     if (g_display && g_display->current) {
       g_screenGraphics->resetClip();
@@ -316,6 +320,8 @@ int main(int argc, char** argv) {
         vm.dumpStackTrace();
       }
     }
+
+    Cheats::update(&vm);
 
     tctx = nullptr;
     vm.gilUnlock();

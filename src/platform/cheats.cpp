@@ -100,6 +100,9 @@ void Cheats::toggleGodMode() {
     s_feedbackMsg = isPt ? "Modo Deus: DESATIVADO!" : "God Mode: DISABLED!";
   }
   s_feedbackTimer = SDL_GetTicks() + 2500;
+  if (s_godMode && s_vm) {
+    update(s_vm);
+  }
 }
 
 bool Cheats::isInfiniteSp() {
@@ -119,6 +122,9 @@ void Cheats::toggleInfiniteSp() {
     s_feedbackMsg = isPt ? "SP Infinito: DESATIVADO!" : "Infinite SP: DISABLED!";
   }
   s_feedbackTimer = SDL_GetTicks() + 2500;
+  if (s_infiniteSp && s_vm) {
+    update(s_vm);
+  }
 }
 
 void Cheats::init() {
@@ -154,9 +160,12 @@ void Cheats::openModal(VM* vm) {
         Object* pObj = uClass->statics[s_idxPlayer].o;
         if (pObj && pObj->kind == K_INST) {
           Instance* player = static_cast<Instance*>(pObj);
-          if (s_idxRank == -1 && player->cls) {
-            FieldInfo* f = s_vm->findField(player->cls, "b:B");
-            if (f) s_idxRank = f->index;
+          if (s_idxRank == -1) {
+            ClassInfo* bClass = s_vm->findClass("b");
+            if (bClass) {
+              FieldInfo* f = s_vm->findField(bClass, "b:B");
+              if (f) s_idxRank = f->index;
+            }
           }
           if (s_idxRank >= 0 && s_idxRank < (int)player->f.size()) {
             int curRank = (int)(int8_t)player->f[s_idxRank].i;
@@ -239,8 +248,9 @@ void Cheats::setRank(VM* vm, int rankIndex) {
     Object* pObj = uClass->statics[s_idxPlayer].o;
     if (pObj && pObj->kind == K_INST) {
       Instance* player = static_cast<Instance*>(pObj);
-      if (s_idxRank == -1 && player->cls) {
-        FieldInfo* f = vm->findField(player->cls, "b:B");
+      ClassInfo* bClass = vm->findClass("b");
+      if (bClass && s_idxRank == -1) {
+        FieldInfo* f = vm->findField(bClass, "b:B");
         if (f) s_idxRank = f->index;
       }
       if (s_idxRank >= 0 && s_idxRank < (int)player->f.size()) {
@@ -253,13 +263,6 @@ void Cheats::setRank(VM* vm, int rankIndex) {
         }
         if (s_idxHonor >= 0 && s_idxHonor < (int)uClass->statics.size()) {
           uClass->statics[s_idxHonor].i = (rankIndex + 1) * 200;
-        }
-
-        // Recalcula atributos do personagem (b.n()) se disponível
-        Method* mBn = vm->findMethod(player->cls, "n:()V");
-        if (mBn) {
-          Value nArgs[1]; nArgs[0].o = player; Value nRet[2];
-          vm->invoke(mBn, nArgs, nRet);
         }
 
         std::string name = getRankName(rankIndex, isPt);
@@ -294,15 +297,37 @@ void Cheats::update(VM* vm) {
   if (!pObj || pObj->kind != K_INST) return;
   Instance* player = static_cast<Instance*>(pObj);
 
-  if (s_idxCurrentHp == -1 && player->cls) {
-    FieldInfo* f = vm->findField(player->cls, "a:I");
+  ClassInfo* bClass = vm->findClass("b");
+  if (!bClass) return;
+
+  if (s_idxCurrentHp == -1) {
+    FieldInfo* f = vm->findField(bClass, "a:I");
     if (f) s_idxCurrentHp = f->index;
-    f = vm->findField(player->cls, "d:I");
+    f = vm->findField(bClass, "d:I");
     if (f) s_idxMaxHp = f->index;
-    f = vm->findField(player->cls, "b:I");
+    f = vm->findField(bClass, "b:I");
     if (f) s_idxCurrentSp = f->index;
-    f = vm->findField(player->cls, "e:I");
+    f = vm->findField(bClass, "e:I");
     if (f) s_idxMaxSp = f->index;
+  }
+
+  // Notifica o HUD bd para redesenhar as barras se houver alteração
+  Instance* bdObj = nullptr;
+  int idxBdD = -1;
+  int idxBdE = -1;
+  ClassInfo* bdClass = vm->findClass("bd");
+  if (bdClass) {
+    FieldInfo* fBdInst = vm->findField(bdClass, "a:Lbd;");
+    if (fBdInst && fBdInst->isStatic && fBdInst->index >= 0 && fBdInst->index < (int)bdClass->statics.size()) {
+      Object* o = bdClass->statics[fBdInst->index].o;
+      if (o && o->kind == K_INST) {
+        bdObj = static_cast<Instance*>(o);
+        FieldInfo* fD = vm->findField(bdClass, "d:Z");
+        if (fD) idxBdD = fD->index;
+        FieldInfo* fE = vm->findField(bdClass, "e:Z");
+        if (fE) idxBdE = fE->index;
+      }
+    }
   }
 
   // God Mode: HP atual = HP máximo
@@ -310,7 +335,12 @@ void Cheats::update(VM* vm) {
       s_idxCurrentHp < (int)player->f.size() && s_idxMaxHp < (int)player->f.size()) {
     int maxHp = player->f[s_idxMaxHp].i;
     if (maxHp > 0) {
-      player->f[s_idxCurrentHp].i = maxHp;
+      if (player->f[s_idxCurrentHp].i != maxHp) {
+        player->f[s_idxCurrentHp].i = maxHp;
+      }
+      if (bdObj && idxBdD >= 0 && idxBdD < (int)bdObj->f.size()) {
+        bdObj->f[idxBdD].i = 1; // Força redesenho da barra de vida cheia
+      }
     }
   }
 
@@ -319,7 +349,12 @@ void Cheats::update(VM* vm) {
       s_idxCurrentSp < (int)player->f.size() && s_idxMaxSp < (int)player->f.size()) {
     int maxSp = player->f[s_idxMaxSp].i;
     if (maxSp > 0) {
-      player->f[s_idxCurrentSp].i = maxSp;
+      if (player->f[s_idxCurrentSp].i != maxSp) {
+        player->f[s_idxCurrentSp].i = maxSp;
+      }
+      if (bdObj && idxBdE >= 0 && idxBdE < (int)bdObj->f.size()) {
+        bdObj->f[idxBdE].i = 1; // Força redesenho da barra de SP cheia
+      }
     }
   }
 }

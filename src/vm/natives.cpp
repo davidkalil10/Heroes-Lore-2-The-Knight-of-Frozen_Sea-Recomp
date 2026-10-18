@@ -3,6 +3,7 @@
 #include "../platform/platform.h"
 #include "../platform/updater.h"
 #include "../platform/cloud_save.h"
+#include "../platform/cheats.h"
 #include "../midp/midp.h"
 #include <cstdio>
 #include <cstdlib>
@@ -1170,6 +1171,8 @@ static void l_a_native(VM& vm, Value* args, Value* ret);
 static void l_draw_native(VM& vm, Value* args, Value* ret);
 static void l_cursor_native(VM& vm, Value* args, Value* ret);
 static void bw_a_native(VM& vm, Value* args, Value* ret);
+static void player_takeDamage_native(VM& vm, Value* args, Value* ret);
+static void player_changeSp_native(VM& vm, Value* args, Value* ret);
 
 // -------------------------------------------------------------
 // Registro de todos os métodos nativos
@@ -1371,6 +1374,10 @@ void VM::registerNatives() {
 
   // HL2: Tela de Abertura / Menu de Título com versão nativa Recomp (bw.class)
   reg("bw.a:(Ljavax/microedition/lcdui/Graphics;)V", bw_a_native);
+
+  // HL2: Suporte a Cheats nativos (God Mode e SP Infinito)
+  reg("b.b:(I)V", player_takeDamage_native);
+  reg("b.a:(I)V", player_changeSp_native);
 }
 
 // -------------------------------------------------------------
@@ -2586,6 +2593,117 @@ static void bw_a_native(VM& vm, Value* args, Value*) {
   Object* img0 = getArrayElem(arrO, 0);
   if (img0 && img0->kind == K_IMAGE) {
     graphics->drawImage(static_cast<ImageObj*>(img0), bw_i, bw_h - 26, 17);
+  }
+}
+
+// -------------------------------------------------------------
+// b.b:(I)V — Dano e Cura do jogador (God Mode)
+// -------------------------------------------------------------
+static void player_takeDamage_native(VM& vm, Value* args, Value*) {
+  Instance* inst = static_cast<Instance*>(args[0].o);
+  int amount = args[1].i;
+  if (!inst) return;
+
+  ClassInfo* bCls = vm.findClass("b");
+  if (!bCls) return;
+
+  FieldInfo* fA = vm.findField(bCls, "a:I"); // HP atual
+  FieldInfo* fD = vm.findField(bCls, "d:I"); // HP maximo
+  if (!fA || !fD) return;
+
+  int curHp = inst->f[fA->index].i;
+  int maxHp = inst->f[fD->index].i;
+
+  if (Cheats::isGodMode()) {
+    // Modo Deus: HP sempre travado no maximo, ignora completamente danos
+    inst->f[fA->index].i = maxHp;
+  } else {
+    curHp += amount;
+    if (curHp > maxHp) curHp = maxHp;
+    else if (curHp < 0) curHp = 0;
+    inst->f[fA->index].i = curHp;
+  }
+
+  // Notifica o HUD bd para redesenhar a barra de vida
+  ClassInfo* bdCls = vm.findClass("bd");
+  if (bdCls) {
+    FieldInfo* fInst = vm.findField(bdCls, "a:Lbd;");
+    if (fInst && fInst->isStatic && fInst->index >= 0 && fInst->index < (int)bdCls->statics.size()) {
+      Instance* bdObj = static_cast<Instance*>(bdCls->statics[fInst->index].o);
+      if (bdObj) {
+        FieldInfo* fFlagD = vm.findField(bdCls, "d:Z");
+        if (fFlagD && fFlagD->index >= 0 && fFlagD->index < (int)bdObj->f.size()) {
+          bdObj->f[fFlagD->index].i = 1;
+        }
+      }
+    }
+  }
+
+  // Morte do jogador (apenas se nao estiver em God Mode)
+  if (!Cheats::isGodMode() && inst->f[fA->index].i == 0) {
+    ClassInfo* nCls = vm.findClass("n");
+    int nb = 0;
+    if (nCls) {
+      FieldInfo* fNb = vm.findField(nCls, "b:Z");
+      if (fNb && fNb->isStatic && fNb->index >= 0 && fNb->index < (int)nCls->statics.size()) {
+        nb = nCls->statics[fNb->index].i;
+      }
+    }
+    if (!nb) {
+      Method* mF = vm.findMethod(inst->cls, "f:(B)V");
+      if (mF) {
+        Value fArgs[2]; fArgs[0].o = inst; fArgs[1].i = 6; Value fRet[2];
+        vm.invoke(mF, fArgs, fRet);
+      }
+      FieldInfo* fV = vm.findField(inst->cls, "v:B");
+      if (fV && fV->index >= 0 && fV->index < (int)inst->f.size()) {
+        inst->f[fV->index].i = 0;
+      }
+    }
+  }
+}
+
+// -------------------------------------------------------------
+// b.a:(I)V — Consumo e Recuperação de SP (SP Infinito)
+// -------------------------------------------------------------
+static void player_changeSp_native(VM& vm, Value* args, Value*) {
+  Instance* inst = static_cast<Instance*>(args[0].o);
+  int amount = args[1].i;
+  if (!inst) return;
+
+  ClassInfo* bCls = vm.findClass("b");
+  if (!bCls) return;
+
+  FieldInfo* fB = vm.findField(bCls, "b:I"); // SP atual
+  FieldInfo* fE = vm.findField(bCls, "e:I"); // SP maximo
+  if (!fB || !fE) return;
+
+  int curSp = inst->f[fB->index].i;
+  int maxSp = inst->f[fE->index].i;
+
+  if (Cheats::isInfiniteSp()) {
+    // SP Infinito: SP sempre no maximo, nenhum gasto
+    inst->f[fB->index].i = maxSp;
+  } else {
+    curSp += amount;
+    if (curSp > maxSp) curSp = maxSp;
+    else if (curSp < 0) curSp = 0;
+    inst->f[fB->index].i = curSp;
+  }
+
+  // Notifica o HUD bd para redesenhar a barra de SP
+  ClassInfo* bdCls = vm.findClass("bd");
+  if (bdCls) {
+    FieldInfo* fInst = vm.findField(bdCls, "a:Lbd;");
+    if (fInst && fInst->isStatic && fInst->index >= 0 && fInst->index < (int)bdCls->statics.size()) {
+      Instance* bdObj = static_cast<Instance*>(bdCls->statics[fInst->index].o);
+      if (bdObj) {
+        FieldInfo* fFlagE = vm.findField(bdCls, "e:Z");
+        if (fFlagE && fFlagE->index >= 0 && fFlagE->index < (int)bdObj->f.size()) {
+          bdObj->f[fFlagE->index].i = 1;
+        }
+      }
+    }
   }
 }
 
