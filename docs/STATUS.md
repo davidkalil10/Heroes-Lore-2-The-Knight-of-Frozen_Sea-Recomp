@@ -1,6 +1,6 @@
 # STATUS — Heroes Lore 2: The Knight of Frozen Sea
 
-_Última atualização: 2026-10-18 (Versão v0.2.11 lançada oficialmente)_
+_Última atualização: 2026-10-18 (Versão v0.2.12 lançada oficialmente)_
 
 ## Ambiente
 - Java 17/21, Python 3.13, Git: OK.

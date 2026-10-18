@@ -15,6 +15,7 @@ static int s_selectedItem = 0;       // 0: GodMode, 1: InfSP, 2: AddGold, 3: Ran
 static int s_selectedRank = 14;      // Padrão: 14 (Comandante Supremo)
 static bool s_godMode = false;
 static bool s_infiniteSp = false;
+static bool s_zeroCooldown = false;
 
 static VM* s_vm = nullptr;
 static std::string s_feedbackMsg = "";
@@ -29,6 +30,7 @@ static int s_idxMaxHp = -1;
 static int s_idxCurrentSp = -1;
 static int s_idxMaxSp = -1;
 static int s_idxRank = -1;
+static int s_idxCooldowns = -1;
 
 // Lista de nomes de patentes originais (15 patentes, baseadas em hero.tdf)
 static const char* s_rankNamesPt[15] = {
@@ -127,12 +129,35 @@ void Cheats::toggleInfiniteSp() {
   }
 }
 
+bool Cheats::isZeroCooldown() {
+  return s_zeroCooldown;
+}
+
+void Cheats::setZeroCooldown(bool enable) {
+  s_zeroCooldown = enable;
+}
+
+void Cheats::toggleZeroCooldown() {
+  s_zeroCooldown = !s_zeroCooldown;
+  bool isPt = (Platform::getCurrentLanguage() == "pt" || Platform::getCurrentLanguage() == "pt_br");
+  if (s_zeroCooldown) {
+    s_feedbackMsg = isPt ? "Zero Cooldown: ATIVADO!" : "Zero Cooldown: ENABLED!";
+  } else {
+    s_feedbackMsg = isPt ? "Zero Cooldown: DESATIVADO!" : "Zero Cooldown: DISABLED!";
+  }
+  s_feedbackTimer = SDL_GetTicks() + 2500;
+  if (s_zeroCooldown && s_vm) {
+    update(s_vm);
+  }
+}
+
 void Cheats::init() {
   s_modalActive = false;
   s_selectedItem = 0;
   s_selectedRank = 14;
   s_godMode = false;
   s_infiniteSp = false;
+  s_zeroCooldown = false;
   s_feedbackMsg.clear();
   s_feedbackTimer = 0;
 }
@@ -282,7 +307,7 @@ void Cheats::update(VM* vm) {
   if (!vm) return;
   s_vm = vm;
 
-  if (!s_godMode && !s_infiniteSp) return;
+  if (!s_godMode && !s_infiniteSp && !s_zeroCooldown) return;
 
   ClassInfo* uClass = vm->findClass("u");
   if (!uClass) return;
@@ -357,6 +382,24 @@ void Cheats::update(VM* vm) {
       }
     }
   }
+
+  // Zero Cooldown: zera todos os timers de recarga em u.a:[I] (var_int_arr_a)
+  if (s_zeroCooldown) {
+    if (s_idxCooldowns == -1) {
+      FieldInfo* fCd = vm->findField(uClass, "a:[I");
+      if (fCd && fCd->isStatic) s_idxCooldowns = fCd->index;
+    }
+    if (s_idxCooldowns >= 0 && s_idxCooldowns < (int)uClass->statics.size()) {
+      Object* cdObj = uClass->statics[s_idxCooldowns].o;
+      if (cdObj && cdObj->kind == K_ARRAY) {
+        Array* arr = static_cast<Array*>(cdObj);
+        int* cdData = reinterpret_cast<int*>(arr->data.data());
+        for (int c = 0; c < arr->len; c++) {
+          cdData[c] = -1; // -1 = pronto / sem recarga no jogo original
+        }
+      }
+    }
+  }
 }
 
 // Navegação e Ações por Teclado e Gamepad
@@ -364,12 +407,12 @@ bool Cheats::handleInput(int key, VM* vm) {
   if (!s_modalActive) return false;
   if (vm) s_vm = vm;
 
-  // 1. Navegação Vertical
+  // 1. Navegação Vertical (6 itens: 0..5)
   if (key == 50 || key == -1) { // Cima (Tecla 2, D-Pad Up, Seta Cima)
-    s_selectedItem = (s_selectedItem + 4) % 5;
+    s_selectedItem = (s_selectedItem + 5) % 6;
     return true;
   } else if (key == 56 || key == -2) { // Baixo (Tecla 8, D-Pad Down, Seta Baixo)
-    s_selectedItem = (s_selectedItem + 1) % 5;
+    s_selectedItem = (s_selectedItem + 1) % 6;
     return true;
   }
 
@@ -379,8 +422,11 @@ bool Cheats::handleInput(int key, VM* vm) {
       toggleGodMode();
     } else if (s_selectedItem == 1) {
       toggleInfiniteSp();
-    } else if (s_selectedItem == 3) {
+    } else if (s_selectedItem == 2) {
+      toggleZeroCooldown();
+    } else if (s_selectedItem == 4) {
       s_selectedRank = (s_selectedRank + 14) % 15;
+      setRank(s_vm, s_selectedRank);
     }
     return true;
   } else if (key == 54 || key == -4) { // Direita (Tecla 6, D-Pad Right, Seta Direita)
@@ -388,8 +434,11 @@ bool Cheats::handleInput(int key, VM* vm) {
       toggleGodMode();
     } else if (s_selectedItem == 1) {
       toggleInfiniteSp();
-    } else if (s_selectedItem == 3) {
+    } else if (s_selectedItem == 2) {
+      toggleZeroCooldown();
+    } else if (s_selectedItem == 4) {
       s_selectedRank = (s_selectedRank + 1) % 15;
+      setRank(s_vm, s_selectedRank);
     }
     return true;
   }
@@ -404,12 +453,16 @@ bool Cheats::handleInput(int key, VM* vm) {
         toggleInfiniteSp();
         break;
       case 2:
-        addMoney(s_vm, 100000);
+        toggleZeroCooldown();
         break;
       case 3:
-        setRank(s_vm, s_selectedRank);
+        addMoney(s_vm, 100000);
         break;
       case 4:
+        s_selectedRank = (s_selectedRank + 1) % 15;
+        setRank(s_vm, s_selectedRank);
+        break;
+      case 5:
         closeModal();
         break;
     }
@@ -430,40 +483,58 @@ void Cheats::handleClick(int x, int y, VM* vm) {
   if (!s_modalActive) return;
   if (vm) s_vm = vm;
 
+  // 1. Prioridade máxima: botões dedicados (Fechar X e Botões de Patente [ < ] e [ > ])
   for (const auto& hb : s_hitboxes) {
     if (x >= hb.rect.x && x <= hb.rect.x + hb.rect.w &&
         y >= hb.rect.y && y <= hb.rect.y + hb.rect.h) {
       if (hb.action == 20) { // Botão Fechar (X)
         closeModal();
         return;
-      } else if (hb.action == 10) { // Rank Seta Esquerda
-        s_selectedItem = 3;
+      } else if (hb.action == 10) { // Rank Botão Esquerdo [ < ]
+        s_selectedItem = 4;
         s_selectedRank = (s_selectedRank + 14) % 15;
-        return;
-      } else if (hb.action == 11) { // Rank Seta Direita
-        s_selectedItem = 3;
-        s_selectedRank = (s_selectedRank + 1) % 15;
-        return;
-      } else if (hb.action == 0) { // Linha 0: God Mode
-        s_selectedItem = 0;
-        toggleGodMode();
-        return;
-      } else if (hb.action == 1) { // Linha 1: Infinite SP
-        s_selectedItem = 1;
-        toggleInfiniteSp();
-        return;
-      } else if (hb.action == 2) { // Linha 2: Add Gold
-        s_selectedItem = 2;
-        addMoney(s_vm, 100000);
-        return;
-      } else if (hb.action == 3) { // Linha 3: Aplicar Rank
-        s_selectedItem = 3;
         setRank(s_vm, s_selectedRank);
         return;
-      } else if (hb.action == 4) { // Linha 4: Fechar
+      } else if (hb.action == 11) { // Rank Botão Direito [ > ]
         s_selectedItem = 4;
-        closeModal();
+        s_selectedRank = (s_selectedRank + 1) % 15;
+        setRank(s_vm, s_selectedRank);
         return;
+      }
+    }
+  }
+
+  // 2. Linhas gerais de opções (0 a 5)
+  for (const auto& hb : s_hitboxes) {
+    if (x >= hb.rect.x && x <= hb.rect.x + hb.rect.w &&
+        y >= hb.rect.y && y <= hb.rect.y + hb.rect.h) {
+      switch (hb.action) {
+        case 0:
+          s_selectedItem = 0;
+          toggleGodMode();
+          return;
+        case 1:
+          s_selectedItem = 1;
+          toggleInfiniteSp();
+          return;
+        case 2:
+          s_selectedItem = 2;
+          toggleZeroCooldown();
+          return;
+        case 3:
+          s_selectedItem = 3;
+          addMoney(s_vm, 100000);
+          return;
+        case 4:
+          // Toque em qualquer ponto da linha de patente: avança para a próxima patente
+          s_selectedItem = 4;
+          s_selectedRank = (s_selectedRank + 1) % 15;
+          setRank(s_vm, s_selectedRank);
+          return;
+        case 5:
+          s_selectedItem = 5;
+          closeModal();
+          return;
       }
     }
   }
@@ -487,8 +558,8 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
   scaleFactor *= 1.15f;
 #endif
 
-  int modalW = std::clamp((int)(560.0f * scaleFactor), 440, (int)(winW * 0.92f));
-  int modalH = (int)(430.0f * scaleFactor);
+  int modalW = std::clamp((int)(580.0f * scaleFactor), 460, (int)(winW * 0.95f));
+  int modalH = std::min((int)(505.0f * scaleFactor), (int)(winH * 0.96f));
   int modalX = (winW - modalW) / 2;
   int modalY = (winH - modalH) / 2;
 
@@ -507,7 +578,7 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
   SDL_RenderDrawRect(renderer, &borderInner);
 
   // 4. Cabeçalho Nobre
-  int headerH = (int)(52.0f * scaleFactor);
+  int headerH = (int)(50.0f * scaleFactor);
   SDL_Rect headerRect = { modalX + 2, modalY + 2, modalW - 4, headerH };
   SDL_SetRenderDrawColor(renderer, 22, 36, 56, 255);
   SDL_RenderFillRect(renderer, &headerRect);
@@ -519,14 +590,14 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
   std::string titleStr = isPt ? "MENU DE CHEATS" : "CHEAT MENU";
   int titleFontSize = (int)(22.0f * scaleFactor);
   int titleW = Platform::getTextWidth(titleStr, (int)(titleFontSize * 0.58f), 0);
-  Platform::drawTextColored(renderer, titleStr, modalX + (modalW - titleW) / 2, modalY + (int)(10.0f * scaleFactor), titleFontSize, 255, 230, 130, 255);
+  Platform::drawTextColored(renderer, titleStr, modalX + (modalW - titleW) / 2, modalY + (int)(9.0f * scaleFactor), titleFontSize, 255, 230, 130, 255);
 
   std::string subTitleStr = isPt ? "MODO DESENVOLVEDOR / TRAPACAS" : "DEVELOPER / CHEAT MODE";
   int subFontSize = (int)(12.0f * scaleFactor);
   int subW = Platform::getTextWidth(subTitleStr, (int)(subFontSize * 0.58f), 0);
-  Platform::drawTextColored(renderer, subTitleStr, modalX + (modalW - subW) / 2, modalY + (int)(34.0f * scaleFactor), subFontSize, 120, 190, 255, 220);
+  Platform::drawTextColored(renderer, subTitleStr, modalX + (modalW - subW) / 2, modalY + (int)(33.0f * scaleFactor), subFontSize, 120, 190, 255, 220);
 
-  // Botão Fechar [ X ] no cabeçalho
+  // Botão Fechar [ X ] no cabeçalho (Hitbox ampliada para toque)
   int closeSize = (int)(32.0f * scaleFactor);
   SDL_Rect closeRect = { modalX + modalW - closeSize - (int)(10.0f * scaleFactor), modalY + (headerH - closeSize) / 2 + 2, closeSize, closeSize };
   SDL_SetRenderDrawColor(renderer, 35, 50, 75, 220);
@@ -534,18 +605,21 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
   SDL_SetRenderDrawColor(renderer, 90, 140, 190, 255);
   SDL_RenderDrawRect(renderer, &closeRect);
   Platform::drawTextColored(renderer, "X", closeRect.x + (int)(10.0f * scaleFactor), closeRect.y + (int)(6.0f * scaleFactor), (int)(18.0f * scaleFactor), 255, 255, 255, 240);
-  s_hitboxes.push_back({ closeRect, 20 });
+  
+  SDL_Rect closeTouchRect = { closeRect.x - (int)(10.0f * scaleFactor), closeRect.y - (int)(6.0f * scaleFactor), closeRect.w + (int)(20.0f * scaleFactor), closeRect.h + (int)(12.0f * scaleFactor) };
+  s_hitboxes.push_back({ closeTouchRect, 20 });
 
-  // 5. Linhas de Opções (5 itens)
-  int startY = modalY + headerH + (int)(16.0f * scaleFactor);
-  int rowH = (int)(48.0f * scaleFactor);
-  int rowGap = (int)(8.0f * scaleFactor);
-  int padX = (int)(20.0f * scaleFactor);
+  // 5. Linhas de Opções (6 itens: 0..5)
+  int startY = modalY + headerH + (int)(10.0f * scaleFactor);
+  int availH = modalH - headerH - (int)(64.0f * scaleFactor);
+  int rowH = std::clamp(availH / 6 - (int)(5.0f * scaleFactor), 34, (int)(46.0f * scaleFactor));
+  int rowGap = (int)(5.0f * scaleFactor);
+  int padX = (int)(18.0f * scaleFactor);
   int rowW = modalW - padX * 2;
-  int itemFontSize = (int)(17.0f * scaleFactor);
-  int valueFontSize = (int)(16.0f * scaleFactor);
+  int itemFontSize = (int)(16.0f * scaleFactor);
+  int valueFontSize = (int)(15.0f * scaleFactor);
 
-  for (int i = 0; i < 5; ++i) {
+  for (int i = 0; i < 6; ++i) {
     int curY = startY + i * (rowH + rowGap);
     bool isSel = (s_selectedItem == i);
 
@@ -566,12 +640,12 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
     }
 
     // Cursor Indicador [ > ]
-    int textX = modalX + padX + (int)(14.0f * scaleFactor);
+    int textX = modalX + padX + (int)(12.0f * scaleFactor);
     int textY = curY + (rowH - itemFontSize) / 2;
 
     if (isSel) {
       Platform::drawTextColored(renderer, ">", textX, textY, itemFontSize, 255, 220, 80, 255);
-      textX += (int)(18.0f * scaleFactor);
+      textX += (int)(16.0f * scaleFactor);
     }
 
     // Título do Item
@@ -579,9 +653,10 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
     switch (i) {
       case 0: itemTitle = isPt ? "Modo Deus (HP Infinito)" : "God Mode (Infinite HP)"; break;
       case 1: itemTitle = isPt ? "SP Infinito (Mana Ilimitada)" : "Infinite SP (Unlimited Mana)"; break;
-      case 2: itemTitle = isPt ? "Adicionar Ouro (+100.000 G)" : "Add Gold (+100,000 G)"; break;
-      case 3: itemTitle = isPt ? "Patente / Rank de Honra" : "Honor Rank / Title"; break;
-      case 4: itemTitle = isPt ? "Fechar / Retornar ao Jogo" : "Close / Return to Game"; break;
+      case 2: itemTitle = isPt ? "Zero Cooldown (Sem Recarga)" : "Zero Cooldown (Instant Skills)"; break;
+      case 3: itemTitle = isPt ? "Adicionar Ouro (+100.000 G)" : "Add Gold (+100,000 G)"; break;
+      case 4: itemTitle = isPt ? "Patente / Rank de Honra" : "Honor Rank / Title"; break;
+      case 5: itemTitle = isPt ? "Fechar / Retornar ao Jogo" : "Close / Return to Game"; break;
     }
 
     uint8_t tr = isSel ? 255 : 210;
@@ -609,25 +684,63 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
       } else {
         Platform::drawTextColored(renderer, valStr, valX, valY, valueFontSize, 140, 150, 165, 230);
       }
-    } else if (i == 2) { // Add Gold Tag
+    } else if (i == 2) { // Zero Cooldown Tag
+      std::string valStr = s_zeroCooldown ? (isPt ? "[ ATIVADO ]" : "[ ENABLED ]") : (isPt ? "[ DESATIVADO ]" : "[ DISABLED ]");
+      int valW = Platform::getTextWidth(valStr, (int)(valueFontSize * 0.58f), 0);
+      int valX = modalX + modalW - padX - valW - (int)(14.0f * scaleFactor);
+      if (s_zeroCooldown) {
+        Platform::drawTextColored(renderer, valStr, valX, valY, valueFontSize, 80, 240, 130, 255);
+      } else {
+        Platform::drawTextColored(renderer, valStr, valX, valY, valueFontSize, 140, 150, 165, 230);
+      }
+    } else if (i == 3) { // Add Gold Tag
       std::string valStr = isPt ? "[ EXECUTAR ]" : "[ EXECUTE ]";
       int valW = Platform::getTextWidth(valStr, (int)(valueFontSize * 0.58f), 0);
       int valX = modalX + modalW - padX - valW - (int)(14.0f * scaleFactor);
       Platform::drawTextColored(renderer, valStr, valX, valY, valueFontSize, 255, 215, 60, 255);
-    } else if (i == 3) { // Rank Selector Tag
+    } else if (i == 4) { // Rank Selector com Botões Touch Dedicados [ < ] e [ > ]
       std::string rName = getRankName(s_selectedRank, isPt);
-      std::string fullRankStr = "< " + rName + " >";
-      int valW = Platform::getTextWidth(fullRankStr, (int)(valueFontSize * 0.58f), 0);
-      int valX = modalX + modalW - padX - valW - (int)(14.0f * scaleFactor);
+      int nameW = Platform::getTextWidth(rName, (int)(valueFontSize * 0.58f), 0);
+      
+      int btnW = (int)(34.0f * scaleFactor);
+      int btnH = (int)(28.0f * scaleFactor);
+      int btnY = curY + (rowH - btnH) / 2;
+      
+      int rightMargin = modalX + modalW - padX - (int)(12.0f * scaleFactor);
+      int btnRightX = rightMargin - btnW;
+      int nameX = btnRightX - nameW - (int)(12.0f * scaleFactor);
+      int btnLeftX = nameX - btnW - (int)(12.0f * scaleFactor);
 
-      // Hitboxes Touch para setas < e >
-      SDL_Rect leftArrowRect = { valX - (int)(6.0f * scaleFactor), curY, (int)(24.0f * scaleFactor), rowH };
-      SDL_Rect rightArrowRect = { valX + valW - (int)(18.0f * scaleFactor), curY, (int)(24.0f * scaleFactor), rowH };
-      s_hitboxes.push_back({ leftArrowRect, 10 });
-      s_hitboxes.push_back({ rightArrowRect, 11 });
+      // Botão Esquerdo [ < ] (Touch Action 10)
+      SDL_Rect btnLeftRect = { btnLeftX, btnY, btnW, btnH };
+      SDL_SetRenderDrawColor(renderer, 32, 54, 82, 230);
+      SDL_RenderFillRect(renderer, &btnLeftRect);
+      SDL_SetRenderDrawColor(renderer, 70, 140, 210, 255);
+      SDL_RenderDrawRect(renderer, &btnLeftRect);
+      int arrowLeftW = Platform::getTextWidth("<", (int)(valueFontSize * 0.58f), 0);
+      Platform::drawTextColored(renderer, "<", btnLeftX + (btnW - arrowLeftW) / 2, btnY + (btnH - valueFontSize) / 2, valueFontSize, 255, 255, 255, 255);
 
-      Platform::drawTextColored(renderer, fullRankStr, valX, valY, valueFontSize, 120, 210, 255, 255);
-    } else if (i == 4) { // Fechar Tag
+      // Hitbox touch generosa para o botão esquerdo (ideal para celular)
+      SDL_Rect touchLeftRect = { btnLeftX - (int)(8.0f * scaleFactor), curY, btnW + (int)(16.0f * scaleFactor), rowH };
+      s_hitboxes.push_back({ touchLeftRect, 10 });
+
+      // Nome do Rank no centro
+      Platform::drawTextColored(renderer, rName, nameX, valY, valueFontSize, 120, 215, 255, 255);
+
+      // Botão Direito [ > ] (Touch Action 11)
+      SDL_Rect btnRightRect = { btnRightX, btnY, btnW, btnH };
+      SDL_SetRenderDrawColor(renderer, 32, 54, 82, 230);
+      SDL_RenderFillRect(renderer, &btnRightRect);
+      SDL_SetRenderDrawColor(renderer, 70, 140, 210, 255);
+      SDL_RenderDrawRect(renderer, &btnRightRect);
+      int arrowRightW = Platform::getTextWidth(">", (int)(valueFontSize * 0.58f), 0);
+      Platform::drawTextColored(renderer, ">", btnRightX + (btnW - arrowRightW) / 2, btnY + (btnH - valueFontSize) / 2, valueFontSize, 255, 255, 255, 255);
+
+      // Hitbox touch generosa para o botão direito (ideal para celular)
+      SDL_Rect touchRightRect = { btnRightX - (int)(8.0f * scaleFactor), curY, btnW + (int)(16.0f * scaleFactor), rowH };
+      s_hitboxes.push_back({ touchRightRect, 11 });
+
+    } else if (i == 5) { // Fechar Tag
       std::string valStr = isPt ? "[ SAIR ]" : "[ EXIT ]";
       int valW = Platform::getTextWidth(valStr, (int)(valueFontSize * 0.58f), 0);
       int valX = modalX + modalW - padX - valW - (int)(14.0f * scaleFactor);
@@ -637,11 +750,11 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
 
   // 6. Mensagem de Feedback Temporária
   if (!s_feedbackMsg.empty() && SDL_GetTicks() < s_feedbackTimer) {
-    int fbFontSize = (int)(14.0f * scaleFactor);
+    int fbFontSize = (int)(13.0f * scaleFactor);
     int fbW = Platform::getTextWidth(s_feedbackMsg, (int)(fbFontSize * 0.58f), 0);
-    int fbY = modalY + modalH - (int)(54.0f * scaleFactor);
+    int fbY = modalY + modalH - (int)(52.0f * scaleFactor);
 
-    SDL_Rect fbRect = { modalX + padX, fbY - (int)(4.0f * scaleFactor), rowW, (int)(26.0f * scaleFactor) };
+    SDL_Rect fbRect = { modalX + padX, fbY - (int)(3.0f * scaleFactor), rowW, (int)(24.0f * scaleFactor) };
     SDL_SetRenderDrawColor(renderer, 24, 42, 64, 230);
     SDL_RenderFillRect(renderer, &fbRect);
     SDL_SetRenderDrawColor(renderer, 80, 160, 230, 255);
@@ -651,10 +764,10 @@ void Cheats::drawModal(SDL_Renderer* renderer, int winW, int winH) {
   }
 
   // 7. Rodapé com Instruções de Controle
-  int footerFontSize = (int)(13.0f * scaleFactor);
-  std::string footerStr = isPt ? "[ 5 / A ] Selecionar/Alterar    [ 7 / B ] Voltar" : "[ 5 / A ] Select/Toggle    [ 7 / B ] Back";
+  int footerFontSize = (int)(12.0f * scaleFactor);
+  std::string footerStr = isPt ? "[ Toque / 5 / A ] Selecionar/Alterar    [ 7 / B ] Voltar" : "[ Touch / 5 / A ] Select/Toggle    [ 7 / B ] Back";
   int footerW = Platform::getTextWidth(footerStr, (int)(footerFontSize * 0.58f), 0);
-  int footerY = modalY + modalH - (int)(24.0f * scaleFactor);
+  int footerY = modalY + modalH - (int)(22.0f * scaleFactor);
   Platform::drawTextColored(renderer, footerStr, modalX + (modalW - footerW) / 2, footerY, footerFontSize, 150, 175, 205, 220);
 }
 

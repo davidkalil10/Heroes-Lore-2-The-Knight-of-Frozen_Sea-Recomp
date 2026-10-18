@@ -263,6 +263,27 @@
     - Foram criados métodos nativos em `src/vm/natives.cpp` interceptando `b.b:(I)V` (dano/cura do herói) e `b.a:(I)V` (consumo/recuperação de SP). Quando ativados, qualquer dano ou custo recebido é neutralizado instantaneamente, mantendo os valores no máximo e disparando `bd.d = true` e `bd.e = true`.
     - No loop principal (`src/main.cpp`), `Cheats::update(&vm)` agora é sincronizado antes e depois do ciclo de renderização gráfica `paint`, garantindo consistência total e barras 100% cheias ininterruptamente.
 
+## Sessão 12 (Cheat de Zero Cooldown e Seleção de Patente para Telas Touch / Celular na v0.2.12)
+- **Engenharia Reversa dos Timers de Cooldown (`u.var_int_arr_a` / `u.a:[I]`):**
+  - O jogo original gerencia a recarga de todas as habilidades e itens através do array estático `u.a:[I]` de 4 inteiros na classe `u`.
+  - No bytecode:
+    - `-1` significa "habilidade pronta para conjuração".
+    - Valores `> 0` indicam a quantidade de ticks restantes de recarga.
+    - `bd.java:204`: `if (u.var_int_arr_a[n2] > 0) return;` bloqueia o acionamento caso o slot esteja em cooldown.
+    - `bd.java:614`: O HUD desenha uma sobreposição sombreada circular se `u.var_int_arr_a[slot] > 0`.
+    - `u.java:441`: `u.a(int slot, boolean isSkill)` atribui a contagem de recarga logo após a conjuração.
+  - Com o cheat `Zero Cooldown` ativado:
+    - `Cheats::update(&vm)` força todos os 4 slots do array para `-1` em tempo real a cada frame.
+    - O jogador pode disparar qualquer habilidade repetidamente sem nenhum atraso e sem nenhuma sombra de recarga no HUD.
+- **Interface Touch Otimizada para Celular na Seleção de Patente:**
+  - Em dispositivos móveis (Android) e consoles portáteis em modo touch, o jogador não dispõe de setas direcionais físicas no modal de cheats.
+  - Para resolver a usabilidade touch:
+    - Criados botões gráficos dedicados e estilizados `[ < ]` e `[ > ]` com bordas e fundo destacados na linha de patente.
+    - Hitboxes de toque generosas (Action 10 e Action 11) garantem acionamento imediato e preciso mesmo com o polegar em qualquer tamanho de tela.
+    - Tocar em qualquer outro ponto da linha da patente (Action 4) avança ciclicamente para a próxima patente e aplica na hora.
+    - Cada alteração é gravada imediatamente no personagem (`player.b:B` e `u.g:I`) e exibe banner de feedback com o nome nobre da patente em português ou inglês.
+
+
 
 
 

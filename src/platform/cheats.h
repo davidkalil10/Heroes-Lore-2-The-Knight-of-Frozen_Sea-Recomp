@@ -44,6 +44,10 @@ public:
   static void setInfiniteSp(bool enable);
   static void toggleInfiniteSp();
 
+  static bool isZeroCooldown();
+  static void setZeroCooldown(bool enable);
+  static void toggleZeroCooldown();
+
   static void addMoney(VM* vm, int amount = 100000);
   static void setRank(VM* vm, int rankIndex);
   static int getSelectedRank();
