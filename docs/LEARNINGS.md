@@ -228,5 +228,33 @@
   - `Math.abs:(I)I` e `Math.min:(II)I` já estavam registrados em `natives.cpp`, mas `Math.max:(II)I` nunca havia sido registrado na VM, causando erro fatal no primeiro golpe desferido no jogo inteiro.
   - Implementado `Math_max` e registrado `java/lang/Math.max:(II)I` em `src/vm/natives.cpp`. Recompilação validada com sucesso.
 
+## Sessão 11 (Sistema de Menu Secreto de Trapaças, God Mode, SP Infinito, Ouro e Ranking de Honra)
+- **Engenharia Reversa dos Atributos de Combate do Jogador:**
+  - O jogador em `u.a` (instância de `b.class`) armazena:
+    - `b.a` (int): HP atual.
+    - `b.d` (int): HP máximo.
+    - `b.b` (int): SP atual.
+    - `b.e` (int): SP máximo.
+    - `b.c` (int): EXP atual.
+    - `b.f` (int): EXP necessária para o próximo nível.
+    - `b.b` (byte): Patente militar / Honor Rank (0 a 14).
+    - `u.f` (int, estático): Ouro do jogador.
+    - `u.g` (int, estático): Pontos de Honra (criptografados com XOR 0xA1F084DE no save RMS).
+- **Mapeamento das Patentes de Honra (`hero.tdf`):**
+  - O jogo original requeria conexão online aos servidores da SK Telecom coreana (`211.239.150.70:30000`) para subir de patente via Batalhas em Rede ("Network Battles"). Como os servidores não existem mais, o rank permanecia travado em Recruta (Trainee, 0).
+  - Todas as 15 patentes originais foram extraídas e mapeadas: 0: Recruta (Trainee), 1: Mercenário, 2: Infantaria Leve, 3: Cavalaria Leve, 4: Cabo, 5: Centurião, 6: Escudeiro, 7: Cavaleiro Júnior, 8: Cavaleiro Pleno, 9: Membro da Ordem, 10: Capitão da Ordem, 11: Guarda Real, 12: Capitão da Guarda Real, 13: Comandante, 14: Comandante Supremo (Supreme Commander).
+  - Ao alterar a patente, o método `b.n:()V` é acionado para recalcular os bônus de combate e permitir o uso sem penalidades de qualquer arma rara que exija alto Honor Rank.
+- **Implementação do Modal de Cheats (`src/platform/cheats.h` e `cheats.cpp`):**
+  - Criado o componente nativo `Cheats` no mesmo padrão arquitetural de `CloudSave` e `Updater`:
+    - `God Mode`: Trava o HP no máximo a cada frame durante o loop do jogo.
+    - `SP Infinito`: Trava o SP no máximo a cada frame.
+    - `Adicionar Ouro (+100.000 G)`: Incrementa `u.f` diretamente.
+    - `Patente / Rank de Honra`: Seletor interativo `< [Patente] >` permitindo escolher qualquer uma das 15 patentes.
+    - Suporte completo a gamepad, teclado e toques na tela (touch).
+- **Integração no Menu de Configurações (`l.class` em `natives.cpp`):**
+  - O menu de opções foi expandido para 11 itens (0..10), posicionando a opção `Cheats: Abrir` exatamente abaixo de `Atualizar: Checar`.
+  - Calibradas as coordenadas e altura da janela modal in-game (`boxH = 224`, `startY = bw_j - 88`) para acomodar com precisão e elegância visual os 11 itens na tela.
+
+
 
 

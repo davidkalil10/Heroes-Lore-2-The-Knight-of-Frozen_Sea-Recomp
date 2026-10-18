@@ -1957,7 +1957,7 @@ static void l_init_native(VM& vm, Value* args, Value*) {
   ClassInfo* gClass = vm.findClass("g");
   Method* mGInit = gClass ? vm.findMethod(gClass, "<init>:(Lg;B)V") : nullptr;
   if (mGInit) {
-    Value gArgs[3]; gArgs[0].o = self; gArgs[1].o = gParent; gArgs[2].i = 10; Value gRet[2]; // 10 itens!
+    Value gArgs[3]; gArgs[0].o = self; gArgs[1].o = gParent; gArgs[2].i = 11; Value gRet[2]; // 11 itens!
     vm.invoke(mGInit, gArgs, gRet);
   }
 
@@ -1971,7 +1971,7 @@ static void l_init_native(VM& vm, Value* args, Value*) {
   }
   FieldInfo* fI = gClass ? vm.findField(gClass, "i:B") : nullptr;
   if (fI && fI->index >= 0 && fI->index < (int)inst->f.size()) {
-    inst->f[fI->index].i = 10;
+    inst->f[fI->index].i = 11;
   }
 }
 
@@ -1994,7 +1994,7 @@ static void l_cursor_native(VM& vm, Value* args, Value*) {
   FieldInfo* fH = gClass ? vm.findField(gClass, "h:B") : nullptr;
   int curH = (fH && fH->index >= 0 && fH->index < (int)inst->f.size()) ? inst->f[fH->index].i : 0;
 
-  int startY = bw_j - 80;
+  int startY = bw_j - 88;
   int cursorY = startY + 18 * curH + 4;
 
   Method* mGb = vm.findMethod(inst->cls, "b:(Ljavax/microedition/lcdui/Graphics;IIIIZ)V");
@@ -2023,7 +2023,7 @@ static void l_a_native(VM& vm, Value* args, Value* ret) {
   FieldInfo* fI = gClass ? vm.findField(gClass, "i:B") : nullptr;
   FieldInfo* fH = gClass ? vm.findField(gClass, "h:B") : nullptr;
   if (fI && fI->index >= 0 && fI->index < (int)inst->f.size()) {
-    inst->f[fI->index].i = 10;
+    inst->f[fI->index].i = 11;
   }
   int curH = (fH && fH->index >= 0 && fH->index < (int)inst->f.size()) ? inst->f[fH->index].i : 0;
 
@@ -2126,6 +2126,10 @@ static void l_a_native(VM& vm, Value* args, Value* ret) {
       return;
     } else if (curH == 9) {
       Platform::checkForUpdates();
+      ret[0].i = 1;
+      return;
+    } else if (curH == 10) {
+      Platform::openCheats(&vm);
       ret[0].i = 1;
       return;
     }
@@ -2236,6 +2240,10 @@ static void l_a_native(VM& vm, Value* args, Value* ret) {
         Platform::checkForUpdates();
         break;
       }
+      case 10: { // Cheats (Trapaças)
+        Platform::openCheats(&vm);
+        break;
+      }
     }
   }
 
@@ -2254,7 +2262,7 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
   FieldInfo* fI = gClass ? vm.findField(gClass, "i:B") : nullptr;
   FieldInfo* fH = gClass ? vm.findField(gClass, "h:B") : nullptr;
   if (fI && fI->index >= 0 && fI->index < (int)inst->f.size()) {
-    inst->f[fI->index].i = 10; // Expande para 10 itens!
+    inst->f[fI->index].i = 11; // Expande para 11 itens!
   }
   int curH = (fH && fH->index >= 0 && fH->index < (int)inst->f.size()) ? inst->f[fH->index].i : 0;
 
@@ -2297,11 +2305,11 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
 
   // 1. Desenha o fundo da tela / janela modal
   if (isPauseMenu) {
-    // Popup in-game (190 x 204 para acomodar 10 itens confortavelmente)
+    // Popup in-game (190 x 224 para acomodar 11 itens confortavelmente)
     int boxX = bw_i - 95;
-    int boxY = bw_j - 100;
+    int boxY = bw_j - 108;
     int boxW = 190;
-    int boxH = 204;
+    int boxH = 224;
 
     graphics->setClip(boxX, boxY, boxW, boxH);
     graphics->setColor(6970180);
@@ -2338,13 +2346,13 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
     graphics->setColor(14467940);
     Object* titleBytes = getGameString(2);
     if (titleBytes && mBkA) {
-      Value tArgs[5]; tArgs[0].o = gObj; tArgs[1].i = bw_i - 20; tArgs[2].i = bw_j - 90; tArgs[3].o = titleBytes; tArgs[4].i = 0; Value tRet[2];
+      Value tArgs[5]; tArgs[0].o = gObj; tArgs[1].i = bw_i - 20; tArgs[2].i = bw_j - 98; tArgs[3].o = titleBytes; tArgs[4].i = 0; Value tRet[2];
       vm.invoke(mBkA, tArgs, tRet);
     }
   }
 
-  // 2. Desenha as 10 linhas de opções
-  int startY = bw_j - 80;
+  // 2. Desenha as 11 linhas de opções
+  int startY = bw_j - 88;
   graphics->setColor(14134162);
 
   // Rótulos dos itens originais 0..4
@@ -2482,6 +2490,21 @@ static void l_draw_native(VM& vm, Value* args, Value*) {
   Object* valUpdate = makeByteArray(txtUpdate);
   if (valUpdate && mBkA_flags) {
     Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 162; vArgs[3].o = valUpdate; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
+    vm.invoke(mBkA_flags, vArgs, vRet);
+  }
+
+  // Item 10: Cheats (Menu Secreto de Trapaças)
+  graphics->setColor(14134162);
+  Object* lblCheats = makeByteArray("Cheats");
+  if (lblCheats && mBkA) {
+    Value lArgs[5]; lArgs[0].o = gObj; lArgs[1].i = bw_i - 67; lArgs[2].i = startY + 180; lArgs[3].o = lblCheats; lArgs[4].i = 0; Value lRet[2];
+    vm.invoke(mBkA, lArgs, lRet);
+  }
+  graphics->setColor(curH == 10 ? 0xFFFFFF : 0x7F7F7F);
+  std::string txtCheats = isPt ? "Abrir" : "Open";
+  Object* valCheats = makeByteArray(txtCheats);
+  if (valCheats && mBkA_flags) {
+    Value vArgs[6]; vArgs[0].o = gObj; vArgs[1].i = bw_i + 49; vArgs[2].i = startY + 180; vArgs[3].o = valCheats; vArgs[4].i = 0; vArgs[5].i = 1; Value vRet[2];
     vm.invoke(mBkA_flags, vArgs, vRet);
   }
 }

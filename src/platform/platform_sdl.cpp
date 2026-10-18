@@ -2,6 +2,7 @@
 #include "platform.h"
 #include "updater.h"
 #include "cloud_save.h"
+#include "cheats.h"
 #include "midi_synth.h"
 #include "midp/midp.h"
 #include "vm/vm.h"
@@ -1518,6 +1519,7 @@ bool Platform::pollEvents(VM& vm) {
   }
 #endif
   CloudSave::update(&vm);
+  Cheats::update(&vm);
   SDL_Event ev;
   while (SDL_PollEvent(&ev)) {
     // Se o diálogo modal do Updater estiver ativo, direciona os eventos com prioridade total
@@ -1611,6 +1613,67 @@ bool Platform::pollEvents(VM& vm) {
 
       if (key != 0) {
         CloudSave::handleInput(key, &vm);
+      }
+      continue; // Bloqueia propagação para o motor de jogo enquanto o modal estiver aberto
+    }
+
+    // Se o diálogo modal de Cheats estiver ativo, direciona os eventos com prioridade total
+    if (Cheats::isModalActive()) {
+      int key = 0;
+      if (ev.type == SDL_KEYDOWN) {
+        if (ev.key.keysym.sym == SDLK_RETURN || ev.key.keysym.sym == SDLK_KP_ENTER ||
+            ev.key.keysym.sym == SDLK_SPACE || ev.key.keysym.sym == SDLK_5 || ev.key.keysym.sym == SDLK_KP_5) {
+          key = 53; // Confirmar
+        } else if (ev.key.keysym.sym == SDLK_ESCAPE || ev.key.keysym.sym == SDLK_BACKSPACE ||
+                   ev.key.keysym.sym == SDLK_7 || ev.key.keysym.sym == SDLK_KP_7) {
+          key = -7; // Cancelar
+        } else if (ev.key.keysym.sym == SDLK_UP || ev.key.keysym.sym == SDLK_w ||
+                   ev.key.keysym.sym == SDLK_2 || ev.key.keysym.sym == SDLK_KP_2) {
+          key = 50; // Cima
+        } else if (ev.key.keysym.sym == SDLK_DOWN || ev.key.keysym.sym == SDLK_s ||
+                   ev.key.keysym.sym == SDLK_8 || ev.key.keysym.sym == SDLK_KP_8) {
+          key = 56; // Baixo
+        } else if (ev.key.keysym.sym == SDLK_LEFT || ev.key.keysym.sym == SDLK_a ||
+                   ev.key.keysym.sym == SDLK_4 || ev.key.keysym.sym == SDLK_KP_4) {
+          key = 52; // Esquerda
+        } else if (ev.key.keysym.sym == SDLK_RIGHT || ev.key.keysym.sym == SDLK_d ||
+                   ev.key.keysym.sym == SDLK_6 || ev.key.keysym.sym == SDLK_KP_6) {
+          key = 54; // Direita
+        }
+      } else if (ev.type == SDL_CONTROLLERBUTTONDOWN) {
+        if (ev.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_UP) {
+          key = 50;
+        } else if (ev.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_DOWN) {
+          key = 56;
+        } else if (ev.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_LEFT) {
+          key = 52;
+        } else if (ev.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_RIGHT) {
+          key = 54;
+        } else {
+          int mkey = mapControllerButton(ev.cbutton.button);
+          if (mkey == 53) {
+            key = 53; // Confirmar (A no Switch, A no Xbox/PC)
+          } else if (mkey == -7 || mkey == -8) {
+            key = -7; // Cancelar (B no Switch, B no Xbox/PC)
+          }
+        }
+      } else if (ev.type == SDL_FINGERDOWN) {
+        int winW = 0, winH = 0;
+        SDL_GetRendererOutputSize(s_renderer, &winW, &winH);
+        if (winW <= 0 || winH <= 0) SDL_GetWindowSize(s_window, &winW, &winH);
+        float tx = 0, ty = 0;
+        int tw = 0, th = 0;
+        getTouchCoords(ev.tfinger, winW, winH, tx, ty, tw, th);
+        Cheats::handleClick((int)tx, (int)ty, &vm);
+        continue;
+      } else if (ev.type == SDL_MOUSEBUTTONDOWN) {
+        if (ev.button.which == SDL_TOUCH_MOUSEID) continue;
+        Cheats::handleClick(ev.button.x, ev.button.y, &vm);
+        continue;
+      }
+
+      if (key != 0) {
+        Cheats::handleInput(key, &vm);
       }
       continue; // Bloqueia propagação para o motor de jogo enquanto o modal estiver aberto
     }
@@ -2143,6 +2206,11 @@ void Platform::present() {
   // Renderiza diálogo modal do Cloud Save se estiver ativo
   if (CloudSave::isModalActive()) {
     CloudSave::drawModal(s_renderer, winW, winH);
+  }
+
+  // Renderiza diálogo modal de Cheats se estiver ativo
+  if (Cheats::isModalActive()) {
+    Cheats::drawModal(s_renderer, winW, winH);
   }
 
   SDL_RenderPresent(s_renderer);
@@ -3037,6 +3105,10 @@ void Platform::reloadLanguage(VM& vm) {
 
 void Platform::openCloudSave(VM* vm) {
   CloudSave::openModal(vm);
+}
+
+void Platform::openCheats(VM* vm) {
+  Cheats::openModal(vm);
 }
 
 } // namespace hl

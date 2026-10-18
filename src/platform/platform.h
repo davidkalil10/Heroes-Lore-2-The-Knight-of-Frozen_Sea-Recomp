@@ -46,6 +46,9 @@ public:
   // Recursos Passo 9: Cloud Save & Sincronização Cruzada (Google Drive)
   static void openCloudSave(VM* vm = nullptr);
 
+  // Recursos Passo 11: Menu Secreto de Trapaças (Cheats)
+  static void openCheats(VM* vm = nullptr);
+
   // Passo 10: Localização e Idiomas (PT, EN, IT, ES)
   static std::string getCurrentLanguage();
   static void setLanguage(const std::string& langCode);
