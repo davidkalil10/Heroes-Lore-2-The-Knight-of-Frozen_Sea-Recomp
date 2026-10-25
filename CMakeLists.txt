@@ -22,6 +22,13 @@ file(GLOB_RECURSE SRC_FILES
     src/*.h
 )
 
+if(WIN32)
+    set(RC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/src/platform/heroes_lore_2.rc)
+    if(EXISTS ${RC_FILE})
+        list(APPEND SRC_FILES ${RC_FILE})
+    endif()
+endif()
+
 add_executable(heroes_lore_2 ${SRC_FILES})
 
 target_include_directories(heroes_lore_2 PRIVATE

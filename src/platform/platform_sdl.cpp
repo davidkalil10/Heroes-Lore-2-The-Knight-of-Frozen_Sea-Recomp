@@ -686,6 +686,21 @@ bool Platform::init(int scale) {
     printf("[SDL] Win32 HWND: %p (janela trazida para o primeiro plano)\n", (void*)hwnd);
   }
 #endif
+  // Configura ícone da janela no desktop (Windows e Linux)
+  auto iconBytes = Platform::readAsset("ui/app_icon.rgba");
+  if (iconBytes.size() >= 8) {
+    uint32_t iconW = *(const uint32_t*)(iconBytes.data());
+    uint32_t iconH = *(const uint32_t*)(iconBytes.data() + 4);
+    if (iconBytes.size() >= 8 + (size_t)iconW * iconH * 4) {
+      SDL_Surface* iconSurf = SDL_CreateRGBSurfaceWithFormatFrom(
+          (void*)(iconBytes.data() + 8), iconW, iconH, 32, iconW * 4, SDL_PIXELFORMAT_RGBA32);
+      if (iconSurf) {
+        SDL_SetWindowIcon(s_window, iconSurf);
+        SDL_FreeSurface(iconSurf);
+      }
+    }
+  }
+
   printf("[SDL] Driver de Video: %s, Audio: %s\n", SDL_GetCurrentVideoDriver(), SDL_GetCurrentAudioDriver());
   SDL_RendererInfo rinfo;
   if (SDL_GetRendererInfo(s_renderer, &rinfo) == 0) {

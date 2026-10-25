@@ -1,6 +1,6 @@
 # STATUS — Heroes Lore 2: The Knight of Frozen Sea
 
-_Última atualização: 2026-10-18 (Versão v0.2.17 lançada oficialmente)_
+_Última atualização: 2026-10-25 (Versão v0.2.18 lançada oficialmente)_
 
 ## Ambiente
 - Java 17/21, Python 3.13, Git: OK.
@@ -62,6 +62,7 @@ _Última atualização: 2026-10-18 (Versão v0.2.17 lançada oficialmente)_
 - [x] Validação de zeramento contínuo (Campanha completa finalizada pelo usuário no Nintendo Switch, créditos validados e transição para o New Game+ / Hardcore Mode confirmada).
 - [x] Detecção Automática do Modo Dock no Nintendo Switch (v0.2.16): Ao conectar o Switch à TV no dock, todos os botões virtuais da tela (D-Pad, ações, menu, mapa, olho e rotação) são 100% ocultados em tempo real via libnx Horizon OS, e a tela passa para Paisagem 16:9 em 1080p. Ao retirar do dock para o modo portátil, todos os controles virtuais e orientações retornam instantaneamente.
 - [x] Correção de Renderização de Modais no Modo Vertical do Switch (v0.2.17): Os diálogos modais de Cheats, Cloud Save e Atualizador agora são renderizados diretamente na textura de rotação `s_rotateTarget` (720x1280), corrigindo a janela invisível no modo TATE/Flip Grip.
+- [x] Atualização de Ícone em Alta Definição (1024x1024) para Todas as Plataformas (v0.2.18): Imagem HD oficial integrada ao projeto (`assets/heroes_lore_2_icon_1024.png`) e desdobrada com fidelidade máxima para Switch (`switch/icon.jpg`), Android (`mipmap-*` quadrado e redondo), Linux/Steam Deck (`dist_linux/heroes_lore_2.png`), Windows executável (`.ico` + `.rc` embutido) e runtime desktop (`SDL_SetWindowIcon`).
 
 ## Roadmap de Etapas (Seguindo o Blueprint)
 - [x] **Passo 0:** Boot nativo no PC da classe `rpg.RPGHero2` e renderização do primeiro frame.

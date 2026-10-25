@@ -343,6 +343,13 @@
   - Adicionadas as chamadas de renderização de `Updater::drawModal`, `CloudSave::drawModal` e `Cheats::drawModal` diretamente dentro do bloco de composição de `s_rotateTarget` (passando o viewport 720x1280).
   - Dessa forma, os modais adaptam-se com perfeição ao modo portrait, recebem todos os toques e navegação via botões físicos (D-Pad, A, B) e são rotacionados na orientação correta da tela física do Switch.
 
-
-
+## Sessão 18 (Atualização do Ícone HD 1024x1024 Multiplataforma na v0.2.18)
+- **Integração do Ícone de Alta Fidelidade no Projeto:**
+  - O arquivo mestre de 1024x1024 pixels foi movido definitivamente para `assets/heroes_lore_2_icon_1024.png`, garantindo persistência no controle de versão.
+  - O utilitário `tools/generate_app_icons.py` foi atualizado para gerar automaticamente todos os formatos requeridos pelo ecossistema:
+    - **Nintendo Switch:** `switch/icon.jpg` em 256x256 JPEG (qualidade 95%) embutido no `.nro` pelo `Makefile.switch`.
+    - **Linux & Steam Deck:** `dist_linux/heroes_lore_2.png` em 256x256 PNG para AppImage e desktop shortcut.
+    - **Android:** Pacote completo de `mipmap-mdpi`, `hdpi`, `xhdpi`, `xxhdpi` e `xxxhdpi` com versões padrão quadrada e redonda (`ic_launcher_round.png` gerada via máscara elíptica com supersampling 4x).
+    - **Windows:** Geração de `src/platform/heroes_lore_2.ico` contendo todas as resoluções de 16x16 até 256x256 e arquivo `heroes_lore_2.rc` integrado ao `CMakeLists.txt` via `windres`, permitindo exibição nativa do ícone no Windows Explorer.
+    - **Desktop Runtime (SDL2):** Geração de `assets/ui/app_icon.rgba` (128x128 RGBA com cabeçalho de 8 bytes) carregado dinamicamente via `SDL_SetWindowIcon()` para exibir o ícone oficial na barra de títulos e barra de tarefas do Windows e Linux.
 
