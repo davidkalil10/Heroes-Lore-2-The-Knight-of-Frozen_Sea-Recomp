@@ -128,4 +128,4 @@ make -f Makefile.switch -j$(nproc)
 Recompilação desenvolvida com propósitos estritos de **preservação histórica de jogos clássicos** e engenharia reversa para compatibilidade com plataformas modernas. Todo o conteúdo original do jogo (código J2ME, assets, roteiro e áudio) pertence aos detentores originais dos direitos autorais (*Hands-On Mobile Korea*).
 
 ### Agradecimentos Especiais
-- **Leidenschaftlich_**: Um agradecimento especial a **Leidenschaftlich_**, autor da tradução original do jogo para o inglês (modificação J2ME), que serviu como ponto de partida e base fundamental para este projeto de recompilação nativa e para a localização nos demais idiomas (Português do Brasil, Espanhol e Italiano).
+- **Leidenschaftlich_**: Um agradecimento especial a **Leidenschaftlich_**, autor da tradução original do jogo para o inglês (modificação J2ME), que serviu como ponto de partida e base fundamental para este projeto de recompilação nativa e para a localização em Português do Brasil (PT-BR).
