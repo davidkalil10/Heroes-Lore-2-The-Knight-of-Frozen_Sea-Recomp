@@ -369,3 +369,11 @@ A execução [43689191483](https://github.com/davidkalil10/Heroes-Lore-2-The-Kni
 Arquivo da revisão `8fdacddf573a36a7798db9b2e135056c75d7e9b2`: 80.118.112 bytes, SHA-256 `8e47db5f335f04ceed3dc8f680f632ec18afa9c98a3503774613ba08457c8b56`. O nome específico do atualizador Switch 2 também foi confirmado no binário.
 
 Em 15/11/2026, o Netloader confirmou o recebimento de `heroes_lore_2_switch2_8fdacdd.nro`, com 24.913.373 bytes comprimidos. A transferência não acessou saves. A confirmação do protocolo não comprova execução; abertura, jogabilidade e backup/restauração Google Drive ainda aguardam confirmação no console. A pasta original e a main permanecem intactas.
+
+## 15/11/2026 — integração e publicação Switch 2
+
+- Execução desta build aprovada no console após envio pelo Netloader.
+- Build Switch 2 incorporada ao workflow multiplataforma por workflow_call: main/PR geram artefatos e tags publicam NRO e SHA-256.
+- Versão do NACP deriva de Makefile.switch, acompanhando as ferramentas de atualização existentes.
+- Publicação manual usa inputs.release_tag; a expressão antiga priorizava github.ref_name e poderia selecionar a branch.
+- Saves e nuvem permanecem com o código, os nomes e a identidade específicos do jogo. NRO testado preservado para a release atual.

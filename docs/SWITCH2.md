@@ -1,5 +1,14 @@
 # Heroes Lore 2: The Knight of Frozen Sea — Switch 2 experimental
 
+## Integração à main e releases — 15/11/2026
+
+O suporte Switch 2 passa a integrar o fluxo multiplataforma. `build.yml` chama `build-switch2.yml` como workflow reutilizável, evitando uma segunda compilação independente no mesmo push. Pushes na main e pull requests geram o artefato; tags `v*` publicam o NRO e seu SHA-256 junto dos demais arquivos, após as builds terminarem com sucesso. O workflow de Switch 2 também pode ser iniciado manualmente.
+
+As releases atuais recebem o NRO exato aprovado no console, sem substituir os arquivos das outras plataformas. Para atualizações futuras, use o versionamento normal do projeto: Switch 2 herda `APP_VERSION` de `Makefile.switch`. A publicação manual usa a tag informada, em vez de usar o nome da branch como tag. Não há mudança do formato RMS nem da identidade Google Drive nesta integração.
+
+As seções seguintes registram a preparação e os testes iniciais da branch experimental. As referências a main inalterada e ausência de publicação se referem àquela etapa anterior.
+
+
 Build separada da base 0.2.18 para kaiHEN/ounce-hbmenu. Preserva lógica do jogo, recursos, localização, persistência e Google Drive. Makefile e workflow originais das demais plataformas permanecem intactos.
 
 ## Compilação no GitHub

@@ -88,3 +88,7 @@ Para evitar qualquer sobreposição ou conflito com instalações de *Heroes Lor
 | **Windows** | `heroes_lore_2.exe` | Dados em `./` e `%APPDATA%/heroes_lore_2` |
 | **Google Drive** | `heroes_lore_2_save.json` | Pasta: `Heroes Lore II - The Knight of Frozen Sea` |
 | **Auto-Updater** | `davidkalil10/Heroes-Lore-2-The-Knight-of-Frozen_Sea-Recomp` | Repositório exclusivo de updates OTA |
+
+## Switch 2
+
+`Makefile.switch2` herda `APP_VERSION` de `Makefile.switch`. O procedimento de bump continua único; não editar uma segunda versão para Switch 2. O workflow multiplataforma gera `heroes_lore_2_switch2.nro` e inclui o arquivo e SHA-256 na publicação por tag `v*` ou execução manual com criação de release habilitada. O workflow reutilizável de Switch 2 não publica sozinho.

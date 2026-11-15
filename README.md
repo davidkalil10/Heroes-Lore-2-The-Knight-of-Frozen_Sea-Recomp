@@ -53,6 +53,7 @@ O projeto executa o **bytecode original diretamente no motor C++**, sem emulaç�
 | 🐧 **Linux** | `heroes_lore_2_linux_x86_64.AppImage` | AppImage portátil universal | ✅ Suportado |
 | 🤖 **Android** | `heroes_lore_2-universal.apk` | APK nativo (arm64-v8a + armeabi-v7a) | ✅ Suportado |
 | 🕹️ **Nintendo Switch** | `heroes_lore_2.nro` | Homebrew NRO com RomFS embutido | ✅ Suportado |
+| Nintendo Switch 2 | `heroes_lore_2_switch2.nro` | Homebrew NRO com RomFS, via kaiHEN/ounce-hbmenu | Testado no console |
 
 > **Nota de Isolamento:** Os identificadores de pacote (`com.davidbraga.heroeslore2`), Title IDs (`0100484C32000000`), pastas de armazenamento e arquivos de save na nuvem são 100% isolados de *Heroes Lore: Wind of Soltia*, permitindo que ambos os jogos coexistam no mesmo dispositivo sem qualquer conflito.
 
@@ -129,3 +130,11 @@ Recompilação desenvolvida com propósitos estritos de **preservação históri
 
 ### Agradecimentos Especiais
 - **Leidenschaftlich_**: Um agradecimento especial a **Leidenschaftlich_**, autor da tradução original do jogo para o inglês (modificação J2ME), que serviu como ponto de partida e base fundamental para este projeto de recompilação nativa e para a localização em Português do Brasil (PT-BR).
+
+## Nintendo Switch 2 e builds automáticas
+
+Heroes Lore 2: The Knight of Frozen Sea tem build própria para Switch 2, usando [ounce-devkit](https://github.com/ouncebrew/ounce-devkit), [libounce](https://github.com/ouncebrew/libounce), [OunceVK](https://github.com/ouncebrew/ouncevk), [kaiHEN](https://github.com/ouncebrew/kaihen) e [ounce-hbmenu](https://github.com/ouncebrew/ounce-hbmenu). Créditos aos projetos e seus contribuidores.
+
+Baixe **heroes_lore_2_switch2.nro** na release. O arquivo contém os recursos e foi testado no console; não é o NRO de Switch 1. Execute com kaiHEN/hbmenu pelo SD ou Netloader. Saves e integração Google Drive mantêm o formato e a identidade específicos deste jogo.
+
+A compilação multiplataforma gera também o NRO de Switch 2 em pushes na main, pull requests e novas tags. O NRO fica nos artefatos do Actions; tags `v*` publicam o arquivo e SHA-256 na release junto das outras plataformas. A execução manual permite compilar sem publicar ou publicar informando a tag. `APP_VERSION` do Switch 2 acompanha automaticamente o Makefile de Switch 1, já atualizado pelas ferramentas de versão do projeto. [Instruções e validação](docs/SWITCH2.md).

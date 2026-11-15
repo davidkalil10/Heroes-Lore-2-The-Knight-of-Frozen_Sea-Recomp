@@ -85,4 +85,12 @@ _Última atualização: 2026-10-25 (Versão v0.2.18 lançada oficialmente)_
 - NRO próprio heroes_lore_2_switch2.nro com recursos embutidos, metadados, hash e relatório.
 - Código de persistência e nuvem preservado, incluindo diretório heroes_lore_2 e arquivo heroes_lore_2_save.json.
 - Atualizador distingue Switch 2 de Switch 1. Sem alteração da versão oficial ou do workflow multiplataforma existente.
-- Compilação GitHub Actions aprovada na revisão 8fdacddf573a36a7798db9b2e135056c75d7e9b2; ícone, NACP e RomFS verificados. Transferência Netloader aceita; execução e testes de saves no console ainda pendentes. Detalhes em docs/SWITCH2.md.
+- Compilação GitHub Actions aprovada na revisão 8fdacddf573a36a7798db9b2e135056c75d7e9b2; ícone, NACP e RomFS verificados. Transferência Netloader aceita e execução posteriormente aprovada no console. Detalhes em docs/SWITCH2.md.
+
+## 15/11/2026 — integração e publicação Switch 2
+
+- Execução desta build aprovada no console após envio pelo Netloader.
+- Build Switch 2 incorporada ao workflow multiplataforma por workflow_call: main/PR geram artefatos e tags publicam NRO e SHA-256.
+- Versão do NACP deriva de Makefile.switch, acompanhando as ferramentas de atualização existentes.
+- Publicação manual usa inputs.release_tag; a expressão antiga priorizava github.ref_name e poderia selecionar a branch.
+- Saves e nuvem permanecem com o código, os nomes e a identidade específicos do jogo. NRO testado preservado para a release atual.
