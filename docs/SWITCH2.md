@@ -29,3 +29,7 @@ Com hbmenu ativo, abra Netloader e envie o NRO por nxlink para o IP exibido. Os 
 Verifique abertura, imagem, controles, áudio, localização, menus, saves, backup/restauração e retorno ao hbmenu. A aprovação dos outros ports serve de referência do ambiente; este NRO tem seu próprio checkpoint de validação.
 
 Créditos: [ounce-devkit](https://github.com/ouncebrew/ounce-devkit), [libounce](https://github.com/ouncebrew/libounce), [OunceVK](https://github.com/ouncebrew/ouncevk), [kaiHEN](https://github.com/ouncebrew/kaihen), devkitPro e contribuidores.
+
+## Compilação aprovada — 15/11/2026
+
+A execução [43689191483](https://github.com/davidkalil10/Heroes-Lore-2-The-Knight-of-Frozen_Sea-Recomp/actions/runs/43689191483) concluiu com sucesso na revisão `8fdacddf573a36a7798db9b2e135056c75d7e9b2`. NRO, ícone, NACP e RomFS passaram pela inspeção estrutural do workflow. A validação de execução e Google Drive no jogo 2 ainda depende de teste no console.

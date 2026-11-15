@@ -359,3 +359,7 @@
 O ambiente ounce-devkit 20261115 e a imagem devkitPro 20260219, já usados nos outros dois ports, foram aplicados ao Makefile.switch2 e workflow separado. As regras libounce/switch2_rules e SWITCH2_CPU selecionam as bibliotecas e CPU do Switch 2 sem alterar a lógica da VM ou do jogo. Manter a inicialização de rede do Updater e todas as funções Google Drive.
 
 O jogo 2 difere no conjunto de saves: reconhece arquivos XF*.rms e nomes legados, e empacota RMS dinamicamente. Preservar esse código e a identidade heroes_lore_2_save.json na pasta de nuvem própria. Não copiar listas de arquivos dos outros jogos. O atualizador original também aceita heroes_lore.nro como fallback para Switch 1; o caso __SWITCH2__ deve selecionar exclusivamente heroes_lore_2_switch2.nro. Compilação e integridade não substituem validação no console.
+
+## Compilação aprovada — 15/11/2026
+
+A execução [43689191483](https://github.com/davidkalil10/Heroes-Lore-2-The-Knight-of-Frozen_Sea-Recomp/actions/runs/43689191483) concluiu com sucesso na revisão `8fdacddf573a36a7798db9b2e135056c75d7e9b2`. NRO, ícone, NACP e RomFS passaram pela inspeção estrutural do workflow. A validação de execução e Google Drive no jogo 2 ainda depende de teste no console.
