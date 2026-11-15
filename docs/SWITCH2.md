@@ -33,3 +33,9 @@ Créditos: [ounce-devkit](https://github.com/ouncebrew/ounce-devkit), [libounce]
 ## Compilação aprovada — 15/11/2026
 
 A execução [43689191483](https://github.com/davidkalil10/Heroes-Lore-2-The-Knight-of-Frozen_Sea-Recomp/actions/runs/43689191483) concluiu com sucesso na revisão `8fdacddf573a36a7798db9b2e135056c75d7e9b2`. NRO, ícone, NACP e RomFS passaram pela inspeção estrutural do workflow. A validação de execução e Google Drive no jogo 2 ainda depende de teste no console.
+
+## NRO verificado e enviado pelo Netloader
+
+Arquivo da revisão `8fdacddf573a36a7798db9b2e135056c75d7e9b2`: 80.118.112 bytes, SHA-256 `8e47db5f335f04ceed3dc8f680f632ec18afa9c98a3503774613ba08457c8b56`. O nome específico do atualizador Switch 2 também foi confirmado no binário.
+
+Em 15/11/2026, o Netloader confirmou o recebimento de `heroes_lore_2_switch2_8fdacdd.nro`, com 24.913.373 bytes comprimidos. A transferência não acessou saves. A confirmação do protocolo não comprova execução; abertura, jogabilidade e backup/restauração Google Drive ainda aguardam confirmação no console. A pasta original e a main permanecem intactas.
