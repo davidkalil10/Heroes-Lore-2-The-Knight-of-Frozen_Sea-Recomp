@@ -353,3 +353,9 @@
     - **Windows:** Geração de `src/platform/heroes_lore_2.ico` contendo todas as resoluções de 16x16 até 256x256 e arquivo `heroes_lore_2.rc` integrado ao `CMakeLists.txt` via `windres`, permitindo exibição nativa do ícone no Windows Explorer.
     - **Desktop Runtime (SDL2):** Geração de `assets/ui/app_icon.rgba` (128x128 RGBA com cabeçalho de 8 bytes) carregado dinamicamente via `SDL_SetWindowIcon()` para exibir o ícone oficial na barra de títulos e barra de tarefas do Windows e Linux.
 
+
+## 15/11/2026 — build Switch 2 em branch separada
+
+O ambiente ounce-devkit 20261115 e a imagem devkitPro 20260219, já usados nos outros dois ports, foram aplicados ao Makefile.switch2 e workflow separado. As regras libounce/switch2_rules e SWITCH2_CPU selecionam as bibliotecas e CPU do Switch 2 sem alterar a lógica da VM ou do jogo. Manter a inicialização de rede do Updater e todas as funções Google Drive.
+
+O jogo 2 difere no conjunto de saves: reconhece arquivos XF*.rms e nomes legados, e empacota RMS dinamicamente. Preservar esse código e a identidade heroes_lore_2_save.json na pasta de nuvem própria. Não copiar listas de arquivos dos outros jogos. O atualizador original também aceita heroes_lore.nro como fallback para Switch 1; o caso __SWITCH2__ deve selecionar exclusivamente heroes_lore_2_switch2.nro. Compilação e integridade não substituem validação no console.

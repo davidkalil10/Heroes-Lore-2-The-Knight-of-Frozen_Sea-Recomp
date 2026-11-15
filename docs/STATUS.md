@@ -78,3 +78,11 @@ _Última atualização: 2026-10-25 (Versão v0.2.18 lançada oficialmente)_
 - [x] **Passo 10:** Validação de zeramento contínuo (Campanha concluída no Nintendo Switch com sucesso e New Game+ / Hardcore Mode desbloqueado).
 
 
+
+## Switch 2 — build experimental (15/11/2026)
+
+- Makefile.switch2 e workflow separado usando o ambiente ounce-devkit já aplicado nos outros ports da franquia.
+- NRO próprio heroes_lore_2_switch2.nro com recursos embutidos, metadados, hash e relatório.
+- Código de persistência e nuvem preservado, incluindo diretório heroes_lore_2 e arquivo heroes_lore_2_save.json.
+- Atualizador distingue Switch 2 de Switch 1. Sem alteração da versão oficial ou do workflow multiplataforma existente.
+- Compilação e testes no console pendentes neste checkpoint. Detalhes em docs/SWITCH2.md.
